@@ -3,7 +3,8 @@ const path = require("path"),
   mongoose = require("mongoose"),
   morgan = require("morgan"),
   bodyParser = require("body-parser"),
-  userRouter = require("../routes/api/user.js");
+  userRouter = require("../routes/api/user"),
+  authRouter = require("../routes/api/authorization");
 
 module.exports.init = () => {
   /* 
@@ -26,8 +27,9 @@ module.exports.init = () => {
   // body parsing middleware
   app.use(bodyParser.json());
 
-  // add a router
+  // add routers
   app.use("/api/user", userRouter);
+  app.use("/api/auth", authRouter);
 
   if (process.env.NODE_ENV === "production") {
     // Serve any static files
