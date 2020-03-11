@@ -11,7 +11,8 @@ module.exports.init = () => {
         - reference README for db uri
     */
   mongoose.connect(process.env.DB_URI || require("./config").db.uri, {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
   });
   mongoose.set("useCreateIndex", true);
   mongoose.set("useFindAndModify", false);

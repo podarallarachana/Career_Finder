@@ -21,6 +21,14 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  is_teacher: {
+    type: Boolean,
+    required: true
+  },
+  code: {
+    type: String,
+    required: true //DEAFULT NULL?
   }
 });
 
