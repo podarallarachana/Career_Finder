@@ -3,6 +3,8 @@ const router = express.Router();
 const { check, validationResult } = require("express-validator/check");
 const User = require("../../models/UserModel");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const config = require("../../config/config");
 
 router.post(
   "/",
@@ -36,7 +38,9 @@ router.post(
       //CANT REGISTER EXISTING USER
       let user = await User.findOne({ email });
       if (user) {
-        return res.status.json({ errors: [{ msg: "User already exists" }] });
+        return res
+          .status(400)
+          .json({ errors: [{ msg: "User already exists!" }] });
       }
 
       //CREATE NEW INSTANCE OF USER
@@ -54,7 +58,23 @@ router.post(
       user.password = await bcrypt.hash(password, salt);
       await user.save();
 
-      res.send("Succesfully registed user");
+      const payload = {
+        user: {
+          id: user.id
+        }
+      };
+
+      jwt.sign(
+        payload,
+        process.env.DB_TOKEN || config.db.token,
+        {
+          expiresIn: 400000 //CHANGE EXPIRATION TO MUCH LESS IN PRODUCTION
+        },
+        (err, token) => {
+          if (err) throw err;
+          res.json({ token });
+        }
+      );
     } catch (err) {
       res.status(500).send("Server error");
     }
