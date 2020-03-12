@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/authorization";
@@ -13,7 +13,7 @@ const Register = ({ setAlert, register }) => {
     password: "",
     password2: "",
     is_teacher: false,
-    code: ""
+    code: "" //only empty for students with no teacher
   });
 
   const {
@@ -73,7 +73,7 @@ const Register = ({ setAlert, register }) => {
                 name="first_name"
                 value={first_name}
                 onChange={e => onChange(e)}
-                //required
+                required
               />
             </div>
             <div className="form-group">
@@ -83,7 +83,7 @@ const Register = ({ setAlert, register }) => {
                 name="last_name"
                 value={last_name}
                 onChange={e => onChange(e)}
-                //required
+                required
               />
             </div>
             <div className="form-group">
@@ -93,7 +93,7 @@ const Register = ({ setAlert, register }) => {
                 name="email"
                 value={email}
                 onChange={e => onChange(e)}
-                //required
+                required
               />
             </div>
             <div className="form-group">
@@ -104,7 +104,7 @@ const Register = ({ setAlert, register }) => {
                 minLength="8"
                 value={password}
                 onChange={e => onChange(e)}
-                //required
+                required
               />
             </div>
             <div className="form-group">
@@ -115,7 +115,7 @@ const Register = ({ setAlert, register }) => {
                 minLength="8"
                 value={password2}
                 onChange={e => onChange(e)}
-                //required
+                required
               />
             </div>
             <div className="form-group">
@@ -127,7 +127,7 @@ const Register = ({ setAlert, register }) => {
                 onChange={e => onChange(e)}
               />
               <small className="form-text">
-                Only //required if you are a student and your teacher has given
+                Only required if you are a student and your teacher has given
                 you a registration code.
               </small>
             </div>

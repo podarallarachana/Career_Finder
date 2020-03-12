@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import { setAlert } from "./alert";
 import { REGISTER_SUCCESS, REGISTER_FAIL } from "./constants";
 
@@ -17,6 +18,14 @@ export const register = ({
     }
   };
 
+  if (code === "" && is_teacher === false) {
+    //STUDENT DOESN'T HAVE A CODE
+    code = "NA";
+  } else if (is_teacher === true) {
+    //IF IT IS A TEACHER, GENERATE A NEW CODE
+    code = uuidv4();
+  }
+
   const body = JSON.stringify({
     first_name,
     last_name,
@@ -25,6 +34,8 @@ export const register = ({
     is_teacher,
     code
   });
+
+  console.log(body);
 
   try {
     const res = await axios.post("/api/user", body, config);
