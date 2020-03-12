@@ -9,7 +9,7 @@ const Home = () => {
           <p className="lead">Find the perfect career for you!</p>
           <div className="buttons">
             <a href="register.html" className="btn btn-primary">
-              Sign Up
+              Register
             </a>
             <a href="login.html" className="btn btn-light">
               Login
