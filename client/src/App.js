@@ -1,22 +1,15 @@
-import React from 'react';
-import { Route, Switch, Redirect  } from 'react-router-dom';
-import Home from "./views/Home/Home";
-import NotFound from "./views/NotFound";
-import NavBar from "./components/Header/NavBar";
+import React, { Fragment } from "react";
+import Navbar from "./components/shared/Nav";
+import Home from "./components/Home";
+import "./App.css";
 
 const App = () => {
   return (
-    <div>
-      <NavBar />
-      <Switch>
-        <Route exact path="/Home" component={Home} />
-        <Route exact path="/">
-          <Redirect to="/Home" />
-        </Route>
-        <Route component={NotFound}/>
-      </Switch>
-    </div>
+    <Fragment>
+      <Navbar />
+      <Home />
+    </Fragment>
   );
-}
+};
 
 export default App;
