@@ -1,10 +1,11 @@
 import React, { Fragment, useState } from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
+import { register } from "../../actions/authorization";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert, register }) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -44,7 +45,14 @@ const Register = ({ setAlert }) => {
     if (password !== password2) {
       setAlert("Make sure passwords match", "danger");
     } else {
-      console.log(formData);
+      register({
+        first_name,
+        last_name,
+        email,
+        password,
+        is_teacher,
+        code
+      });
     }
   };
 
@@ -65,7 +73,7 @@ const Register = ({ setAlert }) => {
                 name="first_name"
                 value={first_name}
                 onChange={e => onChange(e)}
-                required
+                //required
               />
             </div>
             <div className="form-group">
@@ -75,7 +83,7 @@ const Register = ({ setAlert }) => {
                 name="last_name"
                 value={last_name}
                 onChange={e => onChange(e)}
-                required
+                //required
               />
             </div>
             <div className="form-group">
@@ -85,7 +93,7 @@ const Register = ({ setAlert }) => {
                 name="email"
                 value={email}
                 onChange={e => onChange(e)}
-                required
+                //required
               />
             </div>
             <div className="form-group">
@@ -96,7 +104,7 @@ const Register = ({ setAlert }) => {
                 minLength="8"
                 value={password}
                 onChange={e => onChange(e)}
-                required
+                //required
               />
             </div>
             <div className="form-group">
@@ -107,7 +115,7 @@ const Register = ({ setAlert }) => {
                 minLength="8"
                 value={password2}
                 onChange={e => onChange(e)}
-                required
+                //required
               />
             </div>
             <div className="form-group">
@@ -119,7 +127,7 @@ const Register = ({ setAlert }) => {
                 onChange={e => onChange(e)}
               />
               <small className="form-text">
-                Only required if you are a student and your teacher has given
+                Only //required if you are a student and your teacher has given
                 you a registration code.
               </small>
             </div>
@@ -145,7 +153,8 @@ const Register = ({ setAlert }) => {
 };
 
 Register.propTypes = {
-  setAlert: PropTypes.func.isRequired
+  setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
 };
 
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
