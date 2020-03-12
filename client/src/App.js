@@ -3,6 +3,7 @@ import Navbar from "./components/shared/Nav";
 import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
+import Alert from "./components/shared/Alert";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
@@ -18,6 +19,7 @@ const App = () => {
           <Navbar />
           <Route exact path="/" component={Home} />
           <section className="container">
+            <Alert />
             <Switch>
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
