@@ -23,11 +23,19 @@ const Register = props => {
     code
   } = formData;
 
-  const onChange = e =>
+  const onChange = e => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
+  };
+
+  const onClick = cb => {
+    setFormData({
+      ...formData,
+      is_teacher: cb.target.checked
+    });
+  };
 
   const onSubmit = e => {
     e.preventDefault();
@@ -116,9 +124,10 @@ const Register = props => {
             <div className="form-group">
               <input
                 type="checkbox"
+                id="is_teacher"
                 name="is_teacher"
                 value={is_teacher}
-                onChange={e => onChange(e)}
+                onClick={cb => onClick(cb)}
               />
               <label htmlFor="is_teacher">&nbsp;I am a teacher</label>
             </div>
