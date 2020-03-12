@@ -2,10 +2,10 @@ import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../../actions/alert";
 import { register } from "../../actions/authorization";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 
-const Register = ({ setAlert, register }) => {
+const Register = ({ setAlert, register, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     first_name: "",
     last_name: "",
@@ -55,6 +55,11 @@ const Register = ({ setAlert, register }) => {
       });
     }
   };
+
+  //REDIRECT IF SUCCESFUL REGISTER
+  if (isAuthenticated) {
+    return <Redirect to="/profile" />;
+  }
 
   return (
     <Fragment>
@@ -154,7 +159,12 @@ const Register = ({ setAlert, register }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
-  register: PropTypes.func.isRequired
+  register: PropTypes.func.isRequired,
+  isAuthenticated: PropTypes.bool
 };
 
-export default connect(null, { setAlert, register })(Register);
+const mapStateToProps = state => ({
+  isAuthenticated: state.authorization.isAuthenticated
+});
+
+export default connect(mapStateToProps, { setAlert, register })(Register);
