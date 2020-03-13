@@ -44,7 +44,7 @@ const Login = ({ login, isAuthenticated }) => {
               <div className="card-body">
                 <h1 className="font-weight-light">Login</h1>
                 <Form onSubmit={e => onSubmit(e)}>
-                  <Form.Group controlId="formBasicEmail">
+                  <Form.Group>
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
                       type="email"
@@ -55,8 +55,7 @@ const Login = ({ login, isAuthenticated }) => {
                       required
                     />
                   </Form.Group>
-
-                  <Form.Group controlId="formBasicPassword">
+                  <Form.Group>
                     <Form.Label>Password</Form.Label>
                     <Form.Control
                       type="password"
@@ -68,7 +67,15 @@ const Login = ({ login, isAuthenticated }) => {
                       required
                     />
                   </Form.Group>
-                  <Button variant="primary" type="submit">
+                  <Button
+                    type="submit"
+                    style={{
+                      backgroundColor: "	#ee5847",
+                      border: "0px",
+                      display: "table",
+                      margin: "0 auto"
+                    }}
+                  >
                     Submit
                   </Button>
                 </Form>
