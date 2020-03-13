@@ -1,7 +1,7 @@
 import axios from "axios";
 import { v4 as uuidv4 } from "uuid";
 import { setAlert } from "./alert";
-import setAuthToken from "../components/shared/setAuthToken";
+import setAuthToken from "../utilities/setAuthToken";
 import {
   REGISTER_SUCCESS,
   REGISTER_FAIL,

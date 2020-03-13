@@ -4,10 +4,10 @@ import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Alert from "./components/shared/Alert";
-import setAuthToken from "./components/shared/setAuthToken";
+import setAuthToken from "./state-management/utilities/setAuthToken";
 import { Provider } from "react-redux";
-import { loadUser } from "./actions/authorization";
-import store from "./store";
+import { loadUser } from "./state-management/actions/authorization";
+import store from "./state-management/store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
 

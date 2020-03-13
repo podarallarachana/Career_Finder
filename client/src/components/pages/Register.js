@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { setAlert } from "../../actions/alert";
-import { register } from "../../actions/authorization";
+import { setAlert } from "../../state-management/actions/alert";
+import { register } from "../../state-management/actions/authorization";
 import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
 

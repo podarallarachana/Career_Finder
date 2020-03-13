@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { logout } from "../../actions/authorization";
+import { logout } from "../../state-management/actions/authorization";
 
 const Navbar = ({ authorization: { isAuthenticated, loading }, logout }) => {
   // MUST ALSO ADD TEACHER ADMIN LINKS
