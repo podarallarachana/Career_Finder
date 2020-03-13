@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const config = require("../config/config");
+// const config = require("../config/config");
 
 module.exports = function(req, res, next) {
   // GET TOKEN FROM HEADER
@@ -14,7 +14,7 @@ module.exports = function(req, res, next) {
   try {
     jwt.verify(
       token,
-      process.env.DB_TOKEN || config.db.token,
+      process.env.DB_TOKEN || require("../config/config").db.token,
       (error, decoded) => {
         if (error) {
           res.status(401).json({ msg: "Token is not valid" });

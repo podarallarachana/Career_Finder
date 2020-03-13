@@ -28,8 +28,8 @@ module.exports.init = () => {
   app.use(bodyParser.json());
 
   // add routers
-  // app.use("/api/user", userRouter);
-  // app.use("/api/auth", authRouter);
+  app.use("/api/user", userRouter);
+  app.use("/api/auth", authRouter);
 
   if (process.env.NODE_ENV === "production") {
     // Serve any static files
