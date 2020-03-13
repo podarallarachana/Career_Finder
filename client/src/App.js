@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 import { loadUser } from "./actions/authorization";
 import store from "./store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.css";
+import "./App.scss";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
