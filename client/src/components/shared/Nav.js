@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../state-management/actions/authorization";
@@ -16,13 +15,13 @@ const NavigationBar = ({
     //REDIRECTS USER TO LOGIN PAGE ONCE LOGGED OUT
     <Nav className="mr-auto">
       <LinkContainer to="/login" onClick={logout} href="#!">
-        <Nav.Link>Logout</Nav.Link>
+        <Nav.Link>logout</Nav.Link>
       </LinkContainer>
       <LinkContainer to="#">
-        <Nav.Link>Explore</Nav.Link>
+        <Nav.Link>explore</Nav.Link>
       </LinkContainer>
       <LinkContainer to="#">
-        <Nav.Link>About</Nav.Link>
+        <Nav.Link>about</Nav.Link>
       </LinkContainer>
     </Nav>
   );
@@ -30,25 +29,31 @@ const NavigationBar = ({
   const guestLinks = (
     <Nav className="mr-auto">
       <LinkContainer to="/login">
-        <Nav.Link>Login</Nav.Link>
+        <Nav.Link>login</Nav.Link>
       </LinkContainer>
       <LinkContainer to="/register">
-        <Nav.Link>Register</Nav.Link>
+        <Nav.Link>register</Nav.Link>
       </LinkContainer>
       <LinkContainer to="#">
-        <Nav.Link>Explore</Nav.Link>
+        <Nav.Link>explore</Nav.Link>
       </LinkContainer>
       <LinkContainer to="#">
-        <Nav.Link>About</Nav.Link>
+        <Nav.Link>about</Nav.Link>
       </LinkContainer>
     </Nav>
   );
 
   return (
-    <Navbar bg="light" expand="lg">
+    <Navbar
+      style={{
+        backgroundColor: "#fff",
+        boxShadow: " 0px 3px 3px 0px rgba(0,0,0,0.25)"
+      }}
+      expand="lg"
+    >
       <LinkContainer to="/">
         <Navbar.Brand>
-          <i className="fa fa-home"></i>
+          <i className="fa fa-home" aria-hidden="true"></i>
         </Navbar.Brand>
       </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
