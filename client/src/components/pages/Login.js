@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Link, Redirect } from "react-router-dom";
 import { login } from "../../state-management/actions/authorization";
 import PropTypes from "prop-types";
+import { Button, Form } from "react-bootstrap";
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -30,44 +31,53 @@ const Login = ({ login, isAuthenticated }) => {
   }
 
   return (
-    <Fragment>
-      <h1 className="large text-primary">Login</h1>
-      <div className="card">
-        <div className="card-body">
-          <form
-            className="form"
-            action="create-profile.html"
-            onSubmit={e => onSubmit(e)}
-          >
-            <div className="form-group">
-              <input
-                type="text"
-                placeholder="Email Address"
-                name="email"
-                value={email}
-                onChange={e => onChange(e)}
-                required
+    <div className="login">
+      <div className="container h-100">
+        <div className="row h-100  justify-content-center">
+          <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-6">
+            <div className="card">
+              <img
+                className="card-img-top"
+                src={require("../../assets/login.jpg")}
+                alt="Card image cap"
               />
+              <div className="card-body">
+                <h1 className="font-weight-light">Login</h1>
+                <Form onSubmit={e => onSubmit(e)}>
+                  <Form.Group controlId="formBasicEmail">
+                    <Form.Label>Email address</Form.Label>
+                    <Form.Control
+                      type="email"
+                      placeholder="Email"
+                      name="email"
+                      value={email}
+                      onChange={e => onChange(e)}
+                      required
+                    />
+                  </Form.Group>
+
+                  <Form.Group controlId="formBasicPassword">
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                      minLength="8"
+                      value={password}
+                      onChange={e => onChange(e)}
+                      required
+                    />
+                  </Form.Group>
+                  <Button variant="primary" type="submit">
+                    Submit
+                  </Button>
+                </Form>
+              </div>
             </div>
-            <div className="form-group">
-              <input
-                type="password"
-                placeholder="Password"
-                name="password"
-                minLength="8"
-                value={password}
-                onChange={e => onChange(e)}
-                required
-              />
-            </div>
-            <input type="submit" className="btn btn-primary" value="Login" />
-          </form>
+          </div>
         </div>
       </div>
-      <p className="my-1">
-        Don't have an account yet? <Link to="/register">Register</Link>
-      </p>
-    </Fragment>
+    </div>
   );
 };
 
