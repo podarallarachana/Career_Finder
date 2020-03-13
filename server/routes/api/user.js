@@ -4,7 +4,7 @@ const { check, validationResult } = require("express-validator/check");
 const User = require("../../models/UserModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const config = require("../../config/config");
+// const config = require("../../config/config");
 
 router.post(
   "/",
@@ -69,7 +69,7 @@ router.post(
 
       jwt.sign(
         payload,
-        process.env.DB_TOKEN || config.db.token,
+        process.env.DB_TOKEN || require("../../config/config").db.token,
         {
           expiresIn: 400000 //CHANGE EXPIRATION TO MUCH LESS IN PRODUCTION
         },
