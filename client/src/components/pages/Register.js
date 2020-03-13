@@ -138,7 +138,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       onChange={e => onChange(e)}
                     />
                     <Form.Text className="text-muted">
-                      Only required if you are a student and your teacher has
+                      *Only required if you are a student and your teacher has
                       given you a registration code.
                     </Form.Text>
                   </Form.Group>
