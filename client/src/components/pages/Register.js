@@ -4,6 +4,7 @@ import { setAlert } from "../../state-management/actions/alert";
 import { register } from "../../state-management/actions/authorization";
 import { Link, Redirect } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
+import Alert from "../shared/Alert";
 import PropTypes from "prop-types";
 
 const Register = ({ setAlert, register, isAuthenticated }) => {
@@ -67,7 +68,13 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
       <div className="container h-100">
         <div className="row h-100  justify-content-center">
           <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-6">
-            <div className="card">
+            <Alert />
+            <div
+              className="card"
+              style={{
+                border: "0px"
+              }}
+            >
               <img
                 className="card-img-top"
                 src={require("../../assets/register.jpg")}
@@ -155,7 +162,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                   <Button
                     type="submit"
                     style={{
-                      backgroundColor: "	#ee5847",
+                      backgroundColor: "#ee5847",
                       border: "0px",
                       display: "table",
                       margin: "0 auto"

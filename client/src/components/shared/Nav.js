@@ -17,10 +17,10 @@ const NavigationBar = ({
       <LinkContainer to="/login" onClick={logout} href="#!">
         <Nav.Link>logout</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="#">
+      <LinkContainer to="/explore">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="#">
+      <LinkContainer to="/about">
         <Nav.Link>about</Nav.Link>
       </LinkContainer>
     </Nav>
@@ -34,10 +34,10 @@ const NavigationBar = ({
       <LinkContainer to="/register">
         <Nav.Link>register</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="#">
+      <LinkContainer to="/explore">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="#">
+      <LinkContainer to="/about">
         <Nav.Link>about</Nav.Link>
       </LinkContainer>
     </Nav>

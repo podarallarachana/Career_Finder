@@ -10,22 +10,26 @@
 
 .login {
   height: calc(100vh - 56px);
-  min-height: 300px;
+  min-height: 800px;
+  background-image: url("./assets/login-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  // padding-top: 56px;
+  padding-top: 56px;
+  background-color: #ee5847;
 }
 
 .register {
   height: calc(100vh - 56px);
-  min-height: 500px;
+  min-height: 1000px;
+  background-image: url("./assets/register-bg.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  // padding-top: 56px;
+  padding-top: 56px;
+  background-color: #ee5847;
 }
 
-.nav-padding {
+section {
   padding-top: 56px;
 }

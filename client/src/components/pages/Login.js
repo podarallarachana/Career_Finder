@@ -4,6 +4,7 @@ import { Link, Redirect } from "react-router-dom";
 import { login } from "../../state-management/actions/authorization";
 import PropTypes from "prop-types";
 import { Button, Form } from "react-bootstrap";
+import Alert from "../shared/Alert";
 
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
@@ -35,7 +36,13 @@ const Login = ({ login, isAuthenticated }) => {
       <div className="container h-100">
         <div className="row h-100  justify-content-center">
           <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-6">
-            <div className="card">
+            <Alert />
+            <div
+              className="card"
+              style={{
+                border: "0px"
+              }}
+            >
               <img
                 className="card-img-top"
                 src={require("../../assets/login.jpg")}
