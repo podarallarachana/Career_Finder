@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect } from "react";
-import Navbar from "./components/shared/Nav";
+import NavigationBar from "./components/shared/Nav";
 import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
@@ -10,6 +10,7 @@ import { loadUser } from "./state-management/actions/authorization";
 import store from "./state-management/store";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -24,7 +25,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar />
+          <NavigationBar />
           <Route exact path="/" component={Home} />
           <section className="container">
             <Alert />
