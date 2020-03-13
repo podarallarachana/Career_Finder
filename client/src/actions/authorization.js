@@ -8,7 +8,8 @@ import {
   USER_LOADED,
   AUTH_ERROR,
   LOGIN_SUCCESS,
-  LOGIN_FAIL
+  LOGIN_FAIL,
+  LOGOUT
 } from "./constants";
 
 // LOAD USER
@@ -45,13 +46,18 @@ export const register = ({
     }
   };
 
+  //FOR NOW JUST TAKE CARE OF EMPTY CODES, CODE LOGIC NEEDS TO BE ADDED LATER
   if (code === "" && is_teacher === false) {
-    //STUDENT DOESN'T HAVE A CODE
     code = "NA";
-  } else if (is_teacher === true) {
-    //IF IT IS A TEACHER, GENERATE A NEW CODE
-    code = uuidv4();
   }
+
+  // if (code === "" && is_teacher === false) {
+  //   //STUDENT DOESN'T HAVE A CODE
+  //   code = "NA";
+  // } else if (is_teacher === true) {
+  //   //IF IT IS A TEACHER, GENERATE A NEW CODE
+  //   code = uuidv4();
+  // }
 
   const body = JSON.stringify({
     first_name,
@@ -119,4 +125,9 @@ export const login = (email, password) => async dispatch => {
       type: LOGIN_FAIL
     });
   }
+};
+
+// CLEAR PROFILE ON LOGOUT
+export const logout = () => async dispatch => {
+  dispatch({ type: LOGOUT });
 };
