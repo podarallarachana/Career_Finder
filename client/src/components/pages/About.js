@@ -19,17 +19,12 @@ const About = () => {
       </p>
       <p>
         <a href="https://www.freepik.com/free-photos-vectors/background">
-          Background vector created by freepik - www.freepik.com
-        </a>
-      </p>
-      <p>
-        <a href="https://www.freepik.com/free-photos-vectors/background">
-          Background vector created by freepik - www.freepik.com
-        </a>
-      </p>
-      <p>
-        <a href="https://www.freepik.com/free-photos-vectors/background">
           Background vector created by BiZkettE1 - www.freepik.com
+        </a>
+      </p>
+      <p>
+        <a href="https://www.freepik.com/free-photos-vectors/background">
+          Background vector created by pikisuperstar - www.freepik.com
         </a>
       </p>
       <br />

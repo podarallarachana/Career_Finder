@@ -13,9 +13,10 @@ const Home = () => {
               className="card"
               style={{
                 border: "0px",
-                backgroundColor: "#eefefe",
+                backgroundColor: "#f5631f",
                 padding: "0px 20px",
-                border: "5px solid #cbf4fa"
+                border: "5px solid 	#ff7e26",
+                color: "#fff"
                 // borderRadius: "30px"
                 // boxShadow: " 0px 3px 3px 0px rgba(0,0,0,0.25)"
               }}
@@ -32,7 +33,7 @@ const Home = () => {
                 <Link to="/login">
                   <Button
                     variant="primary"
-                    style={{ backgroundColor: "#b9f0f8", border: "0px" }}
+                    style={{ backgroundColor: "#ff851f", border: "0px" }}
                   >
                     Login
                   </Button>
@@ -41,7 +42,7 @@ const Home = () => {
                 <Link to="/register">
                   <Button
                     variant="primary"
-                    style={{ backgroundColor: "#00bcd5", border: "0px" }}
+                    style={{ backgroundColor: "#ff851f", border: "0px" }}
                   >
                     Register
                   </Button>
