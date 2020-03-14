@@ -3,7 +3,7 @@ import NavigationBar from "./components/shared/Nav";
 import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
-import Explore from "./components/pages/Explore";
+import Explore from "./components/pages/Explore/Explore";
 import About from "./components/pages/About";
 import setAuthToken from "./state-management/utilities/setAuthToken";
 import { Provider } from "react-redux";
