@@ -4,6 +4,7 @@ import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Explore from "./components/pages/Explore/Explore";
+import Pathway from "./components/pages/Explore/Pathway";
 import About from "./components/pages/About";
 import setAuthToken from "./state-management/utilities/setAuthToken";
 import { Provider } from "react-redux";
@@ -26,12 +27,12 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
-          <NavigationBar />
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <section className="container">
             <Switch>
+              <Route exact path="/pathway" component={Pathway} />
               <Route exact path="/explore" component={Explore} />
               <Route exact path="/about" component={About} />
             </Switch>

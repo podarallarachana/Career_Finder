@@ -7,7 +7,8 @@
         "Jobs": [
           {
             "Occupation": "Aquacultural Managers",
-            "Code": "11-9013.03"
+            "Code": "11-9013.03",
+            "Details": []
           },
           {
             "Occupation": "Buyers and Purchasing Agents, Farm Products",

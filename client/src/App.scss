@@ -5,13 +5,13 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #cbf4fa;
+  background-color: #ee5847;
 }
 
 .login {
   height: calc(100vh - 56px);
   min-height: 800px;
-  background-image: url("./assets/login-bg.jpg");
+  background-image: url("./assets/tmp1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -32,4 +32,8 @@
 
 section {
   padding-top: 56px;
+}
+
+.explore {
+  padding: 56px;
 }
