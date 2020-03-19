@@ -31,6 +31,27 @@ class Explore extends React.Component {
     );
   });
 
+  displayOccupations = CareerCluster =>
+    data.map(data => {
+      if (CareerCluster === data.CareerCluster) {
+        return (
+          <div className="col-12" key={data.CareerCluster}>
+            {data.CareerPathway.map(pathway => {
+              return (
+                <Fragment key={pathway.Pathway}>
+                  <Button variant="primary btn-sm" className="jumbatronButton">
+                    {pathway.Pathway}
+                  </Button>{" "}
+                </Fragment>
+              );
+            })}
+          </div>
+        );
+      } else {
+        return null;
+      }
+    });
+
   UNSAFE_componentWillMount() {
     mql.addListener(this.mediaQueryChanged);
   }
@@ -73,9 +94,9 @@ class Explore extends React.Component {
               This is a simple hero unit, a simple jumbotron-style component for
               calling extra attention to featured content or information.
             </p>
-            <p>
-              <Button variant="primary">Learn more</Button>
-            </p>
+            <div className="row justify-content-center">
+              {this.displayOccupations(this.state.activeCluster)}
+            </div>
           </Jumbotron>
           <Tabs activeCluster={this.state.activeCluster} />
           <div className="explore">
