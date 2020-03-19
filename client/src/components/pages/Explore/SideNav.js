@@ -1,11 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { ListGroup, Form, FormControl, Button } from "react-bootstrap";
 import data from "./Data.json";
 
 const SideNav = () => {
+  const [activeCluster, setActiveCluster] = useState("Finance");
+
+  const updateActiveCluster = e => {
+    setActiveCluster(e.target.innerText);
+  };
+
   const displayClusters = data.map(data => {
     return (
-      <ListGroup.Item key={data.CareerCluster}>
+      <ListGroup.Item
+        onClick={updateActiveCluster}
+        key={data.CareerCluster}
+        style={{
+          backgroundColor:
+            data.CareerCluster != activeCluster ? "white" : "red",
+          color: data.CareerCluster != activeCluster ? "black" : "white"
+        }}
+      >
         {data.CareerCluster}
       </ListGroup.Item>
     );
