@@ -1,6 +1,6 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { login } from "../../state-management/actions/authorization";
 import PropTypes from "prop-types";
 import { Button, Form } from "react-bootstrap";
@@ -46,7 +46,7 @@ const Login = ({ login, isAuthenticated }) => {
               <img
                 className="card-img-top"
                 src={require("../../assets/login.jpg")}
-                alt="Card image cap"
+                alt=""
               />
               <div className="card-body">
                 <h1 className="font-weight-light">Login</h1>

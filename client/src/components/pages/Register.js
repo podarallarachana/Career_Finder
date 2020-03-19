@@ -1,8 +1,8 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { setAlert } from "../../state-management/actions/alert";
 import { register } from "../../state-management/actions/authorization";
-import { Link, Redirect } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { Button, Form } from "react-bootstrap";
 import Alert from "../shared/Alert";
 import PropTypes from "prop-types";
@@ -78,7 +78,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
               <img
                 className="card-img-top"
                 src={require("../../assets/register.jpg")}
-                alt="Card image cap"
+                alt=""
               />
               <div className="card-body">
                 <h3 className="font-weight-light">Register</h3>

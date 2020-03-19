@@ -1,12 +1,10 @@
-import React, { useState } from "react";
-import { ListGroup, Form, FormControl, Button } from "react-bootstrap";
+import React from "react";
+import { ListGroup, Form, Button } from "react-bootstrap";
 import data from "./Data.json";
 
-const SideNav = () => {
-  const [activeCluster, setActiveCluster] = useState("Finance");
-
+const SideNav = props => {
   const updateActiveCluster = e => {
-    setActiveCluster(e.target.innerText);
+    props.updateActiveCluster(e.target.innerText);
   };
 
   const displayClusters = data.map(data => {
@@ -16,8 +14,8 @@ const SideNav = () => {
         key={data.CareerCluster}
         style={{
           backgroundColor:
-            data.CareerCluster != activeCluster ? "white" : "red",
-          color: data.CareerCluster != activeCluster ? "black" : "white"
+            data.CareerCluster !== props.activeCluster ? "white" : "red",
+          color: data.CareerCluster !== props.activeCluster ? "black" : "white"
         }}
       >
         {data.CareerCluster}

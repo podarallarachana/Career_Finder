@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { logout } from "../../state-management/actions/authorization";
 import { LinkContainer } from "react-router-bootstrap";
-import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from "react-bootstrap";
+import { Navbar, Nav } from "react-bootstrap";
 
 const NavigationBar = ({
   authorization: { isAuthenticated, loading },

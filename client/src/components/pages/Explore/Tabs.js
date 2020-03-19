@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import { Nav } from "react-bootstrap";
-import data from "./Data.json";
 
 const Tabs = () => {
   const [activeTab, setActiveTab] = useState("interactiveTools");

@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect } from "react";
-import NavigationBar from "./components/shared/Nav";
 import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";

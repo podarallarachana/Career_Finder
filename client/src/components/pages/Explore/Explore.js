@@ -4,7 +4,7 @@ import Sidebar from "react-sidebar";
 import NavigationBar from "../../shared/Nav";
 import SideNav from "./SideNav";
 import Tabs from "./Tabs";
-import { Jumbotron, Button, Nav } from "react-bootstrap";
+import { Jumbotron, Button } from "react-bootstrap";
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
@@ -13,9 +13,9 @@ class Explore extends React.Component {
     super(props);
     this.state = {
       sidebarDocked: mql.matches,
-      sidebarOpen: false
+      sidebarOpen: false,
+      activeCluster: "Agriculture, Food & Natural Resources"
     };
-    mql.addListener(this.mediaQueryChanged);
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
@@ -31,6 +31,10 @@ class Explore extends React.Component {
     );
   });
 
+  UNSAFE_componentWillMount() {
+    mql.addListener(this.mediaQueryChanged);
+  }
+
   componentWillUnmount() {
     mql.removeListener(this.mediaQueryChanged);
   }
@@ -43,11 +47,20 @@ class Explore extends React.Component {
     this.setState({ sidebarDocked: mql.matches, sidebarOpen: false });
   }
 
+  updateActiveCluster = newCluster => {
+    this.setState({ activeCluster: newCluster });
+  };
+
   render() {
     return (
       <Fragment>
         <Sidebar
-          sidebar={<SideNav />}
+          sidebar={
+            <SideNav
+              activeCluster={this.state.activeCluster}
+              updateActiveCluster={this.updateActiveCluster}
+            />
+          }
           open={this.state.sidebarOpen}
           docked={this.state.sidebarDocked}
           onSetOpen={this.onSetSidebarOpen}
@@ -55,7 +68,7 @@ class Explore extends React.Component {
         >
           <NavigationBar />
           <Jumbotron style={{ marginBottom: "0px" }}>
-            <h1>Hello, world!</h1>
+            <h1 className="font-weight-light">{this.state.activeCluster}</h1>
             <p>
               This is a simple hero unit, a simple jumbotron-style component for
               calling extra attention to featured content or information.
@@ -64,7 +77,7 @@ class Explore extends React.Component {
               <Button variant="primary">Learn more</Button>
             </p>
           </Jumbotron>
-          <Tabs />
+          <Tabs activeCluster={this.state.activeCluster} />
           <div className="explore">
             <h1 className="font-weight-light">Explore Careers</h1>
             <button onClick={() => this.onSetSidebarOpen(true)}>
