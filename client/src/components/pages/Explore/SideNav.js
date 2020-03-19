@@ -1,33 +1,38 @@
 import React from "react";
-import Sidebar from "react-sidebar";
+import { ListGroup, Form, FormControl, Button } from "react-bootstrap";
+import data from "./Data.json";
 
-class SideNav extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      sidebarOpen: true
-    };
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-  }
-
-  onSetSidebarOpen(open) {
-    this.setState({ sidebarOpen: open });
-  }
-
-  render() {
+const SideNav = () => {
+  const displayClusters = data.map(data => {
     return (
-      <Sidebar
-        sidebar={<b>Sidebar content</b>}
-        open={this.state.sidebarOpen}
-        onSetOpen={this.onSetSidebarOpen}
-        styles={{ sidebar: { background: "white" } }}
-      >
-        <button onClick={() => this.onSetSidebarOpen(true)}>
-          Open sidebar
-        </button>
-      </Sidebar>
+      <ListGroup.Item key={data.CareerCluster}>
+        {data.CareerCluster}
+      </ListGroup.Item>
     );
-  }
-}
+  });
+
+  return (
+    <div className="sidenav">
+      <Form>
+        <div className="input-group mb-3">
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Search"
+            aria-label="Recipient's username"
+            aria-describedby="button-addon2"
+          />
+          <div className="input-group-append">
+            <Button variant="outline-success">
+              <i className="fa fa-search"></i>
+            </Button>
+          </div>
+        </div>
+      </Form>
+      <br />
+      <ListGroup>{displayClusters}</ListGroup>
+    </div>
+  );
+};
 
 export default SideNav;
