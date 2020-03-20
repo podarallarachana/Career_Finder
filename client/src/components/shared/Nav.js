@@ -47,7 +47,8 @@ const NavigationBar = ({
     <Navbar
       style={{
         backgroundColor: "#fff",
-        boxShadow: " 0px 3px 3px 0px rgba(0,0,0,0.25)"
+        boxShadow: " 0px 3px 3px 0px rgba(0,0,0,0.25)",
+        zIndex: 3
       }}
       expand="lg"
     >

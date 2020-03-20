@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import data from "./Data.json";
 import Sidebar from "react-sidebar";
-import NavigationBar from "../../shared/Nav";
 import SideNav from "./SideNav";
 import Tabs from "./Tabs";
 import { Jumbotron, Button } from "react-bootstrap";
@@ -74,40 +73,44 @@ class Explore extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <Sidebar
-          sidebar={
-            <SideNav
-              activeCluster={this.state.activeCluster}
-              updateActiveCluster={this.updateActiveCluster}
-            />
+      <Sidebar
+        sidebar={
+          <SideNav
+            activeCluster={this.state.activeCluster}
+            updateActiveCluster={this.updateActiveCluster}
+          />
+        }
+        open={this.state.sidebarOpen}
+        docked={this.state.sidebarDocked}
+        onSetOpen={this.onSetSidebarOpen}
+        styles={{
+          root: {
+            top: 56
+          },
+          sidebar: {
+            backgroundColor: "#ffffff"
           }
-          open={this.state.sidebarOpen}
-          docked={this.state.sidebarDocked}
-          onSetOpen={this.onSetSidebarOpen}
-          styles={{ sidebar: { background: "white" } }}
-        >
-          <NavigationBar />
-          <Jumbotron style={{ marginBottom: "0px" }}>
-            <h1 className="font-weight-light">{this.state.activeCluster}</h1>
-            <p>
-              This is a simple hero unit, a simple jumbotron-style component for
-              calling extra attention to featured content or information.
-            </p>
-            <div className="row justify-content-center">
-              {this.displayOccupations(this.state.activeCluster)}
-            </div>
-          </Jumbotron>
-          <Tabs activeCluster={this.state.activeCluster} />
-          <div className="explore">
-            <h1 className="font-weight-light">Explore Careers</h1>
-            <button onClick={() => this.onSetSidebarOpen(true)}>
-              Open sidebar
-            </button>
-            {this.displayData}
+        }}
+      >
+        <Jumbotron style={{ marginBottom: "0px" }}>
+          <h1 className="font-weight-light">{this.state.activeCluster}</h1>
+          <p>
+            This is a simple hero unit, a simple jumbotron-style component for
+            calling extra attention to featured content or information.
+          </p>
+          <div className="row justify-content-center">
+            {this.displayOccupations(this.state.activeCluster)}
           </div>
-        </Sidebar>
-      </Fragment>
+        </Jumbotron>
+        <Tabs activeCluster={this.state.activeCluster} />
+        <div className="explore">
+          <h1 className="font-weight-light">Explore Careers</h1>
+          <button onClick={() => this.onSetSidebarOpen(true)}>
+            Open sidebar
+          </button>
+          {this.displayData}
+        </div>
+      </Sidebar>
     );
   }
 }

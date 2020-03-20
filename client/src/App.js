@@ -9,6 +9,7 @@ import setAuthToken from "./state-management/utilities/setAuthToken";
 import { Provider } from "react-redux";
 import { loadUser } from "./state-management/actions/authorization";
 import store from "./state-management/store";
+import NavigationBar from "./components/shared/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -26,6 +27,7 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Fragment>
+          <NavigationBar />
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
