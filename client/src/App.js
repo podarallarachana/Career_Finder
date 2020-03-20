@@ -2,7 +2,7 @@ import React, { Fragment, useEffect } from "react";
 import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
-import Explore from "./components/pages/Explore/Explore";
+import Occupation from "./components/pages/Explore/Occupation";
 import Pathway from "./components/pages/Explore/Pathway";
 import About from "./components/pages/About";
 import setAuthToken from "./state-management/utilities/setAuthToken";
@@ -33,8 +33,8 @@ const App = () => {
           <Route exact path="/login" component={Login} />
           <section className="container">
             <Switch>
-              <Route exact path="/pathway" component={Pathway} />
-              <Route exact path="/explore" component={Explore} />
+              <Route exact path="/explore/:code" component={Occupation} />
+              <Route exact path="/explore" component={Pathway} />
               <Route exact path="/about" component={About} />
             </Switch>
           </section>

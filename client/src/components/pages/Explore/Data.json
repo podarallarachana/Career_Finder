@@ -1,14 +1,14 @@
 [
   {
     "CareerCluster": "Agriculture, Food & Natural Resources",
+    "CareerClusterKey": "agr",
     "CareerPathway": [
       {
         "Pathway": "Agribusiness Systems",
         "Jobs": [
           {
             "Occupation": "Aquacultural Managers",
-            "Code": "11-9013.03",
-            "Details": []
+            "Code": "11-9013.03"
           },
           {
             "Occupation": "Buyers and Purchasing Agents, Farm Products",
@@ -262,6 +262,7 @@
   },
   {
     "CareerCluster": "Architecture & Construction",
+    "CareerClusterKey": "arch",
     "CareerPathway": [
       {
         "Pathway": "Construction",
@@ -694,6 +695,7 @@
   },
   {
     "CareerCluster": "Arts, Audio/Video Technology & Communications",
+    "CareerClusterKey": "art",
     "CareerPathway": [
       {
         "Pathway": "Journalism and Broadcasting",
@@ -944,6 +946,7 @@
   },
   {
     "CareerCluster": "Business Management & Administration",
+    "CareerClusterKey": "bus",
     "CareerPathway": [
       {
         "Pathway": "Administrative Support",
@@ -1286,6 +1289,7 @@
   },
   {
     "CareerCluster": "Education & Training",
+    "CareerClusterKey": "ed",
     "CareerPathway": [
       {
         "Pathway": "Administration and Administrative Support",
@@ -1606,6 +1610,7 @@
   },
   {
     "CareerCluster": "Finance",
+    "CareerClusterKey": "fin",
     "CareerPathway": [
       {
         "Pathway": "Accounting",
@@ -1792,6 +1797,7 @@
   },
   {
     "CareerCluster": "Government & Public Administration",
+    "CareerClusterKey": "gov",
     "CareerPathway": [
       {
         "Pathway": "Governance",
@@ -2035,6 +2041,7 @@
   },
   {
     "CareerCluster": "Health Science",
+    "CareerClusterKey": "hsci",
     "CareerPathway": [
       {
         "Pathway": "Biotechnology Research and Development",
@@ -2513,6 +2520,7 @@
   },
   {
     "CareerCluster": "Hospitality & Tourism",
+    "CareerClusterKey": "tour",
     "CareerPathway": [
       {
         "Pathway": "Lodging",
@@ -2734,6 +2742,7 @@
   },
   {
     "CareerCluster": "Human Services",
+    "CareerClusterKey": "hum",
     "CareerPathway": [
       {
         "Pathway": "Consumer Services",
@@ -2956,6 +2965,7 @@
   },
   {
     "CareerCluster": "Information Technology",
+    "CareerClusterKey": "tech",
     "CareerPathway": [
       {
         "Pathway": "Information Support and Services",
@@ -3085,6 +3095,7 @@
   },
   {
     "CareerCluster": "Law, Public Safety, Corrections & Security",
+    "CareerClusterKey": "law",
     "CareerPathway": [
       {
         "Pathway": "Correction Services",
@@ -3311,6 +3322,7 @@
   },
   {
     "CareerCluster": "Manufacturing",
+    "CareerClusterKey": "man",
     "CareerPathway": [
       {
         "Pathway": "Maintenance, Installation & Repair",
@@ -4024,6 +4036,7 @@
   },
   {
     "CareerCluster": "Marketing",
+    "CareerClusterKey": "mark",
     "CareerPathway": [
       {
         "Pathway": "Marketing Communications",
@@ -4178,6 +4191,7 @@
   },
   {
     "CareerCluster": "Science, Technology, Engineering & Mathematics",
+    "CareerClusterKey": "sci",
     "CareerPathway": [
       {
         "Pathway": "Engineering and Technology",
@@ -4537,6 +4551,7 @@
   },
   {
     "CareerCluster": "Transportation, Distribution & Logistics",
+    "CareerClusterKey": "trans",
     "CareerPathway": [
       {
         "Pathway": "Facility and Mobile Equipment Maintenance",

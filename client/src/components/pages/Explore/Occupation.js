@@ -7,28 +7,50 @@ import { Jumbotron, Button } from "react-bootstrap";
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
-class Explore extends React.Component {
+class Occupation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       sidebarDocked: mql.matches,
       sidebarOpen: false,
-      activeCluster: "Agriculture, Food & Natural Resources"
+      activeCluster: "",
+      activePathway: "",
+      activeOccupation: ""
     };
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
   }
 
-  displayData = data.map(data => {
-    return (
-      <div key={data.CareerCluster}>
-        <h1>{data.CareerCluster}</h1>
-        {data.CareerPathway.map(pathway => {
-          return <p key={pathway.Pathway}>{pathway.Pathway}</p>;
-        })}
-      </div>
-    );
-  });
+  componentDidMount() {
+    this.intializeStateByParams();
+  }
+
+  intializeStateByParams() {
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < data[i].CareerPathway.length; j++) {
+        for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
+          if (
+            data[i].CareerPathway[j].Jobs[z].Code ===
+            this.props.match.params.code
+          ) {
+            this.setState({
+              activeCluster: data[i].CareerCluster,
+              activePathway: data[i].CareerPathway[j].Pathway,
+              activeOccupation: this.props.match.params.code
+            });
+            return;
+          }
+        }
+      }
+    }
+
+    //COULD NOT FIND OCCUPATION ID IN CAREERONESTOP API
+    this.setState({
+      activeCluster: "INVALID",
+      activePathway: "INVALID",
+      activeOccupation: "INVALID"
+    });
+  }
 
   displayOccupations = CareerCluster =>
     data.map(data => {
@@ -51,6 +73,14 @@ class Explore extends React.Component {
       }
     });
 
+  updateActiveCluster = newCluster => {
+    this.setState({ activeCluster: newCluster });
+  };
+
+  updateActivePathway = newPathway => {
+    this.setState({ activePathway: newPathway });
+  };
+
   UNSAFE_componentWillMount() {
     mql.addListener(this.mediaQueryChanged);
   }
@@ -67,10 +97,6 @@ class Explore extends React.Component {
     this.setState({ sidebarDocked: mql.matches, sidebarOpen: false });
   }
 
-  updateActiveCluster = newCluster => {
-    this.setState({ activeCluster: newCluster });
-  };
-
   render() {
     return (
       <Sidebar
@@ -78,6 +104,7 @@ class Explore extends React.Component {
           <SideNav
             activeCluster={this.state.activeCluster}
             updateActiveCluster={this.updateActiveCluster}
+            updateActivePathway={this.updateActivePathway}
           />
         }
         open={this.state.sidebarOpen}
@@ -108,11 +135,13 @@ class Explore extends React.Component {
           <button onClick={() => this.onSetSidebarOpen(true)}>
             Open sidebar
           </button>
-          {this.displayData}
+          <h1>{this.state.activeCluster}</h1>
+          <h1>{this.state.activePathway}</h1>
+          <h1>{this.state.activeOccupation}</h1>
         </div>
       </Sidebar>
     );
   }
 }
 
-export default Explore;
+export default Occupation;
