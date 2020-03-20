@@ -73,12 +73,12 @@ class Occupation extends React.Component {
       }
     });
 
-  updateActiveCluster = newCluster => {
-    this.setState({ activeCluster: newCluster });
-  };
-
-  updateActivePathway = newPathway => {
-    this.setState({ activePathway: newPathway });
+  updateActives = (newCluster, newPathway, newCode) => {
+    this.setState({
+      activeCluster: newCluster,
+      activePathway: newPathway,
+      activeOccupation: newCode
+    });
   };
 
   UNSAFE_componentWillMount() {
@@ -103,8 +103,7 @@ class Occupation extends React.Component {
         sidebar={
           <SideNav
             activeCluster={this.state.activeCluster}
-            updateActiveCluster={this.updateActiveCluster}
-            updateActivePathway={this.updateActivePathway}
+            updateActives={this.updateActives}
           />
         }
         open={this.state.sidebarOpen}

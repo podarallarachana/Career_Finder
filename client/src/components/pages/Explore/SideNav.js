@@ -4,18 +4,33 @@ import { LinkContainer } from "react-router-bootstrap";
 import data from "./Data.json";
 
 const SideNav = props => {
-  const updateActiveCluster = e => {
-    props.updateActiveCluster(e.target.innerText);
-    props.updateActivePathway(e.target.innerText);
+  const updateActives = e => {
+    props.updateActives(
+      e.target.innerText,
+      getCode(e.target.innerText).pathway,
+      getCode(e.target.innerText).code
+    );
+  };
+
+  const getCode = CareerCluster => {
+    for (var i = 0; i < data.length; i++) {
+      if (data[i].CareerCluster === CareerCluster) {
+        //RETURNS FIRST OCCOUPATION CODE IN SELECTED CLUSTER
+        return {
+          code: data[i].CareerPathway[0].Jobs[0].Code,
+          pathway: data[i].CareerPathway[0].Pathway
+        };
+      }
+    }
   };
 
   const displayClusters = data.map(data => {
     return (
       <LinkContainer
-        key={data.CareerClusterKey}
-        to={"/explore/" + data.CareerClusterKey + "/ds/2"}
+        key={data.CareerCluster}
+        to={"/explore/" + getCode(data.CareerCluster).code}
       >
-        <ListGroup.Item onClick={updateActiveCluster}>
+        <ListGroup.Item onClick={updateActives}>
           {data.CareerCluster}
         </ListGroup.Item>
       </LinkContainer>
