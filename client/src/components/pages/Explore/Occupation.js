@@ -5,7 +5,7 @@ import SideNav from "./SideNav";
 import Tabs from "./Tabs";
 import OccupationOptions from "./OccupationOptions";
 
-const mql = window.matchMedia(`(min-width: 800px)`);
+const mql = window.matchMedia(`(min-width: 800px)`); //FOR SIDENAV
 
 class Occupation extends React.Component {
   constructor(props) {
@@ -66,6 +66,10 @@ class Occupation extends React.Component {
     this.setState({ activePathway: pathway });
   };
 
+  updateActiveOccupation = occupation => {
+    this.setState({ activeOccupation: occupation });
+  };
+
   //THESE FUNCTIONS ARE FOR SETTING UP SIDEBAR
   UNSAFE_componentWillMount() {
     mql.addListener(this.mediaQueryChanged);
@@ -109,6 +113,7 @@ class Occupation extends React.Component {
           activePathway={this.state.activePathway}
           activeOccupation={this.state.activeOccupation}
           updateActivePathway={this.updateActivePathway}
+          updateActiveOccupation={this.updateActiveOccupation}
         />
         <Tabs activeCluster={this.state.activeCluster} />
         <div className="explore">
