@@ -1,9 +1,9 @@
-import React, { Fragment } from "react";
+import React from "react";
 import data from "./Data.json";
 import Sidebar from "react-sidebar";
 import SideNav from "./SideNav";
 import Tabs from "./Tabs";
-import { Jumbotron, Button } from "react-bootstrap";
+import OccupationOptions from "./OccupationOptions";
 
 const mql = window.matchMedia(`(min-width: 800px)`);
 
@@ -52,68 +52,7 @@ class Occupation extends React.Component {
     });
   }
 
-  displayPathways = CareerCluster =>
-    data.map(data => {
-      if (CareerCluster === data.CareerCluster) {
-        return (
-          <div className="col-12" key={data.CareerCluster}>
-            {data.CareerPathway.map(pathway => {
-              return (
-                <Fragment key={pathway.Pathway}>
-                  <Button
-                    onClick={() =>
-                      this.setState({ activePathway: pathway.Pathway })
-                    }
-                    variant={
-                      pathway.Pathway === this.state.activePathway
-                        ? "primary btn-sm"
-                        : "light btn-sm"
-                    }
-                    className="jumbatronButton"
-                  >
-                    {pathway.Pathway}
-                  </Button>{" "}
-                </Fragment>
-              );
-            })}
-            <hr />
-          </div>
-        );
-      } else {
-        return null;
-      }
-    });
-
-  displayOccupations = () => {
-    if (this.state.activeCluster) {
-      return (
-        <div className="col-12" key={data.CareerCluster}>
-          {data
-            .find(x => x.CareerCluster === this.state.activeCluster)
-            .CareerPathway.find(x => x.Pathway === this.state.activePathway)
-            .Jobs.map(job => {
-              return (
-                <Fragment key={job.Code}>
-                  <Button
-                    variant={
-                      job.Code === this.state.activeOccupation
-                        ? "primary btn-sm"
-                        : "outline-primary btn-sm"
-                    }
-                    className="jumbatronButton"
-                  >
-                    {job.Occupation}
-                  </Button>{" "}
-                </Fragment>
-              );
-            })}{" "}
-        </div>
-      );
-    } else {
-      return null;
-    }
-  };
-
+  //SIDENAV USES THIS WHEN USER CLICKS ON DIFFERENT PATHWAYS
   updateActives = (newCluster, newPathway, newCode) => {
     this.setState({
       activeCluster: newCluster,
@@ -122,6 +61,12 @@ class Occupation extends React.Component {
     });
   };
 
+  //OCCUPATION-OPTIONS USES THIS
+  updateActivePathway = pathway => {
+    this.setState({ activePathway: pathway });
+  };
+
+  //THESE FUNCTIONS ARE FOR SETTING UP SIDEBAR
   UNSAFE_componentWillMount() {
     mql.addListener(this.mediaQueryChanged);
   }
@@ -159,20 +104,12 @@ class Occupation extends React.Component {
           }
         }}
       >
-        <Jumbotron style={{ marginBottom: "0px" }}>
-          <h1 className="font-weight-light">{this.state.activeCluster}</h1>
-          <p>
-            This is a simple hero unit, a simple jumbotron-style component for
-            calling extra attention to featured content or information.
-          </p>
-          <div className="row justify-content-center">
-            {this.displayPathways(this.state.activeCluster)}
-            {this.displayOccupations(
-              this.state.activeCluster,
-              this.state.activePathway
-            )}
-          </div>
-        </Jumbotron>
+        <OccupationOptions
+          activeCluster={this.state.activeCluster}
+          activePathway={this.state.activePathway}
+          activeOccupation={this.state.activeOccupation}
+          updateActivePathway={this.updateActivePathway}
+        />
         <Tabs activeCluster={this.state.activeCluster} />
         <div className="explore">
           <h1 className="font-weight-light">Explore Careers</h1>
