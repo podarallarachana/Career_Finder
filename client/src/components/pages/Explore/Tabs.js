@@ -24,9 +24,6 @@ const Tabs = () => {
         <Nav.Item>
           <Nav.Link eventKey="interactiveTools">Interactive Tools</Nav.Link>
         </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="testYourself">Test Yourself</Nav.Link>
-        </Nav.Item>
       </Nav>
       {activeTab === "interactiveTools" ? <p>YES</p> : <p>NO</p>}
     </Fragment>

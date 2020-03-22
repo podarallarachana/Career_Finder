@@ -117,13 +117,13 @@ class Occupation extends React.Component {
         />
         <Tabs activeCluster={this.state.activeCluster} />
         <div className="explore">
-          <h1 className="font-weight-light">Explore Careers</h1>
+          {/* <h1 className="font-weight-light">Explore Careers</h1>
           <button onClick={() => this.onSetSidebarOpen(true)}>
             Open sidebar
           </button>
           <h1>{this.state.activeCluster}</h1>
           <h1>{this.state.activePathway}</h1>
-          <h1>{this.state.activeOccupation}</h1>
+          <h1>{this.state.activeOccupation}</h1> */}
         </div>
       </Sidebar>
     );

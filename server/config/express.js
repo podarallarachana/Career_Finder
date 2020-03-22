@@ -3,8 +3,8 @@ const path = require("path"),
   mongoose = require("mongoose"),
   morgan = require("morgan"),
   bodyParser = require("body-parser"),
-  userRouter = require("../routes/api/user"),
-  authRouter = require("../routes/api/authorization");
+  userRouter = require("../routes/user.router"),
+  authRouter = require("../routes/authorization.router");
 
 module.exports.init = () => {
   /* 
@@ -27,7 +27,7 @@ module.exports.init = () => {
   // body parsing middleware
   app.use(bodyParser.json());
 
-  // add routers
+  // ADD ROUTES HERE
   app.use("/api/user", userRouter);
   app.use("/api/auth", authRouter);
 

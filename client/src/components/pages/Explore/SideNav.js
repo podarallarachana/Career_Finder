@@ -29,6 +29,11 @@ const SideNav = props => {
       <LinkContainer
         key={data.CareerCluster}
         to={"/explore/" + getCode(data.CareerCluster).code}
+        style={{
+          backgroundColor:
+            data.CareerCluster !== props.activeCluster ? "white" : "#007bff",
+          color: data.CareerCluster !== props.activeCluster ? "black" : "white"
+        }}
       >
         <ListGroup.Item onClick={updateActives}>
           {data.CareerCluster}
