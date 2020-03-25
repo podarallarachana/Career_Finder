@@ -1,6 +1,7 @@
 import React, { Fragment } from "react";
 import { Nav } from "react-bootstrap";
 import axios from "axios";
+require("dotenv").config();
 
 class Tabs extends React.Component {
   state = {
@@ -9,6 +10,7 @@ class Tabs extends React.Component {
   };
 
   componentDidMount() {
+    console.log(process.env.REACT_APP_API_KEY);
     this.getData();
   }
 
