@@ -3,6 +3,7 @@ import data from "./Data.json";
 import Sidebar from "react-sidebar";
 import SideNav from "./SideNav";
 import Tabs from "./Tabs";
+import axios from "axios";
 import OccupationOptions from "./OccupationOptions";
 
 const mql = window.matchMedia(`(min-width: 800px)`); //FOR SIDENAV
@@ -15,7 +16,8 @@ class Occupation extends React.Component {
       sidebarOpen: false,
       activeCluster: "",
       activePathway: "",
-      activeOccupation: ""
+      activeOccupation: "",
+      data: undefined
     };
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
@@ -25,6 +27,21 @@ class Occupation extends React.Component {
     this.intializeStateByParams();
   }
 
+  getData = async () => {
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=true&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=true`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN
+        }
+      });
+      this.setState({ data: data });
+    } catch (e) {
+      this.setState({ data: null });
+    }
+  };
+
   intializeStateByParams() {
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < data[i].CareerPathway.length; j++) {
@@ -33,11 +50,14 @@ class Occupation extends React.Component {
             data[i].CareerPathway[j].Jobs[z].Code ===
             this.props.match.params.code
           ) {
-            this.setState({
-              activeCluster: data[i].CareerCluster,
-              activePathway: data[i].CareerPathway[j].Pathway,
-              activeOccupation: this.props.match.params.code
-            });
+            this.setState(
+              {
+                activeCluster: data[i].CareerCluster,
+                activePathway: data[i].CareerPathway[j].Pathway,
+                activeOccupation: this.props.match.params.code
+              },
+              () => this.getData()
+            );
             return;
           }
         }
@@ -48,17 +68,22 @@ class Occupation extends React.Component {
     this.setState({
       activeCluster: "INVALID",
       activePathway: "INVALID",
-      activeOccupation: "INVALID"
+      activeOccupation: "INVALID",
+      data: null
     });
   }
 
   //SIDENAV USES THIS WHEN USER CLICKS ON DIFFERENT PATHWAYS
   updateActives = (newCluster, newPathway, newCode) => {
-    this.setState({
-      activeCluster: newCluster,
-      activePathway: newPathway,
-      activeOccupation: newCode
-    });
+    this.setState(
+      {
+        activeCluster: newCluster,
+        activePathway: newPathway,
+        activeOccupation: newCode,
+        data: undefined
+      },
+      () => this.getData()
+    );
   };
 
   //OCCUPATION-OPTIONS USES THIS
@@ -67,7 +92,9 @@ class Occupation extends React.Component {
   };
 
   updateActiveOccupation = occupation => {
-    this.setState({ activeOccupation: occupation });
+    this.setState({ activeOccupation: occupation, data: undefined }, () =>
+      this.getData()
+    );
   };
 
   //THESE FUNCTIONS ARE FOR SETTING UP SIDEBAR
@@ -115,16 +142,8 @@ class Occupation extends React.Component {
           updateActivePathway={this.updateActivePathway}
           updateActiveOccupation={this.updateActiveOccupation}
         />
-        <Tabs activeCluster={this.state.activeCluster} />
-        <div className="explore">
-          {/* <h1 className="font-weight-light">Explore Careers</h1>
-          <button onClick={() => this.onSetSidebarOpen(true)}>
-            Open sidebar
-          </button>
-          <h1>{this.state.activeCluster}</h1>
-          <h1>{this.state.activePathway}</h1>
-          <h1>{this.state.activeOccupation}</h1> */}
-        </div>
+        <Tabs data={this.state.data} />
+        <div className="explore"></div>
       </Sidebar>
     );
   }
