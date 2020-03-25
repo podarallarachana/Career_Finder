@@ -13,6 +13,7 @@ import NavigationBar from "./components/shared/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+require("dotenv").config();
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);

@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Nav } from "react-bootstrap";
 import axios from "axios";
-require("dotenv").config();
 
 class Tabs extends React.Component {
   state = {
@@ -10,7 +9,6 @@ class Tabs extends React.Component {
   };
 
   componentDidMount() {
-    console.log(process.env.REACT_APP_API_KEY);
     this.getData();
   }
 
@@ -18,7 +16,10 @@ class Tabs extends React.Component {
     try {
       const { data } = await axios({
         method: "get",
-        url: `https://reqres.in/api/unknown/2`
+        url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/13-1021.00/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=true&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=true`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN
+        }
       });
       this.setState({ data: data });
     } catch (e) {
@@ -49,13 +50,13 @@ class Tabs extends React.Component {
         {this.state.activeTab === "interactiveTools" ? (
           <div>
             {this.state.data !== undefined || this.state.data !== null ? (
-              <p>{this.state.data.data.id}</p>
+              <p>{this.state.data.OccupationDetail[0].OnetTitle}</p>
             ) : (
               <p>NO</p>
             )}
           </div>
         ) : (
-          <p>NO</p>
+          <p>WHAT</p>
         )}
       </Fragment>
     );
