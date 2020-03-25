@@ -1,33 +1,63 @@
-import React, { useState, Fragment } from "react";
+import React, { Fragment } from "react";
 import { Nav } from "react-bootstrap";
+import axios from "axios";
 
-const Tabs = () => {
-  const [activeTab, setActiveTab] = useState("interactiveTools");
+class Tabs extends React.Component {
+  state = {
+    data: undefined,
+    activeTab: "learningModules"
+  };
 
-  const handleSelect = newTab => {
-    if (newTab !== activeTab) {
-      setActiveTab(newTab);
+  componentDidMount() {
+    this.getData();
+  }
+
+  getData = async () => {
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `https://reqres.in/api/unknown/2`
+      });
+      this.setState({ data: data });
+    } catch (e) {
+      this.setState({ data: null });
     }
   };
 
-  return (
-    <Fragment>
-      <Nav
-        fill
-        variant="tabs"
-        defaultActiveKey={activeTab}
-        onSelect={handleSelect}
-      >
-        <Nav.Item>
-          <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
-        </Nav.Item>
-        <Nav.Item>
-          <Nav.Link eventKey="interactiveTools">Interactive Tools</Nav.Link>
-        </Nav.Item>
-      </Nav>
-      {activeTab === "interactiveTools" ? <p>YES</p> : <p>NO</p>}
-    </Fragment>
-  );
-};
+  handleSelect = newTab => {
+    this.setState({ activeTab: newTab });
+  };
+
+  render() {
+    return (
+      <Fragment>
+        <Nav
+          fill
+          variant="tabs"
+          defaultActiveKey={this.state.activeTab}
+          onSelect={this.handleSelect}
+        >
+          <Nav.Item>
+            <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="interactiveTools">Interactive Tools</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        {this.state.activeTab === "interactiveTools" ? (
+          <div>
+            {this.state.data !== undefined || this.state.data !== null ? (
+              <p>{this.state.data.data.id}</p>
+            ) : (
+              <p>NO</p>
+            )}
+          </div>
+        ) : (
+          <p>NO</p>
+        )}
+      </Fragment>
+    );
+  }
+}
 
 export default Tabs;
