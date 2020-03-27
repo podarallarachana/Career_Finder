@@ -1,38 +1,36 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { Nav } from "react-bootstrap";
 import LearningModules from "./LearningModules";
 
-class Tabs extends React.Component {
-  state = {
-    activeTab: "learningModules"
+const Tabs = props => {
+  const [activeTab, setActiveTab] = useState("learningModules");
+
+  const handleSelect = newTab => {
+    if (newTab !== activeTab) {
+      setActiveTab(newTab);
+    }
   };
 
-  handleSelect = newTab => {
-    this.setState({ activeTab: newTab });
-  };
-
-  render() {
-    return (
-      <Fragment>
-        <Nav
-          fill
-          variant="tabs"
-          defaultActiveKey={this.state.activeTab}
-          onSelect={this.handleSelect}
-        >
-          <Nav.Item>
-            <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
-            <Nav.Link eventKey="interactiveTools">Interactive Tools</Nav.Link>
-          </Nav.Item>
-        </Nav>
-        {this.state.activeTab === "learningModules" ? (
-          <LearningModules data={this.props.data} />
-        ) : null}
-      </Fragment>
-    );
-  }
-}
+  return (
+    <Fragment>
+      <Nav
+        fill
+        variant="tabs"
+        defaultActiveKey={activeTab}
+        onSelect={handleSelect}
+      >
+        <Nav.Item>
+          <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="interactiveTools">Interactive Tools</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      {activeTab === "learningModules" ? (
+        <LearningModules data={props.data} />
+      ) : null}
+    </Fragment>
+  );
+};
 
 export default Tabs;
