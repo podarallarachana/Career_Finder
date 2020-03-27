@@ -21,7 +21,7 @@ const OccupationOptions = props => {
                         ? "primary btn-sm"
                         : "light btn-sm"
                     }
-                    className="jumbatronButton"
+                    className="optionsButton"
                   >
                     {pathway.Pathway}
                   </Button>{" "}
