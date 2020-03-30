@@ -4,6 +4,7 @@ import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Occupation from "./components/pages/Explore/Occupation";
 import Pathway from "./components/pages/Explore/Pathway";
+import Admin from "./components/pages/Admin";
 import About from "./components/pages/About";
 import setAuthToken from "./state-management/utilities/setAuthToken";
 import { Provider } from "react-redux";
@@ -37,6 +38,7 @@ const App = () => {
               <Route exact path="/explore/:code" component={Occupation} />
               <Route exact path="/explore" component={Pathway} />
               <Route exact path="/about" component={About} />
+              <Route exact path="/admin" component={Admin} />
             </Switch>
           </section>
         </Fragment>
