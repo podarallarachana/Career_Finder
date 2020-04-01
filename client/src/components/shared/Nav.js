@@ -23,6 +23,9 @@ const NavigationBar = ({
       <LinkContainer to="/explore">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
+      {/* <LinkContainer to="/prepare">
+        <Nav.Link>prepare</Nav.Link>
+      </LinkContainer> */}
       <LinkContainer to="/about">
         <Nav.Link>about</Nav.Link>
       </LinkContainer>
@@ -43,6 +46,9 @@ const NavigationBar = ({
       <LinkContainer to="/explore">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
+      {/* <LinkContainer to="/prepare">
+        <Nav.Link>prepare</Nav.Link>
+      </LinkContainer> */}
       <LinkContainer to="/about">
         <Nav.Link>about</Nav.Link>
       </LinkContainer>

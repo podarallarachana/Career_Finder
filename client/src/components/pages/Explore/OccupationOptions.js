@@ -59,7 +59,7 @@ const OccupationOptions = props => {
                           ? "primary btn-sm"
                           : "outline-primary btn-sm"
                       }
-                      className="jumbatronButton"
+                      className="optionsButton"
                     >
                       {job.Occupation}
                     </Button>
