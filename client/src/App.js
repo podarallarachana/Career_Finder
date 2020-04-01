@@ -12,7 +12,7 @@ import store from "./state-management/store";
 import NavigationBar from "./components/shared/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Find from "./components/pages/Find/Find";
-import PrepareCareer from "./components/pages/Prepare/PrepareCareer";
+import Prepare from "./components/pages/Prepare/Prepare";
 import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
 require("dotenv").config();
@@ -40,7 +40,7 @@ const App = () => {
               <Route exact path="/explore" component={Pathway} />
               <Route exact path="/about" component={About} />
               <Route exact path="/find" component={Find} />
-              <Route exact path="/prepare/:code" component={PrepareCareer} />
+              <Route exact path="/prepare" component={Prepare} />
             </Switch>
           </section>
         </Fragment>

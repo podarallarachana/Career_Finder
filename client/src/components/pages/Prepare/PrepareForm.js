@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import InputGroup from "react-bootstrap/InputGroup";
-import Form from "react-bootstrap/Form";
 import FormControl from "react-bootstrap/FormControl";
 import Data from "../Explore/Data.json";
+import { Button, Form } from "react-bootstrap";
 
-const PrepareForm = () => {
+const PrepareForm = props => {
   useEffect(() => {
     getJobs();
   });
@@ -14,11 +14,19 @@ const PrepareForm = () => {
     return (
       <Form.Group>
         <Form.Label>Occupation</Form.Label>
-        <Form.Control as="select">
+        <Form.Control
+          as="select"
+          value={props.user_inp.Occupation}
+          onChange={props.updateCareer}
+        >
           {Data.map(cluster => {
             return cluster.CareerPathway.map(pathway => {
               return pathway.Jobs.map(job => {
-                return <option key={job.Code}>{job.Occupation}</option>;
+                return (
+                  <option key={job.Code} data-key={job.Code}>
+                    {job.Occupation}
+                  </option>
+                );
               });
             });
           })}
@@ -41,14 +49,19 @@ const PrepareForm = () => {
             <div className="xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-6">
               <Form>
                 {getJobs()}
+
                 <InputGroup className="mb-3">
                   <InputGroup.Prepend>
                     <InputGroup.Text>
                       <i className="fa fa-map-marker" aria-hidden="true"></i>
                     </InputGroup.Text>
                   </InputGroup.Prepend>
-                  <FormControl placeholder="55129" aria-label="55129" />
+                  <FormControl
+                    value={props.user_inp.location}
+                    onChange={props.updateLocation}
+                  />
                 </InputGroup>
+
                 <Form.Group>
                   <Form.Control as="select">
                     <option>I want to stay close to home</option>
@@ -62,6 +75,15 @@ const PrepareForm = () => {
                   </Form.Control>
                 </Form.Group>
               </Form>
+              <Button
+                style={{
+                  border: "0px",
+                  display: "table",
+                  margin: "0 auto"
+                }}
+              >
+                Go
+              </Button>
             </div>
           </div>
         </Card>
