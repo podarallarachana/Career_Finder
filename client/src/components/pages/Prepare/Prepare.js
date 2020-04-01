@@ -57,8 +57,8 @@ class Prepare extends React.Component {
     this.setState({
       user_inp: {
         ...this.state.user_inp,
-        Code: e.target.getAttribute("data-key"),
-        Occupation: e.target.options[selectedIndex].getAttribute("data-key")
+        Code: e.target.options[selectedIndex].getAttribute("data-key"),
+        Occupation: e.target.value
       }
     });
   };

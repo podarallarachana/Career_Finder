@@ -16,7 +16,7 @@ const PrepareForm = props => {
         <Form.Label>Occupation</Form.Label>
         <Form.Control
           as="select"
-          value={props.user_inp.Occupation}
+          defaultValue={props.user_inp.Occupation}
           onChange={props.updateCareer}
         >
           {Data.map(cluster => {
