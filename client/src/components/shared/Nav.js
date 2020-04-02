@@ -20,7 +20,7 @@ const NavigationBar = ({
       <LinkContainer to="/find">
         <Nav.Link>find</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/explore">
+      <LinkContainer to="/explore/search">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
       <LinkContainer to="/prepare">
@@ -43,7 +43,7 @@ const NavigationBar = ({
       <LinkContainer to="/find">
         <Nav.Link>find</Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/explore">
+      <LinkContainer to="/explore/search">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
       <LinkContainer to="/prepare">

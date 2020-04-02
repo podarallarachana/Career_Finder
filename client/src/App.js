@@ -37,7 +37,6 @@ const App = () => {
           <section className="container">
             <Switch>
               <Route exact path="/explore/:code" component={Occupation} />
-              <Route exact path="/explore" component={Pathway} />
               <Route exact path="/about" component={About} />
               <Route exact path="/find" component={Find} />
               <Route exact path="/prepare" component={Prepare} />

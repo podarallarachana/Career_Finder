@@ -5,11 +5,15 @@ import data from "./Data.json";
 
 const SideNav = props => {
   const updateActives = e => {
-    props.updateActives(
-      e.target.innerText,
-      getCode(e.target.innerText).pathway,
-      getCode(e.target.innerText).code
-    );
+    if (e.target.innerText === "Search") {
+      props.updateActives(e.target.innerText, undefined, undefined);
+    } else {
+      props.updateActives(
+        e.target.innerText,
+        getCode(e.target.innerText).pathway,
+        getCode(e.target.innerText).code
+      );
+    }
   };
 
   const getCode = CareerCluster => {
@@ -44,6 +48,16 @@ const SideNav = props => {
 
   return (
     <div className="sidenav">
+      <LinkContainer
+        to={"/explore/search"}
+        style={{
+          backgroundColor:
+            props.activeCluster !== "Search" ? "white" : "#007bff",
+          color: props.activeCluster !== "Search" ? "black" : "white"
+        }}
+      >
+        <ListGroup.Item onClick={updateActives}>Search</ListGroup.Item>
+      </LinkContainer>
       <ListGroup>{displayClusters}</ListGroup>
     </div>
   );
