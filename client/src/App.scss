@@ -58,3 +58,23 @@
 .prepare-options {
   padding: 20px;
 }
+
+.search {
+  padding: 20px;
+}
+
+.explore-header {
+  background-image: url("./assets/landing.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #ee5847;
+}
+
+.explore-header hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}

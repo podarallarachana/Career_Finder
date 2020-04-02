@@ -5,6 +5,7 @@ import SideNav from "./SideNav";
 import Tabs from "./Tabs";
 import axios from "axios";
 import OccupationOptions from "./OccupationOptions";
+import Search from "./Search";
 
 const mql = window.matchMedia(`(min-width: 800px)`); //FOR SIDENAV
 
@@ -151,7 +152,7 @@ class Occupation extends React.Component {
             <Tabs data={this.state.data} />
           </Fragment>
         ) : (
-          <h1>Search</h1>
+          <Search />
         )}
       </Sidebar>
     );

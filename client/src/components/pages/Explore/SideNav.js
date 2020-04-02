@@ -35,8 +35,10 @@ const SideNav = props => {
         to={"/explore/" + getCode(data.CareerCluster).code}
         style={{
           backgroundColor:
-            data.CareerCluster !== props.activeCluster ? "white" : "#007bff",
-          color: data.CareerCluster !== props.activeCluster ? "black" : "white"
+            data.CareerCluster !== props.activeCluster ? "#ff683c" : "#ff8123",
+          color:
+            data.CareerCluster !== props.activeCluster ? "#ffa185" : "white",
+          border: "0px"
         }}
       >
         <ListGroup.Item onClick={updateActives}>
@@ -48,17 +50,20 @@ const SideNav = props => {
 
   return (
     <div className="sidenav">
-      <LinkContainer
-        to={"/explore/search"}
-        style={{
-          backgroundColor:
-            props.activeCluster !== "Search" ? "white" : "#007bff",
-          color: props.activeCluster !== "Search" ? "black" : "white"
-        }}
-      >
-        <ListGroup.Item onClick={updateActives}>Search</ListGroup.Item>
-      </LinkContainer>
-      <ListGroup>{displayClusters}</ListGroup>
+      <ListGroup>
+        <LinkContainer
+          to={"/explore/search"}
+          style={{
+            backgroundColor:
+              props.activeCluster !== "Search" ? "#ff683c" : "#ff8123",
+            color: props.activeCluster !== "Search" ? "#ffa185" : "white",
+            border: "0px"
+          }}
+        >
+          <ListGroup.Item onClick={updateActives}>Search</ListGroup.Item>
+        </LinkContainer>
+        {displayClusters}
+      </ListGroup>
     </div>
   );
 };

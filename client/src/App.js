@@ -3,7 +3,6 @@ import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Occupation from "./components/pages/Explore/Occupation";
-import Pathway from "./components/pages/Explore/Pathway";
 import About from "./components/pages/About";
 import setAuthToken from "./state-management/utilities/setAuthToken";
 import { Provider } from "react-redux";

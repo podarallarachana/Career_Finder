@@ -18,7 +18,7 @@ const OccupationOptions = props => {
                     }}
                     variant={
                       pathway.Pathway === props.activePathway
-                        ? "primary btn-sm"
+                        ? "warning btn-sm"
                         : "light btn-sm"
                     }
                     className="optionsButton"
@@ -56,8 +56,8 @@ const OccupationOptions = props => {
                       }}
                       variant={
                         job.Code === props.activeOccupation
-                          ? "primary btn-sm"
-                          : "outline-primary btn-sm"
+                          ? "warning btn-sm"
+                          : "outline-light btn-sm"
                       }
                       className="optionsButton"
                     >
@@ -75,11 +75,13 @@ const OccupationOptions = props => {
   };
 
   return (
-    <Jumbotron style={{ marginBottom: "0px" }}>
-      <h1 className="font-weight-light">{props.activeCluster}</h1>
-      <p>
-        This is a simple hero unit, a simple jumbotron-style component for
-        calling extra attention to featured content or information.
+    <Jumbotron className="explore-header" style={{ marginBottom: "0px" }}>
+      <h1 style={{ color: "white" }}>{props.activeCluster}</h1>
+      <p style={{ color: "white" }}>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+        commodo consequat.
       </p>
       <div className="row justify-content-center">
         {displayPathways()}
