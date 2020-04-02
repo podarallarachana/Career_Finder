@@ -13,7 +13,7 @@ const Related = props => {
             <Button
               variant="light btn-sm"
               className="optionsButton"
-              onClick={updateActives()}
+              onClick={() => updateActives(key)}
             >
               {props.data.OccupationDetail[0].RelatedOnetTitles[key]}
             </Button>
