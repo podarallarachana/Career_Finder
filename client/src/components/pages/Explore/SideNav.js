@@ -38,6 +38,7 @@ const SideNav = props => {
             data.CareerCluster !== props.activeCluster ? "#ff683c" : "#ff8123",
           color:
             data.CareerCluster !== props.activeCluster ? "#ffa185" : "white",
+          fontWeight: "bold",
           border: "0px"
         }}
       >
@@ -57,6 +58,7 @@ const SideNav = props => {
             backgroundColor:
               props.activeCluster !== "Search" ? "#ff683c" : "#ff8123",
             color: props.activeCluster !== "Search" ? "#ffa185" : "white",
+            fontWeight: "bold",
             border: "0px"
           }}
         >

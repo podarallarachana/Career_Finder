@@ -149,7 +149,7 @@ class Occupation extends React.Component {
               updateActivePathway={this.updateActivePathway}
               updateActiveOccupation={this.updateActiveOccupation}
             />
-            <Tabs data={this.state.data} />
+            <Tabs data={this.state.data} updateActives={this.updateActives} />
           </Fragment>
         ) : (
           <Search />

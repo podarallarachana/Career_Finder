@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { Nav } from "react-bootstrap";
-import LearningModules from "./LearningModules";
+import LearningModules from "./LearningModules/LearningModules";
 
 const Tabs = props => {
   const [activeTab, setActiveTab] = useState("learningModules");
@@ -27,7 +27,10 @@ const Tabs = props => {
         </Nav.Item>
       </Nav>
       {activeTab === "learningModules" ? (
-        <LearningModules data={props.data} />
+        <LearningModules
+          updateActives={props.updateActives}
+          data={props.data}
+        />
       ) : null}
     </Fragment>
   );
