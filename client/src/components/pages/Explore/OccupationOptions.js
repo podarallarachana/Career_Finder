@@ -57,7 +57,7 @@ const OccupationOptions = props => {
                       variant={
                         job.Code === props.activeOccupation
                           ? "warning btn-sm"
-                          : "outline-light btn-sm"
+                          : "outline-warning btn-sm"
                       }
                       className="optionsButton"
                     >

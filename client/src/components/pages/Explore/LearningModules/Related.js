@@ -11,7 +11,7 @@ const Related = props => {
         <Fragment key={key}>
           <LinkContainer to={"/explore/" + key}>
             <Button
-              variant="light btn-sm"
+              variant="success btn-sm"
               className="optionsButton"
               onClick={() => updateActives(key)}
             >

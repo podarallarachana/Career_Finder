@@ -28,6 +28,18 @@ const LearningModules = props => {
             <div className="col-12"></div>
           </div>
           <div className="row">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+              <video width="100%" controls>
+                <source
+                  src={
+                    "https://cdn.careeronestop.org/OccVids/OccupationVideos/" +
+                    "13-2011.01" +
+                    ".mp4"
+                  }
+                  type="video/mp4"
+                />
+              </video>
+            </div>
             {props.data.OccupationDetail[0].hasOwnProperty("AbilityDataList") &&
             props.data.OccupationDetail[0].AbilityDataList.length !== 0 &&
             props.data.OccupationDetail[0].AbilityDataList !== undefined &&
