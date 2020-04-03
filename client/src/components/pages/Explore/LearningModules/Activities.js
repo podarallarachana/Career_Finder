@@ -48,7 +48,7 @@ const Activities = props => {
 
   return (
     <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 sections">
-      <Card>
+      <Card style={{ border: "0px" }}>
         <Card.Body>
           <h3 className="font-weight-light">
             <i

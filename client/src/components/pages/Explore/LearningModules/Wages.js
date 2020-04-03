@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import { Nav } from "react-bootstrap";
-import { Pie } from "react-chartjs-2";
+import { Bar } from "react-chartjs-2";
 
 const Wages = props => {
   const [annualGraphData, setAnnualGraphData] = useState({});
   const [hourlyGraphData, setHourlyGraphData] = useState({});
   const [graphData, setGraphData] = useState({});
   const [activeTab, setActiveTab] = useState("annual");
-  const [medianAnnual, setMedianAnnual] = useState("");
-  const [medianHourly, setMedianHourly] = useState("");
+  const [annual, setAnnual] = useState(0);
+  const [hourly, setHourly] = useState(0);
 
   const handleSelect = newTab => {
     if (newTab !== activeTab) {
@@ -26,7 +26,7 @@ const Wages = props => {
     var labels = [
       "Bottom 10% of Employees",
       "Bottom 25% of Employees",
-      "Average Employees",
+      "The Average Employee",
       "Top 25% of Employees",
       "Top 10% of Employees"
     ];
@@ -53,12 +53,8 @@ const Wages = props => {
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct75,
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90
       ];
-      setMedianAnnual(
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Median
-      );
-      setMedianHourly(
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Median
-      );
+      setAnnual(0);
+      setHourly(1);
     } else {
       annual = [
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct10,
@@ -75,12 +71,8 @@ const Wages = props => {
         props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct75,
         props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90
       ];
-      setMedianAnnual(
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Median
-      );
-      setMedianHourly(
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Median
-      );
+      setAnnual(1);
+      setHourly(0);
     }
 
     setAnnualGraphData({
@@ -138,12 +130,18 @@ const Wages = props => {
         <Card.Body>
           <h3 className="font-weight-light">Salary</h3>
           <h6 className="font-weight-light">
-            ${medianAnnual.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} per
-            year
+            $
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              annual
+            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+            per year
           </h6>
           <h6 className="font-weight-light">
-            ${medianHourly.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} per
-            hour
+            $
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              hourly
+            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+            per hour
           </h6>
           <hr />
           <p>
@@ -166,7 +164,7 @@ const Wages = props => {
           </Nav>
           <div>
             <br />
-            <Pie
+            <Bar
               options={{
                 title: {
                   display: false
@@ -180,6 +178,90 @@ const Wages = props => {
               redraw
             />
           </div>
+          <hr />
+          <h6>How much do people in this career make?</h6>
+          <h6 className="font-weight-light">
+            <i
+              className="fa fa-circle"
+              style={{ color: "#c0e6ff" }}
+              aria-hidden="true"
+            ></i>{" "}
+            The bottom 10% of employees make{" "}
+            <i
+              className="fa fa-dollar"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              activeTab === "annual" ? annual : hourly
+            ].Pct10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </h6>
+          <h6 className="font-weight-light">
+            <i
+              className="fa fa-circle"
+              style={{ color: "#7cc7ff" }}
+              aria-hidden="true"
+            ></i>{" "}
+            The borroms 25% of employees make{" "}
+            <i
+              className="fa fa-dollar"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              activeTab === "annual" ? annual : hourly
+            ].Pct25.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </h6>
+          <h6 className="font-weight-light">
+            <i
+              className="fa fa-circle"
+              style={{ color: "#5aaafa" }}
+              aria-hidden="true"
+            ></i>{" "}
+            The average employee makes{" "}
+            <i
+              className="fa fa-dollar"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              activeTab === "annual" ? annual : hourly
+            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </h6>
+          <h6 className="font-weight-light">
+            <i
+              className="fa fa-circle"
+              style={{ color: "#5596e6" }}
+              aria-hidden="true"
+            ></i>{" "}
+            The top 25% of employees make{" "}
+            <i
+              className="fa fa-dollar"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            >
+              {" "}
+            </i>{" "}
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              activeTab === "annual" ? annual : hourly
+            ].Pct75.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </h6>
+          <h6 className="font-weight-light">
+            <i
+              className="fa fa-circle"
+              style={{ color: "#4178be" }}
+              aria-hidden="true"
+            ></i>{" "}
+            The top 10% of employees take{" "}
+            <i
+              className="fa fa-dollar"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              activeTab === "annual" ? annual : hourly
+            ].Pct90.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </h6>
         </Card.Body>
       </Card>
     </div>
