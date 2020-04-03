@@ -7,9 +7,28 @@ import Modal from "react-bootstrap/Modal";
 const Abilities = props => {
   const [showAll, setShowAll] = useState(false);
   const [show, setShow] = useState(false);
+  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedImportance, setSelectedImportance] = useState("");
+  const [selectedDescription, setSelectedDescription] = useState("");
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = e => {
+    setShow(true);
+    setSelectedOption(e.target.innerText);
+    props.data.OccupationDetail[0].AbilityDataList.filter(obj => {
+      if (obj.ElementName === e.target.innerText) {
+        setSelectedDescription(obj.ElementDescription);
+        if (obj.Importance <= 10) {
+          setSelectedImportance("low");
+        } else if (obj.Importance > 10 && obj.Importance <= 40) {
+          setSelectedImportance("medium");
+        } else if (obj.Importance > 40) {
+          setSelectedImportance("high");
+        }
+        return;
+      }
+    });
+  };
 
   const displayAbilities = () =>
     props.data.OccupationDetail[0].AbilityDataList.map(ability => {
@@ -47,21 +66,30 @@ const Abilities = props => {
         );
       });
 
+  const getAbilityDescription = () => {
+    props.data.OccupationDetail[0].AbilityDataList.filter(obj => {
+      if (obj.ElementName === selectedOption) {
+        console.log(obj.ElementDescription);
+      }
+    });
+  };
+
   return (
     <Fragment>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>{selectedOption}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
+        <Modal.Body>
+          <p>
+            <b>Importance: </b>
+            {selectedImportance}
+          </p>
+          <p>
+            <b>Description: </b>
+            {selectedDescription}
+          </p>
+        </Modal.Body>
       </Modal>
 
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 sections">
