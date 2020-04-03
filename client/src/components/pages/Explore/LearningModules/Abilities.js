@@ -24,14 +24,9 @@ const Abilities = props => {
       return parseInt(obj[key].Importance);
     });
     var colors = Object.keys(obj).map(function(key) {
-      if (getImportance(parseInt(obj[key].Importance)) === "high") {
-        return "red";
-      } else if (getImportance(parseInt(obj[key].Importance)) === "medium") {
-        return "orange";
-      } else if (getImportance(parseInt(obj[key].Importance)) === "low") {
-        return "yellow";
-      }
+      return getColor(parseInt(obj[key].Importance));
     });
+
     setGraphData({
       labels: labels,
       datasets: [
@@ -44,12 +39,22 @@ const Abilities = props => {
   }, [props.data.OccupationDetail]);
 
   const getImportance = val => {
-    if (val <= 40) {
+    if (val <= 55) {
       return "low";
-    } else if (val > 40 && val <= 60) {
+    } else if (val > 55 && val <= 65) {
       return "medium";
-    } else if (val > 60) {
+    } else if (val > 65) {
       return "high";
+    }
+  };
+
+  const getColor = val => {
+    if (val <= 55) {
+      return "#2d660a";
+    } else if (val > 55 && val <= 65) {
+      return "#5aa700";
+    } else if (val > 65) {
+      return "#8cd211";
     }
   };
 
@@ -57,29 +62,35 @@ const Abilities = props => {
 
   const handleShow = e => {
     setShow(true);
-    setSelectedOption(e.target.innerText);
+    setSelectedOption(e.target.innerText.slice(0, -1));
     props.data.OccupationDetail[0].AbilityDataList.filter(obj => {
-      if (obj.ElementName === e.target.innerText) {
+      if (obj.ElementName === e.target.innerText.slice(0, -1)) {
         setSelectedDescription(obj.ElementDescription);
         setSelectedImportance(getImportance(obj.Importance));
+        return null;
       }
+      return null;
     });
   };
 
   const handleGraphShow = elems => {
-    setShow(true);
-    setSelectedOption(
-      graphData.labels[elems[0]._index].replace(" Importance Value", "")
-    );
-    props.data.OccupationDetail[0].AbilityDataList.filter(obj => {
-      if (
-        obj.ElementName ===
+    if (elems[0] !== undefined) {
+      setShow(true);
+      setSelectedOption(
         graphData.labels[elems[0]._index].replace(" Importance Value", "")
-      ) {
-        setSelectedDescription(obj.ElementDescription);
-        setSelectedImportance(getImportance(obj.Importance));
-      }
-    });
+      );
+      props.data.OccupationDetail[0].AbilityDataList.filter(obj => {
+        if (
+          obj.ElementName ===
+          graphData.labels[elems[0]._index].replace(" Importance Value", "")
+        ) {
+          setSelectedDescription(obj.ElementDescription);
+          setSelectedImportance(getImportance(obj.Importance));
+          return null;
+        }
+        return null;
+      });
+    }
   };
 
   const displayAbilities = () =>
@@ -92,7 +103,12 @@ const Abilities = props => {
             className="optionsButton"
             title={ability.ElementDescription}
           >
-            {ability.ElementName}
+            {ability.ElementName}{" "}
+            <i
+              className="fa fa-circle-o"
+              aria-hidden="true"
+              style={{ color: getColor(ability.Importance) }}
+            ></i>
           </Button>{" "}
         </Fragment>
       );
@@ -102,7 +118,7 @@ const Abilities = props => {
     props.data.OccupationDetail[0].AbilityDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     )
-      .slice(0, 14)
+      .slice(0, 20)
       .map(ability => {
         return (
           <Fragment key={ability.ElementName}>
@@ -112,7 +128,12 @@ const Abilities = props => {
               className="optionsButton"
               title={ability.ElementDescription}
             >
-              {ability.ElementName}
+              {ability.ElementName}{" "}
+              <i
+                className="fa fa-circle"
+                aria-hidden="true"
+                style={{ color: getColor(ability.Importance) }}
+              ></i>
             </Button>{" "}
           </Fragment>
         );
@@ -137,19 +158,15 @@ const Abilities = props => {
       </Modal>
 
       <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 sections">
-        <Card>
-          <Card.Header
-            as="h5"
-            style={{ backgroundColor: "#fa6f0f", color: "white" }}
-          >
-            <i className="fa fa-asterisk" aria-hidden="true"></i> Abilities
-          </Card.Header>
+        <Card style={{ border: "0px" }}>
           <Card.Body>
+            <h3 className="font-weight-light">Abilities</h3>
             <p>
               These are abilities that employees in the industry should have. Do
-              you have any of these abilites? Click on an ability to view more
-              information.
+              you have any of these abilites? Click or hover over an ability to
+              view more information.
             </p>
+            <hr />
             <p>
               <b>Top Abilities</b>
             </p>
@@ -173,10 +190,11 @@ const Abilities = props => {
               />
             </div>
             <br />
+            <hr />
             <Form>
               <Form.Check
                 type="switch"
-                id="custom-switch"
+                id="abilities-switch"
                 checked={showAll}
                 onChange={() => setShowAll(!showAll)}
                 label={

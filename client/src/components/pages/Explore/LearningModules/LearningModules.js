@@ -3,6 +3,7 @@ import Abilities from "./Abilities";
 import Knowledge from "./Knowledge";
 import Skills from "./Skills";
 import Related from "./Related";
+import Activities from "./Activities";
 
 const LearningModules = props => {
   const displayData = () => {
@@ -29,7 +30,7 @@ const LearningModules = props => {
           </div>
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <video width="100%" controls autoPlay muted>
+              <video width="100%" controls autoPlay muted loop>
                 <source
                   src={
                     "https://cdn.careeronestop.org/OccVids/OccupationVideos/" +
@@ -59,6 +60,12 @@ const LearningModules = props => {
             props.data.OccupationDetail[0].KnowledgeDataList !== undefined &&
             props.data.OccupationDetail[0].KnowledgeDataList !== null ? (
               <Knowledge data={props.data} />
+            ) : null}
+            {props.data.OccupationDetail[0].hasOwnProperty("Dwas") &&
+            props.data.OccupationDetail[0].Dwas.length !== 0 &&
+            props.data.OccupationDetail[0].Dwas !== undefined &&
+            props.data.OccupationDetail[0].Dwas !== null ? (
+              <Activities data={props.data} />
             ) : null}
             {props.data.OccupationDetail[0].hasOwnProperty(
               "RelatedOnetTitles"
