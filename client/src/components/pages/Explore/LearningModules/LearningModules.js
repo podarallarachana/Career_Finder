@@ -5,6 +5,7 @@ import Skills from "./Skills";
 import Related from "./Related";
 import Activities from "./Activities";
 import Education from "./Education";
+import Wages from "./Wages";
 
 const LearningModules = props => {
   const displayData = () => {
@@ -82,6 +83,15 @@ const LearningModules = props => {
             props.data.OccupationDetail[0].EducationTraining.EducationType !==
               null ? (
               <Education data={props.data} />
+            ) : null}
+
+            {props.data.OccupationDetail[0].hasOwnProperty("Wages") &&
+            props.data.OccupationDetail[0].Wages.NationalWagesList.length !==
+              0 &&
+            props.data.OccupationDetail[0].Wages.NationalWagesList !==
+              undefined &&
+            props.data.OccupationDetail[0].Wages.NationalWagesList !== null ? (
+              <Wages data={props.data} />
             ) : null}
 
             {props.data.OccupationDetail[0].hasOwnProperty(

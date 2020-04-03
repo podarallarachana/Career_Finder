@@ -73,25 +73,104 @@ const Education = props => {
           <hr />
           <h6>How long does it take to complete?</h6>
           <h6 className="font-weight-light">
-            Less than high school diploma (0-4 years)
+            <i
+              className="fa fa-circle"
+              style={{ color: "#c8f08f" }}
+              aria-hidden="true"
+            ></i>{" "}
+            Less than high school diploma{" "}
+            <i
+              className="fa fa-minus"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            0-4 years
           </h6>
           <h6 className="font-weight-light">
-            High school diploma or equivalent (4 years)
+            <i
+              className="fa fa-circle"
+              style={{ color: "#b4e051" }}
+              aria-hidden="true"
+            ></i>{" "}
+            High school diploma or equivalent{" "}
+            <i
+              className="fa fa-minus"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            4 years
           </h6>
           <h6 className="font-weight-light">
-            Some college, no degree (4-8 years)
+            <i
+              className="fa fa-circle"
+              style={{ color: "#8cd211" }}
+              aria-hidden="true"
+            ></i>{" "}
+            Some college, no degree{" "}
+            <i
+              className="fa fa-minus"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            4-8 years
           </h6>
           <h6 className="font-weight-light">
+            <i
+              className="fa fa-circle"
+              style={{ color: "#5aa700" }}
+              aria-hidden="true"
+            ></i>{" "}
             Associate's degree{" "}
-            <i className="fa fa-minus" aria-hidden="true"></i> 6 years
+            <i
+              className="fa fa-minus"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            >
+              {" "}
+            </i>{" "}
+            6 years
           </h6>
           <h6 className="font-weight-light">
-            Bachelor's degree <i className="fa fa-minus" aria-hidden="true"></i>{" "}
-            (8 years)
+            <i
+              className="fa fa-circle"
+              style={{ color: "#4c8400" }}
+              aria-hidden="true"
+            ></i>{" "}
+            Bachelor's degree{" "}
+            <i
+              className="fa fa-minus"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            8 years
           </h6>
-          <h6 className="font-weight-light">Master's degree (9-10 years)</h6>
           <h6 className="font-weight-light">
-            Doctoral or professional degree (13-15 years)
+            <i
+              className="fa fa-circle"
+              style={{ color: "#2d660a" }}
+              aria-hidden="true"
+            ></i>{" "}
+            Master's degree{" "}
+            <i
+              className="fa fa-minus"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            9-10 years
+          </h6>
+          <h6 className="font-weight-light">
+            <i
+              className="fa fa-circle"
+              style={{ color: "#144d14" }}
+              aria-hidden="true"
+            ></i>{" "}
+            Doctoral or professional degree{" "}
+            <i
+              className="fa fa-minus"
+              style={{ color: "#e8e8e8" }}
+              aria-hidden="true"
+            ></i>{" "}
+            13-15 years
           </h6>
         </Card.Body>
       </Card>
