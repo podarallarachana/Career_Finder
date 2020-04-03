@@ -6,6 +6,8 @@ import Related from "./Related";
 import Activities from "./Activities";
 import Education from "./Education";
 import Wages from "./Wages";
+import Interests from "./Interests";
+import CardColumns from "react-bootstrap/CardColumns";
 
 const LearningModules = props => {
   const displayData = () => {
@@ -19,12 +21,22 @@ const LearningModules = props => {
       return (
         <div className="learningModules">
           <h1 className="font-weight-light">
-            <i className="fa fa-caret-right" aria-hidden="true"></i>{" "}
             {props.data.OccupationDetail[0].OnetTitle}
           </h1>
           <h5 className="font-weight-light">
             <b>Description: </b>
             {props.data.OccupationDetail[0].OnetDescription}
+          </h5>
+          <h5 className="font-weight-light">
+            <b>
+              <i
+                className="fa fa-leaf"
+                style={{ color: "#8cd211" }}
+                aria-hidden="true"
+              ></i>{" "}
+              Is this a Environmentally Friendly Job?{" "}
+            </b>
+            {props.data.OccupationDetail[0].Green}
           </h5>
           <br />
           <div className="row">
@@ -43,6 +55,9 @@ const LearningModules = props => {
                 />
               </video>
             </div>
+          </div>
+          <br />
+          <CardColumns>
             {props.data.OccupationDetail[0].hasOwnProperty("AbilityDataList") &&
             props.data.OccupationDetail[0].AbilityDataList.length !== 0 &&
             props.data.OccupationDetail[0].AbilityDataList !== undefined &&
@@ -64,6 +79,15 @@ const LearningModules = props => {
             props.data.OccupationDetail[0].KnowledgeDataList !== undefined &&
             props.data.OccupationDetail[0].KnowledgeDataList !== null ? (
               <Knowledge data={props.data} />
+            ) : null}
+
+            {props.data.OccupationDetail[0].hasOwnProperty(
+              "InterestDataList"
+            ) &&
+            props.data.OccupationDetail[0].InterestDataList.length !== 0 &&
+            props.data.OccupationDetail[0].InterestDataList !== undefined &&
+            props.data.OccupationDetail[0].InterestDataList !== null ? (
+              <Interests data={props.data} />
             ) : null}
 
             {props.data.OccupationDetail[0].hasOwnProperty("Dwas") &&
@@ -101,7 +125,7 @@ const LearningModules = props => {
             props.data.OccupationDetail[0].RelatedOnetTitles !== null ? (
               <Related updateActives={props.updateActives} data={props.data} />
             ) : null}
-          </div>
+          </CardColumns>
         </div>
       );
     }

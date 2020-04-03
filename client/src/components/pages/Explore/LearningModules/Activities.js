@@ -47,48 +47,46 @@ const Activities = props => {
     });
 
   return (
-    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 sections">
-      <Card style={{ border: "0px" }}>
-        <Card.Body>
-          <h3 className="font-weight-light">
-            <i
-              className="fa fa-sun-o"
-              aria-hidden="true"
-              style={{ color: "#ffc800" }}
-            ></i>{" "}
-            Daily Activities
-          </h3>
-          <p>
-            Here are some of the daily activites you will be expected to do.
-            Would you enjoy doing these activities?
-          </p>
-          <hr />
-          <p>
-            <b>Activities</b>
-          </p>
-          <h6 className="font-weight-light">{displayImportantActivities()}</h6>
-          <br />
-          <hr />
-          <Form>
-            <Form.Check
-              type="switch"
-              id="activities-switch"
-              checked={showAll}
-              onChange={() => setShowAll(!showAll)}
-              label={
-                <p>
-                  <b>
-                    View All {props.data.OccupationDetail[0].Dwas.length}{" "}
-                    Activities
-                  </b>
-                </p>
-              }
-            />
-          </Form>
-          {showAll ? displayActivities() : null}
-        </Card.Body>
-      </Card>
-    </div>
+    <Card style={{ border: "0px" }}>
+      <Card.Body>
+        <h3 className="font-weight-light">
+          <i
+            className="fa fa-sun-o"
+            aria-hidden="true"
+            style={{ color: "#ffc800" }}
+          ></i>{" "}
+          Daily Activities
+        </h3>
+        <p>
+          Here are some of the daily activites you will be expected to do. Would
+          you enjoy doing these activities?
+        </p>
+        <hr />
+        <p>
+          <b>Activities</b>
+        </p>
+        <h6 className="font-weight-light">{displayImportantActivities()}</h6>
+        <br />
+        <hr />
+        <Form>
+          <Form.Check
+            type="switch"
+            id="activities-switch"
+            checked={showAll}
+            onChange={() => setShowAll(!showAll)}
+            label={
+              <p>
+                <b>
+                  View All {props.data.OccupationDetail[0].Dwas.length}{" "}
+                  Activities
+                </b>
+              </p>
+            }
+          />
+        </Form>
+        {showAll ? displayActivities() : null}
+      </Card.Body>
+    </Card>
   );
 };
 

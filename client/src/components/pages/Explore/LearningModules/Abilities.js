@@ -156,62 +156,59 @@ const Abilities = props => {
           </p>
         </Modal.Body>
       </Modal>
-
-      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 sections">
-        <Card style={{ border: "0px" }}>
-          <Card.Body>
-            <h3 className="font-weight-light">Abilities</h3>
-            <p>
-              These are abilities that employees in the industry should have. Do
-              you have any of these abilites? Click or hover over an ability to
-              view more information.
-            </p>
-            <hr />
-            <p>
-              <b>Top Abilities</b>
-            </p>
-            {displayImportantAbilities()}
-            <br />
-            <br />
-            <div>
-              <Doughnut
-                onElementsClick={elems => {
-                  handleGraphShow(elems);
-                }}
-                data={graphData}
-                options={{
-                  title: {
-                    display: false
-                  },
-                  legend: {
-                    display: false
-                  }
-                }}
-              />
-            </div>
-            <br />
-            <hr />
-            <Form>
-              <Form.Check
-                type="switch"
-                id="abilities-switch"
-                checked={showAll}
-                onChange={() => setShowAll(!showAll)}
-                label={
-                  <p>
-                    <b>
-                      View All{" "}
-                      {props.data.OccupationDetail[0].AbilityDataList.length}{" "}
-                      Abilities
-                    </b>
-                  </p>
+      <Card style={{ border: "0px" }}>
+        <Card.Body>
+          <h3 className="font-weight-light">Abilities</h3>
+          <p>
+            These are abilities that employees in the industry should have. Do
+            you have any of these abilites? Click or hover over an ability to
+            view more information.
+          </p>
+          <hr />
+          <p>
+            <b>Top Abilities</b>
+          </p>
+          {displayImportantAbilities()}
+          <br />
+          <br />
+          <div>
+            <Doughnut
+              onElementsClick={elems => {
+                handleGraphShow(elems);
+              }}
+              data={graphData}
+              options={{
+                title: {
+                  display: false
+                },
+                legend: {
+                  display: false
                 }
-              />
-            </Form>
-            {showAll ? displayAbilities() : null}
-          </Card.Body>
-        </Card>
-      </div>
+              }}
+            />
+          </div>
+          <br />
+          <hr />
+          <Form>
+            <Form.Check
+              type="switch"
+              id="abilities-switch"
+              checked={showAll}
+              onChange={() => setShowAll(!showAll)}
+              label={
+                <p>
+                  <b>
+                    View All{" "}
+                    {props.data.OccupationDetail[0].AbilityDataList.length}{" "}
+                    Abilities
+                  </b>
+                </p>
+              }
+            />
+          </Form>
+          {showAll ? displayAbilities() : null}
+        </Card.Body>
+      </Card>
     </Fragment>
   );
 };
