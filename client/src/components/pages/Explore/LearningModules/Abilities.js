@@ -18,24 +18,20 @@ const Abilities = props => {
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     ).slice(0, 20);
     var labels = Object.keys(obj).map(function(key) {
-      return obj[key].ElementName;
+      return obj[key].ElementName + " Importance Value";
     });
     var values = Object.keys(obj).map(function(key) {
       return parseInt(obj[key].Importance);
     });
     var colors = Object.keys(obj).map(function(key) {
       if (getImportance(parseInt(obj[key].Importance)) === "high") {
-        console.log(getImportance(parseInt(obj[key].Importance)));
         return "red";
       } else if (getImportance(parseInt(obj[key].Importance)) === "medium") {
-        console.log(getImportance(parseInt(obj[key].Importance)));
         return "orange";
       } else if (getImportance(parseInt(obj[key].Importance)) === "low") {
-        console.log(getImportance(parseInt(obj[key].Importance)));
         return "yellow";
       }
     });
-    console.log(colors);
     setGraphData({
       labels: labels,
       datasets: [
@@ -70,6 +66,22 @@ const Abilities = props => {
     });
   };
 
+  const handleGraphShow = elems => {
+    setShow(true);
+    setSelectedOption(
+      graphData.labels[elems[0]._index].replace(" Importance Value", "")
+    );
+    props.data.OccupationDetail[0].AbilityDataList.filter(obj => {
+      if (
+        obj.ElementName ===
+        graphData.labels[elems[0]._index].replace(" Importance Value", "")
+      ) {
+        setSelectedDescription(obj.ElementDescription);
+        setSelectedImportance(getImportance(obj.Importance));
+      }
+    });
+  };
+
   const displayAbilities = () =>
     props.data.OccupationDetail[0].AbilityDataList.map(ability => {
       return (
@@ -85,6 +97,26 @@ const Abilities = props => {
         </Fragment>
       );
     });
+
+  const displayImportantAbilities = () =>
+    props.data.OccupationDetail[0].AbilityDataList.sort(
+      (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
+    )
+      .slice(0, 14)
+      .map(ability => {
+        return (
+          <Fragment key={ability.ElementName}>
+            <Button
+              onClick={handleShow}
+              variant="light btn-sm"
+              className="optionsButton"
+              title={ability.ElementDescription}
+            >
+              {ability.ElementName}
+            </Button>{" "}
+          </Fragment>
+        );
+      });
 
   return (
     <Fragment>
@@ -121,9 +153,14 @@ const Abilities = props => {
             <p>
               <b>Top Abilities</b>
             </p>
-
+            {displayImportantAbilities()}
+            <br />
+            <br />
             <div>
               <Doughnut
+                onElementsClick={elems => {
+                  handleGraphShow(elems);
+                }}
                 data={graphData}
                 options={{
                   title: {
@@ -135,7 +172,6 @@ const Abilities = props => {
                 }}
               />
             </div>
-
             <br />
             <Form>
               <Form.Check
