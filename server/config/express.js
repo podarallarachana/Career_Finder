@@ -4,6 +4,7 @@ const path = require("path"),
   morgan = require("morgan"),
   bodyParser = require("body-parser"),
   userRouter = require("../routes/user.router"),
+    classRouter = require("../routes/class.router"),
   authRouter = require("../routes/authorization.router");
 
 module.exports.init = () => {
@@ -24,12 +25,17 @@ module.exports.init = () => {
   // enable request logging for development debugging
   app.use(morgan("dev"));
 
+  app.use(bodyParser.urlencoded({
+    extended: true
+  }));
+
   // body parsing middleware
   app.use(bodyParser.json());
 
   // ADD ROUTES HERE
   app.use("/api/user", userRouter);
   app.use("/api/auth", authRouter);
+  app.use("/api/class",classRouter);
 
   if (process.env.NODE_ENV === "production") {
     // Serve any static files
