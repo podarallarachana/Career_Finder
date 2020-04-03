@@ -16,23 +16,46 @@ const Abilities = props => {
   useEffect(() => {
     var obj = props.data.OccupationDetail[0].AbilityDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
-    ).slice(0, 100);
+    ).slice(0, 20);
     var labels = Object.keys(obj).map(function(key) {
       return obj[key].ElementName;
     });
     var values = Object.keys(obj).map(function(key) {
       return parseInt(obj[key].Importance);
     });
+    var colors = Object.keys(obj).map(function(key) {
+      if (getImportance(parseInt(obj[key].Importance)) === "high") {
+        console.log(getImportance(parseInt(obj[key].Importance)));
+        return "red";
+      } else if (getImportance(parseInt(obj[key].Importance)) === "medium") {
+        console.log(getImportance(parseInt(obj[key].Importance)));
+        return "orange";
+      } else if (getImportance(parseInt(obj[key].Importance)) === "low") {
+        console.log(getImportance(parseInt(obj[key].Importance)));
+        return "yellow";
+      }
+    });
+    console.log(colors);
     setGraphData({
       labels: labels,
       datasets: [
         {
           data: values,
-          backgroundColor: "#FF6384"
+          backgroundColor: colors
         }
       ]
     });
   }, [props.data.OccupationDetail]);
+
+  const getImportance = val => {
+    if (val <= 40) {
+      return "low";
+    } else if (val > 40 && val <= 60) {
+      return "medium";
+    } else if (val > 60) {
+      return "high";
+    }
+  };
 
   const handleClose = () => setShow(false);
 
@@ -42,13 +65,7 @@ const Abilities = props => {
     props.data.OccupationDetail[0].AbilityDataList.filter(obj => {
       if (obj.ElementName === e.target.innerText) {
         setSelectedDescription(obj.ElementDescription);
-        if (obj.Importance <= 10) {
-          setSelectedImportance("low");
-        } else if (obj.Importance > 10 && obj.Importance <= 40) {
-          setSelectedImportance("medium");
-        } else if (obj.Importance > 40) {
-          setSelectedImportance("high");
-        }
+        setSelectedImportance(getImportance(obj.Importance));
       }
     });
   };
