@@ -1,17 +1,56 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { Chart } from "react-charts";
 
 const Abilities = props => {
+  useEffect(() => {
+    var obj = props.data.OccupationDetail[0].AbilityDataList.sort(
+      (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
+    ).slice(0, 6);
+    var result = Object.keys(obj).map(function(key) {
+      return [obj[key].ElementName, obj[key].Importance];
+    });
+    setGraphData(result);
+  }, [props.data.OccupationDetail]);
+
   const [showAll, setShowAll] = useState(false);
   const [show, setShow] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedImportance, setSelectedImportance] = useState("");
   const [selectedDescription, setSelectedDescription] = useState("");
+  const [graphData, setGraphData] = useState([]);
+
+  const data = React.useMemo(
+    () => [
+      {
+        label: "Top Abilities",
+        data: graphData,
+        color: "red"
+      }
+    ],
+    [graphData]
+  );
+
+  const series = React.useMemo(
+    () => ({
+      type: "bar"
+    }),
+    []
+  );
+
+  const axes = React.useMemo(
+    () => [
+      { primary: true, type: "ordinal", position: "left" },
+      { position: "bottom", type: "linear", stacked: true }
+    ],
+    []
+  );
 
   const handleClose = () => setShow(false);
+
   const handleShow = e => {
     setShow(true);
     setSelectedOption(e.target.innerText);
@@ -25,7 +64,6 @@ const Abilities = props => {
         } else if (obj.Importance > 40) {
           setSelectedImportance("high");
         }
-        return;
       }
     });
   };
@@ -46,33 +84,36 @@ const Abilities = props => {
       );
     });
 
-  const displayImportantAbilities = () =>
-    props.data.OccupationDetail[0].AbilityDataList.sort(
+  const getImportantAbilities = () => {
+    var obj = props.data.OccupationDetail[0].AbilityDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
-    )
-      .slice(0, 10)
-      .map(ability => {
-        return (
-          <Fragment key={ability.ElementName}>
-            <Button
-              onClick={handleShow}
-              variant="outline-secondary btn-sm"
-              className="optionsButton"
-              title={ability.ElementDescription}
-            >
-              {ability.ElementName}
-            </Button>{" "}
-          </Fragment>
-        );
-      });
-
-  const getAbilityDescription = () => {
-    props.data.OccupationDetail[0].AbilityDataList.filter(obj => {
-      if (obj.ElementName === selectedOption) {
-        console.log(obj.ElementDescription);
-      }
+    ).slice(0, 10);
+    var result = Object.keys(obj).map(function(key) {
+      return [obj[key].ElementName, obj[key].Importance];
     });
+    console.log(result);
+    setGraphData([[0, 1]]);
   };
+
+  // const displayImportantAbilities = () =>
+  //   props.data.OccupationDetail[0].AbilityDataList.sort(
+  //     (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
+  //   )
+  //     .slice(0, 6)
+  //     .map(ability => {
+  //       return (
+  //         <Fragment key={ability.ElementName}>
+  //           <Button
+  //             onClick={handleShow}
+  //             variant="outline-secondary btn-sm"
+  //             className="optionsButton"
+  //             title={ability.ElementDescription}
+  //           >
+  //             {ability.ElementName}
+  //           </Button>{" "}
+  //         </Fragment>
+  //       );
+  //     });
 
   return (
     <Fragment>
@@ -109,8 +150,13 @@ const Abilities = props => {
             <p>
               <b>Top Abilities</b>
             </p>
-            {displayImportantAbilities()}
-            <br />
+            <div
+              style={{
+                height: "300px"
+              }}
+            >
+              <Chart data={data} series={series} axes={axes} tooltip />
+            </div>
             <br />
             <Form>
               <Form.Check
