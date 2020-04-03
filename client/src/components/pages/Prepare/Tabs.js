@@ -1,9 +1,9 @@
 import React, { Fragment, useState } from "react";
 import { Nav } from "react-bootstrap";
-import LearningModules from "./LearningModules/LearningModules";
+import College from "./College";
 
 const Tabs = props => {
-  const [activeTab, setActiveTab] = useState("learningModules");
+  const [activeTab, setActiveTab] = useState("college");
 
   const handleSelect = newTab => {
     if (newTab !== activeTab) {
@@ -13,6 +13,9 @@ const Tabs = props => {
 
   return (
     <Fragment>
+      <h5 className="font-weight-light">
+        <b>Step 3: </b>put together a preparation plan
+      </h5>
       <Nav
         fill
         variant="tabs"
@@ -20,18 +23,13 @@ const Tabs = props => {
         onSelect={handleSelect}
       >
         <Nav.Item>
-          <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
+          <Nav.Link eventKey="college">College</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="activities">Activties</Nav.Link>
+          <Nav.Link eventKey="certifications">Certifications</Nav.Link>
         </Nav.Item>
       </Nav>
-      {activeTab === "learningModules" ? (
-        <LearningModules
-          updateActives={props.updateActives}
-          data={props.data}
-        />
-      ) : null}
+      {activeTab === "college" ? <College /> : null}
     </Fragment>
   );
 };

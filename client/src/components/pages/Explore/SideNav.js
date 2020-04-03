@@ -5,11 +5,15 @@ import data from "./Data.json";
 
 const SideNav = props => {
   const updateActives = e => {
-    props.updateActives(
-      e.target.innerText,
-      getCode(e.target.innerText).pathway,
-      getCode(e.target.innerText).code
-    );
+    if (e.target.innerText === "Search") {
+      props.updateActives(e.target.innerText, undefined, undefined);
+    } else {
+      props.updateActives(
+        e.target.innerText,
+        getCode(e.target.innerText).pathway,
+        getCode(e.target.innerText).code
+      );
+    }
   };
 
   const getCode = CareerCluster => {
@@ -31,8 +35,11 @@ const SideNav = props => {
         to={"/explore/" + getCode(data.CareerCluster).code}
         style={{
           backgroundColor:
-            data.CareerCluster !== props.activeCluster ? "white" : "#007bff",
-          color: data.CareerCluster !== props.activeCluster ? "black" : "white"
+            data.CareerCluster !== props.activeCluster ? "#ff683c" : "#ff8123",
+          color:
+            data.CareerCluster !== props.activeCluster ? "#ffa185" : "white",
+          fontWeight: "bold",
+          border: "0px"
         }}
       >
         <ListGroup.Item onClick={updateActives}>
@@ -44,7 +51,21 @@ const SideNav = props => {
 
   return (
     <div className="sidenav">
-      <ListGroup>{displayClusters}</ListGroup>
+      <ListGroup>
+        <LinkContainer
+          to={"/explore/search"}
+          style={{
+            backgroundColor:
+              props.activeCluster !== "Search" ? "#ff683c" : "#ff8123",
+            color: props.activeCluster !== "Search" ? "#ffa185" : "white",
+            fontWeight: "bold",
+            border: "0px"
+          }}
+        >
+          <ListGroup.Item onClick={updateActives}>Search</ListGroup.Item>
+        </LinkContainer>
+        {displayClusters}
+      </ListGroup>
     </div>
   );
 };
