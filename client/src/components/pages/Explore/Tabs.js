@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import { Nav } from "react-bootstrap";
 import LearningModules from "./LearningModules/LearningModules";
+import GotoQuiz from "../InteractiveTools/start-quiz";
 
 const Tabs = props => {
   const [activeTab, setActiveTab] = useState("learningModules");
@@ -31,7 +32,9 @@ const Tabs = props => {
           updateActives={props.updateActives}
           data={props.data}
         />
-      ) : null}
+      ) : 
+        <GotoQuiz/>
+      }
     </Fragment>
   );
 };
