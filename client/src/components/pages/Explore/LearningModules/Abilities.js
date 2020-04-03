@@ -16,7 +16,7 @@ const Abilities = props => {
   useEffect(() => {
     var obj = props.data.OccupationDetail[0].AbilityDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
-    ).slice(0, 20);
+    ).slice(0, 15);
     var labels = Object.keys(obj).map(function(key) {
       return obj[key].ElementName + " Importance Value";
     });
@@ -118,7 +118,7 @@ const Abilities = props => {
     props.data.OccupationDetail[0].AbilityDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     )
-      .slice(0, 20)
+      .slice(0, 15)
       .map(ability => {
         return (
           <Fragment key={ability.ElementName}>

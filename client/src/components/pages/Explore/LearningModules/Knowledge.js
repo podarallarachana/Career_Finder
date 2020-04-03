@@ -16,7 +16,7 @@ const Knowledge = props => {
   useEffect(() => {
     var obj = props.data.OccupationDetail[0].KnowledgeDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
-    ).slice(0, 20);
+    ).slice(0, 15);
     var labels = Object.keys(obj).map(function(key) {
       return obj[key].ElementName + " Importance Value";
     });
@@ -118,7 +118,7 @@ const Knowledge = props => {
     props.data.OccupationDetail[0].KnowledgeDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     )
-      .slice(0, 20)
+      .slice(0, 15)
       .map(knowledge => {
         return (
           <Fragment key={knowledge.ElementName}>
