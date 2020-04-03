@@ -29,7 +29,7 @@ const LearningModules = props => {
           </div>
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <video width="100%" controls>
+              <video width="100%" controls autoPlay muted>
                 <source
                   src={
                     "https://cdn.careeronestop.org/OccVids/OccupationVideos/" +

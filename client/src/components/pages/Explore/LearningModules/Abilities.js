@@ -3,51 +3,36 @@ import Card from "react-bootstrap/Card";
 import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import { Chart } from "react-charts";
+import { Doughnut } from "react-chartjs-2";
 
 const Abilities = props => {
-  useEffect(() => {
-    var obj = props.data.OccupationDetail[0].AbilityDataList.sort(
-      (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
-    ).slice(0, 6);
-    var result = Object.keys(obj).map(function(key) {
-      return [obj[key].ElementName, obj[key].Importance];
-    });
-    setGraphData(result);
-  }, [props.data.OccupationDetail]);
-
   const [showAll, setShowAll] = useState(false);
   const [show, setShow] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
   const [selectedImportance, setSelectedImportance] = useState("");
   const [selectedDescription, setSelectedDescription] = useState("");
-  const [graphData, setGraphData] = useState([]);
+  const [graphData, setGraphData] = useState({});
 
-  const data = React.useMemo(
-    () => [
-      {
-        label: "Top Abilities",
-        data: graphData,
-        color: "red"
-      }
-    ],
-    [graphData]
-  );
-
-  const series = React.useMemo(
-    () => ({
-      type: "bar"
-    }),
-    []
-  );
-
-  const axes = React.useMemo(
-    () => [
-      { primary: true, type: "ordinal", position: "left" },
-      { position: "bottom", type: "linear", stacked: true }
-    ],
-    []
-  );
+  useEffect(() => {
+    var obj = props.data.OccupationDetail[0].AbilityDataList.sort(
+      (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
+    ).slice(0, 100);
+    var labels = Object.keys(obj).map(function(key) {
+      return obj[key].ElementName;
+    });
+    var values = Object.keys(obj).map(function(key) {
+      return parseInt(obj[key].Importance);
+    });
+    setGraphData({
+      labels: labels,
+      datasets: [
+        {
+          data: values,
+          backgroundColor: "#FF6384"
+        }
+      ]
+    });
+  }, [props.data.OccupationDetail]);
 
   const handleClose = () => setShow(false);
 
@@ -84,37 +69,6 @@ const Abilities = props => {
       );
     });
 
-  const getImportantAbilities = () => {
-    var obj = props.data.OccupationDetail[0].AbilityDataList.sort(
-      (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
-    ).slice(0, 10);
-    var result = Object.keys(obj).map(function(key) {
-      return [obj[key].ElementName, obj[key].Importance];
-    });
-    console.log(result);
-    setGraphData([[0, 1]]);
-  };
-
-  // const displayImportantAbilities = () =>
-  //   props.data.OccupationDetail[0].AbilityDataList.sort(
-  //     (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
-  //   )
-  //     .slice(0, 6)
-  //     .map(ability => {
-  //       return (
-  //         <Fragment key={ability.ElementName}>
-  //           <Button
-  //             onClick={handleShow}
-  //             variant="outline-secondary btn-sm"
-  //             className="optionsButton"
-  //             title={ability.ElementDescription}
-  //           >
-  //             {ability.ElementName}
-  //           </Button>{" "}
-  //         </Fragment>
-  //       );
-  //     });
-
   return (
     <Fragment>
       <Modal show={show} onHide={handleClose}>
@@ -150,13 +104,21 @@ const Abilities = props => {
             <p>
               <b>Top Abilities</b>
             </p>
-            <div
-              style={{
-                height: "300px"
-              }}
-            >
-              <Chart data={data} series={series} axes={axes} tooltip />
+
+            <div>
+              <Doughnut
+                data={graphData}
+                options={{
+                  title: {
+                    display: false
+                  },
+                  legend: {
+                    display: false
+                  }
+                }}
+              />
             </div>
+
             <br />
             <Form>
               <Form.Check
