@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import Tools from "./Tools";
+import Technology from "./Technology";
 
 const ToolsTech = props => {
   const displayData = () => {
@@ -20,6 +21,16 @@ const ToolsTech = props => {
           props.toolsData.TechToolOccupationDetails.Tools.Categories !==
             null ? (
             <Tools toolsData={props.toolsData} />
+          ) : null}
+
+          {props.toolsData.hasOwnProperty("TechToolOccupationDetails") &&
+          props.toolsData.TechToolOccupationDetails.Technology.CategoryList
+            .length !== 0 &&
+          props.toolsData.TechToolOccupationDetails.Technology.CategoryList !==
+            undefined &&
+          props.toolsData.TechToolOccupationDetails.Technology.CategoryList !==
+            null ? (
+            <Technology toolsData={props.toolsData} />
           ) : null}
         </Fragment>
       );
