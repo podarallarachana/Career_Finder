@@ -12,8 +12,8 @@ import NavigationBar from "./components/shared/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Find from "./components/pages/Find/Find";
 import Prepare from "./components/pages/Prepare/Prepare";
-import "./App.scss";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.scss";
 require("dotenv").config();
 
 if (localStorage.token) {

@@ -157,62 +157,59 @@ const Knowledge = props => {
         </Modal.Body>
       </Modal>
 
-      <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 sections">
-        <Card style={{ border: "0px" }}>
-          <Card.Body>
-            <h3 className="font-weight-light">Subjects</h3>
-            <p>
-              Here are some subjects that people in this industry should excel
-              in. Have you ever taken any of these subjects at school? Are you
-              good at them? Click or hover over a subject to view more
-              information.
-            </p>
-            <hr />
-            <p>
-              <b>Top Subjects</b>
-            </p>
-            {displayImportantKnowledge()}
-            <br />
-            <br />
-            <div>
-              <Doughnut
-                onElementsClick={elems => {
-                  handleGraphShow(elems);
-                }}
-                data={graphData}
-                options={{
-                  title: {
-                    display: false
-                  },
-                  legend: {
-                    display: false
-                  }
-                }}
-              />
-            </div>
-            <br />
-            <hr />
-            <Form>
-              <Form.Check
-                type="switch"
-                id="Knowledge-switch"
-                checked={showAll}
-                onChange={() => setShowAll(!showAll)}
-                label={
-                  <p>
-                    <b>
-                      View All{" "}
-                      {props.data.OccupationDetail[0].KnowledgeDataList.length}{" "}
-                      Subjects
-                    </b>
-                  </p>
+      <Card style={{ border: "0px" }}>
+        <Card.Body>
+          <h3 className="font-weight-light">Subjects</h3>
+          <p>
+            Here are some subjects that people in this industry should excel in.
+            Have you ever taken any of these subjects at school? Are you good at
+            them? Click or hover over a subject to view more information.
+          </p>
+          <hr />
+          <p>
+            <b>Top Subjects</b>
+          </p>
+          {displayImportantKnowledge()}
+          <br />
+          <br />
+          <div>
+            <Doughnut
+              onElementsClick={elems => {
+                handleGraphShow(elems);
+              }}
+              data={graphData}
+              options={{
+                title: {
+                  display: false
+                },
+                legend: {
+                  display: false
                 }
-              />
-            </Form>
-            {showAll ? displayKnowledge() : null}
-          </Card.Body>
-        </Card>
-      </div>
+              }}
+            />
+          </div>
+          <br />
+          <hr />
+          <Form>
+            <Form.Check
+              type="switch"
+              id="Knowledge-switch"
+              checked={showAll}
+              onChange={() => setShowAll(!showAll)}
+              label={
+                <p>
+                  <b>
+                    View All{" "}
+                    {props.data.OccupationDetail[0].KnowledgeDataList.length}{" "}
+                    Subjects
+                  </b>
+                </p>
+              }
+            />
+          </Form>
+          {showAll ? displayKnowledge() : null}
+        </Card.Body>
+      </Card>
     </Fragment>
   );
 };

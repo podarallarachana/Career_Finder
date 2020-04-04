@@ -125,146 +125,144 @@ const Wages = props => {
   }, [props.data.OccupationDetail]);
 
   return (
-    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 sections">
-      <Card style={{ border: "0px" }}>
-        <Card.Body>
-          <h3 className="font-weight-light">Salary</h3>
-          <h6 className="font-weight-light">
-            $
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              annual
-            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-            per year
-          </h6>
-          <h6 className="font-weight-light">
-            $
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              hourly
-            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-            per hour
-          </h6>
-          <hr />
-          <p>
-            <b>All Salaries{<br />}</b>
-            Is money important to you? See how much money you are most likely to
-            make in this career.
-          </p>
-          <Nav
-            fill
-            variant="pills"
-            defaultActiveKey={activeTab}
-            onSelect={handleSelect}
+    <Card style={{ border: "0px" }}>
+      <Card.Body>
+        <h3 className="font-weight-light">Salary</h3>
+        <h6 className="font-weight-light">
+          $
+          {props.data.OccupationDetail[0].Wages.NationalWagesList[
+            annual
+          ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+          per year
+        </h6>
+        <h6 className="font-weight-light">
+          $
+          {props.data.OccupationDetail[0].Wages.NationalWagesList[
+            hourly
+          ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+          per hour
+        </h6>
+        <hr />
+        <p>
+          <b>All Salaries{<br />}</b>
+          Is money important to you? See how much money you are most likely to
+          make in this career.
+        </p>
+        <Nav
+          fill
+          variant="pills"
+          defaultActiveKey={activeTab}
+          onSelect={handleSelect}
+        >
+          <Nav.Item>
+            <Nav.Link eventKey="annual">Annual Salaries</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="hourly">Hourly Salaries</Nav.Link>
+          </Nav.Item>
+        </Nav>
+        <div>
+          <br />
+          <Bar
+            options={{
+              title: {
+                display: false
+              },
+              legend: {
+                display: false
+              },
+              responsive: true
+            }}
+            data={graphData}
+            redraw
+          />
+        </div>
+        <hr />
+        <h6>How much do people in this career make?</h6>
+        <h6 className="font-weight-light">
+          <i
+            className="fa fa-circle"
+            style={{ color: "#c0e6ff" }}
+            aria-hidden="true"
+          ></i>{" "}
+          The bottom 10% of employees make{" "}
+          <i
+            className="fa fa-dollar"
+            style={{ color: "#e8e8e8" }}
+            aria-hidden="true"
+          ></i>{" "}
+          {props.data.OccupationDetail[0].Wages.NationalWagesList[
+            activeTab === "annual" ? annual : hourly
+          ].Pct10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </h6>
+        <h6 className="font-weight-light">
+          <i
+            className="fa fa-circle"
+            style={{ color: "#7cc7ff" }}
+            aria-hidden="true"
+          ></i>{" "}
+          The borroms 25% of employees make{" "}
+          <i
+            className="fa fa-dollar"
+            style={{ color: "#e8e8e8" }}
+            aria-hidden="true"
+          ></i>{" "}
+          {props.data.OccupationDetail[0].Wages.NationalWagesList[
+            activeTab === "annual" ? annual : hourly
+          ].Pct25.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </h6>
+        <h6 className="font-weight-light">
+          <i
+            className="fa fa-circle"
+            style={{ color: "#5aaafa" }}
+            aria-hidden="true"
+          ></i>{" "}
+          The average employee makes{" "}
+          <i
+            className="fa fa-dollar"
+            style={{ color: "#e8e8e8" }}
+            aria-hidden="true"
+          ></i>{" "}
+          {props.data.OccupationDetail[0].Wages.NationalWagesList[
+            activeTab === "annual" ? annual : hourly
+          ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </h6>
+        <h6 className="font-weight-light">
+          <i
+            className="fa fa-circle"
+            style={{ color: "#5596e6" }}
+            aria-hidden="true"
+          ></i>{" "}
+          The top 25% of employees make{" "}
+          <i
+            className="fa fa-dollar"
+            style={{ color: "#e8e8e8" }}
+            aria-hidden="true"
           >
-            <Nav.Item>
-              <Nav.Link eventKey="annual">Annual Salaries</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="hourly">Hourly Salaries</Nav.Link>
-            </Nav.Item>
-          </Nav>
-          <div>
-            <br />
-            <Bar
-              options={{
-                title: {
-                  display: false
-                },
-                legend: {
-                  display: false
-                },
-                responsive: true
-              }}
-              data={graphData}
-              redraw
-            />
-          </div>
-          <hr />
-          <h6>How much do people in this career make?</h6>
-          <h6 className="font-weight-light">
-            <i
-              className="fa fa-circle"
-              style={{ color: "#c0e6ff" }}
-              aria-hidden="true"
-            ></i>{" "}
-            The bottom 10% of employees make{" "}
-            <i
-              className="fa fa-dollar"
-              style={{ color: "#e8e8e8" }}
-              aria-hidden="true"
-            ></i>{" "}
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              activeTab === "annual" ? annual : hourly
-            ].Pct10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </h6>
-          <h6 className="font-weight-light">
-            <i
-              className="fa fa-circle"
-              style={{ color: "#7cc7ff" }}
-              aria-hidden="true"
-            ></i>{" "}
-            The borroms 25% of employees make{" "}
-            <i
-              className="fa fa-dollar"
-              style={{ color: "#e8e8e8" }}
-              aria-hidden="true"
-            ></i>{" "}
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              activeTab === "annual" ? annual : hourly
-            ].Pct25.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </h6>
-          <h6 className="font-weight-light">
-            <i
-              className="fa fa-circle"
-              style={{ color: "#5aaafa" }}
-              aria-hidden="true"
-            ></i>{" "}
-            The average employee makes{" "}
-            <i
-              className="fa fa-dollar"
-              style={{ color: "#e8e8e8" }}
-              aria-hidden="true"
-            ></i>{" "}
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              activeTab === "annual" ? annual : hourly
-            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </h6>
-          <h6 className="font-weight-light">
-            <i
-              className="fa fa-circle"
-              style={{ color: "#5596e6" }}
-              aria-hidden="true"
-            ></i>{" "}
-            The top 25% of employees make{" "}
-            <i
-              className="fa fa-dollar"
-              style={{ color: "#e8e8e8" }}
-              aria-hidden="true"
-            >
-              {" "}
-            </i>{" "}
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              activeTab === "annual" ? annual : hourly
-            ].Pct75.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </h6>
-          <h6 className="font-weight-light">
-            <i
-              className="fa fa-circle"
-              style={{ color: "#4178be" }}
-              aria-hidden="true"
-            ></i>{" "}
-            The top 10% of employees take{" "}
-            <i
-              className="fa fa-dollar"
-              style={{ color: "#e8e8e8" }}
-              aria-hidden="true"
-            ></i>{" "}
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              activeTab === "annual" ? annual : hourly
-            ].Pct90.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-          </h6>
-        </Card.Body>
-      </Card>
-    </div>
+            {" "}
+          </i>{" "}
+          {props.data.OccupationDetail[0].Wages.NationalWagesList[
+            activeTab === "annual" ? annual : hourly
+          ].Pct75.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </h6>
+        <h6 className="font-weight-light">
+          <i
+            className="fa fa-circle"
+            style={{ color: "#4178be" }}
+            aria-hidden="true"
+          ></i>{" "}
+          The top 10% of employees take{" "}
+          <i
+            className="fa fa-dollar"
+            style={{ color: "#e8e8e8" }}
+            aria-hidden="true"
+          ></i>{" "}
+          {props.data.OccupationDetail[0].Wages.NationalWagesList[
+            activeTab === "annual" ? annual : hourly
+          ].Pct90.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+        </h6>
+      </Card.Body>
+    </Card>
   );
 };
 
