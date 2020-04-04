@@ -2,9 +2,6 @@
   "engines": {
     "node": "12.16.x"
   },
-  "resolutions": {
-    "@babel/preset-env": "7.5.5"
-  },
   "name": "react_template_repo",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
