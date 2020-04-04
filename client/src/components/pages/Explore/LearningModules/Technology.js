@@ -10,8 +10,12 @@ const Technology = props => {
       technology => {
         return (
           <Fragment key={technology.Title}>
-            <b style={{ color: "#8cd211" }}>
-              <i className="fa fa-chevron-circle-right" aria-hidden="true"></i>{" "}
+            <b>
+              <i
+                style={{ color: "#8cd211" }}
+                className="fa fa-chevron-circle-right"
+                aria-hidden="true"
+              ></i>{" "}
               {technology.Title}
             </b>
             <br />
@@ -32,8 +36,12 @@ const Technology = props => {
     ).map(technology => {
       return (
         <Fragment key={technology.Title}>
-          <b style={{ color: "#8cd211" }}>
-            <i className="fa fa-chevron-circle-right" aria-hidden="true"></i>{" "}
+          <b>
+            <i
+              style={{ color: "#8cd211" }}
+              className="fa fa-chevron-circle-right"
+              aria-hidden="true"
+            ></i>{" "}
             {technology.Title}
           </b>
           <br />

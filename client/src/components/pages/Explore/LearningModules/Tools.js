@@ -9,8 +9,12 @@ const Tools = props => {
     props.toolsData.TechToolOccupationDetails.Tools.Categories.map(tool => {
       return (
         <Fragment key={tool.Title}>
-          <b style={{ color: "#ffc800" }}>
-            <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>{" "}
+          <b>
+            <i
+              style={{ color: "#ffc800" }}
+              className="fa fa-arrow-circle-right"
+              aria-hidden="true"
+            ></i>{" "}
             {tool.Title}
           </b>
           <br />
@@ -33,8 +37,12 @@ const Tools = props => {
       tool => {
         return (
           <Fragment key={tool.Title}>
-            <b style={{ color: "#ffc800" }}>
-              <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>{" "}
+            <b>
+              <i
+                style={{ color: "#ffc800" }}
+                className="fa fa-arrow-circle-right"
+                aria-hidden="true"
+              ></i>{" "}
               {tool.Title}
             </b>
             <br />
