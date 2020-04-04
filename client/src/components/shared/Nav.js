@@ -4,12 +4,31 @@ import PropTypes from "prop-types";
 import { logout } from "../../state-management/actions/authorization";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav } from "react-bootstrap";
+import authorization from "../../state-management/reducers/authorization";
 
 const NavigationBar = ({
-  authorization: { isAuthenticated, loading },
+  authorization: { isAuthenticated, loading ,user},
   logout
 }) => {
-  // MUST ALSO ADD TEACHER ADMIN LINKS
+
+    //added 3/27/2020
+    const adminLinks = (
+        //REDIRECTS USER TO LOGIN PAGE ONCE LOGGED OUT
+        <Nav className="mr-auto">
+            <LinkContainer to="/login" onClick={logout} href="#!">
+                <Nav.Link>logout</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/explore/11-9013.03">
+                <Nav.Link>explore</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/about">
+                <Nav.Link>about</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/admin">
+                <Nav.Link>admin</Nav.Link>
+            </LinkContainer>
+        </Nav>
+    );
 
   const studentLinks = (
     //REDIRECTS USER TO LOGIN PAGE ONCE LOGGED OUT
@@ -55,6 +74,26 @@ const NavigationBar = ({
     </Nav>
   );
 
+let navbar;
+
+//Finds out type of user
+if(isAuthenticated)
+{
+    if(user != null && user.is_teacher == true)
+    {
+        navbar = adminLinks;
+    }
+    else
+    {
+        navbar = studentLinks;
+    }
+}
+else
+{
+    navbar = guestLinks;
+}
+
+
   return (
     <Navbar
       style={{
@@ -71,7 +110,7 @@ const NavigationBar = ({
       </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
-        <Fragment>{isAuthenticated ? studentLinks : guestLinks}</Fragment>
+        <Fragment>{navbar}</Fragment>
       </Navbar.Collapse>
     </Navbar>
   );
@@ -79,11 +118,11 @@ const NavigationBar = ({
 
 NavigationBar.propTypes = {
   logout: PropTypes.func.isRequired,
-  authorization: PropTypes.object.isRequired
+  authorization: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
-  authorization: state.authorization
+  authorization: state.authorization,
 });
 
 export default connect(mapStateToProps, { logout })(NavigationBar);
