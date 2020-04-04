@@ -47,9 +47,5 @@
     "supertest": "^4.0.2",
     "uuid": "^7.0.2"
   },
-  "devDependencies": {
-    "@babel/compat-data": "7.8.0",
-    "@babel/plugin-proposal-numeric-separator": "^7.8.3"
-  },
   "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
 }
