@@ -9,9 +9,21 @@ const Tools = props => {
     props.toolsData.TechToolOccupationDetails.Tools.Categories.map(tool => {
       return (
         <Fragment key={tool.Title}>
-          <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
-          {tool.Title}
+          <b style={{ color: "#ffc800" }}>
+            <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>{" "}
+            {tool.Title}
+          </b>
           <br />
+          {tool.Examples.map(example => {
+            return (
+              <Fragment key={example.Name}>
+                <h6 className="font-weight-light">
+                  {example.Name}
+                  {<br />}
+                </h6>
+              </Fragment>
+            );
+          })}
         </Fragment>
       );
     });
@@ -21,9 +33,21 @@ const Tools = props => {
       tool => {
         return (
           <Fragment key={tool.Title}>
-            <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
-            {tool.Title}
+            <b style={{ color: "#ffc800" }}>
+              <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>{" "}
+              {tool.Title}
+            </b>
             <br />
+            {tool.Examples.map(example => {
+              return (
+                <Fragment key={example.Name}>
+                  <h6 className="font-weight-light">
+                    {example.Name}
+                    {<br />}
+                  </h6>
+                </Fragment>
+              );
+            })}
           </Fragment>
         );
       }
@@ -32,9 +56,9 @@ const Tools = props => {
   return (
     <Card style={{ border: "0px" }}>
       <Card.Body>
-        <h3 className="font-weight-light">hi</h3>
-        {/* <i
-            className="fa fa-sun-o"
+        <h3 className="font-weight-light">
+          <i
+            className="fa fa-camera"
             aria-hidden="true"
             style={{ color: "#ffc800" }}
           ></i>{" "}
@@ -48,7 +72,7 @@ const Tools = props => {
         <p>
           <b>Tools</b>
         </p>
-        <h6 className="font-weight-light">{displayImportantTools()}</h6>
+        {displayImportantTools()}
         <br />
         <hr />
         <Form>
@@ -60,13 +84,18 @@ const Tools = props => {
             label={
               <p>
                 <b>
-                  View All {props.data.OccupationDetail[0].Dwas.length} Tools
+                  View All{" "}
+                  {
+                    props.toolsData.TechToolOccupationDetails.Tools.Categories
+                      .length
+                  }{" "}
+                  Tools
                 </b>
               </p>
             }
           />
         </Form>
-        {showAll ? displayTools() : null} */}
+        {showAll ? displayTools() : null}
       </Card.Body>
     </Card>
   );

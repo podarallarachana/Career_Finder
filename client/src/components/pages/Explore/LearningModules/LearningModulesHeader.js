@@ -1,14 +1,4 @@
 import React, { Fragment } from "react";
-import Abilities from "./Abilities";
-import Knowledge from "./Knowledge";
-import Skills from "./Skills";
-import Related from "./Related";
-import Activities from "./Activities";
-import Education from "./Education";
-import Wages from "./Wages";
-import Interests from "./Interests";
-import Outlook from "./Outlook";
-import Tasks from "./Tasks";
 
 const LearningModulesHeader = props => {
   const displayData = () => {
