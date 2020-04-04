@@ -1,4 +1,7 @@
 {
+  "engines": {
+    "node": "12.16.x"
+  },
   "name": "react_template_repo",
   "version": "1.0.0",
   "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
@@ -44,5 +47,11 @@
     "supertest": "^4.0.2",
     "uuid": "^7.0.2"
   },
-  "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme"
+  "resolutions": {
+    "@babel/preset-env": "^7.8.7"
+  },
+  "homepage": "https://github.com/UFWebApps/React_Template_Repo#readme",
+  "devDependencies": {
+    "npm-force-resolutions": "0.0.3"
+  }
 }

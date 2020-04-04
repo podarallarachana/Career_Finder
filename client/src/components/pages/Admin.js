@@ -39,9 +39,10 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
     function tableData() {
         return datas.map((className) =>
             <tr key={className.name}>
-                <td>{className.name}</td>
+                <td>{className.name}
                 <Button>Delete</Button>
-                <Button>Edit</Button>
+                    <Button>Edit</Button>
+                </td>
             </tr>
         );
     }
