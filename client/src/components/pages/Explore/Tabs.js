@@ -1,7 +1,10 @@
 import React, { Fragment, useState } from "react";
 import { Nav } from "react-bootstrap";
 import LearningModules from "./LearningModules/LearningModules";
+import LearningModulesHeader from "./LearningModules/LearningModulesHeader";
+import ToolsTech from "./LearningModules/ToolsTech";
 import GotoQuiz from "../InteractiveTools/start-quiz";
+import CardColumns from "react-bootstrap/CardColumns";
 
 const Tabs = props => {
   const [activeTab, setActiveTab] = useState("learningModules");
@@ -28,13 +31,21 @@ const Tabs = props => {
         </Nav.Item>
       </Nav>
       {activeTab === "learningModules" ? (
-        <LearningModules
-          updateActives={props.updateActives}
-          data={props.data}
-        />
-      ) : 
-        <GotoQuiz/>
-      }
+        <Fragment>
+          <LearningModulesHeader data={props.data} />
+          <div className="learningModules">
+            <CardColumns>
+              <LearningModules
+                updateActives={props.updateActives}
+                data={props.data}
+              />
+              <ToolsTech toolsData={props.toolsData} />
+            </CardColumns>
+          </div>
+        </Fragment>
+      ) : (
+        <GotoQuiz />
+      )}
     </Fragment>
   );
 };
