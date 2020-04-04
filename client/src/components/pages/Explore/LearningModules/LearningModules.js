@@ -3,6 +3,11 @@ import Abilities from "./Abilities";
 import Knowledge from "./Knowledge";
 import Skills from "./Skills";
 import Related from "./Related";
+import Activities from "./Activities";
+import Education from "./Education";
+import Wages from "./Wages";
+import Interests from "./Interests";
+import CardColumns from "react-bootstrap/CardColumns";
 
 const LearningModules = props => {
   const displayData = () => {
@@ -29,7 +34,7 @@ const LearningModules = props => {
           </div>
           <div className="row">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-              <video width="100%" controls>
+              <video width="100%" controls autoPlay muted loop>
                 <source
                   src={
                     "https://cdn.careeronestop.org/OccVids/OccupationVideos/" +
@@ -40,18 +45,31 @@ const LearningModules = props => {
                 />
               </video>
             </div>
+          </div>
+          <CardColumns>
             {props.data.OccupationDetail[0].hasOwnProperty("AbilityDataList") &&
             props.data.OccupationDetail[0].AbilityDataList.length !== 0 &&
             props.data.OccupationDetail[0].AbilityDataList !== undefined &&
             props.data.OccupationDetail[0].AbilityDataList !== null ? (
               <Abilities data={props.data} />
             ) : null}
+
             {props.data.OccupationDetail[0].hasOwnProperty("SkillsDataList") &&
             props.data.OccupationDetail[0].SkillsDataList.length !== 0 &&
             props.data.OccupationDetail[0].SkillsDataList !== undefined &&
             props.data.OccupationDetail[0].SkillsDataList !== null ? (
               <Skills data={props.data} />
             ) : null}
+
+            {props.data.OccupationDetail[0].hasOwnProperty(
+              "InterestDataList"
+            ) &&
+            props.data.OccupationDetail[0].InterestDataList.length !== 0 &&
+            props.data.OccupationDetail[0].InterestDataList !== undefined &&
+            props.data.OccupationDetail[0].InterestDataList !== null ? (
+              <Interests data={props.data} />
+            ) : null}
+
             {props.data.OccupationDetail[0].hasOwnProperty(
               "KnowledgeDataList"
             ) &&
@@ -60,6 +78,35 @@ const LearningModules = props => {
             props.data.OccupationDetail[0].KnowledgeDataList !== null ? (
               <Knowledge data={props.data} />
             ) : null}
+
+            {props.data.OccupationDetail[0].hasOwnProperty("Dwas") &&
+            props.data.OccupationDetail[0].Dwas.length !== 0 &&
+            props.data.OccupationDetail[0].Dwas !== undefined &&
+            props.data.OccupationDetail[0].Dwas !== null ? (
+              <Activities data={props.data} />
+            ) : null}
+
+            {props.data.OccupationDetail[0].hasOwnProperty(
+              "EducationTraining"
+            ) &&
+            props.data.OccupationDetail[0].EducationTraining.EducationType
+              .length !== 0 &&
+            props.data.OccupationDetail[0].EducationTraining.EducationType !==
+              undefined &&
+            props.data.OccupationDetail[0].EducationTraining.EducationType !==
+              null ? (
+              <Education data={props.data} />
+            ) : null}
+
+            {props.data.OccupationDetail[0].hasOwnProperty("Wages") &&
+            props.data.OccupationDetail[0].Wages.NationalWagesList.length !==
+              0 &&
+            props.data.OccupationDetail[0].Wages.NationalWagesList !==
+              undefined &&
+            props.data.OccupationDetail[0].Wages.NationalWagesList !== null ? (
+              <Wages data={props.data} />
+            ) : null}
+
             {props.data.OccupationDetail[0].hasOwnProperty(
               "RelatedOnetTitles"
             ) &&
@@ -67,7 +114,7 @@ const LearningModules = props => {
             props.data.OccupationDetail[0].RelatedOnetTitles !== null ? (
               <Related updateActives={props.updateActives} data={props.data} />
             ) : null}
-          </div>
+          </CardColumns>
         </div>
       );
     }

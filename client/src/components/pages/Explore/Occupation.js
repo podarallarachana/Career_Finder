@@ -35,7 +35,7 @@ class Occupation extends React.Component {
       try {
         const { data } = await axios({
           method: "get",
-          url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=true&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=true`,
+          url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=false&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=false`,
           headers: {
             Authorization: "Bearer " + process.env.REACT_APP_TOKEN
           }

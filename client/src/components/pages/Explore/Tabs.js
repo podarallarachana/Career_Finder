@@ -24,7 +24,7 @@ const Tabs = props => {
           <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="interactiveTools">Interactive Tools</Nav.Link>
+          <Nav.Link eventKey="activities">Activities</Nav.Link>
         </Nav.Item>
       </Nav>
       {activeTab === "learningModules" ? (

@@ -40,26 +40,24 @@ const Related = props => {
   };
 
   return (
-    <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-6 sections">
-      <Card>
-        <Card.Header
-          as="h5"
-          style={{ backgroundColor: "#e23c58", color: "white" }}
-        >
-          <i className="fa fa-asterisk" aria-hidden="true"></i> Related
-        </Card.Header>
-        <Card.Body>
-          <Card.Text>
-            These are the Related that employees in the industry should have. Do
-            you have any of these Related? Hover over an skill to view its
-            description.
-            <br />
-            <br />
-            {displayRelated()}
-          </Card.Text>
-        </Card.Body>
-      </Card>
-    </div>
+    <Card>
+      <Card.Header
+        as="h5"
+        style={{ backgroundColor: "#e23c58", color: "white" }}
+      >
+        <i className="fa fa-asterisk" aria-hidden="true"></i> Related
+      </Card.Header>
+      <Card.Body>
+        <Card.Text>
+          These are the Related that employees in the industry should have. Do
+          you have any of these Related? Hover over an skill to view its
+          description.
+          <br />
+          <br />
+          {displayRelated()}
+        </Card.Text>
+      </Card.Body>
+    </Card>
   );
 };
 
