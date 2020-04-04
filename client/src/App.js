@@ -3,7 +3,6 @@ import Home from "./components/pages/Home";
 import Register from "./components/pages/Register";
 import Login from "./components/pages/Login";
 import Occupation from "./components/pages/Explore/Occupation";
-import Pathway from "./components/pages/Explore/Pathway";
 import Admin from "./components/pages/Admin";
 import AddClass from "./components/pages/AddClass";
 import About from "./components/pages/About";
@@ -13,8 +12,10 @@ import { loadUser } from "./state-management/actions/authorization";
 import store from "./state-management/store";
 import NavigationBar from "./components/shared/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import "./App.scss";
+import Find from "./components/pages/Find/Find";
+import Prepare from "./components/pages/Prepare/Prepare";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.scss";
 require("dotenv").config();
 
 if (localStorage.token) {
@@ -37,10 +38,11 @@ const App = () => {
           <section className="container">
             <Switch>
               <Route exact path="/explore/:code" component={Occupation} />
-              <Route exact path="/explore" component={Pathway} />
               <Route exact path="/about" component={About} />
               <Route exact path="/admin" component={Admin} />
               <Route exact path="/AddClass" component={AddClass} />
+              <Route exact path="/find" component={Find} />
+              <Route exact path="/prepare" component={Prepare} />
             </Switch>
           </section>
         </Fragment>

@@ -1,10 +1,11 @@
-import React from "react";
+import React, { Fragment } from "react";
 import data from "./Data.json";
 import Sidebar from "react-sidebar";
 import SideNav from "./SideNav";
 import Tabs from "./Tabs";
 import axios from "axios";
 import OccupationOptions from "./OccupationOptions";
+import Search from "./Search";
 
 const mql = window.matchMedia(`(min-width: 800px)`); //FOR SIDENAV
 
@@ -14,9 +15,9 @@ class Occupation extends React.Component {
     this.state = {
       sidebarDocked: mql.matches,
       sidebarOpen: false,
-      activeCluster: "",
-      activePathway: "",
-      activeOccupation: "",
+      activeCluster: "Search",
+      activePathway: undefined,
+      activeOccupation: undefined,
       data: undefined
     };
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
@@ -24,21 +25,25 @@ class Occupation extends React.Component {
   }
 
   componentDidMount() {
-    this.intializeStateByParams();
+    if (window.location.pathname !== "/explore/search") {
+      this.intializeStateByParams();
+    }
   }
 
   getData = async () => {
-    try {
-      const { data } = await axios({
-        method: "get",
-        url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=true&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=true`,
-        headers: {
-          Authorization: "Bearer " + process.env.REACT_APP_TOKEN
-        }
-      });
-      this.setState({ data: data });
-    } catch (e) {
-      this.setState({ data: null });
+    if (this.state.activeCluster !== "Search") {
+      try {
+        const { data } = await axios({
+          method: "get",
+          url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=false&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=false`,
+          headers: {
+            Authorization: "Bearer " + process.env.REACT_APP_TOKEN
+          }
+        });
+        this.setState({ data: data });
+      } catch (e) {
+        this.setState({ data: null });
+      }
     }
   };
 
@@ -135,15 +140,20 @@ class Occupation extends React.Component {
           }
         }}
       >
-        <OccupationOptions
-          activeCluster={this.state.activeCluster}
-          activePathway={this.state.activePathway}
-          activeOccupation={this.state.activeOccupation}
-          updateActivePathway={this.updateActivePathway}
-          updateActiveOccupation={this.updateActiveOccupation}
-        />
-        <Tabs data={this.state.data} />
-        <div className="explore"></div>
+        {this.state.activeCluster !== "Search" ? (
+          <Fragment>
+            <OccupationOptions
+              activeCluster={this.state.activeCluster}
+              activePathway={this.state.activePathway}
+              activeOccupation={this.state.activeOccupation}
+              updateActivePathway={this.updateActivePathway}
+              updateActiveOccupation={this.updateActiveOccupation}
+            />
+            <Tabs data={this.state.data} updateActives={this.updateActives} />
+          </Fragment>
+        ) : (
+          <Search />
+        )}
       </Sidebar>
     );
   }
