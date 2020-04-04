@@ -1,7 +1,7 @@
 {
   "engines": {
     "node": "12.16.x"
-  }
+  },
   "name": "react_template_repo",
   "version": "0.1.0",
   "private": true,
