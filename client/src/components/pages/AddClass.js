@@ -27,7 +27,7 @@ const AddClass = ({ authorization : {user}}) => {
     const onSubmit = e => {
         e.preventDefault();
         axios.post("/api/class",{name : class_name, teacherId : user.first_name});
-        return(<Redirect to ="/admin"/>);
+        return <Redirect to="/admin"/>;
     };
 
     return (

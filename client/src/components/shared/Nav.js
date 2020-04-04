@@ -82,7 +82,6 @@ if(isAuthenticated)
     if(user != null && user.is_teacher == true)
     {
         navbar = adminLinks;
-        console.log(user.is_teacher);
     }
     else
     {
@@ -94,7 +93,6 @@ else
     navbar = guestLinks;
 }
 
-console.log(user);
 
   return (
     <Navbar
