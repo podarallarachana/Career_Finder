@@ -11,3 +11,10 @@ export const AUTH_ERROR = "AUTH_ERROR";
 //Class actions lawsuit
 export const LOAD_CLASSES = "LOAD_CLASSES";
 export const LOAD_ERROR = "LOAD_ERROR";
+
+export const ActionTypes = {
+    QuizLoad: 'QuizLoad',
+    QuizAnswer: 'QuizAnswer',
+    QuizSubmit: 'QuizSubmit',
+    PagerUpdate: 'PagerUpdate'
+}
