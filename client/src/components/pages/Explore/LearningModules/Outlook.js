@@ -44,7 +44,7 @@ const Outlook = props => {
                 .ProjectedAnnualJobOpening
             }
           </b>{" "}
-          jobs are expected to be added every year till then.
+          jobs are expected to be added every year untill then.
         </h6>
       </Card.Body>
     </Card>

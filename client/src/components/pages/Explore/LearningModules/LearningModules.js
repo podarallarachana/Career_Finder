@@ -9,6 +9,7 @@ import Wages from "./Wages";
 import Interests from "./Interests";
 import Outlook from "./Outlook";
 import CardColumns from "react-bootstrap/CardColumns";
+import Tasks from "./Tasks";
 
 const LearningModules = props => {
   const displayData = () => {
@@ -68,6 +69,13 @@ const LearningModules = props => {
             props.data.OccupationDetail[0].SkillsDataList !== undefined &&
             props.data.OccupationDetail[0].SkillsDataList !== null ? (
               <Skills data={props.data} />
+            ) : null}
+
+            {props.data.OccupationDetail[0].hasOwnProperty("Tasks") &&
+            props.data.OccupationDetail[0].Tasks.length !== 0 &&
+            props.data.OccupationDetail[0].Tasks !== undefined &&
+            props.data.OccupationDetail[0].Tasks !== null ? (
+              <Tasks data={props.data} />
             ) : null}
 
             {props.data.OccupationDetail[0].hasOwnProperty(
