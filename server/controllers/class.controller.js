@@ -22,7 +22,7 @@ exports.addclass = async (req,res) => {
     }
 };
 
-//gets all classes need to make it filter by teacher requesting
+//gets all classes, need to make it filter by teacher requesting
 exports.getClasses = async  (req,res) => {
     try {
         res.status(200).send(await Class.find());

@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setAlert } from "../../state-management/actions/alert";
 import { register } from "../../state-management/actions/authorization";
 import { Button, Form } from "react-bootstrap";
+import {Redirect} from "react-router-dom";
 import Alert from "../shared/Alert";
 import PropTypes from "prop-types";
 import axios from "axios";
@@ -26,6 +27,7 @@ const AddClass = ({ authorization : {user}}) => {
     const onSubmit = e => {
         e.preventDefault();
         axios.post("/api/class",{name : class_name, teacherId : user.first_name});
+        return(<Redirect to ="/admin"/>);
     };
 
     return (

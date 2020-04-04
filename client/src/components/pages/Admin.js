@@ -9,14 +9,23 @@ import { LinkContainer } from "react-router-bootstrap";
 import axios from "axios";
 
 
-
-
 const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {classes}}) => {
 
+    const [datas, setDatas] = useState([]);
+    const [isLoading, toggleLoading] = useState(true);
+    /*
+    axios.get("/api/class/classes").then(function(results) {
+        setDatas(results.data)});
+
+     */
 
     useEffect(() => {
-        getClasses();
-    });
+        axios.get("/api/class/classes").then(function(results) {
+            setDatas(results.data);
+        toggleLoading(false);
+        })}, [isLoading]
+    );
+
 
     if (!isAuthenticated || !user.is_teacher) {
         return <Redirect to="/" />;
@@ -28,10 +37,10 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
 
     //maps all class names to table
     function tableData() {
-        return classes.data.map((className) =>
+        return datas.map((className) =>
             <tr key={className.name}>
                 <td>{className.name}</td>
-                <Button onlClick={deleteClass(className.name)}>Delete</Button>
+                <Button>Delete</Button>
                 <Button>Edit</Button>
             </tr>
         );
@@ -40,6 +49,9 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
     let adminName = user.first_name + " " + user.last_name;
     return (
         <div>
+            {isLoading && <p>Loading</p>}
+            {!isLoading &&
+            <div>
             <h1 className="font-weight-light">Admin</h1>
             <h2 className="font-weight-lighte">{adminName}</h2>
             <LinkContainer to="/AddClass">
@@ -55,6 +67,7 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
                 {tableData()}
                 </tbody>
             </Table>
+            </div>}
         </div>);
 };
 
