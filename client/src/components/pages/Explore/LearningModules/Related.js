@@ -44,7 +44,7 @@ const Related = props => {
       <Card.Body>
         <h3 className="font-weight-light">
           <i
-            class="fa fa-link"
+            className="fa fa-link"
             style={{ color: "#e71d32" }}
             aria-hidden="true"
           ></i>{" "}
