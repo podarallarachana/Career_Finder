@@ -13,6 +13,7 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
 
     const [datas, setDatas] = useState([]);
     const [isLoading, toggleLoading] = useState(true);
+    const [selected, changeSelection] = useState("");
 
     useEffect(() => {
         axios.get("/api/class/classes").then(function(results) {
@@ -51,8 +52,14 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
             <LinkContainer to="/AddClass">
                 <Button>Add Class</Button>
             </LinkContainer>
+                <LinkContainer to="/ViewClass">
+                    <Button>View Class</Button>
+                </LinkContainer>
                 <LinkContainer to="/DeleteClass">
                     <Button>Delete Class</Button>
+                </LinkContainer>
+                <LinkContainer to="/EditClass">
+                    <Button>Edit Class</Button>
                 </LinkContainer>
             <Table>
                 <thead>

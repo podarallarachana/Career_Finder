@@ -69,7 +69,7 @@ export const register = ({
 
   try {
     const res = await axios.post("/api/user", body, config);
-
+    await axios.post("/api/class/student", {id: code,studentId: first_name})
     //ON SUCCESFUL POST, SEND SUCCESS ALERT
     dispatch({
       type: REGISTER_SUCCESS,

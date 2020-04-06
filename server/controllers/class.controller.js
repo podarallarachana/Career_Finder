@@ -46,6 +46,7 @@ exports.deleteClass = async (req,res) => {
 //gets specific class
 exports.getClass = async (req,res) => {
     try {
+        console.log(req);
         res.status(200).send(await Class.findOne({name : req.body.name}));
     } catch (err) {
         res.status(400).send("Error");
@@ -55,8 +56,11 @@ exports.getClass = async (req,res) => {
 //work in progress
 exports.addStudent = async  (req,res) => {
     try {
-        await Class.findOne({name : req.body.name}).then(function(result) {
-            result.ofStudentId.push(req.body.student);
+        await Class.findOne({_id : req.body.id}).then( async function(result) {
+            result.ofStudentId.push(req.body.studentId);
+            console.log(result);
+            await result.save();
+            res.status(200).send("Added");
         });
     } catch (err) {
         res.status(400).send("Error");

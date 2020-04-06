@@ -19,6 +19,7 @@ router.get("/classes", classRoom.getClasses);
 router.get("/", classRoom.getClass);
 
 //add student to class
+router.post("/student", classRoom.addStudent);
 
 //add teacher to class
 

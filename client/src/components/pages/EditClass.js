@@ -9,10 +9,16 @@ import axios from "axios";
 const EditClass = ({ authorization : {user}}) => {
     const [formData, setFormData] = useState({
         class_name: "",
+        d1: null, d2: null, d3: null, d4: null, d5: null,
+        d6 : null, d7 : null, d8 : null, d9 : null, d10 : null,
+        d11 : null, d12 : null, d13 : null, d14 : null, d15 : null,
+        d16 : null
     });
     const [submitted, toggleSubmitted] = useState(false)
     const {
-        class_name
+        class_name,
+        d1, d2, d3, d4, d5, d6, d7, d8, d9, d10, d11, d12, d13, d14,
+        d15, d16
     } = formData;
 
     const onChange = e => {
@@ -24,7 +30,9 @@ const EditClass = ({ authorization : {user}}) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        axios.post("/api/class",{name : class_name, teacherId : user.first_name});
+        axios.post("/api/class",{name : class_name, teacherId : user.first_name, d1: d1, d2: d2, d3: d3,
+            d4: d4, d5: d5, d6: d6, d8 : d8, d9 :d9, d10: d10, d11 : d11, d12: d12,
+            d13 : d13, d14: d14, d15: d15, d16: d16});
         toggleSubmitted(true);
     };
 
@@ -41,7 +49,7 @@ const EditClass = ({ authorization : {user}}) => {
                                 }}
                             >
                                 <div className="card-body">
-                                    <h3 className="font-weight-light">Add Class</h3>
+                                    <h3 className="font-weight-light">Edit Class</h3>
                                     <br />
                                     <Form onSubmit={e => onSubmit(e)}>
                                         <Form.Group>
@@ -52,6 +60,150 @@ const EditClass = ({ authorization : {user}}) => {
                                                 value={class_name}
                                                 onChange={e => onChange(e)}
                                                 required
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d1"
+                                                value={d1}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d2"
+                                                value={d2}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d3"
+                                                value={d3}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d4"
+                                                value={d4}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d5"
+                                                value={d5}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d6"
+                                                value={d6}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d7"
+                                                value={d7}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d8"
+                                                value={d8}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d9"
+                                                value={d9}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d10"
+                                                value={d10}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d11"
+                                                value={d11}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d12"
+                                                value={d12}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d13"
+                                                value={d13}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d14"
+                                                value={d14}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d15"
+                                                value={d15}
+                                                onChange={e => onChange(e)}
+                                            />
+                                        </Form.Group>
+                                        <Form.Group>
+                                            <Form.Control
+                                                type="text"
+                                                placeholder="YYYY-MM-DD"
+                                                name="d16"
+                                                value={d16}
+                                                onChange={e => onChange(e)}
                                             />
                                         </Form.Group>
                                         <Button

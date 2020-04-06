@@ -5,6 +5,8 @@ import Login from "./components/pages/Login";
 import Occupation from "./components/pages/Explore/Occupation";
 import Admin from "./components/pages/Admin";
 import AddClass from "./components/pages/AddClass";
+import ViewClass from "./components/pages/ViewClass";
+import EditClass from "./components/pages/EditClass";
 import DeleteClass from "./components/pages/DeleteClass";
 import About from "./components/pages/About";
 import setAuthToken from "./state-management/utilities/setAuthToken";
@@ -43,7 +45,9 @@ const App = () => {
               <Route exact path="/explore/:code" component={Occupation} />
               <Route exact path="/about" component={About} />
               <Route exact path="/admin" component={Admin} />
+              <Route exact path="/ViewClass" component={ViewClass} />
               <Route exact path="/AddClass" component={AddClass} />
+              <Route exact path="/EditClass" component={EditClass} />
               <Route exact path="/DeleteClass" component={DeleteClass} />
               <Route exact path="/find" component={Find} />
               <Route exact path="/prepare" component={Prepare} />
