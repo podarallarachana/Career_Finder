@@ -13,11 +13,6 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
 
     const [datas, setDatas] = useState([]);
     const [isLoading, toggleLoading] = useState(true);
-    /*
-    axios.get("/api/class/classes").then(function(results) {
-        setDatas(results.data)});
-
-     */
 
     useEffect(() => {
         axios.get("/api/class/classes").then(function(results) {
@@ -31,17 +26,15 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
         return <Redirect to="/" />;
     }
 
-    function deleteClass(input) {
-        axios.delete("/api/class",{data :{name : input}})
-    }
-
     //maps all class names to table
     function tableData() {
         return datas.map((className) =>
             <tr key={className.name}>
-                <td>{className.name}
-                <Button>Delete</Button>
-                    <Button>Edit</Button>
+                <td>
+                    {className.name}
+                </td>
+                <td>
+                    {className._id}
                 </td>
             </tr>
         );
@@ -58,10 +51,14 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
             <LinkContainer to="/AddClass">
                 <Button>Add Class</Button>
             </LinkContainer>
+                <LinkContainer to="/DeleteClass">
+                    <Button>Delete Class</Button>
+                </LinkContainer>
             <Table>
                 <thead>
                 <tr>
                     <th>Class Name</th>
+                    <th>Registration Code</th>
                 </tr>
                 </thead>
                 <tbody>

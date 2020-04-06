@@ -10,7 +10,7 @@ exports.addclass = async (req,res) => {
             name : req.body.name,
             ofTeacherId: [req.body.teacherId],
             ofQuizzes: [
-                {name: "q1"}, {name : "q2"}, {name: "q3"}, {name: "q4"}, {name: "q5"},
+                {name: "q1", dueDate : req.body.d1}, {name : "q2" ,dueDate : req.body.d2}, {name: "q3", dueDate : req.body.d3}, {name: "q4"}, {name: "q5"},
                 {name: "q6"}, {name: "q7"}, {name: "q8"}, {name: "q9"}, {name: "q10"},
                 {name: "q11"}, {name: "q12"}, {name: "q13"}, {name: "q14"}, {name: "q15"},
                 {name: "q16"}]
@@ -61,9 +61,6 @@ exports.addStudent = async  (req,res) => {
     } catch (err) {
         res.status(400).send("Error");
     }
-};
-exports.changeDueDate = (req,res) => {
-
 };
 
 exports.getGrades = (req,res) => {

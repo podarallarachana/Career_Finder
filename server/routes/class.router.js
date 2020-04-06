@@ -18,4 +18,8 @@ router.get("/classes", classRoom.getClasses);
 //gets specific class
 router.get("/", classRoom.getClass);
 
+//add student to class
+
+//add teacher to class
+
 module.exports = router;

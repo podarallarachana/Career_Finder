@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { setAlert } from "../../state-management/actions/alert";
-import { register } from "../../state-management/actions/authorization";
 import { Button, Form } from "react-bootstrap";
 import {Redirect} from "react-router-dom";
 import Alert from "../shared/Alert";
@@ -11,10 +9,16 @@ import axios from "axios";
 const AddClass = ({ authorization : {user}}) => {
     const [formData, setFormData] = useState({
         class_name: "",
+        d1: null,
+        d2: null,
+        d3: null
     });
-
+    const [submitted, toggleSubmitted] = useState(false)
     const {
-        class_name
+        class_name,
+        d1,
+        d2,
+        d3,
     } = formData;
 
     const onChange = e => {
@@ -26,11 +30,11 @@ const AddClass = ({ authorization : {user}}) => {
 
     const onSubmit = e => {
         e.preventDefault();
-        axios.post("/api/class",{name : class_name, teacherId : user.first_name});
-        return <Redirect to="/admin"/>;
+        axios.post("/api/class",{name : class_name, teacherId : user.first_name, d1: d1, d2: d2, d3: d3});
+        toggleSubmitted(true);
     };
 
-    return (
+    return ( submitted? <Redirect to="/admin"/> :
         <div className="register">
             <div className="container h-100">
                 <div className="row h-100  justify-content-center">
@@ -52,6 +56,36 @@ const AddClass = ({ authorization : {user}}) => {
                                             placeholder="Class Name"
                                             name="class_name"
                                             value={class_name}
+                                            onChange={e => onChange(e)}
+                                            required
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
+                                            name="d1"
+                                            value={d1}
+                                            onChange={e => onChange(e)}
+                                            required
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
+                                            name="d2"
+                                            value={d2}
+                                            onChange={e => onChange(e)}
+                                            required
+                                        />
+                                    </Form.Group>
+                                    <Form.Group>
+                                        <Form.Control
+                                            type="text"
+                                            placeholder="YYYY-MM-DD"
+                                            name="d3"
+                                            value={d3}
                                             onChange={e => onChange(e)}
                                             required
                                         />
@@ -85,4 +119,4 @@ const mapStateToProps = state => ({
     authorization : state.authorization
 });
 
-export default connect(mapStateToProps, { setAlert, register })(AddClass);
+export default connect(mapStateToProps)(AddClass);
