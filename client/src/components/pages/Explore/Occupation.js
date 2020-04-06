@@ -18,7 +18,8 @@ class Occupation extends React.Component {
       activeCluster: "Search",
       activePathway: undefined,
       activeOccupation: undefined,
-      data: undefined
+      data: undefined,
+      toolsData: undefined
     };
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
@@ -43,6 +44,19 @@ class Occupation extends React.Component {
         this.setState({ data: data });
       } catch (e) {
         this.setState({ data: null });
+      }
+
+      try {
+        const { data } = await axios({
+          method: "get",
+          url: `https://api.careeronestop.org/v1/techtool/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/`,
+          headers: {
+            Authorization: "Bearer " + process.env.REACT_APP_TOKEN
+          }
+        });
+        this.setState({ toolsData: data });
+      } catch (e) {
+        this.setState({ toolsData: null });
       }
     }
   };
@@ -74,7 +88,8 @@ class Occupation extends React.Component {
       activeCluster: "INVALID",
       activePathway: "INVALID",
       activeOccupation: "INVALID",
-      data: null
+      data: null,
+      toolsData: null
     });
   }
 
@@ -85,7 +100,8 @@ class Occupation extends React.Component {
         activeCluster: newCluster,
         activePathway: newPathway,
         activeOccupation: newCode,
-        data: undefined
+        data: undefined,
+        toolsData: undefined
       },
       () => this.getData()
     );
@@ -149,7 +165,11 @@ class Occupation extends React.Component {
               updateActivePathway={this.updateActivePathway}
               updateActiveOccupation={this.updateActiveOccupation}
             />
-            <Tabs data={this.state.data} updateActives={this.updateActives} />
+            <Tabs
+              data={this.state.data}
+              toolsData={this.state.toolsData}
+              updateActives={this.updateActives}
+            />
           </Fragment>
         ) : (
           <Search />

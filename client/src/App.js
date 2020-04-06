@@ -15,6 +15,7 @@ import NavigationBar from "./components/shared/Nav";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Find from "./components/pages/Find/Find";
 import Prepare from "./components/pages/Prepare/Prepare";
+import QuizApp from "./components/pages/InteractiveTools/QuizApp";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 require("dotenv").config();
@@ -36,6 +37,7 @@ const App = () => {
           <Route exact path="/" component={Home} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/quiz" component={QuizApp} />
           <section className="container">
             <Switch>
               <Route exact path="/explore/:code" component={Occupation} />
