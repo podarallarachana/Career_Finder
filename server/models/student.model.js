@@ -10,10 +10,6 @@ const StudentSchema = new mongoose.Schema({
     grades : {
         type: Map,
         of : Number
-    },
-    progress : {
-        type: Map,
-        of : Number
     }
 });
 

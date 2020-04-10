@@ -6,9 +6,13 @@ const ClassSchema = new mongoose.Schema({
     name : {
         type: String
     },
+    points : {
+        type: Number
+    },
     ofTeacherId : [String],
-    ofStudentId : [String],
+    ofStudentId : [],
     ofQuizzes : []
+
 });
 
 module.exports = User = mongoose.model("class", ClassSchema);

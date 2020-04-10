@@ -4,10 +4,7 @@ const QuizSchema = new mongoose.Schema({
     name : {
         type: String
     },
-    dueDate : {
-        type : Date
-    },
-    grades : {
+    points : {
         type: Map,
         of : Number
     }
