@@ -59,7 +59,6 @@ exports.addStudent = async  (req,res) => {
     try {
         await Class.findOne({_id : req.body.id}).then( async function(result) {
             result.ofStudentId.push(req.body.studentId);
-            console.log(result);
             await result.save();
             res.status(200).send("Added");
         });

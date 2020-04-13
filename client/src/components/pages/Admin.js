@@ -49,7 +49,6 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
             function() {
                 changeView("classes");
                 setFormData({class_name: ""});
-                console.log("submitted");
             }
             );
     };
@@ -65,17 +64,33 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
         }
     }
 
+    const clusters = ["Agriculture, food, & Natural Resources","Architecture & Construction",
+    "Arts, Audio/Video","Technology & Communications", "Business Management & Administration",
+    "Education & Training", "Finance", "Government & public Administration", "Health Science",
+    "Hospitality & Tourism","Human Services","Information Technology","Law, Public Safety, Corrections & Security",
+    "Manufacturing", "Marketing", "Science, Technology, Engineering & Mathematics",
+    "Transportation, Distribution & Logistics "];
+
+    function classNotes() {
+        changeView("classnotes");
+    }
     function onAdd() {
         changeView("addclass");
     }
 
     function studentData() {
-        console.log(currentClass.ofStudentId);
         return currentClass.ofStudentId.map((student) =>
                 <Card key={student}>
                     <Card.Header>
                         {student.name}
                     </Card.Header>
+                    <Card.Body>
+                        <div>
+                            <h2>{student.name} total points:</h2>
+                            <h2>points per each module:</h2>
+                        </div>
+                        <Button>Remove Student</Button>
+                    </Card.Body>
                 </Card>
         );
 
@@ -84,7 +99,12 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
     function tableData() {
         return datas.map((className) =>
             <tr key={className.name}>
-                <td onClick = {() => {changeSelection(className.name); selectCurrentClass(className); changeView("viewclass")}}>
+                <td onClick = {() => {
+                    changeSelection(className.name);
+                    selectCurrentClass(className);
+                    changeView("viewclass");
+                }
+                }>
                     {className.name}
                 </td>
                 <td>
@@ -137,7 +157,7 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
                                 <Accordion.Collapse eventKey="1">
                                     <Card.Body>
                                         {studentData()}
-                                        <Button>Add Student</Button>
+                                        <Button onClick={()=> {changeView("addstudent");}}>Add Student</Button>
                                     </Card.Body>
                                 </Accordion.Collapse>
                             </Card>
@@ -163,6 +183,45 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
                             </Button>
                         </Form>
                     );
+                case "addstudent":
+                    return (
+                        <Form onSubmit={e => onSubmit(e)}>
+                            <Form.Group>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Student Name"
+                                    name="class_name"
+                                    value={class_name}
+                                    onChange={e => onChange(e)}
+                                    required
+                                />
+                            </Form.Group>
+                            <Button
+                                type="submit"
+                            >
+                                Add
+                            </Button>
+                        </Form>
+                    );
+                case "classnotes":
+                    return clusters.map((cluster) =>
+                        <Accordion key={cluster}>
+                            <Card>
+                                <Card.Header>
+                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                        {cluster}
+                                    </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="0">
+                                    <Card.Body>
+                                        <h1>Edit content here</h1>
+                                    </Card.Body>
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion>
+
+                    );
+
                 default:
                     return (<div></div>);
             }
@@ -176,6 +235,7 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
             {view!== "classes" ? <Button onClick={() => {changeView("classes"); changeSelection("")}}>View Classes</Button> : <div></div>}
             {selected !== "" ? <Button onClick={() => {onDelete()}}>Delete Current Class</Button> : <div></div>}
             {view !== "addclass" ? <Button onClick={() => {onAdd(); changeSelection("")}}>Add Class</Button> : <div></div>}
+            <Button onClick={()=>{classNotes()}}>Edit Classroom Notes</Button>
             {!isLoading && currentView()
             }
         </div>);
