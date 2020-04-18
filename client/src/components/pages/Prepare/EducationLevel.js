@@ -92,9 +92,8 @@ const EducationLevel = (props) => {
                   While a college degree may not be required for this career, we
                   encourage you to explore all your options.
                 </b>{" "}
-                Use the certifications, experience, training, and college tools
-                below to find some resources that will help you get started in
-                your career.
+                Use the certification, license, and college tools below to find
+                some resources that will help you get started in your career.
               </p>
             ) : (
               <p>
@@ -102,9 +101,8 @@ const EducationLevel = (props) => {
                   College is strongly recommended for students hoping to pursue
                   this career path.
                 </b>{" "}
-                Use the certifications, experience, training, and college tools
-                below to find some resources that will help you get started in
-                your career.
+                Use the certification, license, and college tools below to find
+                some resources that will help you get started in your career.
               </p>
             )}
             <hr />

@@ -2,10 +2,10 @@ import React, { Fragment, useState } from "react";
 import { Nav } from "react-bootstrap";
 import College from "./College";
 
-const Tabs = props => {
+const Tabs = () => {
   const [activeTab, setActiveTab] = useState("college");
 
-  const handleSelect = newTab => {
+  const handleSelect = (newTab) => {
     if (newTab !== activeTab) {
       setActiveTab(newTab);
     }

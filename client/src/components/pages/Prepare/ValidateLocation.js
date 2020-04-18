@@ -187,6 +187,5 @@ export function GetState(zipcode) {
     st = "none";
     state = "none";
   }
-  console.log(st);
   return st;
 }
