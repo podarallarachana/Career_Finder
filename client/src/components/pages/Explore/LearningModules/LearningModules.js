@@ -10,7 +10,7 @@ import Interests from "./Interests";
 import Outlook from "./Outlook";
 import Tasks from "./Tasks";
 
-const LearningModules = props => {
+const LearningModules = (props) => {
   const displayData = () => {
     if (props.data === undefined) {
       return <div className="learningModules">loading</div>;
@@ -91,7 +91,9 @@ const LearningModules = props => {
 
           {props.data.OccupationDetail[0].hasOwnProperty("RelatedOnetTitles") &&
           props.data.OccupationDetail[0].RelatedOnetTitles !== undefined &&
-          props.data.OccupationDetail[0].RelatedOnetTitles !== null ? (
+          props.data.OccupationDetail[0].RelatedOnetTitles !== null &&
+          Object.keys(props.data.OccupationDetail[0].RelatedOnetTitles)[0] !==
+            undefined ? (
             <Related updateActives={props.updateActives} data={props.data} />
           ) : null}
         </Fragment>

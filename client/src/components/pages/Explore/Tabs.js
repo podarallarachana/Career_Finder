@@ -6,10 +6,10 @@ import ToolsTech from "./LearningModules/ToolsTech";
 import GotoQuiz from "../InteractiveTools/start-quiz";
 import CardColumns from "react-bootstrap/CardColumns";
 
-const Tabs = props => {
+const Tabs = (props) => {
   const [activeTab, setActiveTab] = useState("learningModules");
 
-  const handleSelect = newTab => {
+  const handleSelect = (newTab) => {
     if (newTab !== activeTab) {
       setActiveTab(newTab);
     }
@@ -19,15 +19,20 @@ const Tabs = props => {
     <Fragment>
       <Nav
         fill
-        variant="tabs"
+        variant="pills"
         defaultActiveKey={activeTab}
         onSelect={handleSelect}
+        style={{ borderRadius: "0px" }}
       >
         <Nav.Item>
-          <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
+          <Nav.Link eventKey="learningModules" style={{ borderRadius: "0px" }}>
+            Learning Modules
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="activities">Activities</Nav.Link>
+          <Nav.Link eventKey="activities" style={{ borderRadius: "0px" }}>
+            Activities
+          </Nav.Link>
         </Nav.Item>
       </Nav>
       {activeTab === "learningModules" ? (

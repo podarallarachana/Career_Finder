@@ -1,12 +1,12 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-const Tasks = props => {
+const Tasks = (props) => {
   const [showAll, setShowAll] = useState(false);
 
   const displayTasks = () =>
-    props.data.OccupationDetail[0].Tasks.map(task => {
+    props.data.OccupationDetail[0].Tasks.map((task) => {
       return (
         <Fragment key={task.TaskId}>
           <h6 className="font-weight-light">
@@ -22,7 +22,7 @@ const Tasks = props => {
     });
 
   const displayImportantTasks = () =>
-    props.data.OccupationDetail[0].Tasks.slice(0, 6).map(task => {
+    props.data.OccupationDetail[0].Tasks.slice(0, 6).map((task) => {
       return (
         <Fragment key={task.TaskId}>
           <h6 className="font-weight-light">

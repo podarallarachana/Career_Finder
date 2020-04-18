@@ -92,7 +92,9 @@ p {
   background-image: url("./assets/landing.png");
   background-color: #e43f54;
   background-position: center;
+  background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 0px;
 }
 
 .explore-header hr {
@@ -102,9 +104,4 @@ p {
   border-top: 1px solid #ccc;
   margin: 1em 0;
   padding: 0;
-}
-
-.sections {
-  padding-top: 10px;
-  padding-bottom: 10px;
 }

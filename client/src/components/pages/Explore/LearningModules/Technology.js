@@ -1,13 +1,13 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-const Technology = props => {
+const Technology = (props) => {
   const [showAll, setShowAll] = useState(false);
 
   const displayTechnologies = () =>
     props.toolsData.TechToolOccupationDetails.Technology.CategoryList.map(
-      technology => {
+      (technology) => {
         return (
           <Fragment key={technology.Title}>
             <b>
@@ -20,7 +20,7 @@ const Technology = props => {
             </b>
             <br />
             <h6 className="font-weight-light">
-              {technology.Examples.map(example => {
+              {technology.Examples.map((example) => {
                 return <Fragment key={example.Name}>{example.Name}, </Fragment>;
               })}
             </h6>
@@ -33,7 +33,7 @@ const Technology = props => {
     props.toolsData.TechToolOccupationDetails.Technology.CategoryList.slice(
       0,
       6
-    ).map(technology => {
+    ).map((technology) => {
       return (
         <Fragment key={technology.Title}>
           <b>
@@ -46,7 +46,7 @@ const Technology = props => {
           </b>
           <br />
           <h6 className="font-weight-light">
-            {technology.Examples.map(example => {
+            {technology.Examples.map((example) => {
               return <Fragment key={example.Name}>{example.Name}, </Fragment>;
             })}
           </h6>
