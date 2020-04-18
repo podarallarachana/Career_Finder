@@ -4,7 +4,6 @@ import PropTypes from "prop-types";
 import { logout } from "../../state-management/actions/authorization";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav } from "react-bootstrap";
-import authorization from "../../state-management/reducers/authorization";
 
 const NavigationBar = ({
   authorization: { isAuthenticated, loading, user },
@@ -80,7 +79,7 @@ const NavigationBar = ({
 
   //Finds out type of user
   if (isAuthenticated) {
-    if (user != null && user.is_teacher == true) {
+    if (user !== null && user.is_teacher === true) {
       navbar = adminLinks;
     } else {
       navbar = studentLinks;

@@ -4,6 +4,7 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Data from "../Explore/Data.json";
 import { Button, Form, Alert } from "react-bootstrap";
+import { GetState } from "./ValidateLocation";
 
 const PrepareForm = (props) => {
   const [show, setShow] = useState(false);
@@ -12,11 +13,11 @@ const PrepareForm = (props) => {
   });
 
   const validateAndFetch = () => {
-    if (
-      props.user_inp.Location.length != 5 ||
-      !/^\d+$/.test(props.user_inp.Location)
-    ) {
+    if (GetState(props.user_inp.Location) === "none") {
       setShow(true);
+    } else {
+      setShow(false);
+      props.getEducationLevels();
     }
   };
 
@@ -50,11 +51,11 @@ const PrepareForm = (props) => {
       <div className="col-12">
         <h1 className="font-weight-light">Prepare for your career!</h1>
         <br />
-        <h5 className="font-weight-light">
-          <b>Step 1: </b>enter your info
-        </h5>
-        <br />
         <Card className="prepare-options">
+          <h5 className="font-weight-light">
+            <b>Step 1: </b>enter your info
+          </h5>
+          <br />
           <div className="row justify-content-center">
             <div className="xs-12 col-sm-12 col-md-8 col-lg-8 col-xl-6">
               <Form>

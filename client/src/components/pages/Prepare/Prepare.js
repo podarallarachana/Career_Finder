@@ -26,7 +26,7 @@ class Prepare extends React.Component {
     try {
       const { data } = await axios({
         method: "get",
-        url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/US?training=true&interest=false&videos=false&tasks=false&dwas=false&wages=false&alternateOnetTitles=false&projectedEmployment=false&ooh=false&stateLMILinks=false&relatedOnetTitles=false&skills=false&knowledge=false&ability=false&trainingPrograms=false`,
+        url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/${this.state.user_inp.Location}?training=true&interest=false&videos=false&tasks=false&dwas=false&wages=false&alternateOnetTitles=false&projectedEmployment=false&ooh=false&stateLMILinks=false&relatedOnetTitles=false&skills=false&knowledge=false&ability=false&trainingPrograms=false`,
         headers: {
           Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
         },
@@ -70,11 +70,9 @@ class Prepare extends React.Component {
           user_inp={this.state.user_inp}
           updateLocation={this.updateLocation}
           updateCareer={this.updateCareer}
+          getEducationLevels={this.getEducationLevels}
         />
         <br />
-        <h1>{this.state.user_inp.Occupation}</h1>
-        <h1>{this.state.user_inp.Code}</h1>
-        <h1>{this.state.user_inp.Location}</h1>
         <EducationLevel education_level={this.state.education_level} />
       </div>
     );
