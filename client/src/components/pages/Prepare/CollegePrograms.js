@@ -1,18 +1,20 @@
 import React, { Fragment } from "react";
 import Pagination from "react-js-pagination";
+import Card from "react-bootstrap/Card";
+import CardColumns from "react-bootstrap/CardColumns";
 
 class CollegePrograms extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activePage: 15,
+      activePage: 1,
     };
   }
 
-  handlePageChange(pageNumber) {
+  handlePageChange = (pageNumber) => {
     console.log(`active page is ${pageNumber}`);
     this.setState({ activePage: pageNumber });
-  }
+  };
 
   displayData = () => {
     if (this.props.college_programs.collegeProgramsData === undefined) {
@@ -20,8 +22,41 @@ class CollegePrograms extends React.Component {
     } else if (this.props.college_programs.collegeProgramsData === null) {
       return <div>sorry, unavailable right now</div>;
     } else {
-      console.log(this.props.college_programs.collegeProgramsData);
-      return <div>hello</div>;
+      console.log(
+        this.props.college_programs.collegeProgramsData.SchoolPrograms
+      );
+      return (
+        <Fragment>
+          <CardColumns>
+            {this.props.college_programs.collegeProgramsData.SchoolPrograms.slice(
+              (this.state.activePage - 1) * 5,
+              (this.state.activePage - 1) * 5 + 5
+            ).map((school) => {
+              return (
+                <Card key={school.ID}>
+                  <Card.Body>
+                    <h3 className="font-weight-light">Education</h3>
+                    <h1>{school.SchoolName}</h1>
+                    <h1>{school.ProgramName}</h1>
+                  </Card.Body>
+                </Card>
+              );
+            })}
+          </CardColumns>
+          <Pagination
+            itemClass="page-item"
+            linkClass="page-link"
+            activePage={this.state.activePage}
+            itemsCountPerPage={5}
+            totalItemsCount={
+              this.props.college_programs.collegeProgramsData.SchoolPrograms
+                .length
+            }
+            pageRangeDisplayed={5}
+            onChange={this.handlePageChange}
+          />
+        </Fragment>
+      );
     }
   };
 
@@ -29,19 +64,10 @@ class CollegePrograms extends React.Component {
 
   render() {
     return (
-      <Fragment>
-        <div>College Programs</div>
+      <div>
+        College Programs
         {this.displayData()}
-        <div>
-          <Pagination
-            activePage={this.state.activePage}
-            itemsCountPerPage={10}
-            totalItemsCount={450}
-            pageRangeDisplayed={5}
-            onChange={this.handlePageChange.bind(this)}
-          />
-        </div>
-      </Fragment>
+      </div>
     );
   }
 }
