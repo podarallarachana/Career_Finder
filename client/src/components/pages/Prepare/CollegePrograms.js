@@ -22,39 +22,50 @@ class CollegePrograms extends React.Component {
     } else if (this.props.college_programs.collegeProgramsData === null) {
       return <div>sorry, unavailable right now</div>;
     } else {
-      console.log(
-        this.props.college_programs.collegeProgramsData.SchoolPrograms
-      );
       return (
         <Fragment>
-          <CardColumns>
-            {this.props.college_programs.collegeProgramsData.SchoolPrograms.slice(
-              (this.state.activePage - 1) * 5,
-              (this.state.activePage - 1) * 5 + 5
-            ).map((school) => {
-              return (
-                <Card key={school.ID}>
-                  <Card.Body>
-                    <h3 className="font-weight-light">Education</h3>
-                    <h1>{school.SchoolName}</h1>
-                    <h1>{school.ProgramName}</h1>
-                  </Card.Body>
-                </Card>
-              );
-            })}
-          </CardColumns>
-          <Pagination
-            itemClass="page-item"
-            linkClass="page-link"
-            activePage={this.state.activePage}
-            itemsCountPerPage={5}
-            totalItemsCount={
-              this.props.college_programs.collegeProgramsData.SchoolPrograms
-                .length
-            }
-            pageRangeDisplayed={5}
-            onChange={this.handlePageChange}
-          />
+          <div className="colleges">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.activePage}
+              itemsCountPerPage={5}
+              totalItemsCount={
+                this.props.college_programs.collegeProgramsData.SchoolPrograms
+                  .length
+              }
+              pageRangeDisplayed={5}
+              onChange={this.handlePageChange}
+            />
+            <CardColumns>
+              {this.props.college_programs.collegeProgramsData.SchoolPrograms.slice(
+                (this.state.activePage - 1) * 5,
+                (this.state.activePage - 1) * 5 + 5
+              ).map((school) => {
+                return (
+                  <Card key={school.ID}>
+                    <Card.Body>
+                      <h3 className="font-weight-light">Education</h3>
+                      <h1>{school.SchoolName}</h1>
+                      <h1>{school.ProgramName}</h1>
+                    </Card.Body>
+                  </Card>
+                );
+              })}
+            </CardColumns>
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.activePage}
+              itemsCountPerPage={5}
+              totalItemsCount={
+                this.props.college_programs.collegeProgramsData.SchoolPrograms
+                  .length
+              }
+              pageRangeDisplayed={5}
+              onChange={this.handlePageChange}
+            />
+          </div>
         </Fragment>
       );
     }
@@ -63,12 +74,7 @@ class CollegePrograms extends React.Component {
   displayCollegeList = () => {};
 
   render() {
-    return (
-      <div>
-        College Programs
-        {this.displayData()}
-      </div>
-    );
+    return <div>{this.displayData()}</div>;
   }
 }
 

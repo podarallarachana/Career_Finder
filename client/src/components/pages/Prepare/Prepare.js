@@ -20,7 +20,8 @@ class Prepare extends React.Component {
       user_inp: {
         Code: "11-9013.03",
         Occupation: "Aquacultural Managers",
-        Location: "32601",
+        Location: "",
+        Home: "off",
       },
       education_level: {
         educationLevelData: undefined,
@@ -69,6 +70,11 @@ class Prepare extends React.Component {
   };
 
   getCollegePrograms = async () => {
+    this.setState({
+      college_programs: {
+        collegeProgramsData: undefined,
+      },
+    });
     try {
       const { data } = await axios({
         //500 mile radius, 100 records limit
@@ -92,7 +98,13 @@ class Prepare extends React.Component {
     }
   };
 
+  //COME BACK TO THIS
   getEducationLevels = async () => {
+    this.setState({
+      education_level: {
+        educationLevelData: undefined,
+      },
+    });
     try {
       const { data } = await axios({
         method: "get",
@@ -111,6 +123,20 @@ class Prepare extends React.Component {
         education_level: {
           educationLevelData: null,
         },
+      });
+    }
+  };
+
+  updateHome = (e) => {
+    if (this.state.user_inp.Home != e.target.value) {
+      //turn on
+      this.setState({
+        user_inp: { ...this.state.user_inp, Home: "on" },
+      });
+    } else {
+      //turn off
+      this.setState({
+        user_inp: { ...this.state.user_inp, Home: "off" },
       });
     }
   };
@@ -140,6 +166,7 @@ class Prepare extends React.Component {
             user_inp={this.state.user_inp}
             updateLocation={this.updateLocation}
             updateCareer={this.updateCareer}
+            updateHome={this.updateHome}
             getEducationLevels={this.getEducationLevels}
             getCollegePrograms={this.getCollegePrograms}
           />
@@ -192,6 +219,7 @@ class Prepare extends React.Component {
                 </Nav.Link>
               </Nav.Item>
             </Nav>
+            <h1>{this.state.user_inp.Home}</h1>
             {this.state.activeTab === "collegeprograms" ? (
               <CollegePrograms college_programs={this.state.college_programs} />
             ) : null}

@@ -71,6 +71,14 @@ const PrepareForm = (props) => {
             placeholder="32601"
           />
         </InputGroup>
+
+        <Form.Check
+          onChange={props.updateHome}
+          type="checkbox"
+          id="home"
+          label="willing to move out of state"
+        />
+        <br />
         <Button
           onClick={validateAndFetch}
           style={{
