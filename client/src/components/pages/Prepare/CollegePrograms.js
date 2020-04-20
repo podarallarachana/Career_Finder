@@ -6,15 +6,7 @@ import CardColumns from "react-bootstrap/CardColumns";
 class CollegePrograms extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      activePage: 1,
-    };
   }
-
-  handlePageChange = (pageNumber) => {
-    console.log(`active page is ${pageNumber}`);
-    this.setState({ activePage: pageNumber });
-  };
 
   displayData = () => {
     if (this.props.college_programs.collegeProgramsData === undefined) {
@@ -28,19 +20,19 @@ class CollegePrograms extends React.Component {
             <Pagination
               itemClass="page-item"
               linkClass="page-link"
-              activePage={this.state.activePage}
+              activePage={this.props.activePage}
               itemsCountPerPage={5}
               totalItemsCount={
                 this.props.college_programs.collegeProgramsData.SchoolPrograms
                   .length
               }
               pageRangeDisplayed={5}
-              onChange={this.handlePageChange}
+              onChange={this.props.handlePageChange}
             />
             <CardColumns>
               {this.props.college_programs.collegeProgramsData.SchoolPrograms.slice(
-                (this.state.activePage - 1) * 5,
-                (this.state.activePage - 1) * 5 + 5
+                (this.props.activePage - 1) * 5,
+                (this.props.activePage - 1) * 5 + 5
               ).map((school) => {
                 return (
                   <Card key={school.ID}>
@@ -56,14 +48,14 @@ class CollegePrograms extends React.Component {
             <Pagination
               itemClass="page-item"
               linkClass="page-link"
-              activePage={this.state.activePage}
+              activePage={this.props.activePage}
               itemsCountPerPage={5}
               totalItemsCount={
                 this.props.college_programs.collegeProgramsData.SchoolPrograms
                   .length
               }
               pageRangeDisplayed={5}
-              onChange={this.handlePageChange}
+              onChange={this.props.handlePageChange}
             />
           </div>
         </Fragment>

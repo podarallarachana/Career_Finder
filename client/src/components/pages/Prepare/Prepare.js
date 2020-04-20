@@ -20,7 +20,7 @@ class Prepare extends React.Component {
       user_inp: {
         Code: "11-9013.03",
         Occupation: "Aquacultural Managers",
-        Location: "",
+        Location: "32601",
         Home: "off",
       },
       education_level: {
@@ -36,6 +36,7 @@ class Prepare extends React.Component {
         certificationsData: undefined,
       },
       activeTab: "collegeprograms",
+      activePage: 1,
     };
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
@@ -59,7 +60,7 @@ class Prepare extends React.Component {
   }
 
   componentDidMount() {
-    this.getEducationLevels();
+    //this.getEducationLevels();
     this.getCollegePrograms();
   }
 
@@ -74,12 +75,19 @@ class Prepare extends React.Component {
       college_programs: {
         collegeProgramsData: undefined,
       },
+      activePage: 1,
     });
     try {
       const { data } = await axios({
-        //500 mile radius, 100 records limit
+        //500 mile radius, 1000 records limit
         method: "get",
-        url: `https://api.careeronestop.org/v1/training/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/0/500/0/0/0/0/0/0/0/0/1000`,
+        url: `https://api.careeronestop.org/v1/training/${
+          process.env.REACT_APP_USER_ID
+        }/${this.state.user_inp.Code}/${
+          this.state.user_inp.Code === "off"
+            ? 0
+            : GetState(this.state.user_inp.Location)
+        }/500/0/0/0/0/0/0/0/0/1000`,
         headers: {
           Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
         },
@@ -91,7 +99,7 @@ class Prepare extends React.Component {
       });
     } catch (e) {
       this.setState({
-        college_program: {
+        college_programs: {
           collegeProgramsData: null,
         },
       });
@@ -99,33 +107,33 @@ class Prepare extends React.Component {
   };
 
   //COME BACK TO THIS
-  getEducationLevels = async () => {
-    this.setState({
-      education_level: {
-        educationLevelData: undefined,
-      },
-    });
-    try {
-      const { data } = await axios({
-        method: "get",
-        url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/${this.state.user_inp.Location}?training=true&interest=false&videos=false&tasks=false&dwas=false&wages=false&alternateOnetTitles=false&projectedEmployment=false&ooh=false&stateLMILinks=false&relatedOnetTitles=false&skills=false&knowledge=false&ability=false&trainingPrograms=false`,
-        headers: {
-          Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
-        },
-      });
-      this.setState({
-        education_level: {
-          educationLevelData: data,
-        },
-      });
-    } catch (e) {
-      this.setState({
-        education_level: {
-          educationLevelData: null,
-        },
-      });
-    }
-  };
+  // getEducationLevels = async () => {
+  //   this.setState({
+  //     education_level: {
+  //       educationLevelData: undefined,
+  //     },
+  //   });
+  //   try {
+  //     const { data } = await axios({
+  //       method: "get",
+  //       url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/${this.state.user_inp.Location}?training=true&interest=false&videos=false&tasks=false&dwas=false&wages=false&alternateOnetTitles=false&projectedEmployment=false&ooh=false&stateLMILinks=false&relatedOnetTitles=false&skills=false&knowledge=false&ability=false&trainingPrograms=false`,
+  //       headers: {
+  //         Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+  //       },
+  //     });
+  //     this.setState({
+  //       education_level: {
+  //         educationLevelData: data,
+  //       },
+  //     });
+  //   } catch (e) {
+  //     this.setState({
+  //       education_level: {
+  //         educationLevelData: null,
+  //       },
+  //     });
+  //   }
+  // };
 
   updateHome = (e) => {
     if (this.state.user_inp.Home != e.target.value) {
@@ -156,6 +164,10 @@ class Prepare extends React.Component {
         Occupation: e.target.value,
       },
     });
+  };
+
+  handlePageChange = (pageNumber) => {
+    this.setState({ activePage: pageNumber });
   };
 
   render() {
@@ -221,7 +233,11 @@ class Prepare extends React.Component {
             </Nav>
             <h1>{this.state.user_inp.Home}</h1>
             {this.state.activeTab === "collegeprograms" ? (
-              <CollegePrograms college_programs={this.state.college_programs} />
+              <CollegePrograms
+                college_programs={this.state.college_programs}
+                activePage={this.state.activePage}
+                handlePageChange={this.handlePageChange}
+              />
             ) : null}
             {this.state.activeTab === "certifications" ? (
               <Certifications />

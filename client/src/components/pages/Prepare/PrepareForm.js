@@ -16,7 +16,7 @@ const PrepareForm = (props) => {
       setShow(true);
     } else {
       setShow(false);
-      props.getEducationLevels();
+      //props.getEducationLevels();
       props.getCollegePrograms();
     }
   };
