@@ -112,13 +112,17 @@ class Prepare extends React.Component {
   };
 
   getCollegeScorecard = async () => {
+    //LOAD SYMBOL
     this.setState({
       college_programs: {
         ...this.state.college_programs,
         collegeScorecardData: undefined,
       },
     });
+
+    //CYCLE THROUGH ALL CARDS IN CURRENT PAGE AND GET SCORECARD DETAILS
     let tmp = [];
+    let college_ids = [];
     for (
       var i = (this.state.activePage - 1) * 5;
       (this.state.activePage - 1) * 5 + 5 >
@@ -131,22 +135,36 @@ class Prepare extends React.Component {
       let id = this.state.college_programs.collegeProgramsData.SchoolPrograms[i]
         .ID;
       let college_id = id.substr(0, id.indexOf("-"));
-      try {
-        const { data } = await axios({
-          //500 mile radius, 6000 records limit
-          method: "get",
-          url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${college_id}`,
-          headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
-          },
-        });
-        tmp.push({ [college_id]: data });
-      } catch (e) {
-        tmp.push({ [college_id]: null });
+
+      if (!college_ids.includes(college_id)) {
+        college_ids.push(college_id);
+        try {
+          const { data } = await axios({
+            //500 mile radius, 6000 records limit
+            method: "get",
+            timeout: 1000 * 30, //thirty second timeout
+            url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${college_id}`,
+          });
+          tmp.push({ college_id: college_id, data: data });
+          this.setState({
+            college_programs: {
+              ...this.state.college_programs,
+              collegeScorecardData: tmp,
+            },
+          });
+        } catch (e) {
+          tmp.push({ college_id: college_id, data: null });
+          this.setState({
+            college_programs: {
+              ...this.state.college_programs,
+              collegeScorecardData: tmp,
+            },
+          });
+        }
       }
     }
-    console.log(tmp);
   };
+
   //COME BACK TO THIS
   // getEducationLevels = async () => {
   //   this.setState({

@@ -10,6 +10,36 @@ class CollegePrograms extends React.Component {
     this.props.setShowCollegeDetails(!curr);
   };
 
+  displayAcceptance = (college_id) => {
+    if (this.props.college_programs.collegeScorecardData === undefined) {
+      return <p>loading</p>;
+    } else {
+      college_id = college_id.substr(0, college_id.indexOf("-"));
+      if (this.props.college_programs.collegeScorecardData.length > 0) {
+        var result = this.props.college_programs.collegeScorecardData.filter(
+          (obj) => {
+            return obj.college_id === college_id;
+          }
+        );
+
+        if (result.length > 0) {
+          return (
+            <p>
+              {
+                result[0].data.results[0].latest.admissions.admission_rate
+                  .by_ope_id
+              }
+            </p>
+          );
+        } else {
+          return <p>nap</p>;
+        }
+      } else {
+        return <p>na</p>;
+      }
+    }
+  };
+
   displayData = () => {
     if (this.props.college_programs.collegeProgramsData === undefined) {
       return <div>loading</div>;
@@ -46,6 +76,7 @@ class CollegePrograms extends React.Component {
                         <h4 className="font-weight-light">
                           {school.SchoolName}
                         </h4>
+                        {this.displayAcceptance(school.ID)}
                         <small>
                           <b>
                             {school.City}, {school.StateAbbr}
