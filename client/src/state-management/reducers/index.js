@@ -7,6 +7,6 @@ import classRoom from "./classRoom";
 export default combineReducers({
   alert,
   authorization,
-  quiz
+  quiz,
   classRoom
 });

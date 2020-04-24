@@ -4,6 +4,7 @@ import LearningModules from "./LearningModules/LearningModules";
 import GotoQuiz from "../InteractiveTools/start-quiz";
 
 const Tabs = props => {
+  console.log("props.data: ", props.data);
   const [activeTab, setActiveTab] = useState("learningModules");
 
   const handleSelect = newTab => {
@@ -24,7 +25,7 @@ const Tabs = props => {
           <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="activities">Activities</Nav.Link>
+          <Nav.Link eventKey="activities">Exploration Experience</Nav.Link>
         </Nav.Item>
       </Nav>
       {activeTab === "learningModules" ? (
