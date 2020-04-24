@@ -11,7 +11,7 @@ const Related = props => {
         <Fragment key={key}>
           <LinkContainer to={"/explore/" + key}>
             <Button
-              variant="success btn-sm"
+              variant="outline-danger btn-sm"
               className="optionsButton"
               onClick={() => updateActives(key)}
             >
@@ -40,22 +40,22 @@ const Related = props => {
   };
 
   return (
-    <Card>
-      <Card.Header
-        as="h5"
-        style={{ backgroundColor: "#e23c58", color: "white" }}
-      >
-        <i className="fa fa-asterisk" aria-hidden="true"></i> Related
-      </Card.Header>
+    <Card style={{ border: "0px" }}>
       <Card.Body>
-        <Card.Text>
-          These are the Related that employees in the industry should have. Do
-          you have any of these Related? Hover over an skill to view its
-          description.
-          <br />
-          <br />
-          {displayRelated()}
-        </Card.Text>
+        <h3 className="font-weight-light">
+          <i
+            className="fa fa-link"
+            style={{ color: "#e71d32" }}
+            aria-hidden="true"
+          ></i>{" "}
+          Related
+        </h3>
+        <p>Like this occupation? Check out similar occupations.</p>
+        <hr />
+        <p>
+          <b>Links</b>
+        </p>
+        {displayRelated()}
       </Card.Body>
     </Card>
   );

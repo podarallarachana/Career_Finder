@@ -4,31 +4,32 @@ import PropTypes from "prop-types";
 import { logout } from "../../state-management/actions/authorization";
 import { LinkContainer } from "react-router-bootstrap";
 import { Navbar, Nav } from "react-bootstrap";
-import authorization from "../../state-management/reducers/authorization";
 
 const NavigationBar = ({
-  authorization: { isAuthenticated, loading ,user},
-  logout
+  authorization: { isAuthenticated, loading, user },
+  logout,
 }) => {
-
-    //added 3/27/2020
-    const adminLinks = (
-        //REDIRECTS USER TO LOGIN PAGE ONCE LOGGED OUT
-        <Nav className="mr-auto">
-            <LinkContainer to="/login" onClick={logout} href="#!">
-                <Nav.Link>logout</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/explore/11-9013.03">
-                <Nav.Link>explore</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/about">
-                <Nav.Link>about</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/admin">
-                <Nav.Link>admin</Nav.Link>
-            </LinkContainer>
-        </Nav>
-    );
+  //added 3/27/2020
+  const adminLinks = (
+    //REDIRECTS USER TO LOGIN PAGE ONCE LOGGED OUT
+    <Nav className="mr-auto">
+      <LinkContainer to="/login" onClick={logout} href="#!">
+        <Nav.Link>logout</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/explore/11-9013.03">
+        <Nav.Link>explore</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/prepare">
+        <Nav.Link>prepare</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/about">
+        <Nav.Link>about</Nav.Link>
+      </LinkContainer>
+      <LinkContainer to="/admin">
+        <Nav.Link>admin</Nav.Link>
+      </LinkContainer>
+    </Nav>
+  );
 
   const studentLinks = (
     //REDIRECTS USER TO LOGIN PAGE ONCE LOGGED OUT
@@ -42,9 +43,9 @@ const NavigationBar = ({
       <LinkContainer to="/explore/11-9013.03">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
-      {/* <LinkContainer to="/prepare">
+      <LinkContainer to="/prepare">
         <Nav.Link>prepare</Nav.Link>
-      </LinkContainer> */}
+      </LinkContainer>
       <LinkContainer to="/about">
         <Nav.Link>about</Nav.Link>
       </LinkContainer>
@@ -65,41 +66,34 @@ const NavigationBar = ({
       <LinkContainer to="/explore/11-9013.03">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
-      {/* <LinkContainer to="/prepare">
+      <LinkContainer to="/prepare">
         <Nav.Link>prepare</Nav.Link>
-      </LinkContainer> */}
+      </LinkContainer>
       <LinkContainer to="/about">
         <Nav.Link>about</Nav.Link>
       </LinkContainer>
     </Nav>
   );
 
-let navbar;
+  let navbar;
 
-//Finds out type of user
-if(isAuthenticated)
-{
-    if(user != null && user.is_teacher == true)
-    {
-        navbar = adminLinks;
+  //Finds out type of user
+  if (isAuthenticated) {
+    if (user !== null && user.is_teacher === true) {
+      navbar = adminLinks;
+    } else {
+      navbar = studentLinks;
     }
-    else
-    {
-        navbar = studentLinks;
-    }
-}
-else
-{
+  } else {
     navbar = guestLinks;
-}
-
+  }
 
   return (
     <Navbar
       style={{
         backgroundColor: "#fff",
         boxShadow: " 0px 3px 3px 0px rgba(0,0,0,0.25)",
-        zIndex: 3
+        zIndex: 3,
       }}
       expand="lg"
     >
@@ -121,7 +115,7 @@ NavigationBar.propTypes = {
   authorization: PropTypes.object.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   authorization: state.authorization,
 });
 

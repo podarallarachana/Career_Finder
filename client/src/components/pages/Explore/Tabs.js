@@ -1,13 +1,15 @@
 import React, { Fragment, useState } from "react";
 import { Nav } from "react-bootstrap";
 import LearningModules from "./LearningModules/LearningModules";
+import LearningModulesHeader from "./LearningModules/LearningModulesHeader";
+import ToolsTech from "./LearningModules/ToolsTech";
 import GotoQuiz from "../InteractiveTools/start-quiz";
+import CardColumns from "react-bootstrap/CardColumns";
 
-const Tabs = props => {
-  console.log("props.data: ", props.data);
+const Tabs = (props) => {
   const [activeTab, setActiveTab] = useState("learningModules");
 
-  const handleSelect = newTab => {
+  const handleSelect = (newTab) => {
     if (newTab !== activeTab) {
       setActiveTab(newTab);
     }
@@ -17,25 +19,38 @@ const Tabs = props => {
     <Fragment>
       <Nav
         fill
-        variant="tabs"
+        variant="pills"
         defaultActiveKey={activeTab}
         onSelect={handleSelect}
+        style={{ borderRadius: "0px" }}
       >
         <Nav.Item>
-          <Nav.Link eventKey="learningModules">Learning Modules</Nav.Link>
+          <Nav.Link eventKey="learningModules" style={{ borderRadius: "0px" }}>
+            Learning Modules
+          </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="activities">Exploration Experience</Nav.Link>
+          <Nav.Link eventKey="activities" style={{ borderRadius: "0px" }}>
+            Exploration Experience
+          </Nav.Link>
         </Nav.Item>
       </Nav>
       {activeTab === "learningModules" ? (
-        <LearningModules
-          updateActives={props.updateActives}
-          data={props.data}
-        />
-      ) : 
-        <GotoQuiz/>
-      }
+        <Fragment>
+          <LearningModulesHeader data={props.data} />
+          <div className="learningModules">
+            <CardColumns>
+              <LearningModules
+                updateActives={props.updateActives}
+                data={props.data}
+              />
+              <ToolsTech toolsData={props.toolsData} />
+            </CardColumns>
+          </div>
+        </Fragment>
+      ) : (
+        <GotoQuiz />
+      )}
     </Fragment>
   );
 };

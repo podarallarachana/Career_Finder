@@ -18,6 +18,10 @@
   }
 }
 
+p {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 .home {
   height: calc(100vh - 56px);
   min-height: 200px;
@@ -60,7 +64,7 @@
 }
 
 .learningModules {
-  padding: 20px;
+  padding: 15px;
   background-color: #f5f5f5;
 }
 
@@ -69,26 +73,20 @@
 }
 
 .find-quiz {
-  padding: 20px;
-}
-
-.prepare {
-  padding-top: 30px;
-}
-
-.prepare-options {
-  padding: 20px;
+  padding: 15px;
 }
 
 .search {
-  padding: 20px;
+  padding: 15px;
 }
 
 .explore-header {
   background-image: url("./assets/landing.png");
   background-color: #e43f54;
   background-position: center;
+  // background-size: cover;
   background-repeat: no-repeat;
+  border-radius: 0px;
 }
 
 .explore-header hr {
@@ -100,7 +98,20 @@
   padding: 0;
 }
 
-.sections {
-  padding-top: 10px;
-  padding-bottom: 10px;
+//prepare page
+
+.prepare-sidenav {
+  width: 250px;
+  padding: 15px;
+}
+
+.prepare {
+}
+
+.prepare-options {
+  padding: 15px;
+}
+
+.colleges {
+  padding: 15px;
 }

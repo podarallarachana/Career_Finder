@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import { Pie } from "react-chartjs-2";
 
-const Education = props => {
+const Education = (props) => {
   const [graphData, setGraphData] = useState({});
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const Education = props => {
         "Associate's degree",
         "Bachelor's degree",
         "Master's degree",
-        "Doctoral or professional degree"
+        "Doctoral or professional degree",
       ],
       datasets: [
         {
@@ -36,10 +36,10 @@ const Education = props => {
             "#5aa700",
             "#4c8400",
             "#2d660a",
-            "#144d14"
-          ]
-        }
-      ]
+            "#144d14",
+          ],
+        },
+      ],
     });
   }, [props.data.OccupationDetail]);
 
@@ -60,11 +60,11 @@ const Education = props => {
           <Pie
             options={{
               title: {
-                display: false
+                display: false,
               },
               legend: {
-                display: false
-              }
+                display: false,
+              },
             }}
             data={graphData}
           />
