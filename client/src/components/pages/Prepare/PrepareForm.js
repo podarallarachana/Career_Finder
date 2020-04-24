@@ -60,15 +60,12 @@ const PrepareForm = (props) => {
           </Alert>
         ) : null}
         <label htmlFor="location">ZIP Code</label>
-        <InputGroup
-          className="mb-3"
-          value={props.user_inp.Location}
-          onChange={props.updateLocation}
-        >
+        <InputGroup className="mb-3">
           <FormControl
             id="location"
             aria-describedby="basic-addon3"
-            placeholder="32601"
+            value={props.user_inp.Location}
+            onChange={props.updateLocation}
           />
         </InputGroup>
 

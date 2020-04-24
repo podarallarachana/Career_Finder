@@ -37,6 +37,7 @@ class Prepare extends React.Component {
       },
       activeTab: "collegeprograms",
       activePage: 1,
+      showCollegeDetails: false,
     };
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
@@ -84,7 +85,7 @@ class Prepare extends React.Component {
         url: `https://api.careeronestop.org/v1/training/${
           process.env.REACT_APP_USER_ID
         }/${this.state.user_inp.Code}/${
-          this.state.user_inp.Code === "off"
+          this.state.user_inp.Home === "on"
             ? 0
             : GetState(this.state.user_inp.Location)
         }/500/0/0/0/0/0/0/0/0/1000`,
@@ -96,12 +97,14 @@ class Prepare extends React.Component {
         college_programs: {
           collegeProgramsData: data,
         },
+        showCollegeDetails: false,
       });
     } catch (e) {
       this.setState({
         college_programs: {
           collegeProgramsData: null,
         },
+        showCollegeDetails: false,
       });
     }
   };
@@ -170,6 +173,11 @@ class Prepare extends React.Component {
     this.setState({ activePage: pageNumber });
   };
 
+  setShowCollegeDetails = () => {
+    let tmp = this.state.showCollegeDetails;
+    this.setState({ showCollegeDetails: !tmp });
+  };
+
   render() {
     return (
       <Sidebar
@@ -231,12 +239,13 @@ class Prepare extends React.Component {
                 </Nav.Link>
               </Nav.Item>
             </Nav>
-            <h1>{this.state.user_inp.Home}</h1>
             {this.state.activeTab === "collegeprograms" ? (
               <CollegePrograms
                 college_programs={this.state.college_programs}
                 activePage={this.state.activePage}
                 handlePageChange={this.handlePageChange}
+                showCollegeDetails={this.state.showCollegeDetails}
+                setShowCollegeDetails={this.setShowCollegeDetails}
               />
             ) : null}
             {this.state.activeTab === "certifications" ? (
