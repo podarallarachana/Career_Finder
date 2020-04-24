@@ -5,10 +5,6 @@ import CardColumns from "react-bootstrap/CardColumns";
 import CollegeDetails from "./CollegeDetails";
 
 class CollegePrograms extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   showDetails = () => {
     let curr = this.state.showDetails;
     this.props.setShowCollegeDetails(!curr);
@@ -102,8 +98,6 @@ class CollegePrograms extends React.Component {
       );
     }
   };
-
-  displayCollegeList = () => {};
 
   render() {
     return <div>{this.displayData()}</div>;

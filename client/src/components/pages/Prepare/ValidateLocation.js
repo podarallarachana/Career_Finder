@@ -21,171 +21,171 @@ export function GetState(zipcode) {
   var thiszip = parseInt(zipcode, 10);
 
   var st;
-  var state;
+  // var state;
 
   // Code blocks alphabetized by state
   if (thiszip >= 35000 && thiszip <= 36999) {
     st = "AL";
-    state = "Alabama";
+    // state = "Alabama";
   } else if (thiszip >= 99500 && thiszip <= 99999) {
     st = "AK";
-    state = "Alaska";
+    // state = "Alaska";
   } else if (thiszip >= 85000 && thiszip <= 86999) {
     st = "AZ";
-    state = "Arizona";
+    // state = "Arizona";
   } else if (thiszip >= 71600 && thiszip <= 72999) {
     st = "AR";
-    state = "Arkansas";
+    // state = "Arkansas";
   } else if (thiszip >= 90000 && thiszip <= 96699) {
     st = "CA";
-    state = "California";
+    // state = "California";
   } else if (thiszip >= 80000 && thiszip <= 81999) {
     st = "CO";
-    state = "Colorado";
+    // state = "Colorado";
   } else if (thiszip >= 6000 && thiszip <= 6999) {
     st = "CT";
-    state = "Connecticut";
+    // state = "Connecticut";
   } else if (thiszip >= 19700 && thiszip <= 19999) {
     st = "DE";
-    state = "Delaware";
+    // state = "Delaware";
   } else if (thiszip >= 32000 && thiszip <= 34999) {
     st = "FL";
-    state = "Florida";
+    // state = "Florida";
   } else if (thiszip >= 30000 && thiszip <= 31999) {
     st = "GA";
-    state = "Georgia";
+    // state = "Georgia";
   } else if (thiszip >= 96700 && thiszip <= 96999) {
     st = "HI";
-    state = "Hawaii";
+    // state = "Hawaii";
   } else if (thiszip >= 83200 && thiszip <= 83999) {
     st = "ID";
-    state = "Idaho";
+    // state = "Idaho";
   } else if (thiszip >= 60000 && thiszip <= 62999) {
     st = "IL";
-    state = "Illinois";
+    // state = "Illinois";
   } else if (thiszip >= 46000 && thiszip <= 47999) {
     st = "IN";
-    state = "Indiana";
+    // state = "Indiana";
   } else if (thiszip >= 50000 && thiszip <= 52999) {
     st = "IA";
-    state = "Iowa";
+    // state = "Iowa";
   } else if (thiszip >= 66000 && thiszip <= 67999) {
     st = "KS";
-    state = "Kansas";
+    // state = "Kansas";
   } else if (thiszip >= 40000 && thiszip <= 42999) {
     st = "KY";
-    state = "Kentucky";
+    // state = "Kentucky";
   } else if (thiszip >= 70000 && thiszip <= 71599) {
     st = "LA";
-    state = "Louisiana";
+    // state = "Louisiana";
   } else if (thiszip >= 3900 && thiszip <= 4999) {
     st = "ME";
-    state = "Maine";
+    // state = "Maine";
   } else if (thiszip >= 20600 && thiszip <= 21999) {
     st = "MD";
-    state = "Maryland";
+    // state = "Maryland";
   } else if (thiszip >= 1000 && thiszip <= 2799) {
     st = "MA";
-    state = "Massachusetts";
+    // state = "Massachusetts";
   } else if (thiszip >= 48000 && thiszip <= 49999) {
     st = "MI";
-    state = "Michigan";
+    // state = "Michigan";
   } else if (thiszip >= 55000 && thiszip <= 56999) {
     st = "MN";
-    state = "Minnesota";
+    // state = "Minnesota";
   } else if (thiszip >= 38600 && thiszip <= 39999) {
     st = "MS";
-    state = "Mississippi";
+    // state = "Mississippi";
   } else if (thiszip >= 63000 && thiszip <= 65999) {
     st = "MO";
-    state = "Missouri";
+    // state = "Missouri";
   } else if (thiszip >= 59000 && thiszip <= 59999) {
     st = "MT";
-    state = "Montana";
+    // state = "Montana";
   } else if (thiszip >= 27000 && thiszip <= 28999) {
     st = "NC";
-    state = "North Carolina";
+    // state = "North Carolina";
   } else if (thiszip >= 58000 && thiszip <= 58999) {
     st = "ND";
-    state = "North Dakota";
+    // state = "North Dakota";
   } else if (thiszip >= 68000 && thiszip <= 69999) {
     st = "NE";
-    state = "Nebraska";
+    // state = "Nebraska";
   } else if (thiszip >= 88900 && thiszip <= 89999) {
     st = "NV";
-    state = "Nevada";
+    // state = "Nevada";
   } else if (thiszip >= 3000 && thiszip <= 3899) {
     st = "NH";
-    state = "New Hampshire";
+    // state = "New Hampshire";
   } else if (thiszip >= 7000 && thiszip <= 8999) {
     st = "NJ";
-    state = "New Jersey";
+    // state = "New Jersey";
   } else if (thiszip >= 87000 && thiszip <= 88499) {
     st = "NM";
-    state = "New Mexico";
+    // state = "New Mexico";
   } else if (thiszip >= 10000 && thiszip <= 14999) {
     st = "NY";
-    state = "New York";
+    // state = "New York";
   } else if (thiszip >= 43000 && thiszip <= 45999) {
     st = "OH";
-    state = "Ohio";
+    // state = "Ohio";
   } else if (thiszip >= 73000 && thiszip <= 74999) {
     st = "OK";
-    state = "Oklahoma";
+    // state = "Oklahoma";
   } else if (thiszip >= 97000 && thiszip <= 97999) {
     st = "OR";
-    state = "Oregon";
+    // state = "Oregon";
   } else if (thiszip >= 15000 && thiszip <= 19699) {
     st = "PA";
-    state = "Pennsylvania";
+    // state = "Pennsylvania";
   } else if (thiszip >= 300 && thiszip <= 999) {
     st = "PR";
-    state = "Puerto Rico";
+    // state = "Puerto Rico";
   } else if (thiszip >= 2800 && thiszip <= 2999) {
     st = "RI";
-    state = "Rhode Island";
+    // state = "Rhode Island";
   } else if (thiszip >= 29000 && thiszip <= 29999) {
     st = "SC";
-    state = "South Carolina";
+    // state = "South Carolina";
   } else if (thiszip >= 57000 && thiszip <= 57999) {
     st = "SD";
-    state = "South Dakota";
+    // state = "South Dakota";
   } else if (thiszip >= 37000 && thiszip <= 38599) {
     st = "TN";
-    state = "Tennessee";
+    // state = "Tennessee";
   } else if (
     (thiszip >= 75000 && thiszip <= 79999) ||
     (thiszip >= 88500 && thiszip <= 88599)
   ) {
     st = "TX";
-    state = "Texas";
+    // state = "Texas";
   } else if (thiszip >= 84000 && thiszip <= 84999) {
     st = "UT";
-    state = "Utah";
+    // state = "Utah";
   } else if (thiszip >= 5000 && thiszip <= 5999) {
     st = "VT";
-    state = "Vermont";
+    // state = "Vermont";
   } else if (thiszip >= 22000 && thiszip <= 24699) {
     st = "VA";
-    state = "Virgina";
+    // state = "Virgina";
   } else if (thiszip >= 20000 && thiszip <= 20599) {
     st = "DC";
-    state = "Washington DC";
+    // state = "Washington DC";
   } else if (thiszip >= 98000 && thiszip <= 99499) {
     st = "WA";
-    state = "Washington";
+    // state = "Washington";
   } else if (thiszip >= 24700 && thiszip <= 26999) {
     st = "WV";
-    state = "West Virginia";
+    // state = "West Virginia";
   } else if (thiszip >= 53000 && thiszip <= 54999) {
     st = "WI";
-    state = "Wisconsin";
+    // state = "Wisconsin";
   } else if (thiszip >= 82000 && thiszip <= 83199) {
     st = "WY";
-    state = "Wyoming";
+    // state = "Wyoming";
   } else {
     st = "none";
-    state = "none";
+    // state = "none";
   }
   return st;
 }
