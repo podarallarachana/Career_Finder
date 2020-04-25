@@ -92,9 +92,6 @@ const NavigationBar = ({
   }
 
   return (
-<<<<<<< HEAD
-    <Navbar>
-=======
     <Navbar
       style={{
         backgroundColor: "#fff",
@@ -103,7 +100,6 @@ const NavigationBar = ({
       }}
       expand="lg"
     >
->>>>>>> 54b7bbdba26f629f234693be06fface8fe686245
       <LinkContainer to="/">
         <Navbar.Brand>
           <i className="fa fa-home" aria-hidden="true"></i>

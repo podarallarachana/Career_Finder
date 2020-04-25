@@ -1,6 +1,9 @@
 import React from 'react';
+import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
-function Result(props) {
+function Result(props,{authorization: {user}}) {
+
     let questions = props.questions;
     questions.forEach(q => { q.isCorrect = q.options.every(x => x.selected === x.isAnswer); })
 
@@ -32,4 +35,12 @@ function Result(props) {
     )
 }
 
-export default Result;
+Result.propTypes = {
+    authorization: PropTypes.object.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+    authorization: state.authorization,
+});
+
+export default connect(mapStateToProps)(Result);
