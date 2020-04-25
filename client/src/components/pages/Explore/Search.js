@@ -1,5 +1,6 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
+import Filter from "./Filter";
 
 class Search extends React.Component {
   constructor(props) {
@@ -39,7 +40,7 @@ class Search extends React.Component {
             </Nav.Link>
           </Nav.Item>
         </Nav>
-        {this.state.activeTab === "filter" ? <div>filter</div> : null}
+        {this.state.activeTab === "filter" ? <Filter /> : null}
         {this.state.activeTab === "keywordsearch" ? (
           <div>keyword search</div>
         ) : null}
