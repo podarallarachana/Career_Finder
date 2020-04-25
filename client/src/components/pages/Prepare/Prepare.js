@@ -112,7 +112,7 @@ class Prepare extends React.Component {
   };
 
   getCollegeScorecard = async () => {
-    //LOAD SYMBOL
+    //LOAD
     this.setState({
       college_programs: {
         ...this.state.college_programs,
@@ -121,47 +121,49 @@ class Prepare extends React.Component {
     });
 
     //CYCLE THROUGH ALL CARDS IN CURRENT PAGE AND GET SCORECARD DETAILS
-    let tmp = [];
-    let college_ids = [];
-    for (
-      var i = (this.state.activePage - 1) * 5;
-      (this.state.activePage - 1) * 5 + 5 >
-      this.state.college_programs.collegeProgramsData.SchoolPrograms.length
-        ? i <
-          this.state.college_programs.collegeProgramsData.SchoolPrograms.length
-        : i < (this.state.activePage - 1) * 5 + 5;
-      i++
-    ) {
-      let id = this.state.college_programs.collegeProgramsData.SchoolPrograms[i]
-        .ID;
-      let college_id = id.substr(0, id.indexOf("-"));
+    var college_ids = [];
+    var id_str = "";
+
+    var arr = this.state.college_programs.collegeProgramsData.SchoolPrograms;
+
+    for (var i = 0; i < arr.length; i++) {
+      var id = arr[i].ID;
+      var college_id = id.substr(0, id.indexOf("-"));
 
       if (!college_ids.includes(college_id)) {
         college_ids.push(college_id);
-        try {
-          const { data } = await axios({
-            //500 mile radius, 6000 records limit
-            method: "get",
-            timeout: 1000 * 30, //thirty second timeout
-            url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${college_id}`,
-          });
-          tmp.push({ college_id: college_id, data: data });
-          this.setState({
-            college_programs: {
-              ...this.state.college_programs,
-              collegeScorecardData: tmp,
-            },
-          });
-        } catch (e) {
-          tmp.push({ college_id: college_id, data: null });
-          this.setState({
-            college_programs: {
-              ...this.state.college_programs,
-              collegeScorecardData: tmp,
-            },
-          });
-        }
+        id_str += college_id + ",";
       }
+    }
+    id_str = id_str.substring(0, id_str.length - 1);
+
+    if (id_str !== "") {
+      try {
+        const { data } = await axios({
+          method: "get",
+          url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${id_str}`,
+        });
+        this.setState({
+          college_programs: {
+            ...this.state.college_programs,
+            collegeScorecardData: data,
+          },
+        });
+      } catch (e) {
+        this.setState({
+          college_programs: {
+            ...this.state.college_programs,
+            collegeScorecardData: null,
+          },
+        });
+      }
+    } else {
+      this.setState({
+        college_programs: {
+          ...this.state.college_programs,
+          collegeScorecardData: null,
+        },
+      });
     }
   };
 
@@ -226,7 +228,7 @@ class Prepare extends React.Component {
   };
 
   handlePageChange = (pageNumber) => {
-    this.setState({ activePage: pageNumber }, () => this.getCollegeScorecard());
+    this.setState({ activePage: pageNumber });
   };
 
   setShowCollegeDetails = () => {

@@ -12,7 +12,7 @@ class CollegePrograms extends React.Component {
 
   displayAcceptance = (college_id) => {
     if (this.props.college_programs.collegeScorecardData === undefined) {
-      return <p>loading</p>;
+      return "loading";
     } else {
       college_id = college_id.substr(0, college_id.indexOf("-"));
       if (this.props.college_programs.collegeScorecardData.length > 0) {
@@ -21,21 +21,29 @@ class CollegePrograms extends React.Component {
             return obj.college_id === college_id;
           }
         );
-
-        if (result.length > 0) {
-          return (
-            <p>
-              {
-                result[0].data.results[0].latest.admissions.admission_rate
-                  .by_ope_id
-              }
-            </p>
-          );
+        if (result.length === 0) {
+          //COLLEGE SCORECARD HASN'T BEEN CALLED YET
+          return "loading";
+        } else if (result[0].data === null) {
+          return "n/a";
         } else {
-          return <p>nap</p>;
+          if (
+            //SCORECARD FOUND AND ACCEPTANCE RATE NOT EMPTY
+            result[0].data.results[0].latest.admissions.admission_rate
+              .by_ope_id !== null
+          ) {
+            return (
+              //SCORECARD FOUND AND ACCEPTANCE RATE EMPTY
+              result[0].data.results[0].latest.admissions.admission_rate
+                .by_ope_id + " %"
+            );
+          } else {
+            return "n/a";
+          }
         }
       } else {
-        return <p>na</p>;
+        //NONE OF THE COLLEGES HAVE SCORECARDS
+        return "n/a";
       }
     }
   };
@@ -76,14 +84,14 @@ class CollegePrograms extends React.Component {
                         <h4 className="font-weight-light">
                           {school.SchoolName}
                         </h4>
-                        {this.displayAcceptance(school.ID)}
                         <small>
                           <b>
                             {school.City}, {school.StateAbbr}
                           </b>{" "}
                           {school.SchoolUrl}
                           <br />
-                          <b>Acceptance Rate: </b> 7%
+                          <b>Acceptance Rate: </b>
+                          {this.displayAcceptance(school.ID)}
                           <br />
                           <b>Size: </b> 1230 students
                           <br />
