@@ -44,7 +44,9 @@ class Search extends React.Component {
         {this.state.activeTab === "filter" ? (
           <Filter updateActives={this.props.updateActives} />
         ) : null}
-        {this.state.activeTab === "keywordsearch" ? <Keyword /> : null}
+        {this.state.activeTab === "keywordsearch" ? (
+          <Keyword updateActives={this.props.updateActives} />
+        ) : null}
       </div>
     );
   }

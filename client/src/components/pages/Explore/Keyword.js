@@ -5,8 +5,10 @@ import { Form, Alert, Button } from "react-bootstrap";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
+import { LinkContainer } from "react-router-bootstrap";
+import data from "./Data.json";
 
-const Keyword = () => {
+const Keyword = (props) => {
   const [results, setResults] = useState(undefined);
   const [inp, setInp] = useState("pottery");
   const [show, setShow] = useState(false);
@@ -23,6 +25,23 @@ const Keyword = () => {
     } else {
       setShow(false);
       getOccupations();
+    }
+  };
+
+  const updateActives = (code) => {
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < data[i].CareerPathway.length; j++) {
+        for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
+          if (data[i].CareerPathway[j].Jobs[z].Code === code) {
+            props.updateActives(
+              data[i].CareerCluster,
+              data[i].CareerPathway[j].Pathway,
+              code
+            );
+            return;
+          }
+        }
+      }
     }
   };
 
@@ -49,21 +68,24 @@ const Keyword = () => {
       return <div>sorry, unavailable right now</div>;
     } else {
       return (
-        <Fragment>
-          <CardColumns>
-            {results.OccupationList.map((occupation) => {
-              return (
-                <Card key={occupation.OnetCode}>
+        <CardColumns>
+          {results.OccupationList.map((occupation) => {
+            return (
+              <LinkContainer
+                key={occupation.OnetCode}
+                to={"/explore/" + occupation.OnetCode}
+              >
+                <Card onClick={() => updateActives(occupation.OnetCode)}>
                   <Card.Body>
                     <h4 className="font-weight-light">
                       {occupation.OnetTitle}
                     </h4>
                   </Card.Body>
                 </Card>
-              );
-            })}
-          </CardColumns>
-        </Fragment>
+              </LinkContainer>
+            );
+          })}
+        </CardColumns>
       );
     }
   };
@@ -74,7 +96,11 @@ const Keyword = () => {
 
   return (
     <div className="keywordsearch">
-      <Form>
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <label htmlFor="location">
           <h1>Keyword Search</h1>
         </label>
