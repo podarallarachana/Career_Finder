@@ -1,12 +1,12 @@
-import React, { Fragment, useState, useEffect } from "react";
+import React, { Fragment, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-const Tools = props => {
+const Tools = (props) => {
   const [showAll, setShowAll] = useState(false);
 
   const displayTools = () =>
-    props.toolsData.TechToolOccupationDetails.Tools.Categories.map(tool => {
+    props.toolsData.TechToolOccupationDetails.Tools.Categories.map((tool) => {
       return (
         <Fragment key={tool.Title}>
           <b>
@@ -18,7 +18,7 @@ const Tools = props => {
             {tool.Title}
           </b>
           <br />
-          {tool.Examples.map(example => {
+          {tool.Examples.map((example) => {
             return (
               <Fragment key={example.Name}>
                 <h6 className="font-weight-light">
@@ -34,7 +34,7 @@ const Tools = props => {
 
   const displayImportantTools = () =>
     props.toolsData.TechToolOccupationDetails.Tools.Categories.slice(0, 6).map(
-      tool => {
+      (tool) => {
         return (
           <Fragment key={tool.Title}>
             <b>
@@ -46,7 +46,7 @@ const Tools = props => {
               {tool.Title}
             </b>
             <br />
-            {tool.Examples.map(example => {
+            {tool.Examples.map((example) => {
               return (
                 <Fragment key={example.Name}>
                   <h6 className="font-weight-light">
