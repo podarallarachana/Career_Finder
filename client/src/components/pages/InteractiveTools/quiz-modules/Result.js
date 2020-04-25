@@ -9,14 +9,16 @@ function Result(props) {
 
     let count = 0;
     const state = store.getState();
-    const user = state.authorization.user;
+    const userId = state.authorization.user._id;
+    const quizNum = props.quizNum - 1;
 
     questions.forEach(q => {
         if (q.isCorrect)
             count++;
     });
 
-    // Want count and user._id for adding to student record
+    // Want count, userId, & quizNum for adding to student record
+    console.log("count: " + count + "\tuserId: " + userId + "\tquizNum: " + quizNum);
 
     return (
         <div className="result">
