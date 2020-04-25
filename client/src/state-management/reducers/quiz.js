@@ -7,10 +7,10 @@ let initialQuiz = {
         config: {
             'allowBack': true,
             'allowReview': true,
-            'autoMove': false,  // if true, it will move to next question automatically when answered.
+            'autoMove': true,  // if true, it will move to next question automatically when answered.
             'duration': 0,  // indicates the time in which quiz needs to be completed. 0 means unlimited.
             'pageSize': 1,
-            'requiredAll': false,  // indicates if you must answer all the questions before submitting.
+            'requiredAll': true,  // indicates if you must answer all the questions before submitting.
             'richText': false,
             'shuffleQuestions': false,
             'shuffleOptions': false,
