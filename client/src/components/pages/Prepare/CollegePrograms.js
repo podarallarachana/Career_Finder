@@ -53,18 +53,18 @@ class CollegePrograms extends React.Component {
                 itemClass="page-item"
                 linkClass="page-link"
                 activePage={this.props.activePage}
-                itemsCountPerPage={5}
+                itemsCountPerPage={100}
                 totalItemsCount={
                   this.props.college_programs.collegeProgramsData.SchoolPrograms
                     .length
                 }
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={100}
                 onChange={this.props.handlePageChange}
               />
               <CardColumns>
                 {this.props.college_programs.collegeProgramsData.SchoolPrograms.slice(
-                  (this.props.activePage - 1) * 5,
-                  (this.props.activePage - 1) * 5 + 5
+                  (this.props.activePage - 1) * 100,
+                  (this.props.activePage - 1) * 100 + 100
                 ).map((school) => {
                   return (
                     <Card
@@ -109,12 +109,12 @@ class CollegePrograms extends React.Component {
                 itemClass="page-item"
                 linkClass="page-link"
                 activePage={this.props.activePage}
-                itemsCountPerPage={5}
+                itemsCountPerPage={100}
                 totalItemsCount={
                   this.props.college_programs.collegeProgramsData.SchoolPrograms
                     .length
                 }
-                pageRangeDisplayed={5}
+                pageRangeDisplayed={100}
                 onChange={this.props.handlePageChange}
               />
             </div>
