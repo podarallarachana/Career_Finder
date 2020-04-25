@@ -1,5 +1,6 @@
 const Class = require("../models/class.model");
 const User = require("../models/user.model");
+const Student = require("../models/student.model");
 
 /*
 very basic creates a class with 16 quizzes and one teacher
@@ -29,7 +30,7 @@ exports.getClasses = async  (req,res) => {
     } catch (err) {
         res.status(400).send("Error");
     }
-}
+};
 
 //deletes specific class
 exports.deleteClass = async (req,res) => {
@@ -59,7 +60,6 @@ exports.addStudent = async  (req,res) => {
     try {
         await Class.findOne({_id : req.body.id}).then( async function(result) {
             result.ofStudentId.push(req.body.studentId);
-            console.log(result);
             await result.save();
             res.status(200).send("Added");
         });
@@ -68,7 +68,46 @@ exports.addStudent = async  (req,res) => {
     }
 };
 
-exports.getGrades = (req,res) => {
+//get student for the purposes of points
+exports.getStudent = async (req,res) => {
+    try {
+        await Student.findOne({studentId: req.query.id}).then( async function(result) {
+            res.status(200).send(result);
+        });
+    } catch (err) {
+        res.status(400).send("Error");
+    }
+};
 
+//creates students for teh purpose of points
+exports.createStudent = async (req,res) => {
+    try {
+        let student = new Student({
+            name : req.body.name,
+            studentId : req.body.id,
+            points : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        });
+        await student.save();
+        res.status(200).send("Saved");
+    } catch (err) {
+        res.status(404).send("Error");
+    }
+};
+
+/*
+takes quiz number starting at 0 for the first module, points for number of points awarded, and id for student id,
+ */
+
+exports.addPoints = async (req,res) => {
+    try {
+        await Student.findOne({studentId: req.query.id}).then( async function(result) {
+            console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
+            result.points.splice(parseInt(req.query.quiz),1,((result.points[req.query.quiz]) + parseInt(req.query.points)));
+            await result.save();
+            res.status(200).send(result);
+        });
+    } catch (err) {
+        res.status(400).send("Error");
+    }
 };
 

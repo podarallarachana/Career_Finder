@@ -7,10 +7,7 @@ const StudentSchema = new mongoose.Schema({
     studentId : {
         type: String
     },
-    grades : {
-        type: Map,
-        of : Number
-    }
+    points : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 });
 
 module.exports = User = mongoose.model("student", StudentSchema);

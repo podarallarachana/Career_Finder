@@ -37,6 +37,9 @@ const NavigationBar = ({
       <LinkContainer to="/login" onClick={logout} href="#!">
         <Nav.Link>logout</Nav.Link>
       </LinkContainer>
+        <LinkContainer to="/myinfo">
+            <Nav.Link>my info</Nav.Link>
+        </LinkContainer>
       {/* <LinkContainer to="/find">
         <Nav.Link>find</Nav.Link>
       </LinkContainer> */}
@@ -89,6 +92,9 @@ const NavigationBar = ({
   }
 
   return (
+<<<<<<< HEAD
+    <Navbar>
+=======
     <Navbar
       style={{
         backgroundColor: "#fff",
@@ -97,6 +103,7 @@ const NavigationBar = ({
       }}
       expand="lg"
     >
+>>>>>>> 54b7bbdba26f629f234693be06fface8fe686245
       <LinkContainer to="/">
         <Navbar.Brand>
           <i className="fa fa-home" aria-hidden="true"></i>
