@@ -364,7 +364,7 @@ class Prepare extends React.Component {
               </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="licenses" style={{ borderRadius: "0px" }}>
-                  Lincenses
+                  Licenses
                 </Nav.Link>
               </Nav.Item>
             </Nav>
