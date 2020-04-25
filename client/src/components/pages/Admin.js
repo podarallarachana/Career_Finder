@@ -79,6 +79,8 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
     }
 
     function studentData() {
+        let students = [];
+        //add code to do a request for each id in ofStudentID
         return currentClass.ofStudentId.map((student) =>
                 <Card key={student}>
                     <Card.Header>

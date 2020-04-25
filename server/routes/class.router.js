@@ -23,4 +23,10 @@ router.post("/student", classRoom.addStudent);
 
 //add teacher to class
 
+//getStudent info
+router.get("/student/info",classRoom.getStudent);
+
+//creates new student
+router.post("/student/create", classRoom.createStudent);
+
 module.exports = router;

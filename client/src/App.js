@@ -5,6 +5,7 @@ import Login from "./components/pages/Login";
 import Occupation from "./components/pages/Explore/Occupation";
 import Admin from "./components/pages/Admin";
 import About from "./components/pages/About";
+import MyInfo from "./components/pages/MyInfo";
 import setAuthToken from "./state-management/utilities/setAuthToken";
 import { Provider } from "react-redux";
 import { loadUser } from "./state-management/actions/authorization";
@@ -16,6 +17,7 @@ import Prepare from "./components/pages/Prepare/Prepare";
 import QuizApp from "./components/pages/InteractiveTools/QuizApp";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
+
 require("dotenv").config();
 
 if (localStorage.token) {
@@ -43,6 +45,7 @@ const App = () => {
               <Route exact path="/admin" component={Admin} />
               <Route exact path="/find" component={Find} />
               <Route exact path="/prepare" component={Prepare} />
+              <Route exact path="/myinfo" component={MyInfo} />
             </Switch>
           </section>
         </Fragment>

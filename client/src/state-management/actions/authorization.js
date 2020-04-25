@@ -71,6 +71,8 @@ export const register = ({
     const res = await axios.post("/api/user", body, config);
     //await axios.post("/api/class/student", {id: code,studentId: first_name});
 
+    //also create a student object using email
+
     //ON SUCCESFUL POST, SEND SUCCESS ALERT
     dispatch({
       type: REGISTER_SUCCESS,
