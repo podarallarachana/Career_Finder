@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import data from "./Data.json";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
-import { Form } from "react-bootstrap";
+import { Form, Alert } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
 
@@ -25,12 +25,20 @@ const Filter = (props) => {
       }
     }
 
+    tmp = tmp.filter((occupation) =>
+      occupation.Occupation.toLowerCase().includes(filterText.toLowerCase())
+    );
+
     return (
       <Fragment>
-        <CardColumns>
-          {tmp
-            .filter((occupation) => occupation.Occupation.includes(filterText))
-            .map((occupation) => {
+        {tmp.length === 0 ? (
+          <Alert variant="warning">
+            <Alert.Heading>No Occupations Found!</Alert.Heading>
+            <p>Broaden you filter or use the keyword search!</p>
+          </Alert>
+        ) : (
+          <CardColumns>
+            {tmp.map((occupation) => {
               return (
                 <Card key={occupation.Code}>
                   <Card.Body>
@@ -41,7 +49,8 @@ const Filter = (props) => {
                 </Card>
               );
             })}
-        </CardColumns>
+          </CardColumns>
+        )}
       </Fragment>
     );
   };
