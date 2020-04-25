@@ -41,28 +41,6 @@ const Admin = ({
     });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    await axios
-      .post("/api/class", { name: class_name, teacherId: user.first_name })
-      .then(function () {
-        changeView("classes");
-        setFormData({ class_name: "" });
-        console.log("submitted");
-      });
-  };
-
-  async function onDelete() {
-    if (view !== "classes") {
-      await axios
-        .delete("/api/class", { data: { name: selected } })
-        .then(function () {
-          changeView("classes");
-          changeSelection("");
-        });
-<<<<<<< HEAD
-    };
-
     const onSubmit = async e => {
         e.preventDefault();
         await axios.post("/api/class",{name : class_name, teacherId : user.first_name}).then(
@@ -94,57 +72,6 @@ const Admin = ({
     function classNotes() {
         changeView("classnotes");
     }
-    function onAdd() {
-        changeView("addclass");
-    }
-
-    async function studentData() {
-        let students = [];
-        //add code to do a request for each id in ofStudentID
-        await currentClass.ofStudentId.forEach( (id) => {
-             axios.get("/api/class/student/info",{params:{id:id}}).then(result => {
-                console.log(result.data);
-                students.push(result.data);
-            })
-        });
-
-        console.log("hello" + students);
-        return students.map((student) =>
-                <Card key={student.studentId}>
-                    <Card.Header>
-                        {student.name}
-                    </Card.Header>
-                    <Card.Body>
-                        <div>
-                            <h2>{student.name} total points:</h2>
-                            <h2>points per each module:</h2>
-                            <h2>Student ID {student.studentId}</h2>
-                        </div>
-                        <Button>Remove Student</Button>
-                    </Card.Body>
-                </Card>
-        );
-
-    }
-    //maps all class names to table
-    function tableData() {
-        return datas.map((className) =>
-            <tr key={className.name}>
-                <td onClick = {() => {
-                    changeSelection(className.name);
-                    selectCurrentClass(className);
-                    changeView("viewclass");
-                }
-                }>
-                    {className.name}
-                </td>
-                <td>
-                    {className._id}
-                </td>
-            </tr>
-=======
-    }
-  }
 
   function onAdd() {
     changeView("addclass");
@@ -222,7 +149,6 @@ const Admin = ({
               </Accordion.Collapse>
             </Card>
           </Accordion>
->>>>>>> 54b7bbdba26f629f234693be06fface8fe686245
         );
       case "addclass":
         return (
@@ -243,7 +169,6 @@ const Admin = ({
       default:
         return <div></div>;
     }
-<<<<<<< HEAD
 
     function currentView() {
             switch(view) {
@@ -370,7 +295,6 @@ const Admin = ({
             {!isLoading && currentView()
             }
         </div>);
-=======
   }
 
   return (
@@ -416,8 +340,7 @@ const Admin = ({
       {!isLoading && currentView()}
     </div>
   );
->>>>>>> 54b7bbdba26f629f234693be06fface8fe686245
-};
+}
 
 Admin.propTypes = {
   getClasses: PropTypes.func.isRequired,
