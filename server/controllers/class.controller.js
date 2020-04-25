@@ -92,8 +92,22 @@ exports.createStudent = async (req,res) => {
     } catch (err) {
         res.status(404).send("Error");
     }
-}
-exports.getGrades = (req,res) => {
+};
 
+/*
+takes quiz number starting at 0 for the first module, points for number of points awarded, and id for student id,
+ */
+
+exports.addPoints = async (req,res) => {
+    try {
+        await Student.findOne({studentId: req.query.id}).then( async function(result) {
+            console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
+            result.points.splice(parseInt(req.query.quiz),1,((result.points[req.query.quiz]) + parseInt(req.query.points)));
+            await result.save();
+            res.status(200).send(result);
+        });
+    } catch (err) {
+        res.status(400).send("Error");
+    }
 };
 

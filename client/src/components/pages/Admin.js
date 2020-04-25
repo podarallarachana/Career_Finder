@@ -78,11 +78,19 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
         changeView("addclass");
     }
 
-    function studentData() {
+    async function studentData() {
         let students = [];
         //add code to do a request for each id in ofStudentID
-        return currentClass.ofStudentId.map((student) =>
-                <Card key={student}>
+        await currentClass.ofStudentId.forEach( (id) => {
+             axios.get("/api/class/student/info",{params:{id:id}}).then(result => {
+                console.log(result.data);
+                students.push(result.data);
+            })
+        });
+
+        console.log("hello" + students);
+        return students.map((student) =>
+                <Card key={student.studentId}>
                     <Card.Header>
                         {student.name}
                     </Card.Header>
@@ -90,6 +98,7 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
                         <div>
                             <h2>{student.name} total points:</h2>
                             <h2>points per each module:</h2>
+                            <h2>Student ID {student.studentId}</h2>
                         </div>
                         <Button>Remove Student</Button>
                     </Card.Body>
@@ -158,7 +167,7 @@ const Admin = ({authorization: {isAuthenticated,user},getClasses, classes : {cla
                                 </Card.Header>
                                 <Accordion.Collapse eventKey="1">
                                     <Card.Body>
-                                        {studentData()}
+                                        {studentData().result}
                                         <Button onClick={()=> {changeView("addstudent");}}>Add Student</Button>
                                     </Card.Body>
                                 </Accordion.Collapse>
