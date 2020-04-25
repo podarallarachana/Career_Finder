@@ -94,6 +94,15 @@ const Filter = (props) => {
                 );
               })}
             </CardColumns>
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={activePage}
+              itemsCountPerPage={100}
+              totalItemsCount={tmp.length}
+              pageRangeDisplayed={5}
+              onChange={handlePageChange}
+            />
           </Fragment>
         )}
       </Fragment>

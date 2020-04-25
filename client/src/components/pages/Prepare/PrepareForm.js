@@ -68,6 +68,7 @@ const PrepareForm = (props) => {
             aria-describedby="basic-addon3"
             value={props.user_inp.Location}
             onChange={props.updateLocation}
+            placeholder="Enter ZIP.."
           />
         </InputGroup>
 
