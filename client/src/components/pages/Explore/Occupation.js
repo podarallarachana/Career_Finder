@@ -19,7 +19,7 @@ class Occupation extends React.Component {
       activePathway: undefined,
       activeOccupation: undefined,
       data: undefined,
-      toolsData: undefined
+      toolsData: undefined,
     };
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
@@ -38,8 +38,8 @@ class Occupation extends React.Component {
           method: "get",
           url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=false&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=false`,
           headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_TOKEN
-          }
+            Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+          },
         });
         this.setState({ data: data });
       } catch (e) {
@@ -51,8 +51,8 @@ class Occupation extends React.Component {
           method: "get",
           url: `https://api.careeronestop.org/v1/techtool/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/`,
           headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_TOKEN
-          }
+            Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+          },
         });
         this.setState({ toolsData: data });
       } catch (e) {
@@ -73,7 +73,7 @@ class Occupation extends React.Component {
               {
                 activeCluster: data[i].CareerCluster,
                 activePathway: data[i].CareerPathway[j].Pathway,
-                activeOccupation: this.props.match.params.code
+                activeOccupation: this.props.match.params.code,
               },
               () => this.getData()
             );
@@ -89,7 +89,7 @@ class Occupation extends React.Component {
       activePathway: "INVALID",
       activeOccupation: "INVALID",
       data: null,
-      toolsData: null
+      toolsData: null,
     });
   }
 
@@ -101,18 +101,18 @@ class Occupation extends React.Component {
         activePathway: newPathway,
         activeOccupation: newCode,
         data: undefined,
-        toolsData: undefined
+        toolsData: undefined,
       },
       () => this.getData()
     );
   };
 
   //OCCUPATION-OPTIONS USES THIS
-  updateActivePathway = pathway => {
+  updateActivePathway = (pathway) => {
     this.setState({ activePathway: pathway });
   };
 
-  updateActiveOccupation = occupation => {
+  updateActiveOccupation = (occupation) => {
     this.setState({ activeOccupation: occupation, data: undefined }, () =>
       this.getData()
     );
@@ -149,11 +149,11 @@ class Occupation extends React.Component {
         onSetOpen={this.onSetSidebarOpen}
         styles={{
           root: {
-            top: 56
+            top: 56,
           },
           sidebar: {
-            backgroundColor: "#ffffff"
-          }
+            backgroundColor: "#ffffff",
+          },
         }}
       >
         {this.state.activeCluster !== "Search" ? (
@@ -172,7 +172,7 @@ class Occupation extends React.Component {
             />
           </Fragment>
         ) : (
-          <Search />
+          <Search updateActives={this.updateActives} />
         )}
       </Sidebar>
     );

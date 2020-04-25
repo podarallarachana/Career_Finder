@@ -5,6 +5,7 @@ import FormControl from "react-bootstrap/FormControl";
 import { Form, Alert } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Filter = (props) => {
   const [filterText, setFilterText] = useState("");
@@ -13,6 +14,23 @@ const Filter = (props) => {
   const filterUpdate = () => {
     textInput.current.focus();
     setFilterText(textInput.current.value);
+  };
+
+  const updateActives = (code) => {
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < data[i].CareerPathway.length; j++) {
+        for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
+          if (data[i].CareerPathway[j].Jobs[z].Code === code) {
+            props.updateActives(
+              data[i].CareerCluster,
+              data[i].CareerPathway[j].Pathway,
+              code
+            );
+            return;
+          }
+        }
+      }
+    }
   };
 
   const displayOccupations = () => {
@@ -40,13 +58,18 @@ const Filter = (props) => {
           <CardColumns>
             {tmp.map((occupation) => {
               return (
-                <Card key={occupation.Code}>
-                  <Card.Body>
-                    <h4 className="font-weight-light">
-                      {occupation.Occupation}
-                    </h4>
-                  </Card.Body>
-                </Card>
+                <LinkContainer
+                  key={occupation.Code}
+                  to={"/explore/" + occupation.Code}
+                >
+                  <Card onClick={() => updateActives(occupation.Code)}>
+                    <Card.Body>
+                      <h4 className="font-weight-light">
+                        {occupation.Occupation}
+                      </h4>
+                    </Card.Body>
+                  </Card>
+                </LinkContainer>
               );
             })}
           </CardColumns>

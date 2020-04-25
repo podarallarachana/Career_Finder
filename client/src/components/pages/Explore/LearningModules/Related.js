@@ -4,9 +4,9 @@ import { Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import data from "../Data.json";
 
-const Related = props => {
+const Related = (props) => {
   const displayRelated = () =>
-    Object.keys(props.data.OccupationDetail[0].RelatedOnetTitles).map(key => {
+    Object.keys(props.data.OccupationDetail[0].RelatedOnetTitles).map((key) => {
       return (
         <Fragment key={key}>
           <LinkContainer to={"/explore/" + key}>
@@ -22,7 +22,7 @@ const Related = props => {
       );
     });
 
-  const updateActives = code => {
+  const updateActives = (code) => {
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < data[i].CareerPathway.length; j++) {
         for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
