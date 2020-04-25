@@ -112,11 +112,10 @@ class Prepare extends React.Component {
   };
 
   getCollegeScorecard = async () => {
-    //LOAD
     this.setState({
       college_programs: {
         ...this.state.college_programs,
-        collegeScorecardData: undefined,
+        collegeScorecardData: undefined, //LOADING
       },
     });
 
@@ -141,7 +140,7 @@ class Prepare extends React.Component {
       try {
         const { data } = await axios({
           method: "get",
-          url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${id_str}`,
+          url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${id_str}&fields=id,latest.admissions`,
         });
         this.setState({
           college_programs: {
@@ -149,11 +148,12 @@ class Prepare extends React.Component {
             collegeScorecardData: data,
           },
         });
+        console.log(data);
       } catch (e) {
         this.setState({
           college_programs: {
             ...this.state.college_programs,
-            collegeScorecardData: null,
+            collegeScorecardData: null, //NO DATA FOR ANY COLLEGES, ERROR COULD'VE OCCURED
           },
         });
       }
@@ -161,7 +161,7 @@ class Prepare extends React.Component {
       this.setState({
         college_programs: {
           ...this.state.college_programs,
-          collegeScorecardData: null,
+          collegeScorecardData: null, //NO DATA FOR ANY COLLEGES, ERROR COULD'VE OCCURED
         },
       });
     }

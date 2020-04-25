@@ -11,40 +11,31 @@ class CollegePrograms extends React.Component {
   };
 
   displayAcceptance = (college_id) => {
+    college_id = college_id.substr(0, college_id.indexOf("-"));
+
     if (this.props.college_programs.collegeScorecardData === undefined) {
       return "loading";
+    } else if (this.props.college_programs.collegeScorecardData === null) {
+      return "n/a";
     } else {
-      college_id = college_id.substr(0, college_id.indexOf("-"));
-      if (this.props.college_programs.collegeScorecardData.length > 0) {
-        var result = this.props.college_programs.collegeScorecardData.filter(
-          (obj) => {
-            return obj.college_id === college_id;
-          }
-        );
-        if (result.length === 0) {
-          //COLLEGE SCORECARD HASN'T BEEN CALLED YET
-          return "loading";
-        } else if (result[0].data === null) {
-          return "n/a";
-        } else {
-          if (
-            //SCORECARD FOUND AND ACCEPTANCE RATE NOT EMPTY
-            result[0].data.results[0].latest.admissions.admission_rate
-              .by_ope_id !== null
-          ) {
-            return (
-              //SCORECARD FOUND AND ACCEPTANCE RATE EMPTY
-              result[0].data.results[0].latest.admissions.admission_rate
-                .by_ope_id + " %"
-            );
-          } else {
-            return "n/a";
-          }
+      var str = "n/a";
+      for (
+        var i = 0;
+        i < this.props.college_programs.collegeScorecardData.results.length;
+        i++
+      ) {
+        if (
+          this.props.college_programs.collegeScorecardData.results[
+            i
+          ].id.toString() === college_id
+        ) {
+          var tmp = "latest.admissions.admission_rate.consumer_rate";
+          str = this.props.college_programs.collegeScorecardData.results[i][
+            tmp
+          ];
         }
-      } else {
-        //NONE OF THE COLLEGES HAVE SCORECARDS
-        return "n/a";
       }
+      return str;
     }
   };
 
