@@ -29,7 +29,8 @@ const UserSchema = new mongoose.Schema({
   code: {
     type: String,
     required: true //DEAFULT NULL?
-  }
+  },
+  points : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 });
 
 module.exports = User = mongoose.model("user", UserSchema);

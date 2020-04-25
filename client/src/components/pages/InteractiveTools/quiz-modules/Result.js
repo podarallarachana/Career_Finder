@@ -18,7 +18,7 @@ function Result(props) {
             count++;
     });
 
-    axios.put("/api/class/student/points",{id: "5ea3e34f6e5179361e4273bc",quiz:quizNum,points:count})
+    axios.put("/api/class/student/points",{id: userId,quiz:quizNum,points:count})
     // Want count, userId, & quizNum for adding to student record
     console.log("count: " + count + "\tuserId: " + userId + "\tquizNum: " + quizNum);
 
