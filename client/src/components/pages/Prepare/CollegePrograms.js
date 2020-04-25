@@ -58,7 +58,7 @@ class CollegePrograms extends React.Component {
                   this.props.college_programs.collegeProgramsData.SchoolPrograms
                     .length
                 }
-                pageRangeDisplayed={100}
+                pageRangeDisplayed={5}
                 onChange={this.props.handlePageChange}
               />
               <CardColumns>
@@ -114,7 +114,7 @@ class CollegePrograms extends React.Component {
                   this.props.college_programs.collegeProgramsData.SchoolPrograms
                     .length
                 }
-                pageRangeDisplayed={100}
+                pageRangeDisplayed={5}
                 onChange={this.props.handlePageChange}
               />
             </div>

@@ -72,6 +72,35 @@ class Prepare extends React.Component {
     }
   };
 
+  getCertifications = async () => {
+    this.setState({
+      certifications: {
+        certificationsData: undefined,
+      },
+    });
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `https://api.careeronestop.org/v1/certificationfinder/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/0/0/0/0/0/0/0/0/0/10`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+        },
+      });
+      this.setState({
+        certifications: {
+          certificationsData: data,
+        },
+      });
+      console.log(data);
+    } catch (e) {
+      this.setState({
+        certifications: {
+          certificationsData: null,
+        },
+      });
+    }
+  };
+
   getCollegePrograms = async () => {
     this.setState({
       college_programs: {
@@ -292,6 +321,7 @@ class Prepare extends React.Component {
                 <Nav.Link
                   eventKey="certifications"
                   style={{ borderRadius: "0px" }}
+                  onClick={() => this.getCertifications()}
                 >
                   Certifications
                 </Nav.Link>
@@ -313,7 +343,7 @@ class Prepare extends React.Component {
               />
             ) : null}
             {this.state.activeTab === "certifications" ? (
-              <Certifications />
+              <Certifications certifications={this.state.certifications} />
             ) : null}
             {this.state.activeTab === "licenses" ? <Licenses /> : null}
           </div>
