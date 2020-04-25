@@ -6,9 +6,11 @@ import { Form, Alert } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
 import { LinkContainer } from "react-router-bootstrap";
+import Pagination from "react-js-pagination";
 
 const Filter = (props) => {
   const [filterText, setFilterText] = useState("");
+  const [activePage, setActivePage] = useState(1);
   let textInput = React.createRef();
 
   const filterUpdate = () => {
@@ -33,6 +35,10 @@ const Filter = (props) => {
     }
   };
 
+  const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
+  };
+
   const displayOccupations = () => {
     var tmp = [];
     for (var i = 0; i < data.length; i++) {
@@ -47,6 +53,11 @@ const Filter = (props) => {
       occupation.Occupation.toLowerCase().includes(filterText.toLowerCase())
     );
 
+    var arr = tmp;
+    if (tmp.length > 100) {
+      arr = tmp.slice((activePage - 1) * 100, (activePage - 1) * 100 + 100);
+    }
+
     return (
       <Fragment>
         {tmp.length === 0 ? (
@@ -55,24 +66,35 @@ const Filter = (props) => {
             <p>Broaden you filter or use the keyword search!</p>
           </Alert>
         ) : (
-          <CardColumns>
-            {tmp.map((occupation) => {
-              return (
-                <LinkContainer
-                  key={occupation.Code}
-                  to={"/explore/" + occupation.Code}
-                >
-                  <Card onClick={() => updateActives(occupation.Code)}>
-                    <Card.Body>
-                      <h4 className="font-weight-light">
-                        {occupation.Occupation}
-                      </h4>
-                    </Card.Body>
-                  </Card>
-                </LinkContainer>
-              );
-            })}
-          </CardColumns>
+          <Fragment>
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={activePage}
+              itemsCountPerPage={100}
+              totalItemsCount={tmp.length}
+              pageRangeDisplayed={5}
+              onChange={handlePageChange}
+            />
+            <CardColumns>
+              {arr.map((occupation) => {
+                return (
+                  <LinkContainer
+                    key={occupation.Code}
+                    to={"/explore/" + occupation.Code}
+                  >
+                    <Card onClick={() => updateActives(occupation.Code)}>
+                      <Card.Body>
+                        <h4 className="font-weight-light">
+                          {occupation.Occupation}
+                        </h4>
+                      </Card.Body>
+                    </Card>
+                  </LinkContainer>
+                );
+              })}
+            </CardColumns>
+          </Fragment>
         )}
       </Fragment>
     );
