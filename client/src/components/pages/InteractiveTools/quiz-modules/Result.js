@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-<<<<<<< HEAD
-
-function Result(props,{authorization: {user}}) {
-=======
 import store from '../../../../state-management/store';
->>>>>>> 7f2e28f63a416644c25c8fc9f05f33e53ff13850
 
+function Result(props) {
     let questions = props.questions;
     questions.forEach(q => { q.isCorrect = q.options.every(x => x.selected === x.isAnswer); })
 
@@ -18,7 +14,7 @@ import store from '../../../../state-management/store';
     questions.forEach(q => {
         if (q.isCorrect)
             count++;
-    })
+    });
 
     // Want count and user._id for adding to student record
 
@@ -49,7 +45,6 @@ import store from '../../../../state-management/store';
 
 Result.propTypes = {
     authorization: PropTypes.object.isRequired,
-<<<<<<< HEAD
 };
 
 const mapStateToProps = (state) => ({
@@ -57,12 +52,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Result);
-=======
-  };
-  
-  const mapStateToProps = (state) => ({
-    authorization: state.authorization,
-  });
-  
-  export default connect(mapStateToProps)(Result);
->>>>>>> 7f2e28f63a416644c25c8fc9f05f33e53ff13850
