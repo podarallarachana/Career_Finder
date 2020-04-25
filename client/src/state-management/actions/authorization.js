@@ -62,18 +62,10 @@ export const register = ({
   });
   try {
     const res = await axios.post("/api/user", body, config);
-<<<<<<< HEAD
-=======
-
->>>>>>> 7f2e28f63a416644c25c8fc9f05f33e53ff13850
     //await axios.post("/api/class/student", {id: code,studentId: first_name});
 
     //also create a student object using email
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 7f2e28f63a416644c25c8fc9f05f33e53ff13850
     //ON SUCCESFUL POST, SEND SUCCESS ALERT
     dispatch({
       type: REGISTER_SUCCESS,

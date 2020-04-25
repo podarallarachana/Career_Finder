@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import store from '../../../../state-management/store';
+import axios from "axios";
 
 function Result(props) {
     let questions = props.questions;
@@ -17,6 +18,7 @@ function Result(props) {
             count++;
     });
 
+    axios.put("/api/class/student/points",{id: "5ea3e34f6e5179361e4273bc",quiz:quizNum,points:count})
     // Want count, userId, & quizNum for adding to student record
     console.log("count: " + count + "\tuserId: " + userId + "\tquizNum: " + quizNum);
 
