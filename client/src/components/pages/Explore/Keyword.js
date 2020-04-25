@@ -9,10 +9,22 @@ import CardColumns from "react-bootstrap/CardColumns";
 const Keyword = () => {
   const [results, setResults] = useState(undefined);
   const [inp, setInp] = useState("pottery");
+  const [show, setShow] = useState(false);
 
   useEffect(() => {
     getOccupations();
   }, []);
+
+  const fetchResults = () => {
+    var user_inp = inp.trim();
+    if (user_inp.indexOf(" ") >= 0) {
+      setShow(true);
+      setResults(null);
+    } else {
+      setShow(false);
+      getOccupations();
+    }
+  };
 
   const getOccupations = async () => {
     setResults(undefined);
@@ -75,11 +87,17 @@ const Keyword = () => {
             onChange={updateInp}
           />
           <InputGroup.Append>
-            <Button onClick={() => console.log("hi")} variant="primary">
+            <Button onClick={() => fetchResults()} variant="primary">
               Search
             </Button>
           </InputGroup.Append>
         </InputGroup>
+        {show ? (
+          <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+            <Alert.Heading>Invalid keyword</Alert.Heading>
+            <p>Make sure you only enter one keyword!</p>
+          </Alert>
+        ) : null}
       </Form>
       {displayOccupations()}
     </div>
