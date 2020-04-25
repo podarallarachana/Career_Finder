@@ -64,6 +64,8 @@ class Prepare extends React.Component {
   componentDidMount() {
     //this.getEducationLevels();
     this.getCollegePrograms();
+    this.getCertifications();
+    this.getLicenses();
   }
 
   handleSelect = (newTab) => {
@@ -81,7 +83,7 @@ class Prepare extends React.Component {
     try {
       const { data } = await axios({
         method: "get",
-        url: `https://api.careeronestop.org/v1/certificationfinder/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/0/0/0/0/0/0/0/0/0/10`,
+        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/certificationfinder/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/0/0/0/0/0/0/0/0/0/6000`,
         headers: {
           Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
         },
@@ -91,11 +93,44 @@ class Prepare extends React.Component {
           certificationsData: data,
         },
       });
-      console.log(data);
     } catch (e) {
       this.setState({
         certifications: {
           certificationsData: null,
+        },
+      });
+    }
+  };
+
+  getLicenses = async () => {
+    this.setState({
+      licenses: {
+        licensesData: undefined,
+      },
+    });
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/license/${
+          process.env.REACT_APP_USER_ID
+        }/${this.state.user_inp.Code}/${
+          this.state.user_inp.Home === "on"
+            ? "US"
+            : GetState(this.state.user_inp.Location)
+        }/0/0/0/6000?searchMode=literal`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+        },
+      });
+      this.setState({
+        licenses: {
+          licensesData: data,
+        },
+      });
+    } catch (e) {
+      this.setState({
+        licenses: {
+          licensesData: null,
         },
       });
     }
@@ -112,7 +147,7 @@ class Prepare extends React.Component {
       const { data } = await axios({
         //500 mile radius, 6000 records limit
         method: "get",
-        url: `https://api.careeronestop.org/v1/training/${
+        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/training/${
           process.env.REACT_APP_USER_ID
         }/${this.state.user_inp.Code}/${
           this.state.user_inp.Home === "on"
@@ -281,6 +316,8 @@ class Prepare extends React.Component {
             updateHome={this.updateHome}
             getEducationLevels={this.getEducationLevels}
             getCollegePrograms={this.getCollegePrograms}
+            getCertifications={this.getCertifications}
+            getLicenses={this.getLicenses}
           />
         }
         open={this.state.sidebarOpen}
@@ -321,7 +358,6 @@ class Prepare extends React.Component {
                 <Nav.Link
                   eventKey="certifications"
                   style={{ borderRadius: "0px" }}
-                  onClick={() => this.getCertifications()}
                 >
                   Certifications
                 </Nav.Link>
@@ -345,7 +381,9 @@ class Prepare extends React.Component {
             {this.state.activeTab === "certifications" ? (
               <Certifications certifications={this.state.certifications} />
             ) : null}
-            {this.state.activeTab === "licenses" ? <Licenses /> : null}
+            {this.state.activeTab === "licenses" ? (
+              <Licenses licenses={this.state.licenses} />
+            ) : null}
           </div>
           <br />
           <br />
