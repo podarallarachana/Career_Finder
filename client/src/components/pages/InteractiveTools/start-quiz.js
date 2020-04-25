@@ -1,12 +1,16 @@
 import React from "react";
+import quizWindow from "./helpers";
+import './QuizApp.css';
 
-const GotoQuiz = () => {
-    const quizURL = '/quiz';
+const GotoQuiz = (props) => {
+    //console.log("props.code: ", props.code);
 
     return (
-    <div>
-        <button onClick={() => window.open(quizURL)}>Start Quiz</button>
-    </div>
+        <div class="quiztabcontainer">
+            <div class="quiztab">
+                <button class="quizbutton" onClick={quizWindow}>Click to start the Exploration Experience</button>
+            </div>
+        </div>
     )
 }
 

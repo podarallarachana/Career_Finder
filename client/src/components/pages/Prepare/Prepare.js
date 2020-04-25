@@ -64,11 +64,75 @@ class Prepare extends React.Component {
   componentDidMount() {
     //this.getEducationLevels();
     this.getCollegePrograms();
+    this.getCertifications();
+    this.getLicenses();
   }
 
   handleSelect = (newTab) => {
     if (newTab !== this.state.activeTab) {
       this.setState({ activeTab: newTab });
+    }
+  };
+
+  getCertifications = async () => {
+    this.setState({
+      certifications: {
+        certificationsData: undefined,
+      },
+    });
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/certificationfinder/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/0/0/0/0/0/0/0/0/0/6000`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+        },
+      });
+      this.setState({
+        certifications: {
+          certificationsData: data,
+        },
+      });
+    } catch (e) {
+      this.setState({
+        certifications: {
+          certificationsData: null,
+        },
+      });
+    }
+  };
+
+  getLicenses = async () => {
+    this.setState({
+      licenses: {
+        licensesData: undefined,
+      },
+    });
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/license/${
+          process.env.REACT_APP_USER_ID
+        }/${this.state.user_inp.Code}/${
+          this.state.user_inp.Home === "on"
+            ? "US"
+            : GetState(this.state.user_inp.Location)
+        }/0/0/0/6000?searchMode=literal`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+        },
+      });
+      this.setState({
+        licenses: {
+          licensesData: data,
+        },
+      });
+    } catch (e) {
+      this.setState({
+        licenses: {
+          licensesData: null,
+        },
+      });
     }
   };
 
@@ -83,7 +147,7 @@ class Prepare extends React.Component {
       const { data } = await axios({
         //500 mile radius, 6000 records limit
         method: "get",
-        url: `https://api.careeronestop.org/v1/training/${
+        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/training/${
           process.env.REACT_APP_USER_ID
         }/${this.state.user_inp.Code}/${
           this.state.user_inp.Home === "on"
@@ -112,56 +176,63 @@ class Prepare extends React.Component {
   };
 
   getCollegeScorecard = async () => {
-    //LOAD SYMBOL
     this.setState({
       college_programs: {
         ...this.state.college_programs,
-        collegeScorecardData: undefined,
+        collegeScorecardData: undefined, //LOADING
       },
     });
 
     //CYCLE THROUGH ALL CARDS IN CURRENT PAGE AND GET SCORECARD DETAILS
-    let tmp = [];
-    let college_ids = [];
+    var college_ids = [];
+    var id_str = "";
+
+    var arr = this.state.college_programs.collegeProgramsData.SchoolPrograms;
+
     for (
-      var i = (this.state.activePage - 1) * 5;
-      (this.state.activePage - 1) * 5 + 5 >
-      this.state.college_programs.collegeProgramsData.SchoolPrograms.length
-        ? i <
-          this.state.college_programs.collegeProgramsData.SchoolPrograms.length
-        : i < (this.state.activePage - 1) * 5 + 5;
+      var i = (this.state.activePage - 1) * 100;
+      (this.state.activePage - 1) * 100 + 100 < arr.length
+        ? i < (this.state.activePage - 1) * 100 + 100
+        : i < arr.length;
       i++
     ) {
-      let id = this.state.college_programs.collegeProgramsData.SchoolPrograms[i]
-        .ID;
-      let college_id = id.substr(0, id.indexOf("-"));
+      var id = arr[i].ID;
+      var college_id = id.substr(0, id.indexOf("-"));
 
       if (!college_ids.includes(college_id)) {
         college_ids.push(college_id);
-        try {
-          const { data } = await axios({
-            //500 mile radius, 6000 records limit
-            method: "get",
-            timeout: 1000 * 30, //thirty second timeout
-            url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${college_id}`,
-          });
-          tmp.push({ college_id: college_id, data: data });
-          this.setState({
-            college_programs: {
-              ...this.state.college_programs,
-              collegeScorecardData: tmp,
-            },
-          });
-        } catch (e) {
-          tmp.push({ college_id: college_id, data: null });
-          this.setState({
-            college_programs: {
-              ...this.state.college_programs,
-              collegeScorecardData: tmp,
-            },
-          });
-        }
+        id_str += college_id + ",";
       }
+    }
+    id_str = id_str.substring(0, id_str.length - 1);
+
+    if (id_str !== "") {
+      try {
+        const { data } = await axios({
+          method: "get",
+          url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${id_str}&per_page=100&fields=id,latest.admissions`,
+        });
+        this.setState({
+          college_programs: {
+            ...this.state.college_programs,
+            collegeScorecardData: data,
+          },
+        });
+      } catch (e) {
+        this.setState({
+          college_programs: {
+            ...this.state.college_programs,
+            collegeScorecardData: null, //NO DATA FOR ANY COLLEGES, ERROR COULD'VE OCCURED
+          },
+        });
+      }
+    } else {
+      this.setState({
+        college_programs: {
+          ...this.state.college_programs,
+          collegeScorecardData: null, //NO DATA FOR ANY COLLEGES, ERROR COULD'VE OCCURED
+        },
+      });
     }
   };
 
@@ -245,6 +316,8 @@ class Prepare extends React.Component {
             updateHome={this.updateHome}
             getEducationLevels={this.getEducationLevels}
             getCollegePrograms={this.getCollegePrograms}
+            getCertifications={this.getCertifications}
+            getLicenses={this.getLicenses}
           />
         }
         open={this.state.sidebarOpen}
@@ -306,9 +379,11 @@ class Prepare extends React.Component {
               />
             ) : null}
             {this.state.activeTab === "certifications" ? (
-              <Certifications />
+              <Certifications certifications={this.state.certifications} />
             ) : null}
-            {this.state.activeTab === "licenses" ? <Licenses /> : null}
+            {this.state.activeTab === "licenses" ? (
+              <Licenses licenses={this.state.licenses} />
+            ) : null}
           </div>
           <br />
           <br />

@@ -11,32 +11,31 @@ class CollegePrograms extends React.Component {
   };
 
   displayAcceptance = (college_id) => {
-    if (this.props.college_programs.collegeScorecardData === undefined) {
-      return <p>loading</p>;
-    } else {
-      college_id = college_id.substr(0, college_id.indexOf("-"));
-      if (this.props.college_programs.collegeScorecardData.length > 0) {
-        var result = this.props.college_programs.collegeScorecardData.filter(
-          (obj) => {
-            return obj.college_id === college_id;
-          }
-        );
+    college_id = college_id.substr(0, college_id.indexOf("-"));
 
-        if (result.length > 0) {
-          return (
-            <p>
-              {
-                result[0].data.results[0].latest.admissions.admission_rate
-                  .by_ope_id
-              }
-            </p>
-          );
-        } else {
-          return <p>nap</p>;
+    if (this.props.college_programs.collegeScorecardData === undefined) {
+      return "loading";
+    } else if (this.props.college_programs.collegeScorecardData === null) {
+      return "n/a";
+    } else {
+      var str = "n/a";
+      for (
+        var i = 0;
+        i < this.props.college_programs.collegeScorecardData.results.length;
+        i++
+      ) {
+        if (
+          this.props.college_programs.collegeScorecardData.results[
+            i
+          ].id.toString() === college_id
+        ) {
+          var tmp = "latest.admissions.admission_rate.consumer_rate";
+          str = this.props.college_programs.collegeScorecardData.results[i][
+            tmp
+          ];
         }
-      } else {
-        return <p>na</p>;
       }
+      return str;
     }
   };
 
@@ -54,7 +53,7 @@ class CollegePrograms extends React.Component {
                 itemClass="page-item"
                 linkClass="page-link"
                 activePage={this.props.activePage}
-                itemsCountPerPage={5}
+                itemsCountPerPage={100}
                 totalItemsCount={
                   this.props.college_programs.collegeProgramsData.SchoolPrograms
                     .length
@@ -64,8 +63,8 @@ class CollegePrograms extends React.Component {
               />
               <CardColumns>
                 {this.props.college_programs.collegeProgramsData.SchoolPrograms.slice(
-                  (this.props.activePage - 1) * 5,
-                  (this.props.activePage - 1) * 5 + 5
+                  (this.props.activePage - 1) * 100,
+                  (this.props.activePage - 1) * 100 + 100
                 ).map((school) => {
                   return (
                     <Card
@@ -76,14 +75,14 @@ class CollegePrograms extends React.Component {
                         <h4 className="font-weight-light">
                           {school.SchoolName}
                         </h4>
-                        {this.displayAcceptance(school.ID)}
                         <small>
                           <b>
                             {school.City}, {school.StateAbbr}
                           </b>{" "}
                           {school.SchoolUrl}
                           <br />
-                          <b>Acceptance Rate: </b> 7%
+                          <b>Acceptance Rate: </b>
+                          {this.displayAcceptance(school.ID)}
                           <br />
                           <b>Size: </b> 1230 students
                           <br />
@@ -110,7 +109,7 @@ class CollegePrograms extends React.Component {
                 itemClass="page-item"
                 linkClass="page-link"
                 activePage={this.props.activePage}
-                itemsCountPerPage={5}
+                itemsCountPerPage={100}
                 totalItemsCount={
                   this.props.college_programs.collegeProgramsData.SchoolPrograms
                     .length

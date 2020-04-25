@@ -7,7 +7,7 @@ class Review extends Component {
 
     render() {
         return <div>
-            <h2 className="text-center font-weight-normal">Review Quiz: {this.props.quiz.name}</h2>
+            <h2 className="text-center font-weight-normal">Review Answers: {this.props.quiz.name}</h2>
             <hr />
             <div className="row text-center">
                 {this.props.quiz.questions.map((q, index) =>

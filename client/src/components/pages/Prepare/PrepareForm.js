@@ -18,6 +18,8 @@ const PrepareForm = (props) => {
       setShow(false);
       //props.getEducationLevels();
       props.getCollegePrograms();
+      props.getCertifications();
+      props.getLicenses();
     }
   };
 

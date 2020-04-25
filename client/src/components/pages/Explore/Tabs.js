@@ -31,7 +31,7 @@ const Tabs = (props) => {
         </Nav.Item>
         <Nav.Item>
           <Nav.Link eventKey="activities" style={{ borderRadius: "0px" }}>
-            Activities
+            Exploration Experience
           </Nav.Link>
         </Nav.Item>
       </Nav>

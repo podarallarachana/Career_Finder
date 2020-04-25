@@ -56,9 +56,9 @@ class Quiz extends Component {
                 {(this.props.mode !== 'submit') &&
                     <div>
                         <hr />
-                        <button id="quiz" className="btn btn-info" onClick={this.setMode}>Quiz</button>
-                        <button id="review" className="btn btn-info" onClick={this.setMode}>Review</button>
-                        <button id="submit" className="btn btn-primary" onClick={this.setMode}>Submit Quiz</button >
+                        <button id="quiz" className="btn btn-info" onClick={this.setMode}>Exploration Questions</button>
+                        <button id="review" className="btn btn-info" onClick={this.setMode}>Exploration Check</button>
+                        <button id="submit" className="btn btn-primary" onClick={this.setMode}>Answer Check</button >
                     </div >}
             </div>
         )
