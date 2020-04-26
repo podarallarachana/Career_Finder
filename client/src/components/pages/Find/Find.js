@@ -107,21 +107,34 @@ class Find extends React.Component {
   displayOptions = (type, num, title, hasSwitch) => {
     return (
       <div className="row justify-content-center">
-        <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+        <div
+          className="col-xs-12 col-sm-12 col-md-11 col-lg-11"
+          style={{
+            marginLeft: "15px",
+            marginRight: "15px",
+            paddingBottom: "15px",
+          }}
+        >
           {hasSwitch ? (
             <Form.Check
               type="switch"
               id={"switch_" + num}
-              label={<h5 className="font-weight-light">{title}</h5>}
+              label={
+                <p>
+                  <b>{title}</b>
+                </p>
+              }
               checked={this.state[type]}
               onChange={() => this.onSwitchChange(type)}
             />
           ) : (
-            <h5 className="font-weight-light">
-              <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
-              &nbsp;
-              {title}
-            </h5>
+            <p>
+              <b>
+                <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+                &nbsp;
+                {title}
+              </b>
+            </p>
           )}
           {!hasSwitch || (hasSwitch && this.state[type] === true) ? (
             <Fragment>
@@ -134,8 +147,8 @@ class Find extends React.Component {
                       this.state.user_inp.find((obj) => {
                         return obj.ElementName === data.ElementName;
                       }).Selected === true
-                        ? "primary btn-sm"
-                        : "light btn-sm"
+                        ? "light btn-sm"
+                        : "outline-light btn-sm"
                     }
                     className="optionsButton"
                     title={data.Question}
@@ -144,8 +157,6 @@ class Find extends React.Component {
                   </Button>
                 );
               })}
-              <br />
-              <br />
             </Fragment>
           ) : null}
         </div>
@@ -155,13 +166,29 @@ class Find extends React.Component {
 
   displayRecommendations = () => {
     if (this.state.recommendations === undefined) {
-      return <div>loading</div>;
+      return (
+        <div className="row justify-content-center">
+          <Spinner animation="grow" />
+        </div>
+      );
     } else if (this.state.recommendations === null) {
       return <div>sorry, unavailable right now</div>;
     } else {
+      var colors = [
+        "#8cd211",
+        "#5aa700",
+        "#de3364",
+        "#eb4f3c",
+        "#ff871e",
+        "#7cc7ff",
+        "#5aaafa",
+        "#5596e6",
+      ];
+
       return (
         <CardColumns>
           {this.state.recommendations.SKARankList.map((occupation) => {
+            var color = colors[Math.floor(Math.random() * 8)];
             return (
               <LinkContainer
                 to={"/explore/" + occupation.OnetCode}
@@ -169,9 +196,50 @@ class Find extends React.Component {
               >
                 <Card>
                   <Card.Body>
-                    <h4 className="font-weight-light">
+                    <h5 className="font-weight-light">
+                      <i
+                        className="fa fa-arrow-circle-right"
+                        aria-hidden="true"
+                        style={{
+                          color: color,
+                        }}
+                      ></i>{" "}
+                      <b
+                        style={{
+                          color: color,
+                        }}
+                      >
+                        #{occupation.Rank}{" "}
+                      </b>
                       {occupation.OccupationTitle}
-                    </h4>
+                    </h5>
+                    <small>
+                      <b>Education: </b>
+                      {occupation.TypicalEducation}
+                    </small>
+                    <br />
+                    <small>
+                      <b>Salary: </b>$
+                      {occupation.AnnualWages.toString().replace(
+                        /\B(?=(\d{3})+(?!\d))/g,
+                        ","
+                      )}
+                    </small>
+                    <hr />
+                    <div className="row justify-content-center">
+                      <Button
+                        style={{
+                          backgroundColor: color,
+                          color: "white",
+                          borderRadius: "20px",
+                          outline: "0px",
+                          border: "0px",
+                        }}
+                      >
+                        <i className="fa fa-link" aria-hidden="true"></i> Learn
+                        More
+                      </Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </LinkContainer>
@@ -203,32 +271,43 @@ class Find extends React.Component {
     return (
       <div>
         <Jumbotron
-          style={{ padding: "15px", color: "white" }}
+          style={{
+            paddingTop: "15px",
+            paddingLeft: "15px",
+            paddingRight: "15px",
+            color: "white",
+          }}
           className="filterheader"
         >
+          <br />
+          <br />
           <div className="row justify-content-center">
-            <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+            <div className="col-xs-12 col-sm-12 col-md-11 col-lg-11">
               <h1 className="font-weight-light">
-                Find the perfect career for you
+                <i
+                  className="fa fa-certificate"
+                  style={{ color: "#ffc107" }}
+                  aria-hidden="true"
+                ></i>
+                &nbsp;Find the perfect career for you
               </h1>
               <h6 className="font-weight-light">
                 <b>Instructions: </b> Answer at least one question to get
-                recommendations. You can pick multiple options per question
+                recommendations. You can pick multiple options per question.
               </h6>
-              <hr />
+              <br />
+              {/* <hr
+                style={{
+                  display: "block",
+                  height: "1px",
+                  border: "0px",
+                  borderTop: "1px solid #fff",
+                  margin: "1em 0",
+                  padding: "0",
+                }}
+              /> */}
             </div>
           </div>
-
-          {this.state.show ? (
-            <Alert
-              variant="danger"
-              onClose={() => this.setState({ show: false })}
-              dismissible
-            >
-              <Alert.Heading>No Selections</Alert.Heading>
-              <p>Make sure to select at least one option!</p>
-            </Alert>
-          ) : null}
           {this.displayOptions("subjects", 1, "I am interested in", false)}
           {this.displayOptions("skills", 2, "I am good at", false)}
           {this.displayOptions(
@@ -245,9 +324,19 @@ class Find extends React.Component {
           )}
           {this.displayOptions("people", 5, "I like to work with people", true)}
           {this.displayOptions("leader", 6, "I want to be a leader", true)}
-          <br />
+          {this.state.show ? (
+            <Alert
+              variant="danger"
+              onClose={() => this.setState({ show: false })}
+              dismissible
+            >
+              <Alert.Heading>No Selections</Alert.Heading>
+              <p>Make sure to select at least one option!</p>
+            </Alert>
+          ) : null}
           <Button
             onClick={this.validateAndFetch}
+            variant="warning"
             style={{
               border: "0px",
               display: "table",
@@ -257,8 +346,35 @@ class Find extends React.Component {
             Get Recommendations
           </Button>
         </Jumbotron>
-        <br />
-        {this.displayRecommendations()}
+        <div
+          style={{
+            paddingLeft: "15px",
+            paddingRight: "15px",
+            paddingBottom: "15px",
+          }}
+        >
+          <div className="row">
+            <div className="col-md-6">
+              <span className="pull-left font-weight-light">
+                {this.state.recommendations
+                  ? this.state.recommendations.SKARankList.length + " results"
+                  : null}
+              </span>
+            </div>
+            <div className="col-md-6">
+              <span className="pull-right">
+                <Form.Group style={{ width: "300px" }}>
+                  <Form.Control as="select">
+                    <option>order by rank</option>
+                    <option>order by salary</option>
+                    <option>order by education</option>
+                  </Form.Control>
+                </Form.Group>
+              </span>
+            </div>
+          </div>
+          {this.displayRecommendations()}
+        </div>
       </div>
     );
   }

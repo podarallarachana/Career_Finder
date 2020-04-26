@@ -26,7 +26,7 @@ const PrepareForm = (props) => {
   const getJobs = () => {
     return (
       <Form.Group>
-        <Form.Label>Occupation</Form.Label>
+        <Form.Label style={{ color: "white" }}>Occupation</Form.Label>
         <Form.Control
           as="select"
           defaultValue={props.user_inp.Occupation}
@@ -51,6 +51,7 @@ const PrepareForm = (props) => {
   return (
     <div className="prepare-sidenav">
       <Form>
+        <h4 style={{ color: "white" }}>Parameters</h4>
         {getJobs()}
         {show ? (
           <Alert variant="danger" onClose={() => setShow(false)} dismissible>
@@ -61,7 +62,9 @@ const PrepareForm = (props) => {
             </p>
           </Alert>
         ) : null}
-        <label htmlFor="location">ZIP Code</label>
+        <label htmlFor="location" style={{ color: "white" }}>
+          ZIP Code
+        </label>
         <InputGroup className="mb-3">
           <FormControl
             id="location"
@@ -73,6 +76,7 @@ const PrepareForm = (props) => {
         </InputGroup>
 
         <Form.Check
+          style={{ color: "white" }}
           onChange={props.updateHome}
           type="checkbox"
           id="home"
@@ -80,6 +84,7 @@ const PrepareForm = (props) => {
         />
         <br />
         <Button
+          variant="light"
           onClick={validateAndFetch}
           style={{
             border: "0px",

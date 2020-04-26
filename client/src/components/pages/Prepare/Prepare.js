@@ -319,6 +319,8 @@ class Prepare extends React.Component {
             getCertifications={this.getCertifications}
             getLicenses={this.getLicenses}
           />
+          //              <EducationLevel education_level={this.state.education_level} />
+          // <br />
         }
         open={this.state.sidebarOpen}
         docked={this.state.sidebarDocked}
@@ -328,13 +330,11 @@ class Prepare extends React.Component {
             top: 56,
           },
           sidebar: {
-            backgroundColor: "#ffffff",
+            backgroundColor: "#ff683c",
           },
         }}
       >
         <div className="prepare">
-          {/* <EducationLevel education_level={this.state.education_level} />
-        <br /> */}
           <div>
             <Nav
               fill

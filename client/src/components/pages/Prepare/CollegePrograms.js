@@ -3,6 +3,8 @@ import Pagination from "react-js-pagination";
 import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
 import CollegeDetails from "./CollegeDetails";
+import Spinner from "react-bootstrap/Spinner";
+import { Alert } from "react-bootstrap";
 
 class CollegePrograms extends React.Component {
   showDetails = () => {
@@ -41,9 +43,23 @@ class CollegePrograms extends React.Component {
 
   displayData = () => {
     if (this.props.college_programs.collegeProgramsData === undefined) {
-      return <div>loading</div>;
+      return (
+        <div className="colleges row justify-content-center">
+          <Spinner animation="grow" />
+        </div>
+      );
     } else if (this.props.college_programs.collegeProgramsData === null) {
-      return <div>sorry, unavailable right now</div>;
+      return (
+        <div className="colleges row justify-content-center">
+          <Alert variant="danger">
+            <Alert.Heading>Not Available</Alert.Heading>
+            <p>
+              Try again, the connection may be weak or your parameters may be
+              too specific.
+            </p>
+          </Alert>
+        </div>
+      );
     } else {
       return (
         <Fragment>
