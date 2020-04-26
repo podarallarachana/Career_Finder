@@ -1,10 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
+
 /*
 Student will be able to see their info such as name, id, and points
  */
-
 const MyInfo = ({ authorization: { isAuthenticated, user } }) => {
   return (
     <div>

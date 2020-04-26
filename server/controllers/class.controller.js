@@ -1,6 +1,5 @@
 const Class = require("../models/class.model");
 const User = require("../models/user.model");
-const Student = require("../models/student.model");
 
 /*
 very basic creates a class with 16 quizzes and one teacher
@@ -55,11 +54,11 @@ exports.getClass = async (req,res) => {
     }
 };
 
-//work in progress
+//adds student to class
 exports.addStudent = async  (req,res) => {
     try {
         await Class.findOne({_id : req.body.id}).then( async function(result) {
-            result.ofStudentId.push(req.body.studentId);
+            result.ofStudentId.push(req.body.studentID);
             await result.save();
             res.status(200).send("Added");
         });
@@ -68,46 +67,43 @@ exports.addStudent = async  (req,res) => {
     }
 };
 
-//get student for the purposes of points
-exports.getStudent = async (req,res) => {
+//removes student from class
+exports.removeStudent = async  (req,res) => {
     try {
-        await Student.findOne({studentId: req.query.id}).then( async function(result) {
-            res.status(200).send(result);
+        await Class.findOne({_id : req.body.id}).then( async function(result) {
+            result.ofStudentId.splice(result.ofStudentId.indexOf(req.body.studentID),1);
+            await result.save();
+            res.status(200).send("Removed");
         });
     } catch (err) {
         res.status(400).send("Error");
     }
 };
-
-//creates students for teh purpose of points
-exports.createStudent = async (req,res) => {
-    try {
-        let student = new Student({
-            name : req.body.name,
-            studentId : req.body.id,
-            points : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        });
-        await student.save();
-        res.status(200).send("Saved");
-    } catch (err) {
-        res.status(404).send("Error");
-    }
-};
-
 /*
 takes quiz number starting at 0 for the first module, points for number of points awarded, and id for student id,
  */
-
 exports.addPoints = async (req,res) => {
     try {
-        await Student.findOne({studentId: req.query.id}).then( async function(result) {
-            console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
-            result.points.splice(parseInt(req.query.quiz),1,((result.points[req.query.quiz]) + parseInt(req.query.points)));
-            await result.save();
+        await User.findById(req.body.id).then( async function(result) {
+            result.points.splice(parseInt(req.body.quiz), 1, ((result.points[req.body.quiz]) + parseInt(req.body.points)));
+            await Student.findOne({studentId: req.query.id}).then(async function (result) {
+                console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
+                result.points.splice(parseInt(req.query.quiz), 1, ((result.points[req.query.quiz]) + parseInt(req.query.points)));
+                await result.save();
+                res.status(200).send(result);
+            });
+        })
+    } catch (err) {
+        res.status(400).send("Error");
+    }
+};
+
+exports.getPoints = async (req,res) => {
+    try {
+        await User.findById(req.query.id).then( async function(result) {
             res.status(200).send(result);
         });
     } catch (err) {
         res.status(400).send("Error");
     }
 };
-

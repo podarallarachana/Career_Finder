@@ -21,13 +21,11 @@ router.get("/", classRoom.getClass);
 //add student to class
 router.post("/student", classRoom.addStudent);
 
+//removes student from class
+router.put("/student", classRoom.removeStudent);
+
 //add teacher to class
-
-//get specific student info
-router.get("/student/info",classRoom.getStudent);
-
-//creates new student
-router.post("/student/create", classRoom.createStudent);
+router.get("/student/points", classRoom.getPoints);
 
 //adds quiz points for students
 router.put("/student/points", classRoom.addPoints);
