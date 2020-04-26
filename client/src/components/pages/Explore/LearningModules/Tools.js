@@ -11,7 +11,7 @@ const Tools = (props) => {
         <Fragment key={tool.Title}>
           <b>
             <i
-              style={{ color: "#ffc800" }}
+              style={{ color: "#90caf9" }}
               className="fa fa-arrow-circle-right"
               aria-hidden="true"
             ></i>{" "}
@@ -39,7 +39,7 @@ const Tools = (props) => {
           <Fragment key={tool.Title}>
             <b>
               <i
-                style={{ color: "#ffc800" }}
+                style={{ color: "#90caf9" }}
                 className="fa fa-arrow-circle-right"
                 aria-hidden="true"
               ></i>{" "}
@@ -68,7 +68,7 @@ const Tools = (props) => {
           <i
             className="fa fa-camera"
             aria-hidden="true"
-            style={{ color: "#ffc800" }}
+            style={{ color: "#4178be" }}
           ></i>{" "}
           Tools
         </h3>

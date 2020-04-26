@@ -11,7 +11,7 @@ const Related = (props) => {
         <Fragment key={key}>
           <LinkContainer to={"/explore/" + key}>
             <Button
-              variant="outline-danger btn-sm"
+              variant="light btn-sm"
               className="optionsButton"
               onClick={() => updateActives(key)}
             >
@@ -45,7 +45,7 @@ const Related = (props) => {
         <h3 className="font-weight-light">
           <i
             className="fa fa-link"
-            style={{ color: "#e71d32" }}
+            style={{ color: "#5aa700" }}
             aria-hidden="true"
           ></i>{" "}
           Related

@@ -18,8 +18,8 @@ const OccupationOptions = (props) => {
                   }}
                   variant={
                     pathway.Pathway === props.activePathway
-                      ? "warning btn-sm"
-                      : "light btn-sm"
+                      ? "light btn-sm"
+                      : "outline-light btn-sm"
                   }
                   className="optionsButton"
                 >
@@ -51,8 +51,8 @@ const OccupationOptions = (props) => {
                     }}
                     variant={
                       job.Code === props.activeOccupation
-                        ? "warning btn-sm"
-                        : "outline-warning btn-sm"
+                        ? "light btn-sm"
+                        : "outline-light btn-sm"
                     }
                     className="optionsButton"
                   >

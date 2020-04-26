@@ -1,26 +1,23 @@
 import React, { Fragment } from "react";
 import Card from "react-bootstrap/Card";
 
-const Interests = props => {
+const Interests = (props) => {
   const dispayInterests = () =>
-    props.data.OccupationDetail[0].InterestDataList.map(interest => {
+    props.data.OccupationDetail[0].InterestDataList.map((interest) => {
       return (
         <Fragment key={interest.ElementName}>
           <Card
-            variant="light btn-sm"
             title={interest.ElementDescription}
             style={{
-              backgroundColor: "#8cd211",
-              color: "white",
+              backgroundColor: "#f5f5f5",
               border: "0px",
-              marginBottom: "5px"
+              marginBottom: "5px",
             }}
           >
             <Card.Body>
               <h6>
                 {" "}
                 <i
-                  style={{ color: "white" }}
                   className="fa fa-arrow-circle-right"
                   aria-hidden="true"
                 ></i>{" "}

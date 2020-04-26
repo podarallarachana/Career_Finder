@@ -11,7 +11,7 @@ const Tasks = (props) => {
         <Fragment key={task.TaskId}>
           <h6 className="font-weight-light">
             <i
-              style={{ color: "#ffafb4" }}
+              style={{ color: "#c8f08f" }}
               className="fa fa-arrow-right"
               aria-hidden="true"
             ></i>{" "}
@@ -27,7 +27,7 @@ const Tasks = (props) => {
         <Fragment key={task.TaskId}>
           <h6 className="font-weight-light">
             <i
-              style={{ color: "#ffafb4" }}
+              style={{ color: "#c8f08f" }}
               className="fa fa-arrow-right"
               aria-hidden="true"
             ></i>{" "}
@@ -43,7 +43,7 @@ const Tasks = (props) => {
         <Card.Body>
           <h3 className="font-weight-light">
             <i
-              style={{ color: "#ff5050" }}
+              style={{ color: "#5aa700" }}
               className="fa fa-tasks"
               aria-hidden="true"
             ></i>{" "}

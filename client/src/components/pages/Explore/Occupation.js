@@ -6,6 +6,8 @@ import Tabs from "./Tabs";
 import axios from "axios";
 import OccupationOptions from "./OccupationOptions";
 import Search from "./Search";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 
 const mql = window.matchMedia(`(min-width: 800px)`); //FOR SIDENAV
 
@@ -113,8 +115,9 @@ class Occupation extends React.Component {
   };
 
   updateActiveOccupation = (occupation) => {
-    this.setState({ activeOccupation: occupation, data: undefined }, () =>
-      this.getData()
+    this.setState(
+      { activeOccupation: occupation, data: undefined, toolsData: undefined },
+      () => this.getData()
     );
   };
 
@@ -158,13 +161,32 @@ class Occupation extends React.Component {
       >
         {this.state.activeCluster !== "Search" ? (
           <Fragment>
-            <OccupationOptions
-              activeCluster={this.state.activeCluster}
-              activePathway={this.state.activePathway}
-              activeOccupation={this.state.activeOccupation}
-              updateActivePathway={this.updateActivePathway}
-              updateActiveOccupation={this.updateActiveOccupation}
-            />
+            <Accordion>
+              <Card>
+                <Accordion.Toggle
+                  as={Card.Header}
+                  eventKey="0"
+                  className="font-weight-light"
+                  style={{ backgroundColor: "white" }}
+                >
+                  <i
+                    className="fa fa-bars"
+                    style={{ color: "#8cd211" }}
+                    aria-hidden="true"
+                  ></i>
+                  &nbsp;&nbsp; Explore Occupations
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="0">
+                  <OccupationOptions
+                    activeCluster={this.state.activeCluster}
+                    activePathway={this.state.activePathway}
+                    activeOccupation={this.state.activeOccupation}
+                    updateActivePathway={this.updateActivePathway}
+                    updateActiveOccupation={this.updateActiveOccupation}
+                  />
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
             <Tabs
               data={this.state.data}
               toolsData={this.state.toolsData}

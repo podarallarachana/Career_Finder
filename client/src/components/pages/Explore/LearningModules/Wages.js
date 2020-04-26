@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import { Nav } from "react-bootstrap";
 import { Bar } from "react-chartjs-2";
 
-const Wages = props => {
+const Wages = (props) => {
   const [annualGraphData, setAnnualGraphData] = useState({});
   const [hourlyGraphData, setHourlyGraphData] = useState({});
   const [graphData, setGraphData] = useState({});
@@ -11,7 +11,7 @@ const Wages = props => {
   const [annual, setAnnual] = useState(0);
   const [hourly, setHourly] = useState(0);
 
-  const handleSelect = newTab => {
+  const handleSelect = (newTab) => {
     if (newTab !== activeTab) {
       if (newTab === "annual") {
         setGraphData(annualGraphData);
@@ -28,7 +28,7 @@ const Wages = props => {
       "Bottom 25% of Employees",
       "The Average Employee",
       "Top 25% of Employees",
-      "Top 10% of Employees"
+      "Top 10% of Employees",
     ];
 
     var annual = [];
@@ -43,7 +43,7 @@ const Wages = props => {
         props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct25,
         props.data.OccupationDetail[0].Wages.NationalWagesList[0].Median,
         props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct75,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90
+        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90,
       ];
 
       hourly = [
@@ -51,7 +51,7 @@ const Wages = props => {
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct25,
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Median,
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct75,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90
+        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90,
       ];
       setAnnual(0);
       setHourly(1);
@@ -61,7 +61,7 @@ const Wages = props => {
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct25,
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Median,
         props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct75,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90
+        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90,
       ];
 
       hourly = [
@@ -69,7 +69,7 @@ const Wages = props => {
         props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct25,
         props.data.OccupationDetail[0].Wages.NationalWagesList[0].Median,
         props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct75,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90
+        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90,
       ];
       setAnnual(1);
       setHourly(0);
@@ -85,10 +85,10 @@ const Wages = props => {
             "#7cc7ff",
             "#5aaafa",
             "#5596e6",
-            "#4178be"
-          ]
-        }
-      ]
+            "#4178be",
+          ],
+        },
+      ],
     });
 
     setHourlyGraphData({
@@ -101,10 +101,10 @@ const Wages = props => {
             "#7cc7ff",
             "#5aaafa",
             "#5596e6",
-            "#4178be"
-          ]
-        }
-      ]
+            "#4178be",
+          ],
+        },
+      ],
     });
 
     setGraphData({
@@ -117,10 +117,10 @@ const Wages = props => {
             "#7cc7ff",
             "#5aaafa",
             "#5596e6",
-            "#4178be"
-          ]
-        }
-      ]
+            "#4178be",
+          ],
+        },
+      ],
     });
   }, [props.data.OccupationDetail]);
 
@@ -169,18 +169,18 @@ const Wages = props => {
                 xAxes: [
                   {
                     ticks: {
-                      display: false
-                    }
-                  }
-                ]
+                      display: false,
+                    },
+                  },
+                ],
               },
               title: {
-                display: false
+                display: false,
               },
               legend: {
-                display: false
+                display: false,
               },
-              responsive: true
+              responsive: true,
             }}
             data={graphData}
             redraw

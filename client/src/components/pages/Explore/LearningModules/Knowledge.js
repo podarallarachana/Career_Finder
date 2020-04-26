@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Doughnut } from "react-chartjs-2";
 
-const Knowledge = props => {
+const Knowledge = (props) => {
   const [showAll, setShowAll] = useState(false);
   const [show, setShow] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
@@ -17,13 +17,13 @@ const Knowledge = props => {
     var obj = props.data.OccupationDetail[0].KnowledgeDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     ).slice(0, 15);
-    var labels = Object.keys(obj).map(function(key) {
+    var labels = Object.keys(obj).map(function (key) {
       return obj[key].ElementName + " Importance Value";
     });
-    var values = Object.keys(obj).map(function(key) {
+    var values = Object.keys(obj).map(function (key) {
       return parseInt(obj[key].Importance);
     });
-    var colors = Object.keys(obj).map(function(key) {
+    var colors = Object.keys(obj).map(function (key) {
       return getColor(parseInt(obj[key].Importance));
     });
 
@@ -32,13 +32,13 @@ const Knowledge = props => {
       datasets: [
         {
           data: values,
-          backgroundColor: colors
-        }
-      ]
+          backgroundColor: colors,
+        },
+      ],
     });
   }, [props.data.OccupationDetail]);
 
-  const getImportance = val => {
+  const getImportance = (val) => {
     if (val <= 55) {
       return "low";
     } else if (val > 55 && val <= 65) {
@@ -48,22 +48,22 @@ const Knowledge = props => {
     }
   };
 
-  const getColor = val => {
+  const getColor = (val) => {
     if (val <= 55) {
-      return "#f55353";
+      return "#2d660a";
     } else if (val > 55 && val <= 65) {
-      return "#fa8e8e";
+      return "#5aa700";
     } else if (val > 65) {
-      return "#fab6b6";
+      return "#8cd211";
     }
   };
 
   const handleClose = () => setShow(false);
 
-  const handleShow = e => {
+  const handleShow = (e) => {
     setShow(true);
     setSelectedOption(e.target.innerText.slice(0, -1));
-    props.data.OccupationDetail[0].KnowledgeDataList.filter(obj => {
+    props.data.OccupationDetail[0].KnowledgeDataList.filter((obj) => {
       if (obj.ElementName === e.target.innerText.slice(0, -1)) {
         setSelectedDescription(obj.ElementDescription);
         setSelectedImportance(getImportance(obj.Importance));
@@ -73,13 +73,13 @@ const Knowledge = props => {
     });
   };
 
-  const handleGraphShow = elems => {
+  const handleGraphShow = (elems) => {
     if (elems[0] !== undefined) {
       setShow(true);
       setSelectedOption(
         graphData.labels[elems[0]._index].replace(" Importance Value", "")
       );
-      props.data.OccupationDetail[0].KnowledgeDataList.filter(obj => {
+      props.data.OccupationDetail[0].KnowledgeDataList.filter((obj) => {
         if (
           obj.ElementName ===
           graphData.labels[elems[0]._index].replace(" Importance Value", "")
@@ -94,7 +94,7 @@ const Knowledge = props => {
   };
 
   const displayKnowledge = () =>
-    props.data.OccupationDetail[0].KnowledgeDataList.map(knowledge => {
+    props.data.OccupationDetail[0].KnowledgeDataList.map((knowledge) => {
       return (
         <Fragment key={knowledge.ElementName}>
           <Button
@@ -119,7 +119,7 @@ const Knowledge = props => {
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     )
       .slice(0, 15)
-      .map(knowledge => {
+      .map((knowledge) => {
         return (
           <Fragment key={knowledge.ElementName}>
             <Button
@@ -174,17 +174,17 @@ const Knowledge = props => {
           <br />
           <div>
             <Doughnut
-              onElementsClick={elems => {
+              onElementsClick={(elems) => {
                 handleGraphShow(elems);
               }}
               data={graphData}
               options={{
                 title: {
-                  display: false
+                  display: false,
                 },
                 legend: {
-                  display: false
-                }
+                  display: false,
+                },
               }}
             />
           </div>

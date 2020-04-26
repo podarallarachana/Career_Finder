@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 
-const LearningModulesHeader = props => {
+const LearningModulesHeader = (props) => {
   const displayData = () => {
     if (props.data === undefined) {
       return null;
@@ -9,41 +9,38 @@ const LearningModulesHeader = props => {
     } else {
       return (
         <Fragment>
-          <div className="learningModules">
-            {" "}
+          <div
+            style={{
+              padding: "15px",
+              backgroundColor: "#5596e6",
+              color: "white",
+            }}
+          >
             <h1 className="font-weight-light">
-              <i className="fa fa-caret-right" aria-hidden="true"></i>{" "}
+              <i className="fa fa-certificate" aria-hidden="true"></i>{" "}
               {props.data.OccupationDetail[0].OnetTitle}
             </h1>
-            <h5 className="font-weight-light">
+            <h6 className="font-weight-light">
               <b>Description: </b>
               {props.data.OccupationDetail[0].OnetDescription}
-            </h5>
+            </h6>
             <h6 className="font-weight-light">
-              <b>
-                <i className="fa fa-envira" style={{}} aria-hidden="true"></i>{" "}
-                Is this job environmentally friendly?{" "}
-              </b>
+              <b>Eco Friendly: </b>
               {props.data.OccupationDetail[0].Green}
             </h6>
-            <br />
-            <div className="row">
-              <div className="col-12"></div>
-            </div>
-            <div className="row">
-              <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <video width="100%" controls autoPlay muted loop>
-                  <source
-                    src={
-                      "https://cdn.careeronestop.org/OccVids/OccupationVideos/" +
-                      "13-2011.01" +
-                      ".mp4"
-                    }
-                    type="video/mp4"
-                  />
-                </video>
-              </div>
-            </div>
+          </div>
+
+          <div>
+            <video width="100%" controls autoPlay muted loop>
+              <source
+                src={
+                  "https://cdn.careeronestop.org/OccVids/OccupationVideos/" +
+                  (props.data ? props.data.OccupationDetail[0].OnetCode : "") +
+                  ".mp4"
+                }
+                type="video/mp4"
+              />
+            </video>
           </div>
         </Fragment>
       );

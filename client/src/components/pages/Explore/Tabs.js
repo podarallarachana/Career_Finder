@@ -5,6 +5,7 @@ import LearningModulesHeader from "./LearningModules/LearningModulesHeader";
 import ToolsTech from "./LearningModules/ToolsTech";
 import GotoQuiz from "../InteractiveTools/start-quiz";
 import CardColumns from "react-bootstrap/CardColumns";
+import Spinner from "react-bootstrap/Spinner";
 
 const Tabs = (props) => {
   const [activeTab, setActiveTab] = useState("learningModules");
@@ -42,20 +43,29 @@ const Tabs = (props) => {
         <Fragment>
           <LearningModulesHeader data={props.data} />
           <div className="learningModules">
-            <CardColumns>
-              <LearningModules
-                updateActives={props.updateActives}
-                data={props.data}
-              />
-              <ToolsTech toolsData={props.toolsData} />
-            </CardColumns>
+            {props.data === undefined ? (
+              <div className="learningModules">
+                <div className="row justify-content-center">
+                  <Spinner animation="grow" />
+                </div>
+              </div>
+            ) : null}
+            {props.data === null ? (
+              <div className="learningModules">No</div>
+            ) : null}
+            {props.data !== null && props.data !== undefined ? (
+              <CardColumns>
+                <LearningModules
+                  updateActives={props.updateActives}
+                  data={props.data}
+                />
+                <ToolsTech toolsData={props.toolsData} />
+              </CardColumns>
+            ) : null}
           </div>
         </Fragment>
-        
       ) : (
-        <GotoQuiz
-          code={careerCode}
-        />
+        <GotoQuiz code={careerCode} />
       )}
     </Fragment>
   );
