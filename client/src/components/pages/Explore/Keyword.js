@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import { Form, Alert, Button } from "react-bootstrap";
@@ -15,11 +15,12 @@ const Keyword = (props) => {
 
   useEffect(() => {
     getOccupations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchResults = () => {
     var user_inp = inp.trim();
-    if (user_inp.indexOf(" ") >= 0) {
+    if (user_inp.indexOf(" ") >= 0 || user_inp === "") {
       setShow(true);
       setResults(null);
     } else {

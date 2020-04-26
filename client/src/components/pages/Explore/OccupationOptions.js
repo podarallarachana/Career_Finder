@@ -1,31 +1,30 @@
-import React, { Fragment } from "react";
+import React from "react";
 import data from "./Data.json";
 import { Jumbotron, Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-const OccupationOptions = props => {
+const OccupationOptions = (props) => {
   const displayPathways = () =>
-    data.map(data => {
+    data.map((data) => {
       if (props.activeCluster === data.CareerCluster) {
         return (
           <div className="col-12" key={data.CareerCluster}>
-            {data.CareerPathway.map(pathway => {
+            {data.CareerPathway.map((pathway) => {
               return (
-                <Fragment key={pathway.Pathway}>
-                  <Button
-                    onClick={() => {
-                      props.updateActivePathway(pathway.Pathway);
-                    }}
-                    variant={
-                      pathway.Pathway === props.activePathway
-                        ? "warning btn-sm"
-                        : "light btn-sm"
-                    }
-                    className="optionsButton"
-                  >
-                    {pathway.Pathway}
-                  </Button>{" "}
-                </Fragment>
+                <Button
+                  key={pathway.Pathway}
+                  onClick={() => {
+                    props.updateActivePathway(pathway.Pathway);
+                  }}
+                  variant={
+                    pathway.Pathway === props.activePathway
+                      ? "warning btn-sm"
+                      : "light btn-sm"
+                  }
+                  className="optionsButton"
+                >
+                  {pathway.Pathway}
+                </Button>
               );
             })}
             <hr />
@@ -41,32 +40,27 @@ const OccupationOptions = props => {
       return (
         <div className="col-12" key={data.CareerCluster}>
           {data
-            .find(x => x.CareerCluster === props.activeCluster)
-            .CareerPathway.find(x => x.Pathway === props.activePathway)
-            .Jobs.map(job => {
+            .find((x) => x.CareerCluster === props.activeCluster)
+            .CareerPathway.find((x) => x.Pathway === props.activePathway)
+            .Jobs.map((job) => {
               return (
-                <Fragment key={job.Code}>
-                  <LinkContainer
-                    key={data.CareerCluster}
-                    to={"/explore/" + job.Code}
+                <LinkContainer key={job.Code} to={"/explore/" + job.Code}>
+                  <Button
+                    onClick={() => {
+                      props.updateActiveOccupation(job.Code);
+                    }}
+                    variant={
+                      job.Code === props.activeOccupation
+                        ? "warning btn-sm"
+                        : "outline-warning btn-sm"
+                    }
+                    className="optionsButton"
                   >
-                    <Button
-                      onClick={() => {
-                        props.updateActiveOccupation(job.Code);
-                      }}
-                      variant={
-                        job.Code === props.activeOccupation
-                          ? "warning btn-sm"
-                          : "outline-warning btn-sm"
-                      }
-                      className="optionsButton"
-                    >
-                      {job.Occupation}
-                    </Button>
-                  </LinkContainer>{" "}
-                </Fragment>
+                    {job.Occupation}
+                  </Button>
+                </LinkContainer>
               );
-            })}{" "}
+            })}
         </div>
       );
     } else {

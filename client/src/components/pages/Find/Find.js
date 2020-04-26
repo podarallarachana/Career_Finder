@@ -8,22 +8,28 @@ class Find extends React.Component {
     //console.log(findData[0].Subjects);
   }
 
-  displaySubjects = type => {
+  displayOptions = (type, num, title) => {
     return (
-      <div className="col-12">
-        {findData[0][type].map(data => {
-          return (
-            <Fragment key={data.ElementName}>
-              <Button
-                variant="light btn-sm"
-                className="optionsButton"
-                title={data.Question}
-              >
-                {data.ElementName}
-              </Button>{" "}
-            </Fragment>
-          );
-        })}
+      <div className="row justify-content-center">
+        <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+          <h6 className="font-weight-light">
+            <b>{num}. </b> {title}
+          </h6>
+          <br />
+          {findData[0][type].map((data) => {
+            return (
+              <Fragment key={data.ElementName}>
+                <Button
+                  variant="light btn-sm"
+                  className="optionsButton"
+                  title={data.Question}
+                >
+                  {data.ElementName}
+                </Button>
+              </Fragment>
+            );
+          })}
+        </div>
       </div>
     );
   };
@@ -31,40 +37,30 @@ class Find extends React.Component {
   render() {
     return (
       <div className="find">
-        <h1 className="font-weight-light">Find the perfect career for you!</h1>
-        <i>
-          You do not need to fill out every section. Only pick the skills that
-          apply to you, you can pick as many as you like.
-        </i>
-        <br />
-        <br />
-        <Card className="row find-quiz">
-          <Form>
-            <h4 className="font-weight-light">My favorite subjects are:</h4>
-            <br />
-            {this.displaySubjects("Subjects")}
-            <br />
-            <h4 className="font-weight-light">I am good at:</h4>
-            <br />
-            {this.displaySubjects("PersonalityTraits")}
-            <br />
-            <h4 className="font-weight-light">I like working with people:</h4>
-            <br />
-            {this.displaySubjects("PersonalityTraits")}
-            <br />
-            <h4 className="font-weight-light">I like working with my hands:</h4>
-            <br />
-            {this.displaySubjects("PersonalityTraits")}
-            <br />
-            <h4 className="font-weight-light">I like technology:</h4>
-            <br />
-            {this.displaySubjects("Technology")}
-            <br />
-            <h4 className="font-weight-light">I'm good at managing things:</h4>
-            <br />
-            {this.displaySubjects("Management")}
-            <br />
-          </Form>
+        <Card style={{ padding: "15px" }}>
+          <h1 className="font-weight-light">
+            Find the perfect career for you!
+          </h1>
+          <h6 className="font-weight-light">
+            <b>Instructions: </b> Answer 6 easy questions to get career
+            recommendations for you.
+          </h6>
+          <br />
+          {this.displayOptions("skills", 1, "I am good at:")}
+          <hr />
+          {this.displayOptions("subjects", 2, "I am interested in:")}
+          <hr />
+          {this.displayOptions("physical", 3, "I like to work with my hands:")}
+          <hr />
+          {this.displayOptions(
+            "technology",
+            4,
+            "I like to work with these technologies:"
+          )}
+          <hr />
+          {this.displayOptions("people", 5, "I like to work with people:")}
+          <hr />
+          {this.displayOptions("leader", 6, "I want to be a leader:")}
         </Card>
       </div>
     );
