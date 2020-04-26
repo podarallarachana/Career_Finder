@@ -4,9 +4,43 @@ import Card from "react-bootstrap/Card";
 import { Button, Form } from "react-bootstrap";
 
 class Find extends React.Component {
-  componentDidMount() {
-    //console.log(findData[0].Subjects);
+  constructor(props) {
+    super(props);
+    this.state = {
+      user_inp: [],
+    };
+    var arr = [
+      "skills",
+      "subjects",
+      "physical",
+      "technology",
+      "people",
+      "leader",
+    ];
+    for (var j = 0; j < arr.length; j++) {
+      for (var i = 0; i < findData[0][arr[j]].length; i++) {
+        this.state.user_inp.push({
+          ElementName: findData[0][arr[j]][i].ElementName,
+          ElementId: findData[0][arr[j]][i].ElementId,
+          Selected: false,
+          OnVal: findData[0][arr[j]][i].DataPoint80,
+          OffVal: findData[0][arr[j]][i].DataPoint20,
+        });
+      }
+    }
   }
+
+  componentDidMount() {}
+
+  onUserInp = (e) => {
+    var tmp = this.state.user_inp;
+    var result = tmp.find((obj) => {
+      return obj.ElementName === e.target.innerHTML;
+    });
+    var isSelected = result.Selected;
+    result.Selected = !isSelected;
+    this.setState({ user_inp: tmp });
+  };
 
   displayOptions = (type, num, title) => {
     return (
@@ -20,7 +54,14 @@ class Find extends React.Component {
             return (
               <Fragment key={data.ElementName}>
                 <Button
-                  variant="light btn-sm"
+                  onClick={this.onUserInp}
+                  variant={
+                    this.state.user_inp.find((obj) => {
+                      return obj.ElementName === data.ElementName;
+                    }).Selected === true
+                      ? "primary btn-sm"
+                      : "light btn-sm"
+                  }
                   className="optionsButton"
                   title={data.Question}
                 >
