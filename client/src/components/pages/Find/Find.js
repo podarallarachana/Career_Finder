@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import findData from "./FindData.json";
 import Card from "react-bootstrap/Card";
 import { Button, Form } from "react-bootstrap";
+import axios from "axios";
 
 class Find extends React.Component {
   constructor(props) {
@@ -12,6 +13,7 @@ class Find extends React.Component {
       technology: false,
       people: true,
       leader: false,
+      recommendations: undefined,
     };
     var arr = [
       "skills",
@@ -30,12 +32,50 @@ class Find extends React.Component {
             findData[0][arr[j]][i].ElementName === "Science" ? true : false,
           OnVal: findData[0][arr[j]][i].DataPoint80,
           OffVal: findData[0][arr[j]][i].DataPoint20,
+          Type: arr[j],
         });
       }
     }
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    this.getRecommendations();
+  }
+
+  getRecommendations = async () => {
+    var tmp = { SKAValueList: [] };
+    for (var i = 0; i < this.state.user_inp.length; i++) {
+      var val =
+        this.state.user_inp[i].Selected === true
+          ? this.state.user_inp[i].OnVal
+          : this.state.user_inp[i].OffVal;
+      tmp.SKAValueList.push({
+        ElementId: this.state.user_inp[i].ElementId,
+        DataValue: val,
+      });
+    }
+    console.log(tmp);
+    this.setState({
+      recommendations: undefined,
+    });
+    try {
+      const { data } = await axios({
+        method: "post",
+        url: `https://api.careeronestop.org/v1/skillsmatcher/${process.env.REACT_APP_USER_ID}`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+        },
+        data: tmp,
+      });
+      this.setState({
+        recommendations: data,
+      });
+    } catch (e) {
+      this.setState({
+        recommendations: null,
+      });
+    }
+  };
 
   onUserInp = (e) => {
     var tmp = this.state.user_inp;
@@ -45,6 +85,26 @@ class Find extends React.Component {
     var isSelected = result.Selected;
     result.Selected = !isSelected;
     this.setState({ user_inp: tmp });
+  };
+
+  onSwitchChange = (type) => {
+    var tmp = this.state[type];
+    var arr = this.state.user_inp;
+
+    //RESET ALL ELEMENTS TO FALSE ON SWITCH CHANGE
+    for (var i = 0; i < arr.length; i++) {
+      if (arr[i].Type === type) {
+        var obj = arr[i];
+        arr[i] = {
+          ElementName: obj.ElementName,
+          ElementId: obj.ElementId,
+          Selected: false,
+          OnVal: obj.DataPoint80,
+          OffVal: obj.DataPoint20,
+        };
+      }
+    }
+    this.setState({ [type]: !tmp, user_inp: arr });
   };
 
   displayOptions = (type, num, title, hasSwitch) => {
@@ -57,7 +117,7 @@ class Find extends React.Component {
               id={"switch_" + num}
               label={<h6 className="font-weight-light">{title}</h6>}
               checked={this.state[type]}
-              onChange={() => console.log("hi")}
+              onChange={() => this.onSwitchChange(type)}
             />
           ) : (
             <h6 className="font-weight-light">{title}</h6>
