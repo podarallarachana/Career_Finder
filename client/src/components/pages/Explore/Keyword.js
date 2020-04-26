@@ -7,6 +7,8 @@ import Card from "react-bootstrap/Card";
 import CardColumns from "react-bootstrap/CardColumns";
 import { LinkContainer } from "react-router-bootstrap";
 import data from "./Data.json";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Spinner from "react-bootstrap/Spinner";
 
 const Keyword = (props) => {
   const [results, setResults] = useState(undefined);
@@ -64,9 +66,21 @@ const Keyword = (props) => {
 
   const displayOccupations = () => {
     if (results === undefined) {
-      return <div>loading</div>;
+      return (
+        <div className="row justify-content-center">
+          <Spinner animation="grow" />
+        </div>
+      );
     } else if (results === null) {
-      return <div>sorry, unavailable right now</div>;
+      return (
+        <Alert variant="danger">
+          <Alert.Heading>Not Available</Alert.Heading>
+          <p>
+            Try again, the connection may be weak or your keyword may be too
+            specific.
+          </p>
+        </Alert>
+      );
     } else {
       return (
         <CardColumns>
@@ -78,9 +92,17 @@ const Keyword = (props) => {
               >
                 <Card onClick={() => updateActives(occupation.OnetCode)}>
                   <Card.Body>
-                    <h4 className="font-weight-light">
+                    <h6 className="font-weight-light">
+                      <b>Occupation: </b>
                       {occupation.OnetTitle}
-                    </h4>
+                    </h6>
+                    <hr />
+                    <div className="row justify-content-center">
+                      <Button variant="outline-primary">
+                        <i className="fa fa-link" aria-hidden="true"></i> Learn
+                        More
+                      </Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </LinkContainer>
@@ -96,37 +118,51 @@ const Keyword = (props) => {
   };
 
   return (
-    <div className="keywordsearch">
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <label htmlFor="location">
-          <h1>Keyword Search</h1>
-        </label>
-        <InputGroup className="mb-3">
-          <FormControl
-            type="text"
-            placeholder="Enter a keyword..."
-            id="keyword_search"
-            value={inp}
-            onChange={updateInp}
-          />
-          <InputGroup.Append>
-            <Button onClick={() => fetchResults()} variant="primary">
-              Search
-            </Button>
-          </InputGroup.Append>
-        </InputGroup>
-        {show ? (
-          <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-            <Alert.Heading>Invalid keyword</Alert.Heading>
-            <p>Make sure you only enter one keyword!</p>
-          </Alert>
-        ) : null}
-      </Form>
-      {displayOccupations()}
+    <div>
+      <Jumbotron className="filterheader">
+        <Form
+          onSubmit={(e) => {
+            e.preventDefault();
+          }}
+        >
+          <label htmlFor="location">
+            <h1 className="font-weight-light" style={{ color: "white" }}>
+              <i className="fa fa-search" aria-hidden="true"></i>
+              &nbsp;Keyword Search
+            </h1>
+            <h6 className="font-weight-light" style={{ color: "white" }}>
+              Do you like cooking? Math? Maybe working outdoors? Search for a
+              career by keyword using the Keyword Search Tool.
+              <br />
+              <br />
+              <b>Examples: </b>Pottery, Dance, Music...
+            </h6>
+          </label>
+          <InputGroup className="mb-3">
+            <FormControl
+              type="text"
+              placeholder="Enter a keyword..."
+              id="keyword_search"
+              value={inp}
+              onChange={updateInp}
+            />
+            <InputGroup.Append>
+              <Button onClick={() => fetchResults()} variant="primary">
+                Search
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+          {show ? (
+            <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+              <Alert.Heading>Invalid keyword</Alert.Heading>
+              <p>Make sure you only enter one keyword!</p>
+            </Alert>
+          ) : null}
+        </Form>
+      </Jumbotron>
+      <div style={{ paddingLeft: "15px", paddingRight: "15px" }}>
+        {displayOccupations()}
+      </div>
     </div>
   );
 };
