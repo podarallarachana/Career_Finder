@@ -62,11 +62,8 @@ const SideNav = (props) => {
             border: "0px",
           }}
         >
-          <ListGroup.Item
-            onClick={updateActives}
-            style={{ backgroundColor: "white" }}
-          >
-            Search <i className="fa fa-search" aria-hidden="true"></i>
+          <ListGroup.Item onClick={updateActives}>
+            <i className="fa fa-search" aria-hidden="true"></i> Search
           </ListGroup.Item>
         </LinkContainer>
         {displayClusters}

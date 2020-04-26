@@ -41,27 +41,37 @@ const Admin = ({
     });
   };
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-    await axios
-      .post("/api/class", { name: class_name, teacherId: user.first_name })
-      .then(function () {
-        changeView("classes");
-        setFormData({ class_name: "" });
-        console.log("submitted");
-      });
-  };
+    const onSubmit = async e => {
+        e.preventDefault();
+        await axios.post("/api/class",{name : class_name, teacherId : user.first_name}).then(
+            function() {
+                changeView("classes");
+                setFormData({class_name: ""});
+            }
+            );
+    };
 
-  async function onDelete() {
-    if (view !== "classes") {
-      await axios
-        .delete("/api/class", { data: { name: selected } })
-        .then(function () {
-          changeView("classes");
-          changeSelection("");
-        });
+    async function onDelete() {
+        if(view !== "classes") {
+            await axios.delete("/api/class", {data: {name: selected}}).then(
+                function() {
+                    changeView("classes");
+                    changeSelection("");
+                }
+            );
+        }
     }
-  }
+
+    const clusters = ["Agriculture, food, & Natural Resources","Architecture & Construction",
+    "Arts, Audio/Video","Technology & Communications", "Business Management & Administration",
+    "Education & Training", "Finance", "Government & public Administration", "Health Science",
+    "Hospitality & Tourism","Human Services","Information Technology","Law, Public Safety, Corrections & Security",
+    "Manufacturing", "Marketing", "Science, Technology, Engineering & Mathematics",
+    "Transportation, Distribution & Logistics "];
+
+    function classNotes() {
+        changeView("classnotes");
+    }
 
   function onAdd() {
     changeView("addclass");
@@ -159,6 +169,132 @@ const Admin = ({
       default:
         return <div></div>;
     }
+
+    function currentView() {
+            switch(view) {
+                case "classes":
+                    return (
+                        <div>
+                            <Table>
+                                <thead>
+                                <tr>
+                                    <th>Class Name</th>
+                                    <th>Registration Code</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {tableData()}
+                                </tbody>
+                            </Table>
+                        </div>
+                    );
+                case "viewclass":
+                    return (
+                        <Accordion>
+                            <Card>
+                                <Card.Header>
+                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                        {currentClass.name}
+                                    </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="0">
+                                    <Card.Body>
+                                        <h1>Total Points</h1>
+                                        <h1>Points by Module</h1>
+                                    </Card.Body>
+                                </Accordion.Collapse>
+                            </Card>
+                            <Card>
+                                <Card.Header>
+                                    <Accordion.Toggle as={Button} variant="link" eventKey="1">
+                                        Students
+                                    </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="1">
+                                    <Card.Body>
+                                        {studentData().result}
+                                        <Button onClick={()=> {changeView("addstudent");}}>Add Student</Button>
+                                    </Card.Body>
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion>
+                    );
+                case "addclass":
+                    return (
+                        <Form onSubmit={e => onSubmit(e)}>
+                            <Form.Group>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Class Name"
+                                    name="class_name"
+                                    value={class_name}
+                                    onChange={e => onChange(e)}
+                                    required
+                                />
+                            </Form.Group>
+                            <Button
+                                type="submit"
+                            >
+                                Add
+                            </Button>
+                        </Form>
+                    );
+                case "addstudent":
+                    return (
+                        <Form onSubmit={e => onSubmit(e)}>
+                            <Form.Group>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Student Name"
+                                    name="class_name"
+                                    value={class_name}
+                                    onChange={e => onChange(e)}
+                                    required
+                                />
+                            </Form.Group>
+                            <Button
+                                type="submit"
+                            >
+                                Add
+                            </Button>
+                        </Form>
+                    );
+                case "classnotes":
+                    return clusters.map((cluster) =>
+                        <Accordion key={cluster}>
+                            <Card>
+                                <Card.Header>
+                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                        {cluster}
+                                    </Accordion.Toggle>
+                                </Card.Header>
+                                <Accordion.Collapse eventKey="0">
+                                    <Card.Body>
+                                        <h1>Edit content here</h1>
+                                    </Card.Body>
+                                </Accordion.Collapse>
+                            </Card>
+                        </Accordion>
+
+                    );
+
+                default:
+                    return (<div></div>);
+            }
+    }
+
+    return (
+        <div>
+            {isLoading && <p>Loading</p>}
+            <h1 className="font-weight-light">Admin</h1>
+            <h2 className="font-weight-lighte">Hello {user.first_name}</h2>
+            {view!== "classes" ? <Button onClick={() => {changeView("classes"); changeSelection("")}}>View Classes</Button> : <div></div>}
+            {selected !== "" ? <Button onClick={() => {onDelete()}}>Delete Current Class</Button> : <div></div>}
+            {view !== "addclass" ? <Button onClick={() => {onAdd(); changeSelection("")}}>Add Class</Button> : <div></div>}
+            <Button onClick={()=>{classNotes()}}>Edit Classroom Notes</Button>
+            {!isLoading && currentView()
+            }
+        </div>);
   }
 
   return (
@@ -204,7 +340,7 @@ const Admin = ({
       {!isLoading && currentView()}
     </div>
   );
-};
+}
 
 Admin.propTypes = {
   getClasses: PropTypes.func.isRequired,

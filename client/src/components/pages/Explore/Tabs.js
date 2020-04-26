@@ -15,6 +15,9 @@ const Tabs = (props) => {
     }
   };
 
+  if (props.data != null && props.toolsData != null)
+    var careerCode = props.data.OccupationDetail[0].OnetCode;
+
   return (
     <Fragment>
       <Nav
@@ -48,8 +51,11 @@ const Tabs = (props) => {
             </CardColumns>
           </div>
         </Fragment>
+        
       ) : (
-        <GotoQuiz />
+        <GotoQuiz
+          code={careerCode}
+        />
       )}
     </Fragment>
   );
