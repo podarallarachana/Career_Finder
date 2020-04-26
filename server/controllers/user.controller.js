@@ -29,7 +29,8 @@ exports.register = async (req, res) => {
       email,
       password,
       is_teacher,
-      code
+      code,
+      points: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     });
 
     //SAVE USER ONCE PASSWORD HAS BEEN HASHED

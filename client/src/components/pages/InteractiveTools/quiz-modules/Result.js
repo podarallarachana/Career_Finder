@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import store from '../../../../state-management/store';
+import axios from "axios";
 
 function Result(props) {
     let questions = props.questions;
@@ -15,8 +16,9 @@ function Result(props) {
     questions.forEach(q => {
         if (q.isCorrect)
             count++;
-    })
+    });
 
+    axios.put("/api/class/student/points",{id: userId,quiz:quizNum,points:count})
     // Want count, userId, & quizNum for adding to student record
     console.log("count: " + count + "\tuserId: " + userId + "\tquizNum: " + quizNum);
 
@@ -47,10 +49,10 @@ function Result(props) {
 
 Result.propTypes = {
     authorization: PropTypes.object.isRequired,
-  };
-  
-  const mapStateToProps = (state) => ({
+};
+
+const mapStateToProps = (state) => ({
     authorization: state.authorization,
-  });
-  
-  export default connect(mapStateToProps)(Result);
+});
+
+export default connect(mapStateToProps)(Result);

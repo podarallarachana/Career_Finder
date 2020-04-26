@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const quiz = require("../models/quiz.model");
 const student = require("../models/student.model");
 
 const ClassSchema = new mongoose.Schema({
@@ -11,7 +10,6 @@ const ClassSchema = new mongoose.Schema({
     },
     ofTeacherId : [String],
     ofStudentId : [],
-    ofQuizzes : []
 
 });
 

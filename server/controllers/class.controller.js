@@ -100,9 +100,9 @@ takes quiz number starting at 0 for the first module, points for number of point
 
 exports.addPoints = async (req,res) => {
     try {
-        await Student.findOne({studentId: req.query.id}).then( async function(result) {
-            console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
-            result.points.splice(parseInt(req.query.quiz),1,((result.points[req.query.quiz]) + parseInt(req.query.points)));
+        await User.findById(req.body.id).then( async function(result) {
+            //console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
+            result.points.splice(parseInt(req.body.quiz),1,((result.points[req.body.quiz]) + parseInt(req.body.points)));
             await result.save();
             res.status(200).send(result);
         });
