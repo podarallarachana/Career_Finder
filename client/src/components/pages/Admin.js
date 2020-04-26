@@ -81,7 +81,7 @@ const Admin = ({
     return <Redirect to="/" />;
   }
 
-  const { class_name,student_name } = formData;
+  const { class_name } = formData;
 
   const onChange = (e) => {
     setFormData({
