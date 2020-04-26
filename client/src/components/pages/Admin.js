@@ -325,7 +325,7 @@ const Admin = ({
       {!isLoading && currentView()}
     </div>
   );
-};
+}
 
 Admin.propTypes = {
   authorization: PropTypes.object.isRequired,
