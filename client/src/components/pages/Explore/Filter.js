@@ -45,19 +45,36 @@ const Filter = (props) => {
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < data[i].CareerPathway.length; j++) {
         for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
-          tmp.push(data[i].CareerPathway[j].Jobs[z]);
+          tmp.push({
+            occupation: data[i].CareerPathway[j].Jobs[z],
+            pathway: data[i].CareerPathway[j].Pathway,
+            cluster: data[i].CareerCluster,
+          });
         }
       }
     }
 
     tmp = tmp.filter((occupation) =>
-      occupation.Occupation.toLowerCase().includes(filterText.toLowerCase())
+      occupation.occupation.Occupation.toLowerCase().includes(
+        filterText.toLowerCase()
+      )
     );
 
     var arr = tmp;
     if (tmp.length > 100) {
       arr = tmp.slice((activePage - 1) * 100, (activePage - 1) * 100 + 100);
     }
+
+    var colors = [
+      "#8cd211",
+      "#5aa700",
+      "#de3364",
+      "#eb4f3c",
+      "#ff871e",
+      "#7cc7ff",
+      "#5aaafa",
+      "#5596e6",
+    ];
 
     return (
       <Fragment>
@@ -81,21 +98,45 @@ const Filter = (props) => {
             </div>
             <CardColumns>
               {arr.map((occupation) => {
+                var color = colors[Math.floor(Math.random() * 8)];
                 return (
                   <LinkContainer
-                    key={occupation.Code}
-                    to={"/explore/" + occupation.Code}
+                    key={occupation.occupation.Code}
+                    to={"/explore/" + occupation.occupation.Code}
                     style={{ border: "0px", outline: "0px" }}
                   >
                     <Card onClick={() => updateActives(occupation.Code)}>
                       <Card.Body>
-                        <h6 className="font-weight-light">
-                          <b>Occupation: </b>
-                          {occupation.Occupation}
-                        </h6>
+                        <h5 className="font-weight-light">
+                          <i
+                            className="fa fa-arrow-circle-right"
+                            aria-hidden="true"
+                            style={{
+                              color: color,
+                            }}
+                          ></i>{" "}
+                          {occupation.occupation.Occupation}
+                        </h5>
+                        <small>
+                          <b>Pathway: </b>
+                          {occupation.pathway}
+                        </small>
+                        <br />
+                        <small>
+                          <b>Cluster: </b>
+                          {occupation.cluster}
+                        </small>
                         <hr />
                         <div className="row justify-content-center">
-                          <Button variant="outline-primary">
+                          <Button
+                            style={{
+                              backgroundColor: color,
+                              color: "white",
+                              borderRadius: "20px",
+                              outline: "0px",
+                              border: "0px",
+                            }}
+                          >
                             <i className="fa fa-link" aria-hidden="true"></i>{" "}
                             Learn More
                           </Button>

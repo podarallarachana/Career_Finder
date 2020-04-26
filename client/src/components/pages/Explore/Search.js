@@ -7,7 +7,7 @@ class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: "filter",
+      activeTab: "keywordsearch",
     };
   }
 
@@ -31,13 +31,13 @@ class Search extends React.Component {
           }}
         >
           <Nav.Item>
-            <Nav.Link eventKey="filter" style={{ borderRadius: "0px" }}>
-              Filter
+            <Nav.Link eventKey="keywordsearch" style={{ borderRadius: "0px" }}>
+              Keyword Search
             </Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="keywordsearch" style={{ borderRadius: "0px" }}>
-              Keyword Search
+            <Nav.Link eventKey="filter" style={{ borderRadius: "0px" }}>
+              Filter
             </Nav.Link>
           </Nav.Item>
         </Nav>

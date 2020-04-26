@@ -82,9 +82,21 @@ const Keyword = (props) => {
         </Alert>
       );
     } else {
+      var colors = [
+        "#8cd211",
+        "#5aa700",
+        "#de3364",
+        "#eb4f3c",
+        "#ff871e",
+        "#7cc7ff",
+        "#5aaafa",
+        "#5596e6",
+      ];
+
       return (
         <CardColumns>
           {results.OccupationList.map((occupation) => {
+            var color = colors[Math.floor(Math.random() * 8)];
             return (
               <LinkContainer
                 key={occupation.OnetCode}
@@ -92,13 +104,31 @@ const Keyword = (props) => {
               >
                 <Card onClick={() => updateActives(occupation.OnetCode)}>
                   <Card.Body>
-                    <h6 className="font-weight-light">
-                      <b>Occupation: </b>
+                    <h5 className="font-weight-light">
+                      <i
+                        className="fa fa-arrow-circle-right"
+                        aria-hidden="true"
+                        style={{
+                          color: color,
+                        }}
+                      ></i>{" "}
                       {occupation.OnetTitle}
-                    </h6>
+                    </h5>
+                    <small>
+                      <b>Description: </b>
+                      {occupation.OccupationDescription}
+                    </small>
                     <hr />
                     <div className="row justify-content-center">
-                      <Button variant="outline-primary">
+                      <Button
+                        style={{
+                          backgroundColor: color,
+                          color: "white",
+                          borderRadius: "20px",
+                          outline: "0px",
+                          border: "0px",
+                        }}
+                      >
                         <i className="fa fa-link" aria-hidden="true"></i> Learn
                         More
                       </Button>

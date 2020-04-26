@@ -5,6 +5,8 @@ import { Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 import CardColumns from "react-bootstrap/CardColumns";
 import { LinkContainer } from "react-router-bootstrap";
+import Jumbotron from "react-bootstrap/Jumbotron";
+import Spinner from "react-bootstrap/Spinner";
 
 class Find extends React.Component {
   constructor(props) {
@@ -115,7 +117,11 @@ class Find extends React.Component {
               onChange={() => this.onSwitchChange(type)}
             />
           ) : (
-            <h5 className="font-weight-light">{title}</h5>
+            <h5 className="font-weight-light">
+              <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
+              &nbsp;
+              {title}
+            </h5>
           )}
           {!hasSwitch || (hasSwitch && this.state[type] === true) ? (
             <Fragment>
@@ -195,16 +201,24 @@ class Find extends React.Component {
 
   render() {
     return (
-      <div className="find">
-        <Card style={{ padding: "15px" }}>
-          <h1 className="font-weight-light">
-            Find the perfect career for you!
-          </h1>
-          <h6 className="font-weight-light">
-            <b>Instructions: </b> Answer at least one question to get
-            recommendations. You can pick multiple options per question
-          </h6>
-          <br />
+      <div>
+        <Jumbotron
+          style={{ padding: "15px", color: "white" }}
+          className="filterheader"
+        >
+          <div className="row justify-content-center">
+            <div className="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+              <h1 className="font-weight-light">
+                Find the perfect career for you
+              </h1>
+              <h6 className="font-weight-light">
+                <b>Instructions: </b> Answer at least one question to get
+                recommendations. You can pick multiple options per question
+              </h6>
+              <hr />
+            </div>
+          </div>
+
           {this.state.show ? (
             <Alert
               variant="danger"
@@ -242,7 +256,7 @@ class Find extends React.Component {
           >
             Get Recommendations
           </Button>
-        </Card>
+        </Jumbotron>
         <br />
         {this.displayRecommendations()}
       </div>
