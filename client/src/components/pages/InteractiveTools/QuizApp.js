@@ -101,7 +101,7 @@ class QuizApp extends Component {
   onChange = (e) => {
     this.setState({ quizId: e.target.value });
     this.load(e.target.value);
-  };
+  }
 
   render() {
     return (
@@ -124,6 +124,5 @@ class QuizApp extends Component {
     );
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(QuizApp);

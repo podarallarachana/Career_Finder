@@ -340,7 +340,7 @@ const Admin = ({
       {!isLoading && currentView()}
     </div>
   );
-};
+}
 
 Admin.propTypes = {
   getClasses: PropTypes.func.isRequired,
