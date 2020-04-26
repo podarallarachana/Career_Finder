@@ -4,6 +4,7 @@ import Card from "react-bootstrap/Card";
 import { Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 import CardColumns from "react-bootstrap/CardColumns";
+import { LinkContainer } from "react-router-bootstrap";
 
 class Find extends React.Component {
   constructor(props) {
@@ -56,7 +57,6 @@ class Find extends React.Component {
         DataValue: val,
       });
     }
-    console.log(tmp);
     this.setState({
       recommendations: undefined,
     });
@@ -119,7 +119,6 @@ class Find extends React.Component {
           )}
           {!hasSwitch || (hasSwitch && this.state[type] === true) ? (
             <Fragment>
-              {" "}
               {findData[0][type].map((data) => {
                 return (
                   <Button
@@ -158,13 +157,18 @@ class Find extends React.Component {
         <CardColumns>
           {this.state.recommendations.SKARankList.map((occupation) => {
             return (
-              <Card key={occupation.OnetCode}>
-                <Card.Body>
-                  <h4 className="font-weight-light">
-                    {occupation.OccupationTitle}
-                  </h4>
-                </Card.Body>
-              </Card>
+              <LinkContainer
+                to={"/explore/" + occupation.OnetCode}
+                key={occupation.OnetCode}
+              >
+                <Card>
+                  <Card.Body>
+                    <h4 className="font-weight-light">
+                      {occupation.OccupationTitle}
+                    </h4>
+                  </Card.Body>
+                </Card>
+              </LinkContainer>
             );
           })}
         </CardColumns>
