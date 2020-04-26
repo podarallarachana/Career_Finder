@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import findData from "./FindData.json";
 import Card from "react-bootstrap/Card";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
 
 class Find extends React.Component {
@@ -11,9 +11,10 @@ class Find extends React.Component {
       user_inp: [],
       physical: false,
       technology: false,
-      people: true,
+      people: false,
       leader: false,
       recommendations: undefined,
+      show: false,
     };
     var arr = [
       "skills",
@@ -115,39 +116,59 @@ class Find extends React.Component {
             <Form.Check
               type="switch"
               id={"switch_" + num}
-              label={<h6 className="font-weight-light">{title}</h6>}
+              label={<h5 className="font-weight-light">{title}</h5>}
               checked={this.state[type]}
               onChange={() => this.onSwitchChange(type)}
             />
           ) : (
-            <h6 className="font-weight-light">{title}</h6>
+            <h5 className="font-weight-light">{title}</h5>
           )}
-          <br />
-          {!hasSwitch || (hasSwitch && this.state[type] === true)
-            ? findData[0][type].map((data) => {
+          {!hasSwitch || (hasSwitch && this.state[type] === true) ? (
+            <Fragment>
+              {" "}
+              {findData[0][type].map((data) => {
                 return (
-                  <Fragment key={data.ElementName}>
-                    <Button
-                      onClick={this.onUserInp}
-                      variant={
-                        this.state.user_inp.find((obj) => {
-                          return obj.ElementName === data.ElementName;
-                        }).Selected === true
-                          ? "primary btn-sm"
-                          : "light btn-sm"
-                      }
-                      className="optionsButton"
-                      title={data.Question}
-                    >
-                      {data.ElementName}
-                    </Button>
-                  </Fragment>
+                  <Button
+                    key={data.ElementName}
+                    onClick={this.onUserInp}
+                    variant={
+                      this.state.user_inp.find((obj) => {
+                        return obj.ElementName === data.ElementName;
+                      }).Selected === true
+                        ? "primary btn-sm"
+                        : "light btn-sm"
+                    }
+                    className="optionsButton"
+                    title={data.Question}
+                  >
+                    {data.ElementName}
+                  </Button>
                 );
-              })
-            : null}
+              })}
+              <br />
+              <br />
+            </Fragment>
+          ) : null}
         </div>
       </div>
     );
+  };
+
+  validateAndFetch = () => {
+    var tmp = false;
+    for (var i = 0; i < this.state.user_inp.length; i++) {
+      if (this.state.user_inp[i].Selected === true) {
+        tmp = true;
+        break;
+      }
+    }
+
+    if (!tmp) {
+      this.setState({ show: true });
+    } else {
+      this.setState({ show: false });
+      this.getRecommendations();
+    }
   };
 
   render() {
@@ -162,27 +183,43 @@ class Find extends React.Component {
             recommendations. You can pick multiple options per question
           </h6>
           <br />
+          {this.state.show ? (
+            <Alert
+              variant="danger"
+              onClose={() => this.setState({ show: false })}
+              dismissible
+            >
+              <Alert.Heading>No Selections</Alert.Heading>
+              <p>Make sure to select at least one option!</p>
+            </Alert>
+          ) : null}
           {this.displayOptions("subjects", 1, "I am interested in", false)}
-          <hr />
           {this.displayOptions("skills", 2, "I am good at", false)}
-          <hr />
           {this.displayOptions(
             "physical",
             3,
             "I like to work with my hands",
             true
           )}
-          <hr />
           {this.displayOptions(
             "technology",
             4,
             "I like to work with these technologies",
             true
           )}
-          <hr />
           {this.displayOptions("people", 5, "I like to work with people", true)}
-          <hr />
           {this.displayOptions("leader", 6, "I want to be a leader", true)}
+          <br />
+          <Button
+            onClick={this.validateAndFetch}
+            style={{
+              border: "0px",
+              display: "table",
+              margin: "0 auto",
+            }}
+          >
+            Get Recommendations
+          </Button>
         </Card>
       </div>
     );
