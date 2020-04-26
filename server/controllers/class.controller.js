@@ -84,17 +84,15 @@ takes quiz number starting at 0 for the first module, points for number of point
  */
 exports.addPoints = async (req,res) => {
     try {
-<<<<<<< HEAD
         await User.findById(req.body.id).then( async function(result) {
-            result.points.splice(parseInt(req.body.quiz),1,((result.points[req.body.quiz]) + parseInt(req.body.points)));
-=======
-        await Student.findOne({studentId: req.query.id}).then( async function(result) {
-            console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
-            result.points.splice(parseInt(req.query.quiz),1,((result.points[req.query.quiz]) + parseInt(req.query.points)));
->>>>>>> dd13840d97756d505e2f4437107d883192d7009b
-            await result.save();
-            res.status(200).send(result);
-        });
+            result.points.splice(parseInt(req.body.quiz), 1, ((result.points[req.body.quiz]) + parseInt(req.body.points)));
+            await Student.findOne({studentId: req.query.id}).then(async function (result) {
+                console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
+                result.points.splice(parseInt(req.query.quiz), 1, ((result.points[req.query.quiz]) + parseInt(req.query.points)));
+                await result.save();
+                res.status(200).send(result);
+            });
+        })
     } catch (err) {
         res.status(400).send("Error");
     }
