@@ -4,7 +4,7 @@ import './QuizApp.css';
 import Quiz from './quiz-modules/Quiz';
 import { connect } from 'react-redux';
 import { ActionTypes } from '../../../state-management/actions/constants';
-import store from '../../../state-management/store';
+//import store from '../../../state-management/store';
 
 const mapStateToProps = state => { return { ...state.quiz } };
 
