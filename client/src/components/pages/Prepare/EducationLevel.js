@@ -52,7 +52,7 @@ const EducationLevel = (props) => {
               display: false,
             },
             legend: {
-              display: true,
+              display: false,
             },
           }}
           data={graphData}
@@ -68,56 +68,50 @@ const EducationLevel = (props) => {
       return <div>sorry, unavailable right now</div>;
     } else {
       return (
-        <Card className="prepare-options">
-          <div>
-            <h5 className="font-weight-light">
-              <b>Step 2: </b>use the data to determine the best path for you
-            </h5>
-            <br />
+        <div>
+          {/* <h5 className="font-weight-light">
+            <b>Step 2: </b>use the data to determine the best path for you
+          </h5>
+          <br />
+          <p>
+            <b>Most people in this career have a:</b>{" "}
+            {
+              props.education_level.educationLevelData.OccupationDetail[0]
+                .EducationTraining.EducationTitle
+            }
+          </p>
+          {props.education_level.educationLevelData.OccupationDetail[0]
+            .EducationTraining.EducationTitle ===
+            "Less than high school diploma" ||
+          props.education_level.educationLevelData.OccupationDetail[0]
+            .EducationTraining.EducationTitle ===
+            "High school diploma or equivalent" ? (
             <p>
-              <b>Most people in this career have a:</b>{" "}
-              {
-                props.education_level.educationLevelData.OccupationDetail[0]
-                  .EducationTraining.EducationTitle
-              }
+              <b>
+                While a college degree may not be required for this career, we
+                encourage you to explore all your options.
+              </b>{" "}
+              Use the certification, license, and college tools below to find
+              some resources that will help you get started in your career.
             </p>
-            {props.education_level.educationLevelData.OccupationDetail[0]
-              .EducationTraining.EducationTitle ===
-              "Less than high school diploma" ||
-            props.education_level.educationLevelData.OccupationDetail[0]
-              .EducationTraining.EducationTitle ===
-              "High school diploma or equivalent" ? (
-              <p>
-                <b>
-                  While a college degree may not be required for this career, we
-                  encourage you to explore all your options.
-                </b>{" "}
-                Use the certification, license, and college tools below to find
-                some resources that will help you get started in your career.
-              </p>
-            ) : (
-              <p>
-                <b>
-                  College is strongly recommended for students hoping to pursue
-                  this career path.
-                </b>{" "}
-                Use the certification, license, and college tools below to find
-                some resources that will help you get started in your career.
-              </p>
-            )}
-            <hr />
-            {displayEducationLevels()}
-          </div>
-        </Card>
+          ) : (
+            <p>
+              <b>
+                College is strongly recommended for students hoping to pursue
+                this career path.
+              </b>{" "}
+              Use the certification, license, and college tools below to find
+              some resources that will help you get started in your career.
+            </p>
+          )}
+          <hr /> */}
+          {displayEducationLevels()}
+        </div>
       );
     }
   };
 
-  return (
-    <div className="row">
-      <div className="col-12">{displayData()}</div>
-    </div>
-  );
+  return <div style={{ width: "200px" }}>{displayData()}</div>;
 };
 
 export default EducationLevel;

@@ -1,14 +1,14 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 
-const Outlook = props => {
+const Outlook = (props) => {
   return (
     <Card style={{ border: "0px" }}>
       <Card.Body>
         <h3 className="font-weight-light">
           <i
             className="fa fa-graduation-cap"
-            style={{ color: "#c0e6ff" }}
+            style={{ color: "#4178be" }}
             aria-hidden="true"
           ></i>{" "}
           Outlook
@@ -35,7 +35,7 @@ const Outlook = props => {
           </b>{" "}
           jobs nationally in{" "}
           <b style={{ color: "#4178be" }}>
-            {props.data.OccupationDetail[0].Projections.EstimatedYear}
+            {props.data.OccupationDetail[0].Projections.ProjectedYear}
           </b>
           .{" "}
           <b style={{ color: "#4178be" }}>

@@ -6,6 +6,8 @@ import Tabs from "./Tabs";
 import axios from "axios";
 import OccupationOptions from "./OccupationOptions";
 import Search from "./Search";
+import Accordion from "react-bootstrap/Accordion";
+import Card from "react-bootstrap/Card";
 
 const mql = window.matchMedia(`(min-width: 800px)`); //FOR SIDENAV
 
@@ -19,7 +21,7 @@ class Occupation extends React.Component {
       activePathway: undefined,
       activeOccupation: undefined,
       data: undefined,
-      toolsData: undefined
+      toolsData: undefined,
     };
     this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
     this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
@@ -38,8 +40,8 @@ class Occupation extends React.Component {
           method: "get",
           url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=false&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=false`,
           headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_TOKEN
-          }
+            Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+          },
         });
         this.setState({ data: data });
       } catch (e) {
@@ -51,8 +53,8 @@ class Occupation extends React.Component {
           method: "get",
           url: `https://api.careeronestop.org/v1/techtool/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/`,
           headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_TOKEN
-          }
+            Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+          },
         });
         this.setState({ toolsData: data });
       } catch (e) {
@@ -73,7 +75,7 @@ class Occupation extends React.Component {
               {
                 activeCluster: data[i].CareerCluster,
                 activePathway: data[i].CareerPathway[j].Pathway,
-                activeOccupation: this.props.match.params.code
+                activeOccupation: this.props.match.params.code,
               },
               () => this.getData()
             );
@@ -89,7 +91,7 @@ class Occupation extends React.Component {
       activePathway: "INVALID",
       activeOccupation: "INVALID",
       data: null,
-      toolsData: null
+      toolsData: null,
     });
   }
 
@@ -101,20 +103,21 @@ class Occupation extends React.Component {
         activePathway: newPathway,
         activeOccupation: newCode,
         data: undefined,
-        toolsData: undefined
+        toolsData: undefined,
       },
       () => this.getData()
     );
   };
 
   //OCCUPATION-OPTIONS USES THIS
-  updateActivePathway = pathway => {
+  updateActivePathway = (pathway) => {
     this.setState({ activePathway: pathway });
   };
 
-  updateActiveOccupation = occupation => {
-    this.setState({ activeOccupation: occupation, data: undefined }, () =>
-      this.getData()
+  updateActiveOccupation = (occupation) => {
+    this.setState(
+      { activeOccupation: occupation, data: undefined, toolsData: undefined },
+      () => this.getData()
     );
   };
 
@@ -149,22 +152,41 @@ class Occupation extends React.Component {
         onSetOpen={this.onSetSidebarOpen}
         styles={{
           root: {
-            top: 56
+            top: 56,
           },
           sidebar: {
-            backgroundColor: "#ffffff"
-          }
+            backgroundColor: "#ffffff",
+          },
         }}
       >
         {this.state.activeCluster !== "Search" ? (
           <Fragment>
-            <OccupationOptions
-              activeCluster={this.state.activeCluster}
-              activePathway={this.state.activePathway}
-              activeOccupation={this.state.activeOccupation}
-              updateActivePathway={this.updateActivePathway}
-              updateActiveOccupation={this.updateActiveOccupation}
-            />
+            <Accordion>
+              <Card>
+                <Accordion.Toggle
+                  as={Card.Header}
+                  eventKey="0"
+                  className="font-weight-light"
+                  style={{ backgroundColor: "white" }}
+                >
+                  <i
+                    className="fa fa-bars"
+                    style={{ color: "#8cd211" }}
+                    aria-hidden="true"
+                  ></i>
+                  &nbsp;&nbsp; Explore Occupations
+                </Accordion.Toggle>
+                <Accordion.Collapse eventKey="0">
+                  <OccupationOptions
+                    activeCluster={this.state.activeCluster}
+                    activePathway={this.state.activePathway}
+                    activeOccupation={this.state.activeOccupation}
+                    updateActivePathway={this.updateActivePathway}
+                    updateActiveOccupation={this.updateActiveOccupation}
+                  />
+                </Accordion.Collapse>
+              </Card>
+            </Accordion>
             <Tabs
               data={this.state.data}
               toolsData={this.state.toolsData}
@@ -172,7 +194,7 @@ class Occupation extends React.Component {
             />
           </Fragment>
         ) : (
-          <Search />
+          <Search updateActives={this.updateActives} />
         )}
       </Sidebar>
     );

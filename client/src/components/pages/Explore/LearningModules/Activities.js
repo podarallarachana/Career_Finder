@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import Form from "react-bootstrap/Form";
 
-const Activities = props => {
+const Activities = (props) => {
   const [dwaData, setDwaTitle] = useState([]);
   const [showAll, setShowAll] = useState(false);
 
@@ -17,7 +17,7 @@ const Activities = props => {
       }
       if (!doesExist) {
         tmp.push({
-          Title: props.data.OccupationDetail[0].Dwas[i].DwaTitle
+          Title: props.data.OccupationDetail[0].Dwas[i].DwaTitle,
         });
       }
     }
@@ -25,7 +25,7 @@ const Activities = props => {
   }, [props.data.OccupationDetail]);
 
   const displayActivities = () =>
-    dwaData.map(activity => {
+    dwaData.map((activity) => {
       return (
         <Fragment key={activity.Title}>
           <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
@@ -36,7 +36,7 @@ const Activities = props => {
     });
 
   const displayImportantActivities = () =>
-    dwaData.slice(0, 6).map(activity => {
+    dwaData.slice(0, 6).map((activity) => {
       return (
         <Fragment key={activity.Title}>
           <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
@@ -53,7 +53,7 @@ const Activities = props => {
           <i
             className="fa fa-sun-o"
             aria-hidden="true"
-            style={{ color: "#ffc800" }}
+            style={{ color: "#4178be" }}
           ></i>{" "}
           Daily Activities
         </h3>

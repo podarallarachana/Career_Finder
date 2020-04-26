@@ -16,6 +16,9 @@ const NavigationBar = ({
       <LinkContainer to="/login" onClick={logout} href="#!">
         <Nav.Link>logout</Nav.Link>
       </LinkContainer>
+      <LinkContainer to="/find">
+        <Nav.Link>find</Nav.Link>
+      </LinkContainer>
       <LinkContainer to="/explore/11-9013.03">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
@@ -37,12 +40,12 @@ const NavigationBar = ({
       <LinkContainer to="/login" onClick={logout} href="#!">
         <Nav.Link>logout</Nav.Link>
       </LinkContainer>
-        <LinkContainer to="/myinfo">
-            <Nav.Link>my info</Nav.Link>
-        </LinkContainer>
-      {/* <LinkContainer to="/find">
+      <LinkContainer to="/find">
         <Nav.Link>find</Nav.Link>
-      </LinkContainer> */}
+      </LinkContainer>
+      <LinkContainer to="/myinfo">
+        <Nav.Link>my info</Nav.Link>
+      </LinkContainer>
       <LinkContainer to="/explore/11-9013.03">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>
@@ -63,9 +66,9 @@ const NavigationBar = ({
       <LinkContainer to="/register">
         <Nav.Link>register</Nav.Link>
       </LinkContainer>
-      {/* <LinkContainer to="/find">
+      <LinkContainer to="/find">
         <Nav.Link>find</Nav.Link>
-      </LinkContainer> */}
+      </LinkContainer>
       <LinkContainer to="/explore/11-9013.03">
         <Nav.Link>explore</Nav.Link>
       </LinkContainer>

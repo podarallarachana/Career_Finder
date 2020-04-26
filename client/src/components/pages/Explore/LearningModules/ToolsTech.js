@@ -2,14 +2,12 @@ import React, { Fragment } from "react";
 import Tools from "./Tools";
 import Technology from "./Technology";
 
-const ToolsTech = props => {
+const ToolsTech = (props) => {
   const displayData = () => {
     if (props.toolsData === undefined) {
-      return <div className="learningModules">loading</div>;
+      return null;
     } else if (props.toolsData === null) {
-      return (
-        <div className="learningModules">sorry, unavailable right now</div>
-      );
+      return null;
     } else {
       return (
         <Fragment>

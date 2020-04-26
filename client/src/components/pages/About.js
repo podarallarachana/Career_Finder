@@ -31,13 +31,23 @@ const About = () => {
       <h3 className="font-weight-light">II. Data Sources</h3>
       <br />
       <p>
-        <a href="https://careerwise.minnstate.edu/careers/clusters.html">
+        <a href="https://www.careeronestop.org">
+          CareerOneStop (U.S. Department of Labor)
+        </a>
+      </p>
+      <p>
+        <a href="https://careerwise.minnstate.edu">
           Minnesota State Careerwise Data
         </a>
       </p>
       <p>
-        <a href="https://www.onetonline.org/find/career?c=0&g=Go">
+        <a href="https://www.onetonline.org">
           ONET Online Data
+        </a>
+      </p>
+      <p>
+        <a href="https://collegescorecard.ed.gov">
+          College Scorecard
         </a>
       </p>
       <h3 className="font-weight-light">III. Developers</h3>

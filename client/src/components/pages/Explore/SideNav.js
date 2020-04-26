@@ -3,32 +3,32 @@ import { ListGroup } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import data from "./Data.json";
 
-const SideNav = props => {
-  const updateActives = e => {
-    if (e.target.innerText === "Search") {
-      props.updateActives(e.target.innerText, undefined, undefined);
+const SideNav = (props) => {
+  const updateActives = (e) => {
+    if (e.target.innerText.trim() === "Search") {
+      props.updateActives(e.target.innerText.trim(), undefined, undefined);
     } else {
       props.updateActives(
-        e.target.innerText,
-        getCode(e.target.innerText).pathway,
-        getCode(e.target.innerText).code
+        e.target.innerText.trim(),
+        getCode(e.target.innerText.trim()).pathway,
+        getCode(e.target.innerText.trim()).code
       );
     }
   };
 
-  const getCode = CareerCluster => {
+  const getCode = (CareerCluster) => {
     for (var i = 0; i < data.length; i++) {
       if (data[i].CareerCluster === CareerCluster) {
         //RETURNS FIRST OCCOUPATION CODE IN SELECTED CLUSTER
         return {
           code: data[i].CareerPathway[0].Jobs[0].Code,
-          pathway: data[i].CareerPathway[0].Pathway
+          pathway: data[i].CareerPathway[0].Pathway,
         };
       }
     }
   };
 
-  const displayClusters = data.map(data => {
+  const displayClusters = data.map((data) => {
     return (
       <LinkContainer
         key={data.CareerCluster}
@@ -39,7 +39,7 @@ const SideNav = props => {
           color:
             data.CareerCluster !== props.activeCluster ? "#ffa185" : "white",
           fontWeight: "bold",
-          border: "0px"
+          border: "0px",
         }}
       >
         <ListGroup.Item onClick={updateActives}>
@@ -59,10 +59,12 @@ const SideNav = props => {
               props.activeCluster !== "Search" ? "#ff683c" : "#ff8123",
             color: props.activeCluster !== "Search" ? "#ffa185" : "white",
             fontWeight: "bold",
-            border: "0px"
+            border: "0px",
           }}
         >
-          <ListGroup.Item onClick={updateActives}>Search</ListGroup.Item>
+          <ListGroup.Item onClick={updateActives}>
+            <i className="fa fa-search" aria-hidden="true"></i> Search
+          </ListGroup.Item>
         </LinkContainer>
         {displayClusters}
       </ListGroup>

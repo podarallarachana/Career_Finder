@@ -4,14 +4,14 @@ import { Button } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 import data from "../Data.json";
 
-const Related = props => {
+const Related = (props) => {
   const displayRelated = () =>
-    Object.keys(props.data.OccupationDetail[0].RelatedOnetTitles).map(key => {
+    Object.keys(props.data.OccupationDetail[0].RelatedOnetTitles).map((key) => {
       return (
         <Fragment key={key}>
           <LinkContainer to={"/explore/" + key}>
             <Button
-              variant="outline-danger btn-sm"
+              variant="light btn-sm"
               className="optionsButton"
               onClick={() => updateActives(key)}
             >
@@ -22,7 +22,7 @@ const Related = props => {
       );
     });
 
-  const updateActives = code => {
+  const updateActives = (code) => {
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < data[i].CareerPathway.length; j++) {
         for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
@@ -45,7 +45,7 @@ const Related = props => {
         <h3 className="font-weight-light">
           <i
             className="fa fa-link"
-            style={{ color: "#e71d32" }}
+            style={{ color: "#5aa700" }}
             aria-hidden="true"
           ></i>{" "}
           Related

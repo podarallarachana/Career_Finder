@@ -1,3 +1,4 @@
+$primary: #5596e6;
 @import "bootstrap";
 
 .card-columns {
@@ -16,6 +17,10 @@
   @include media-breakpoint-only(xs) {
     column-count: 1;
   }
+}
+
+body {
+  background-color: #f5f5f5;
 }
 
 p {
@@ -65,9 +70,9 @@ p {
 
 .learningModules {
   padding: 15px;
-  background-color: #f5f5f5;
 }
 
+///////////////
 .find {
   padding-top: 30px;
 }
@@ -75,17 +80,35 @@ p {
 .find-quiz {
   padding: 15px;
 }
-
-.search {
+////////////////
+.searchfilter {
   padding: 15px;
 }
 
-.explore-header {
-  background-image: url("./assets/landing.png");
+.keywordsearch {
+  padding: 15px;
+}
+
+.filterheader {
+  background-image: url("./assets/explore-header.png");
   background-color: #e43f54;
   background-position: center;
-  // background-size: cover;
+  background-size: cover;
   background-repeat: no-repeat;
+}
+
+.explore-header {
+  background: rgb(90, 167, 0);
+  background: linear-gradient(
+    0deg,
+    rgba(90, 167, 0, 1) 44%,
+    rgba(140, 210, 17, 1) 91%
+  );
+  // background-image: url("./assets/explore-header.png");
+  // background-color: #e43f54;
+  // background-position: center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
   border-radius: 0px;
 }
 
