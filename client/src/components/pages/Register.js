@@ -60,7 +60,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   //REDIRECT IF SUCCESFUL REGISTER
   if (isAuthenticated) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/find" />;
   }
 
   return (
