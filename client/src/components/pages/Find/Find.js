@@ -3,6 +3,7 @@ import findData from "./FindData.json";
 import Card from "react-bootstrap/Card";
 import { Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
+import CardColumns from "react-bootstrap/CardColumns";
 
 class Find extends React.Component {
   constructor(props) {
@@ -95,14 +96,7 @@ class Find extends React.Component {
     //RESET ALL ELEMENTS TO FALSE ON SWITCH CHANGE
     for (var i = 0; i < arr.length; i++) {
       if (arr[i].Type === type) {
-        var obj = arr[i];
-        arr[i] = {
-          ElementName: obj.ElementName,
-          ElementId: obj.ElementId,
-          Selected: false,
-          OnVal: obj.DataPoint80,
-          OffVal: obj.DataPoint20,
-        };
+        arr[i].Selected = false;
       }
     }
     this.setState({ [type]: !tmp, user_inp: arr });
@@ -152,6 +146,30 @@ class Find extends React.Component {
         </div>
       </div>
     );
+  };
+
+  displayRecommendations = () => {
+    if (this.state.recommendations === undefined) {
+      return <div>loading</div>;
+    } else if (this.state.recommendations === null) {
+      return <div>sorry, unavailable right now</div>;
+    } else {
+      return (
+        <CardColumns>
+          {this.state.recommendations.SKARankList.map((occupation) => {
+            return (
+              <Card key={occupation.OnetCode}>
+                <Card.Body>
+                  <h4 className="font-weight-light">
+                    {occupation.OccupationTitle}
+                  </h4>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      );
+    }
   };
 
   validateAndFetch = () => {
@@ -221,6 +239,8 @@ class Find extends React.Component {
             Get Recommendations
           </Button>
         </Card>
+        <br />
+        {this.displayRecommendations()}
       </div>
     );
   }
