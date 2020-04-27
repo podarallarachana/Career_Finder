@@ -1,23 +1,24 @@
-## _**PLEASE READ THIS TO COMPLETION BEFORE ASKING ANY QUESTIONS!**_
+### _**NOTES**_ -
 
-### _**IMPORTANT NOTES**_ -
+Frontend Debugging Tools: React Developer Tools, Redux DevTools
+Backend Debugging Tools: Mongo Shell, Postman
+Deployment Debugging Tools: Heroku CLI
 
-This project does not have a mongoDB connection setup. Setup the connection based on the environments below.
+## Deploy to Heroku
+- Clone the project, cd into the root folder, and run npm install. 
+- Create a MongoDB database either locally or on MongoDB Atlas and note your connection credentials. 
+- Create a config file (make sure to name it config.js) in the config folder, which exports your db.uri  connection (from MongoDB - Atlas). This file will be ignored by git so your db credentials will be kept safe when the app is deployed. 
+- Create an environmental variables file (make sure to name it “.env”) in the client root folder, which stores all of your API keys. - This file will be ignored by git so your API keys will be kept safe when the app is deployed. 
+- Add your environment variables and config variables to your Heroku Site account (they must be the same values as what you have locally). 
+- Make sure master is working as it should, then click the deploy button next to your site on Heroku. 
 
-- local development: create a config file (make sure to name it config.js) in the config folder, which exports your db.uri connection. An example is provided, config/config.example.js. This file will be ignored by git so your db credentials will be kept safe when the app is deployed.
-- production: Since the config file is not pushed when you deploy your app, you must specifiy your db uri in heorku. Set the uri in heroku as specified in [this](https://devcenter.heroku.com/articles/config-vars) resource. Make sure you name the environement variable "DB_URI".
+## Local Development
+- Clone the project and run npm install. 
+- Create a MongoDB database either locally or on MongoDB Atlas and note your connection credentials. 
+- Create a config file (make sure to name it config.js) in the config folder, which exports your db.uri  connection (from MongoDB Atlas). This file will be ignored by git so your db credentials will be kept safe when the app is deployed. 
+- Create an environmental variables file (make sure to name it “.env”) in the client root folder, which stores all of your API keys. This file will be ignored by git so your API keys will be kept safe when the app is deployed. 
 
-This project contains an example project board meant to showcase how one can be used. The issues posted to it are not real issues.
-
-## Getting Started
-
-This repository aims to assist you in beginning work on a MERN stack application for heroku deployment with a solid file structure as a foundation. To get started make a copy of this template repo for your project teams by clicking the green "Use this template" button above.
-
-Since this project will hold both the client application and the server application there will be node modules in two different places. First run `npm install` from the root. After this you will run `npm run-script install-all` from the root. From now on run this command anytime you want to install all modules again. This is a script we have defined in package.json. Alternatively your group may choose to simplify this process by using yarn workspaces as specified [here](https://yarnpkg.com/lang/en/docs/workspaces/).
-
-This app can be deployed directly to heroku since there is a script defined in package.json which will automatically handle building and deploying the app. For more information on deploying to heroku reference the extra resources at the bottom of this file.
-
-## Available Scripts
+## How to start the server
 
 Please note that any time the server is run in these scripts `nodemon` is used in place of `node` for easier development. If you are interested in how this works follow the nodemon In the project directory, you can run:
 
@@ -40,10 +41,6 @@ Runs just the server in development mode.<br>
 Builds the app for production to the `build` folder.<br>
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-If deploying to heroku this does not need to be run since it is handled by the heroku-postbuild script<br>
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
 ## File structure
 
 #### `client` - Holds the client application
@@ -56,6 +53,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
   - #### `App.js` - This is what renders all of our browser routes and different views
   - #### `index.js` - This is what renders the react app by rendering App.js, should not change
 - #### `package.json` - Defines npm behaviors and packages for the client
+- #### `.env` - Holds all the environment variables like API keys
 
 #### `server` - Holds the server application
 
@@ -74,10 +72,10 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Learn More
 
-To learn how to setup a local MongoDB instance for testing, check out how to [connect to MongoDB](https://docs.mongodb.com/guides/server/drivers/).
+React: https://reactjs.org/docs/getting-started.html
+Node: https://nodejs.org/en/docs/
+Express: https://expressjs.com/
+Heroku: https://devcenter.heroku.com/categories/reference
+MongoDB Atlas: https://docs.atlas.mongodb.com/
 
-To learn how to deploy a full-stack web app to heroku, check out [this great guide](https://daveceddia.com/deploy-react-express-app-heroku/).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-Rachana, Dave, Justin
+Developers: Rachana Podaralla, Dave Hellmer, Justin Calma
