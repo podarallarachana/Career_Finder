@@ -1,14 +1,14 @@
 ### _**NOTES**_ -
 
-Frontend Debugging Tools: React Developer Tools, Redux DevTools
-Backend Debugging Tools: Mongo Shell, Postman
-Deployment Debugging Tools: Heroku CLI
+- Frontend Debugging Tools: React Developer Tools, Redux DevTools
+- Backend Debugging Tools: Mongo Shell, Postman
+- Deployment Debugging Tools: Heroku CLI
 
 ## Deploy to Heroku
 - Clone the project, cd into the root folder, and run npm install. 
 - Create a MongoDB database either locally or on MongoDB Atlas and note your connection credentials. 
 - Create a config file (make sure to name it config.js) in the config folder, which exports your db.uri  connection (from MongoDB - Atlas). This file will be ignored by git so your db credentials will be kept safe when the app is deployed. 
-- Create an environmental variables file (make sure to name it “.env”) in the client root folder, which stores all of your API keys. - This file will be ignored by git so your API keys will be kept safe when the app is deployed. 
+- Create an environmental variables file (make sure to name it “.env”) in the client root folder, which stores all of your API keys. This file will be ignored by git so your API keys will be kept safe when the app is deployed. 
 - Add your environment variables and config variables to your Heroku Site account (they must be the same values as what you have locally). 
 - Make sure master is working as it should, then click the deploy button next to your site on Heroku. 
 
@@ -72,10 +72,14 @@ It correctly bundles React in production mode and optimizes the build for the be
 
 ## Learn More
 
-React: https://reactjs.org/docs/getting-started.html
-Node: https://nodejs.org/en/docs/
-Express: https://expressjs.com/
-Heroku: https://devcenter.heroku.com/categories/reference
-MongoDB Atlas: https://docs.atlas.mongodb.com/
+- React: https://reactjs.org/docs/getting-started.html
+- Node: https://nodejs.org/en/docs/
+- Express: https://expressjs.com/
+- Heroku: https://devcenter.heroku.com/categories/reference
+- MongoDB Atlas: https://docs.atlas.mongodb.com/
 
-Developers: Rachana Podaralla, Dave Hellmer, Justin Calma
+### _**Developers**_ -
+
+- Rachana Podaralla
+- Dave Hellmer
+- Justin Calma
