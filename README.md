@@ -1,4 +1,4 @@
-### _**NOTES**_ -
+### _**NOTES**_ 
 
 - Frontend Debugging Tools: React Developer Tools, Redux DevTools
 - Backend Debugging Tools: Mongo Shell, Postman
@@ -78,7 +78,7 @@ It correctly bundles React in production mode and optimizes the build for the be
 - Heroku: https://devcenter.heroku.com/categories/reference
 - MongoDB Atlas: https://docs.atlas.mongodb.com/
 
-### _**Developers**_ -
+### _**Developers**_ 
 
 - Rachana Podaralla
 - Dave Hellmer
