@@ -75,6 +75,14 @@ const OccupationOptions = (props) => {
     }
   };
 
+  const displayClusterInfo = (cluster) => {
+    for (var x = 0; x < data.length; x++) {
+      if (data[x].CareerCluster === cluster) {
+        return data[x].Description;
+      }
+    }
+  };
+
   return (
     <Jumbotron
       className="explore-header"
@@ -85,10 +93,7 @@ const OccupationOptions = (props) => {
     >
       <h1 style={{ color: "white" }}>{props.activeCluster}</h1>
       <small style={{ color: "white" }}>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-        veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-        commodo consequat.
+        {displayClusterInfo(props.activeCluster)}
       </small>
       <br />
       <br />

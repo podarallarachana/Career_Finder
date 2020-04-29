@@ -1,6 +1,7 @@
 [
   {
     "CareerCluster": "Agriculture, Food & Natural Resources",
+    "Description": "Agriculture, food, and natural resources workers produce agricultural goods. This includes food, plants, animals, fabrics, wood, and crops. You might work on a farm, ranch, dairy, orchard, greenhouse, or plant nursery. You could also work in a clinic or laboratory as a scientist or engineer. Some agriculture, food, and natural resources workers market, sell, or finance agricultural goods. For example, you might market products made from plants and animals. Or, you might sell services that farmers and ranchers use to improve products. You could also work to conserve natural resources or protect the environment.",
     "CareerPathway": [
       {
         "Pathway": "Agribusiness Systems",
@@ -261,6 +262,7 @@
   },
   {
     "CareerCluster": "Architecture & Construction",
+    "Description": "Architecture and construction workers work on buildings and other structures. This includes highways, bridges, houses, and buildings. You might create the designs or plans for new structures. Or, you might use the plans to build it or manage the workers on the project. Some architecture and construction workers do skilled trades, like carpentry, painting, or plumbing. For example, you might do all of the electrical work for a renovated office space. Or, you might work as a landscaper and take care of flowers and trees on large properties.",
     "CareerPathway": [
       {
         "Pathway": "Construction",
@@ -693,6 +695,7 @@
   },
   {
     "CareerCluster": "Arts, Audio/Video Technology & Communications",
+    "Description": "Arts, audio/video technology, and communications workers use creativity and their talents on the job. You might work for an audience as a performer or artist. This includes painters, dancers, sculptors, actors, and singers. Or, you might work behind the scenes to make a performance successful. This includes set designers, editors, broadcast technicians, and camera operators. Some audio/video technology and communications workers have high-profile jobs. For example, you might work as a news reporter or fashion designer. Or, you might use your creative talents with technology and work as an animator, graphic designer, or film editor.",
     "CareerPathway": [
       {
         "Pathway": "Journalism and Broadcasting",
@@ -943,6 +946,7 @@
   },
   {
     "CareerCluster": "Business Management & Administration",
+    "Description": "Business, management, and administrative workers give the support needed to make a business run. You might check employee time records or train new employees. Or, you might work as a top executive and provide the overall direction for a company or department. There are many types of jobs at all levels. For example, you might manage the financial activities of a business, direct the public to specific people or departments, or record incoming and outgoing shipments.",
     "CareerPathway": [
       {
         "Pathway": "Administrative Support",
@@ -1285,6 +1289,7 @@
   },
   {
     "CareerCluster": "Education & Training",
+    "Description": "Education and training workers guide and train people. As a teacher, you could influence young lives. You could also support the work of a classroom teacher as a counselor, librarian, or principal. You could coach sports activities or lead community classes. You could also work with adults. For example, you could lead training to employees in a business. Or you could work as a university or college professor for undergraduate or graduate students.",
     "CareerPathway": [
       {
         "Pathway": "Administration and Administrative Support",
@@ -1605,6 +1610,7 @@
   },
   {
     "CareerCluster": "Finance",
+    "Description": "Finance workers keep track of money. You might work in financial planning, banking, or insurance. For example, you might provide financial services to a business or individual. Or, you could maintain financial records or give advice to business executives on how to operate their business.",
     "CareerPathway": [
       {
         "Pathway": "Accounting",
@@ -1791,6 +1797,7 @@
   },
   {
     "CareerCluster": "Government & Public Administration",
+    "Description": "Government and public administration workers help pass and enforce the law. You could work in national, state, or local government. You will find almost every type of occupation within the government, including some jobs that are only found within government. For example, you might inspect new or remodeled buildings for safety, help people file the paperwork for a marriage license, or create proposals for urban development.",
     "CareerPathway": [
       {
         "Pathway": "Governance",
@@ -2034,6 +2041,7 @@
   },
   {
     "CareerCluster": "Health Science",
+    "Description": "Health science workers promote health and wellness. They diagnose and treat injuries and disease. As a physician, dentist, or nurse, you could work directly with patients. You could also work in a laboratory to get information used in research or provide administrative support by keeping medical records. Health science jobs are found at a variety of different sites. For example, you could work in a hospital, office, clinic, or nursing home. Or you could work on a cruise ship, at a sports arena, or within a patient's home.",
     "CareerPathway": [
       {
         "Pathway": "Biotechnology Research and Development",
@@ -2512,6 +2520,7 @@
   },
   {
     "CareerCluster": "Hospitality & Tourism",
+    "Description": "Hospitality and tourism workers help people enjoy vacations and entertainment activities. You might work at a restaurant, resort, sports arena, theme park, museum, or hotel. For example, you might manage operations of a college cafeteria, guide high school students on a trip to Spain, or rent equipment at a recreation center.",
     "CareerPathway": [
       {
         "Pathway": "Lodging",
@@ -2733,6 +2742,7 @@
   },
   {
     "CareerCluster": "Human Services",
+    "Description": "Human services workers help individual and families meet their personal needs. You might work in a government office, hospital, nonprofit agency, nursing home, spa, hotel, or school. Or, you might work in your own home. For example, you might help students with career and education choices at a high school, cut and color hair in a salon, or manage funeral services at a funeral home.",
     "CareerPathway": [
       {
         "Pathway": "Consumer Services",
@@ -2955,6 +2965,7 @@
   },
   {
     "CareerCluster": "Information Technology",
+    "Description": "Information technology workers are in a growing and always changing field. You might work with computer hardware, software, multimedia, or network systems. You might design new computer equipment or work on a new computer game. Some information technology workers support and manage computer hardware. For example, you might make sure the networks are working or manage a network that links people across the world. Or, you might support others and answer questions about specific software or hardware.",
     "CareerPathway": [
       {
         "Pathway": "Information Support and Services",
@@ -3084,6 +3095,7 @@
   },
   {
     "CareerCluster": "Law, Public Safety, Corrections & Security",
+    "Description": "Law, public safety, corrections, and security workers are found in a variety of settings. For example, you might guard the public and enforce the law as a police officer or security guard. Or, you might provide fire protection as a firefighter. Other workers provide legal services to people who commit crimes. For example, you might monitor activities within a prison, advise clients of their legal rights, or research legal procedures to support court cases.",
     "CareerPathway": [
       {
         "Pathway": "Correction Services",
@@ -3310,6 +3322,7 @@
   },
   {
     "CareerCluster": "Manufacturing",
+    "Description": "Manufacturing workers work with products and equipment. You might design a new product, decide how the product will be made, or make the product. You might work on cars, computers, appliances, airplanes, or electronic devices.Other manufacturing workers install or repair products. For example, you might install refrigerators or washers, repair plumping in commercial buildings, or diagnose engine problems in cars and trucks.",
     "CareerPathway": [
       {
         "Pathway": "Maintenance, Installation & Repair",
@@ -4023,6 +4036,7 @@
   },
   {
     "CareerCluster": "Marketing",
+    "Description": "Marketing, sales, and service workers help businesses sell products. You might advertise and promote products so customers want to buy them. Or, you might sell products and services to customers. For example, you might develop a marketing plan for a small start-up company; sell furniture; or measure and fit lenses and frames for eyeglass customers.",
     "CareerPathway": [
       {
         "Pathway": "Marketing Communications",
@@ -4177,6 +4191,7 @@
   },
   {
     "CareerCluster": "Science, Technology, Engineering & Mathematics",
+    "Description": "Science, technology, engineering, and mathematics workers do scientific research in laboratories or the field. Others plan or design products and systems. Or, you might support scientists, mathematicians, or engineers as they do their work. For example, you might oversee the construction of roads, develop systems to prevent diseases, or help engineers do research and read blueprints.",
     "CareerPathway": [
       {
         "Pathway": "Engineering and Technology",
@@ -4536,7 +4551,7 @@
   },
   {
     "CareerCluster": "Transportation, Distribution & Logistics",
-    "CareerClusterKey": "trans",
+    "Description": "Transportation, distribution, and logistics workers move people and products by road, air, rail, and water. You might work as a driver, pilot, engineer, or captain. You might repair or maintain the vehicles, trains, planes, and ships that move people and products. Or, you might work behind the scenes to make sure the products and people get to the right place on time.",
     "CareerPathway": [
       {
         "Pathway": "Facility and Mobile Equipment Maintenance",
