@@ -3,12 +3,11 @@ import { Nav } from "react-bootstrap";
 import LearningModules from "./LearningModules/LearningModules";
 import LearningModulesHeader from "./LearningModules/LearningModulesHeader";
 import ToolsTech from "./LearningModules/ToolsTech";
-import GotoQuiz from "../InteractiveTools/start-quiz";
 import CardColumns from "react-bootstrap/CardColumns";
 import Spinner from "react-bootstrap/Spinner";
 
 const Tabs = (props) => {
-  const [activeTab, setActiveTab] = useState("learningModules");
+  const [activeTab, setActiveTab] = useState("general");
 
   const handleSelect = (newTab) => {
     if (newTab !== activeTab) {
@@ -22,26 +21,7 @@ const Tabs = (props) => {
   return (
     <Fragment>
       <LearningModulesHeader data={props.data} />
-      <div className="learningModules">
-        {props.data === undefined ? (
-          <div className="learningModules">
-            <div className="row justify-content-center">
-              <Spinner animation="grow" />
-            </div>
-          </div>
-        ) : null}
-        {props.data === null ? <div className="learningModules">No</div> : null}
-        {props.data !== null && props.data !== undefined ? (
-          <CardColumns>
-            <LearningModules
-              updateActives={props.updateActives}
-              data={props.data}
-            />
-            <ToolsTech toolsData={props.toolsData} />
-          </CardColumns>
-        ) : null}
-      </div>
-      {/* <Nav
+      <Nav
         fill
         variant="pills"
         defaultActiveKey={activeTab}
@@ -49,44 +29,46 @@ const Tabs = (props) => {
         style={{ borderRadius: "0px" }}
       >
         <Nav.Item>
-          <Nav.Link eventKey="learningModules" style={{ borderRadius: "0px" }}>
-            Learning Modules
+          <Nav.Link eventKey="general" style={{ borderRadius: "0px" }}>
+            General
           </Nav.Link>
         </Nav.Item>
         <Nav.Item>
-          <Nav.Link eventKey="activities" style={{ borderRadius: "0px" }}>
-            Exploration Experience
+          <Nav.Link eventKey="fit" style={{ borderRadius: "0px" }}>
+            Fit
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="worklife" style={{ borderRadius: "0px" }}>
+            Worklife
           </Nav.Link>
         </Nav.Item>
       </Nav>
-      {activeTab === "learningModules" ? (
-        <Fragment>
-          <LearningModulesHeader data={props.data} />
-          <div className="learningModules">
-            {props.data === undefined ? (
-              <div className="learningModules">
-                <div className="row justify-content-center">
-                  <Spinner animation="grow" />
-                </div>
+      {activeTab === "general" ? (
+        <div className="learningModules">
+          {props.data === undefined ? (
+            <div className="learningModules">
+              <div className="row justify-content-center">
+                <Spinner animation="grow" />
               </div>
-            ) : null}
-            {props.data === null ? (
-              <div className="learningModules">No</div>
-            ) : null}
-            {props.data !== null && props.data !== undefined ? (
-              <CardColumns>
-                <LearningModules
-                  updateActives={props.updateActives}
-                  data={props.data}
-                />
-                <ToolsTech toolsData={props.toolsData} />
-              </CardColumns>
-            ) : null}
-          </div>
-        </Fragment>
+            </div>
+          ) : null}
+          {props.data === null ? (
+            <div className="learningModules">No</div>
+          ) : null}
+          {props.data !== null && props.data !== undefined ? (
+            <CardColumns>
+              <LearningModules
+                updateActives={props.updateActives}
+                data={props.data}
+              />
+              <ToolsTech toolsData={props.toolsData} />
+            </CardColumns>
+          ) : null}
+        </div>
       ) : (
-        <GotoQuiz code={careerCode} />
-      )} */}
+        <p>hi</p>
+      )}
     </Fragment>
   );
 };

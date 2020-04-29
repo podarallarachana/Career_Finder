@@ -30,8 +30,19 @@ const LearningModulesHeader = (props) => {
             </h6>
           </div>
 
-          <div>
-            <video width="100%" controls autoPlay muted loop>
+          <div
+            style={{
+              backgroundColor: "black",
+            }}
+          >
+            <video
+              width="100%"
+              controls
+              autoPlay
+              muted
+              loop
+              style={{ display: "block" }}
+            >
               <source
                 src={
                   "https://cdn.careeronestop.org/OccVids/OccupationVideos/" +

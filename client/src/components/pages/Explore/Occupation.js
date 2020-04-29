@@ -161,7 +161,7 @@ class Occupation extends React.Component {
       >
         {this.state.activeCluster !== "Search" ? (
           <Fragment>
-            <Accordion>
+            <Accordion defaultActiveKey="0">
               <Card
                 style={{
                   borderRadius: "0px",
@@ -176,7 +176,7 @@ class Occupation extends React.Component {
                 >
                   <i
                     className="fa fa-bars"
-                    style={{ color: "#8cd211" }}
+                    style={{ color: "#5aaafa" }}
                     aria-hidden="true"
                   ></i>
                   &nbsp;&nbsp; Explore Occupations
