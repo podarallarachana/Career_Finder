@@ -21,7 +21,27 @@ const Tabs = (props) => {
 
   return (
     <Fragment>
-      <Nav
+      <LearningModulesHeader data={props.data} />
+      <div className="learningModules">
+        {props.data === undefined ? (
+          <div className="learningModules">
+            <div className="row justify-content-center">
+              <Spinner animation="grow" />
+            </div>
+          </div>
+        ) : null}
+        {props.data === null ? <div className="learningModules">No</div> : null}
+        {props.data !== null && props.data !== undefined ? (
+          <CardColumns>
+            <LearningModules
+              updateActives={props.updateActives}
+              data={props.data}
+            />
+            <ToolsTech toolsData={props.toolsData} />
+          </CardColumns>
+        ) : null}
+      </div>
+      {/* <Nav
         fill
         variant="pills"
         defaultActiveKey={activeTab}
@@ -66,7 +86,7 @@ const Tabs = (props) => {
         </Fragment>
       ) : (
         <GotoQuiz code={careerCode} />
-      )}
+      )} */}
     </Fragment>
   );
 };

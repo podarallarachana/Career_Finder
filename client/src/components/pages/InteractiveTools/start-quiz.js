@@ -1,38 +1,27 @@
-import React from "react";
-<<<<<<< HEAD
-import "./QuizApp.css";
-import store from "../../../state-management/store";
-import { CHANGE_CAREER } from "../../../state-management/actions/constants";
+// import React from "react";
+// import './QuizApp.css';
+// //import store from '../../../state-management/store';
+// //import { CHANGE_CAREER } from "../../../state-management/actions/constants";
 
-const GotoQuiz = (props) => {
-  store.dispatch({ type: CHANGE_CAREER, payload: props.code });
-=======
-import './QuizApp.css';
-//import store from '../../../state-management/store';
-//import { CHANGE_CAREER } from "../../../state-management/actions/constants";
+// const GotoQuiz = (props) => {
+//   //store.dispatch({type: CHANGE_CAREER, payload: props.code});
 
-const GotoQuiz = (props) => {
-    //store.dispatch({type: CHANGE_CAREER, payload: props.code});
+//   /*const openQuiz = (color) => {
+//       let newWindow = window.open("/quiz","", "height=650,width=1080");
+//       newWindow.document.body.style.background = color;
+//   }*/
 
-    /*const openQuiz = (color) => {
-        let newWindow = window.open("/quiz","", "height=650,width=1080");
-        newWindow.document.body.style.background = color;
-    }*/
->>>>>>> 75c47cc4bb8f96809723c4bdcf4c02820f264d68
+//   const quizWindow = () => {
+//     window.open("/quiz", "", "height=650,width=1080");
+//   }
 
-  const quizWindow = () => {
-    window.open("/quiz", "", "height=650,width=1080");
-  };
+//   return (
+//     div className="quiztabcontainer"
+//   div className="quiztab"
+//   button className="quizbutton" onClick = { quizWindow }Click to start the Exploration Experience / button
+//     / div
+//     / div
+//     )
+// }
 
-  return (
-    <div class="quiztabcontainer">
-      <div class="quiztab">
-        <button class="quizbutton" onClick={quizWindow}>
-          Click to start the Exploration Experience
-        </button>
-      </div>
-    </div>
-  );
-};
-
-export default GotoQuiz;
+// export default GotoQuiz;

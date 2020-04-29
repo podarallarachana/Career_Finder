@@ -8,18 +8,19 @@ const OccupationOptions = (props) => {
     data.map((data) => {
       if (props.activeCluster === data.CareerCluster) {
         return (
-          <div className="col-12" key={data.CareerCluster}>
+          <div key={data.CareerCluster}>
             {data.CareerPathway.map((pathway) => {
               return (
                 <Button
+                  style={{ margin: "0px 4px 4px 0px" }}
                   key={pathway.Pathway}
                   onClick={() => {
                     props.updateActivePathway(pathway.Pathway);
                   }}
                   variant={
                     pathway.Pathway === props.activePathway
-                      ? "light btn-sm"
-                      : "outline-light btn-sm"
+                      ? "light btn-xs"
+                      : "outline-light btn-xs"
                   }
                   className="optionsButton"
                 >
@@ -27,7 +28,9 @@ const OccupationOptions = (props) => {
                 </Button>
               );
             })}
-            <hr />
+            {/* <hr /> */}
+            <br />
+            <br />
           </div>
         );
       } else {
@@ -38,21 +41,25 @@ const OccupationOptions = (props) => {
   const displayOccupations = () => {
     if (props.activeCluster) {
       return (
-        <div className="col-12" key={data.CareerCluster}>
+        <div key={data.CareerCluster}>
           {data
             .find((x) => x.CareerCluster === props.activeCluster)
             .CareerPathway.find((x) => x.Pathway === props.activePathway)
             .Jobs.map((job) => {
               return (
-                <LinkContainer key={job.Code} to={"/explore/" + job.Code}>
+                <LinkContainer
+                  key={job.Code}
+                  to={"/explore/" + job.Code}
+                  style={{ margin: "0px 4px 4px 0px" }}
+                >
                   <Button
                     onClick={() => {
                       props.updateActiveOccupation(job.Code);
                     }}
                     variant={
                       job.Code === props.activeOccupation
-                        ? "light btn-sm"
-                        : "outline-light btn-sm"
+                        ? "light btn-xs"
+                        : "outline-light btn-xs"
                     }
                     className="optionsButton"
                   >
@@ -69,15 +76,23 @@ const OccupationOptions = (props) => {
   };
 
   return (
-    <Jumbotron className="explore-header" style={{ marginBottom: "0px" }}>
+    <Jumbotron
+      className="explore-header"
+      style={{
+        marginBottom: "0px",
+        padding: "15px",
+      }}
+    >
       <h1 style={{ color: "white" }}>{props.activeCluster}</h1>
-      <p style={{ color: "white" }}>
+      <small style={{ color: "white" }}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
         veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
         commodo consequat.
-      </p>
-      <div className="row justify-content-center">
+      </small>
+      <br />
+      <br />
+      <div>
         {displayPathways()}
         {displayOccupations()}
       </div>

@@ -162,7 +162,12 @@ class Occupation extends React.Component {
         {this.state.activeCluster !== "Search" ? (
           <Fragment>
             <Accordion>
-              <Card>
+              <Card
+                style={{
+                  borderRadius: "0px",
+                  border: "0px",
+                }}
+              >
                 <Accordion.Toggle
                   as={Card.Header}
                   eventKey="0"
