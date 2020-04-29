@@ -7,24 +7,22 @@ const Outlook = (props) => {
       <Card.Body>
         <h3 className="font-weight-light">
           <i
-            className="fa fa-graduation-cap"
-            style={{ color: "#4178be" }}
+            className="fa fa-globe"
+            style={{ color: "#7cc7ff" }}
             aria-hidden="true"
           ></i>{" "}
           Outlook
         </h3>
+        <h6 className="font-weight-light">
+          <b>Outloook: </b>
+          {props.data.OccupationDetail[0].BrightOutlook}
+        </h6>
+        <hr />
         <p>
           Will this job still have good opportunities by the time you graduate?
           Certain jobs will not always be in demand.
         </p>
-        <hr />
-        <p>
-          <b style={{ color: "#7cc7ff" }}>
-            <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>{" "}
-            Outloook:{" "}
-          </b>
-          {props.data.OccupationDetail[0].BrightOutlook}
-        </p>
+
         <h6 className="font-weight-light">
           This field will have{" "}
           <b style={{ color: "#4178be" }}>
@@ -39,10 +37,10 @@ const Outlook = (props) => {
           </b>
           .{" "}
           <b style={{ color: "#4178be" }}>
-            {
-              props.data.OccupationDetail[0].Projections.Projections[0]
-                .ProjectedAnnualJobOpening
-            }
+            {props.data.OccupationDetail[0].Projections.Projections[0].ProjectedAnnualJobOpening.toString().replace(
+              /\B(?=(\d{3})+(?!\d))/g,
+              ","
+            )}
           </b>{" "}
           jobs are expected to be added every year untill then.
         </h6>

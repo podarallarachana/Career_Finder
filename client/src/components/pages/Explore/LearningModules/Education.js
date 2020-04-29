@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
 const Education = (props) => {
   const [graphData, setGraphData] = useState({});
@@ -46,7 +46,15 @@ const Education = (props) => {
   return (
     <Card style={{ border: "0px" }}>
       <Card.Body>
-        <h3 className="font-weight-light">Education</h3>
+        <h3 className="font-weight-light">
+          {" "}
+          <i
+            className="fa fa-graduation-cap"
+            style={{ color: "#b4e051" }}
+            aria-hidden="true"
+          ></i>{" "}
+          Education
+        </h3>
         <h6 className="font-weight-light">
           {props.data.OccupationDetail[0].EducationTraining.EducationTitle}
         </h6>
@@ -57,7 +65,7 @@ const Education = (props) => {
           many years are you willing to stay in school?
         </p>
         <div>
-          <Pie
+          <Doughnut
             options={{
               title: {
                 display: false,

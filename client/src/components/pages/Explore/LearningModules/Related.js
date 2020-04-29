@@ -9,15 +9,18 @@ const Related = (props) => {
     Object.keys(props.data.OccupationDetail[0].RelatedOnetTitles).map((key) => {
       return (
         <Fragment key={key}>
-          <LinkContainer to={"/explore/" + key}>
+          <LinkContainer
+            style={{ margin: "0px 4px 4px 0px" }}
+            to={"/explore/" + key}
+          >
             <Button
-              variant="light btn-sm"
+              variant="light btn-xs"
               className="optionsButton"
               onClick={() => updateActives(key)}
             >
               {props.data.OccupationDetail[0].RelatedOnetTitles[key]}
             </Button>
-          </LinkContainer>{" "}
+          </LinkContainer>
         </Fragment>
       );
     });
@@ -48,13 +51,9 @@ const Related = (props) => {
             style={{ color: "#5aa700" }}
             aria-hidden="true"
           ></i>{" "}
-          Related
+          <b>Related </b>Links
         </h3>
-        <p>Like this occupation? Check out similar occupations.</p>
         <hr />
-        <p>
-          <b>Links</b>
-        </p>
         {displayRelated()}
       </Card.Body>
     </Card>

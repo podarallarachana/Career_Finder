@@ -127,7 +127,15 @@ const Wages = (props) => {
   return (
     <Card style={{ border: "0px" }}>
       <Card.Body>
-        <h3 className="font-weight-light">Salary</h3>
+        <h3 className="font-weight-light">
+          {" "}
+          <i
+            className="fa fa-dollar"
+            style={{ color: "#c0e6ff" }}
+            aria-hidden="true"
+          ></i>{" "}
+          Salary
+        </h3>
         <h6 className="font-weight-light">
           $
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
@@ -197,7 +205,7 @@ const Wages = (props) => {
           The bottom 10% of employees make{" "}
           <i
             className="fa fa-dollar"
-            style={{ color: "#e8e8e8" }}
+            style={{ color: "#e0e0e0" }}
             aria-hidden="true"
           ></i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
@@ -210,10 +218,10 @@ const Wages = (props) => {
             style={{ color: "#7cc7ff" }}
             aria-hidden="true"
           ></i>{" "}
-          The borroms 25% of employees make{" "}
+          The bottom 25% of employees make{" "}
           <i
             className="fa fa-dollar"
-            style={{ color: "#e8e8e8" }}
+            style={{ color: "#e0e0e0" }}
             aria-hidden="true"
           ></i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
@@ -229,7 +237,7 @@ const Wages = (props) => {
           The average employee makes{" "}
           <i
             className="fa fa-dollar"
-            style={{ color: "#e8e8e8" }}
+            style={{ color: "#e0e0e0" }}
             aria-hidden="true"
           ></i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
@@ -245,7 +253,7 @@ const Wages = (props) => {
           The top 25% of employees make{" "}
           <i
             className="fa fa-dollar"
-            style={{ color: "#e8e8e8" }}
+            style={{ color: "#e0e0e0" }}
             aria-hidden="true"
           >
             {" "}
@@ -263,7 +271,7 @@ const Wages = (props) => {
           The top 10% of employees take{" "}
           <i
             className="fa fa-dollar"
-            style={{ color: "#e8e8e8" }}
+            style={{ color: "#e0e0e0" }}
             aria-hidden="true"
           ></i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
