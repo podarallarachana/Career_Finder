@@ -20,33 +20,32 @@
 
 ## Useful API and Config Information
 
-CareerOneStop API
-Required: User ID and API Token
-Obtained via: https://www.careeronestop.org/Developers/WebAPI/registration.aspx
+CareerOneStop API<br>
+Required: User ID and API Token<br>
+Obtained via: https://www.careeronestop.org/Developers/WebAPI/registration.aspx<br>
 
-College Scorecard API
-Required: API Token
-Obtained via:	https://collegescorecard.ed.gov/data/documentation/
-  or:	https://api.data.gov/signup/
+College Scorecard API<br>
+Required: API Token<br>
+Obtained via:	https://collegescorecard.ed.gov/data/documentation/<br>
+  or:	https://api.data.gov/signup/<br>
 
-Environmental Variables
+Environmental Variables<br>
+.env file<br>
+The API information listed in section 9.1 needs to be added to the .env file found in the <ProjectRoot>/client directory. If the file does not exist it can be created in place as a text file and saved as “.env”. The file should have the following format:<br>
+REACT_APP_USER_ID=[CareerOneStop User ID]<br>
+REACT_APP_TOKEN=[CareerOnestop API Token]<br>
+REACT_APP_TOKEN_SCORECARD=[College Scorecard API Token]<br>
+where [CareerOneStop User ID] and [CareerOnestop API Token] are the User ID and API token, respectively, obtained from CareerOneStop and [College Scorecard API Token] is the API token obtained from College Scorecard.<br>
 
-.env file
-The API information listed in section 9.1 needs to be added to the .env file found in the <ProjectRoot>/client directory. If the file does not exist it can be created in place as a text file and saved as “.env”. The file should have the following format:
-REACT_APP_USER_ID=[CareerOneStop User ID]
-REACT_APP_TOKEN=[CareerOnestop API Token]
-REACT_APP_TOKEN_SCORECARD=[College Scorecard API Token]
-where [CareerOneStop User ID] and [CareerOnestop API Token] are the User ID and API token, respectively, obtained from CareerOneStop and [College Scorecard API Token] is the API token obtained from College Scorecard.
-
-config.js file
-In addition to API information, the MongoDB server information will also need to have access control information added. This will be added to the config.js file found in the <ProjectRoot>/server/config/ directory. As with the .env file, if not found it can be added in place as a text file named “config.js”. The file should have the following format:
-module.exports = {
-db: {
-uri:"mongodb+srv://[USERNAME]:[PASSWORD]@[DB HOSTNAME]"
-token: "[PASSPHRASE]"
-    }
-  };
-where [USERNAME] is the database username, [PASSWORD] is the database password, and [DB HOSTNAME] is the address of the mongoDB database itself. [PASSPHRASE] can be any word or short phrase such as "bittersweet".
+config.js file<br>
+In addition to API information, the MongoDB server information will also need to have access control information added. This will be added to the config.js file found in the <ProjectRoot>/server/config/ directory. As with the .env file, if not found it can be added in place as a text file named “config.js”. The file should have the following format:<br>
+module.exports = {<br>
+db: {<br>
+uri:"mongodb+srv://[USERNAME]:[PASSWORD]@[DB HOSTNAME]"<br>
+token: "[PASSPHRASE]"<br>
+    }<br>
+  };<br>
+where [USERNAME] is the database username, [PASSWORD] is the database password, and [DB HOSTNAME] is the address of the mongoDB database itself. [PASSPHRASE] can be any word or short phrase such as "bittersweet".<br>
 
 
 ## How to start the server
