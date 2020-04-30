@@ -8,7 +8,7 @@ exports.addclass = async (req,res) => {
     try {
         let classRoom = new Class({
             name : req.body.name,
-            ofTeacherId: [req.body.teacherId],
+            ofTeacherId: req.body.teacherId,
             ofQuizzes: [
                 {name: "q1"}, {name : "q2" }, {name: "q3"}, {name: "q4"}, {name: "q5"},
                 {name: "q6"}, {name: "q7"}, {name: "q8"}, {name: "q9"}, {name: "q10"},

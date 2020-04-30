@@ -1,4 +1,5 @@
 import axios from "axios";
+import { v4 as uuidv4 } from "uuid";
 import { setAlert } from "./alert";
 import setAuthToken from "../utilities/setAuthToken";
 import {
@@ -42,9 +43,17 @@ export const register = ({
     },
   };
   //FOR NOW JUST TAKE CARE OF EMPTY CODES, CODE LOGIC NEEDS TO BE ADDED LATER
+  //if (code === "" && is_teacher === false) {
+  //  code = "NA";
+  //}
+
   if (code === "" && is_teacher === false) {
     code = "NA";
   }
+  else if (is_teacher === true) {
+    code = "Teacher";
+  }
+
   // if (code === "" && is_teacher === false) {
   //   //STUDENT DOESN'T HAVE A CODE
   //   code = "NA";

@@ -7,7 +7,7 @@ const ClassSchema = new mongoose.Schema({
     name : {
         type: String
     },
-    ofTeacherId : [String],
+    ofTeacherId : String,
     ofStudentId : [],
     ofQuizzes : []
 
