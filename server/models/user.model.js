@@ -29,6 +29,11 @@ const UserSchema = new mongoose.Schema({
   code: {
     type: String,
     required: true //DEFAULT NULL?
+  },
+  points: {
+    type: [Number],
+    required: true,
+    default : [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
   }
 });
 

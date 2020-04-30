@@ -1,4 +1,5 @@
 const User = require("../models/user.model");
+const Class = require("../models/class.model")
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { validationResult } = require("express-validator/check");
@@ -43,6 +44,8 @@ exports.register = async (req, res) => {
       }
     };
 
+
+
     jwt.sign(
       payload,
       process.env.DB_TOKEN || require("../config/config").db.token,
@@ -56,5 +59,17 @@ exports.register = async (req, res) => {
     );
   } catch (err) {
     res.status(500).send("Server error");
+  }
+};
+
+//upon teacher delete
+exports.deleteTeacher = async (req,res) => {
+  console.log("hit");
+  try{
+    await Class.deleteMany({ofTeacherId: req.body.id});
+    await User.deleteOne({_id: req.body.id});
+    res.status(200).send("Deleted");
+  } catch (err) {
+    res.status(400).send("Error");
   }
 };

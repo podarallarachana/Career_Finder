@@ -37,17 +37,16 @@ exports.deleteClass = async (req,res) => {
         await Class.findOneAndDelete({
             name : req.body.name
         });
-        console.log(req);
         res.status(200).send("Deleted");
     } catch (err) {
         res.status(400).send("Error");
     }
 };
 
+
 //gets specific class
 exports.getClass = async (req,res) => {
     try {
-        console.log(req);
         res.status(200).send(await Class.findOne({name : req.body.name}));
     } catch (err) {
         res.status(400).send("Error");
@@ -58,9 +57,15 @@ exports.getClass = async (req,res) => {
 exports.addStudent = async  (req,res) => {
     try {
         await Class.findOne({_id : req.body.id}).then( async function(result) {
-            result.ofStudentId.push(req.body.studentID);
-            await result.save();
-            res.status(200).send("Added");
+            User.findOne({_id:req.body.studentID}).then(student => {
+                console.log(student);
+                result.ofStudentId.push(req.body.studentID);
+                result.save();
+                res.status(200).send("Added");
+            }).catch(err => {
+                console.log(err);
+                res.status(400).send("error");
+            });
         });
     } catch (err) {
         res.status(400).send("Error");
@@ -86,13 +91,10 @@ exports.addPoints = async (req,res) => {
     try {
         await User.findById(req.body.id).then( async function(result) {
             result.points.splice(parseInt(req.body.quiz), 1, ((result.points[req.body.quiz]) + parseInt(req.body.points)));
-            await Student.findOne({studentId: req.query.id}).then(async function (result) {
                 console.log(parseInt(result.points[req.query.quiz]) + parseInt(req.query.points));
-                result.points.splice(parseInt(req.query.quiz), 1, ((result.points[req.query.quiz]) + parseInt(req.query.points)));
                 await result.save();
                 res.status(200).send(result);
             });
-        })
     } catch (err) {
         res.status(400).send("Error");
     }

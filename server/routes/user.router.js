@@ -22,4 +22,6 @@ router.post(
   users.register
 );
 
+router.delete("/teacher", users.deleteTeacher);
+
 module.exports = router;
