@@ -7,7 +7,7 @@
 ## Deploy to Heroku
 - Clone the project, cd into the root folder, and run npm install. 
 - Create a MongoDB database either locally or on MongoDB Atlas and note your connection credentials. 
-- Create a config file (make sure to name it config.js) in the config folder, which exports your db.uri  connection (from MongoDB - Atlas). This file will be ignored by git so your db credentials will be kept safe when the app is deployed. 
+- Create a config file (make sure to name it config.js) in the config folder, which exports your db.uri  connection (from MongoDB - Atlas). This file will be ignored by git so your db credentials will be kept safe when the app is deployed. In addition to the required uri, a entry for "token" must also exist in the db entry. This is used for bcrypt and can be a small passphrase such as "bittersweet".
 - Create an environmental variables file (make sure to name it “.env”) in the client root folder, which stores all of your API keys. This file will be ignored by git so your API keys will be kept safe when the app is deployed. 
 - Add your environment variables and config variables to your Heroku Site account (they must be the same values as what you have locally). 
 - Make sure master is working as it should, then click the deploy button next to your site on Heroku. 
@@ -15,8 +15,39 @@
 ## Local Development
 - Clone the project and run npm install. 
 - Create a MongoDB database either locally or on MongoDB Atlas and note your connection credentials. 
-- Create a config file (make sure to name it config.js) in the config folder, which exports your db.uri  connection (from MongoDB Atlas). This file will be ignored by git so your db credentials will be kept safe when the app is deployed. 
+- Create a config file (make sure to name it config.js) in the config folder, which exports your db.uri  connection (from MongoDB Atlas). This file will be ignored by git so your db credentials will be kept safe when the app is deployed. In addition to the required uri, a entry for "token" must also exist in the db entry. This is used for bcrypt and can be a small passphrase such as "bittersweet".
 - Create an environmental variables file (make sure to name it “.env”) in the client root folder, which stores all of your API keys. This file will be ignored by git so your API keys will be kept safe when the app is deployed. 
+
+## Useful API and Config Information
+
+CareerOneStop API
+Required: User ID and API Token
+Obtained via: https://www.careeronestop.org/Developers/WebAPI/registration.aspx
+
+College Scorecard API
+Required: API Token
+Obtained via:	https://collegescorecard.ed.gov/data/documentation/
+  or:	https://api.data.gov/signup/
+
+Environmental Variables
+
+.env file
+The API information listed in section 9.1 needs to be added to the .env file found in the <ProjectRoot>/client directory. If the file does not exist it can be created in place as a text file and saved as “.env”. The file should have the following format:
+REACT_APP_USER_ID=[CareerOneStop User ID]
+REACT_APP_TOKEN=[CareerOnestop API Token]
+REACT_APP_TOKEN_SCORECARD=[College Scorecard API Token]
+where [CareerOneStop User ID] and [CareerOnestop API Token] are the User ID and API token, respectively, obtained from CareerOneStop and [College Scorecard API Token] is the API token obtained from College Scorecard.
+
+config.js file
+In addition to API information, the MongoDB server information will also need to have access control information added. This will be added to the config.js file found in the <ProjectRoot>/server/config/ directory. As with the .env file, if not found it can be added in place as a text file named “config.js”. The file should have the following format:
+module.exports = {
+db: {
+uri:"mongodb+srv://[USERNAME]:[PASSWORD]@[DB HOSTNAME]"
+token: "[PASSPHRASE]"
+    }
+  };
+where [USERNAME] is the database username, [PASSWORD] is the database password, and [DB HOSTNAME] is the address of the mongoDB database itself. [PASSPHRASE] can be any word or short phrase such as "bittersweet".
+
 
 ## How to start the server
 
