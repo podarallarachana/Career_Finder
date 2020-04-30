@@ -20,8 +20,13 @@ const Technology = (props) => {
             </b>
             <br />
             <h6 className="font-weight-light">
-              {technology.Examples.map((example) => {
-                return <Fragment key={example.Name}>{example.Name}, </Fragment>;
+              {technology.Examples.map((example, i) => {
+                return (
+                  <Fragment key={example.Name}>
+                    {example.Name}
+                    {i !== technology.Examples.length - 1 ? ", " : null}
+                  </Fragment>
+                );
               })}
             </h6>
           </Fragment>
@@ -32,7 +37,7 @@ const Technology = (props) => {
   const displayImportantTechnologies = () =>
     props.toolsData.TechToolOccupationDetails.Technology.CategoryList.slice(
       0,
-      6
+      5
     ).map((technology) => {
       return (
         <Fragment key={technology.Title}>
@@ -46,8 +51,13 @@ const Technology = (props) => {
           </b>
           <br />
           <h6 className="font-weight-light">
-            {technology.Examples.map((example) => {
-              return <Fragment key={example.Name}>{example.Name}, </Fragment>;
+            {technology.Examples.map((example, i) => {
+              return (
+                <Fragment key={example.Name}>
+                  {example.Name}
+                  {i !== technology.Examples.length - 1 ? ", " : null}
+                </Fragment>
+              );
             })}
           </h6>
         </Fragment>
@@ -65,10 +75,10 @@ const Technology = (props) => {
           ></i>{" "}
           Technologies
         </h3>
-        <p>
+        <h6 className="font-weight-light">
           Here are some technologies you will need to be familiar with in this
           occupation. Have you ever used any of these before?
-        </p>
+        </h6>
         <hr />
         <p>
           <b>technologys</b>

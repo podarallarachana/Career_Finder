@@ -11,51 +11,51 @@ const Tools = (props) => {
         <Fragment key={tool.Title}>
           <b>
             <i
-              style={{ color: "#90caf9" }}
-              className="fa fa-arrow-circle-right"
+              style={{ color: "#fba465" }}
+              className="fa fa-chevron-circle-right"
               aria-hidden="true"
             ></i>{" "}
             {tool.Title}
           </b>
           <br />
-          {tool.Examples.map((example) => {
-            return (
-              <Fragment key={example.Name}>
-                <h6 className="font-weight-light">
+          <h6 className="font-weight-light">
+            {tool.Examples.map((example, i) => {
+              return (
+                <Fragment key={example.Name}>
                   {example.Name}
-                  {<br />}
-                </h6>
-              </Fragment>
-            );
-          })}
+                  {i !== tool.Examples.length - 1 ? ", " : null}
+                </Fragment>
+              );
+            })}
+          </h6>
         </Fragment>
       );
     });
 
   const displayImportantTools = () =>
-    props.toolsData.TechToolOccupationDetails.Tools.Categories.slice(0, 6).map(
+    props.toolsData.TechToolOccupationDetails.Tools.Categories.slice(0, 5).map(
       (tool) => {
         return (
           <Fragment key={tool.Title}>
             <b>
               <i
-                style={{ color: "#90caf9" }}
-                className="fa fa-arrow-circle-right"
+                style={{ color: "#fba465" }}
+                className="fa fa-chevron-circle-right"
                 aria-hidden="true"
               ></i>{" "}
               {tool.Title}
             </b>
             <br />
-            {tool.Examples.map((example) => {
-              return (
-                <Fragment key={example.Name}>
-                  <h6 className="font-weight-light">
+            <h6 className="font-weight-light">
+              {tool.Examples.map((example, i) => {
+                return (
+                  <Fragment key={example.Name}>
                     {example.Name}
-                    {<br />}
-                  </h6>
-                </Fragment>
-              );
-            })}
+                    {i !== tool.Examples.length - 1 ? ", " : null}
+                  </Fragment>
+                );
+              })}
+            </h6>
           </Fragment>
         );
       }
@@ -68,14 +68,14 @@ const Tools = (props) => {
           <i
             className="fa fa-camera"
             aria-hidden="true"
-            style={{ color: "#4178be" }}
+            style={{ color: "#f86e51" }}
           ></i>{" "}
           Tools
         </h3>
-        <p>
+        <h6 className="font-weight-light">
           Here are some tools you will be using in this occupation. Are you
           familiar with any of them?
-        </p>
+        </h6>
         <hr />
         <p>
           <b>Tools</b>

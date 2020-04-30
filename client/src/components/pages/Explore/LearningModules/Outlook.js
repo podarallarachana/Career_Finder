@@ -14,7 +14,7 @@ const Outlook = (props) => {
           Outlook
         </h3>
         <h6 className="font-weight-light">
-          {props.data.OccupationDetail[0].BrightOutlook}&nbsp;outlook
+          {props.data.OccupationDetail[0].BrightOutlook}&nbsp;Outlook
         </h6>
         <hr />
         <p>
@@ -34,7 +34,7 @@ const Outlook = (props) => {
           <b style={{ color: "#4178be" }}>
             {props.data.OccupationDetail[0].Projections.ProjectedYear}
           </b>
-          .{" "}
+          .&nbsp;
           <b style={{ color: "#4178be" }}>
             {props.data.OccupationDetail[0].Projections.Projections[0].ProjectedAnnualJobOpening.toString().replace(
               /\B(?=(\d{3})+(?!\d))/g,

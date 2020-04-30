@@ -165,15 +165,15 @@ const Skills = (props) => {
             <i
               className="fa fa-child"
               aria-hidden="true"
-              style={{ color: "#c0e6ff" }}
+              style={{ color: "#42a5f5" }}
             ></i>
             &nbsp;Skills
           </h3>
-          <p>
+          <h6 className="font-weight-light">
             Here are some skills employees in this industry are expected to
             have. Do you have any of these skills? Click or hover over a skill
             to view more information.
-          </p>
+          </h6>
           <hr />
           <p>
             <b>Top Skills</b>
