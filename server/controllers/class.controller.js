@@ -43,6 +43,7 @@ exports.deleteClass = async (req,res) => {
     }
 };
 
+
 //gets specific class
 exports.getClass = async (req,res) => {
     try {
