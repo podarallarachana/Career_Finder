@@ -43,6 +43,8 @@ exports.register = async (req, res) => {
       }
     };
 
+
+
     jwt.sign(
       payload,
       process.env.DB_TOKEN || require("../config/config").db.token,

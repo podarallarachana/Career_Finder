@@ -23,7 +23,6 @@ const Admin = ({
 
   useEffect(() => {
       toggleLoading(true);
-      console.log("called");
       switch(view) {
           case "classes":
                   axios.get("/api/class/classes").then(function (results) {
@@ -44,8 +43,8 @@ const Admin = ({
                   let students = [];
                   let classPoints = 0;
                   function setStudents() {
+                      let counter = 0;
                       currentClass.ofStudentId.forEach(async (student,index,array) => {
-                          let counter = 0;
                           await axios.get("/api/class/student/points",{params:{id: student}}).then( result => {
                               let total = 0;
                               result.data.points.forEach(score => {total+= score;});
@@ -59,7 +58,6 @@ const Admin = ({
                               classPoints += total;
                               if(counter === array.length) {
                                   toggleLoading(false);
-                                  console.log("displayed");
                                   setSD(students);
                                   setCT(classPoints);
                               }
@@ -188,7 +186,6 @@ const Admin = ({
                     );
                 case "viewclass":
                     //add code to get student data
-                    console.log(studentData);
                     return (
                         <Accordion>
                             <Card>
