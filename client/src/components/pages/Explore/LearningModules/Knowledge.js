@@ -165,7 +165,7 @@ const Knowledge = (props) => {
             <i
               className="fa fa-flask"
               aria-hidden="true"
-              style={{ color: "#f86e51" }}
+              style={{ color: "#fba465" }}
             ></i>
             &nbsp;Subjects
           </h3>

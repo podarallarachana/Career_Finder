@@ -94,13 +94,6 @@ const Tabs = (props) => {
                 <Education data={props.data} />
               ) : null}
 
-              {props.data.OccupationDetail[0].hasOwnProperty("Dwas") &&
-              props.data.OccupationDetail[0].Dwas.length !== 0 &&
-              props.data.OccupationDetail[0].Dwas !== undefined &&
-              props.data.OccupationDetail[0].Dwas !== null ? (
-                <Activities data={props.data} />
-              ) : null}
-
               {props.data.OccupationDetail[0].hasOwnProperty(
                 "KnowledgeDataList"
               ) &&
@@ -108,6 +101,13 @@ const Tabs = (props) => {
               props.data.OccupationDetail[0].KnowledgeDataList !== undefined &&
               props.data.OccupationDetail[0].KnowledgeDataList !== null ? (
                 <Knowledge data={props.data} />
+              ) : null}
+
+              {props.data.OccupationDetail[0].hasOwnProperty("Dwas") &&
+              props.data.OccupationDetail[0].Dwas.length !== 0 &&
+              props.data.OccupationDetail[0].Dwas !== undefined &&
+              props.data.OccupationDetail[0].Dwas !== null ? (
+                <Activities data={props.data} />
               ) : null}
 
               {props.data.OccupationDetail[0].hasOwnProperty("Tasks") &&
@@ -145,12 +145,17 @@ const Tabs = (props) => {
               ) : null}
 
               {props.data.OccupationDetail[0].hasOwnProperty(
-                "InterestDataList"
+                "RelatedOnetTitles"
               ) &&
-              props.data.OccupationDetail[0].InterestDataList.length !== 0 &&
-              props.data.OccupationDetail[0].InterestDataList !== undefined &&
-              props.data.OccupationDetail[0].InterestDataList !== null ? (
-                <Interests data={props.data} />
+              props.data.OccupationDetail[0].RelatedOnetTitles !== undefined &&
+              props.data.OccupationDetail[0].RelatedOnetTitles !== null &&
+              Object.keys(
+                props.data.OccupationDetail[0].RelatedOnetTitles
+              )[0] !== undefined ? (
+                <Related
+                  updateActives={props.updateActives}
+                  data={props.data}
+                />
               ) : null}
 
               {props.data.OccupationDetail[0].hasOwnProperty(
@@ -165,17 +170,12 @@ const Tabs = (props) => {
               <ToolsTech toolsData={props.toolsData} />
 
               {props.data.OccupationDetail[0].hasOwnProperty(
-                "RelatedOnetTitles"
+                "InterestDataList"
               ) &&
-              props.data.OccupationDetail[0].RelatedOnetTitles !== undefined &&
-              props.data.OccupationDetail[0].RelatedOnetTitles !== null &&
-              Object.keys(
-                props.data.OccupationDetail[0].RelatedOnetTitles
-              )[0] !== undefined ? (
-                <Related
-                  updateActives={props.updateActives}
-                  data={props.data}
-                />
+              props.data.OccupationDetail[0].InterestDataList.length !== 0 &&
+              props.data.OccupationDetail[0].InterestDataList !== undefined &&
+              props.data.OccupationDetail[0].InterestDataList !== null ? (
+                <Interests data={props.data} />
               ) : null}
             </CardColumns>
           ) : null}

@@ -61,7 +61,7 @@ const Activities = (props) => {
           <i
             className="fa fa-sun-o"
             aria-hidden="true"
-            style={{ color: "#f86e51" }}
+            style={{ color: "#fba465" }}
           ></i>{" "}
           Daily Activities
         </h3>

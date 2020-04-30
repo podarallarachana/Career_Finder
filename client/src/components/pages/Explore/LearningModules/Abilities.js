@@ -165,7 +165,7 @@ const Abilities = (props) => {
             <i
               className="fa fa-pencil"
               aria-hidden="true"
-              style={{ color: "#f86e51" }}
+              style={{ color: "#fba465" }}
             ></i>
             &nbsp;Abilities
           </h3>

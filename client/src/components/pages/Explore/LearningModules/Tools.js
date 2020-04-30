@@ -68,7 +68,7 @@ const Tools = (props) => {
           <i
             className="fa fa-camera"
             aria-hidden="true"
-            style={{ color: "#f86e51" }}
+            style={{ color: "#fba465" }}
           ></i>{" "}
           Tools
         </h3>
