@@ -20,6 +20,7 @@ const Admin = ({
   });
   const [studentData, setSD] = useState([]);
   const [classTotal, setCT] = useState(0);
+
   useEffect(() => {
       toggleLoading(true);
       console.log("called");
@@ -32,6 +33,8 @@ const Admin = ({
                   break;
 
           case "viewclass":
+              setSD([]);
+              setCT(0);
               if(currentClass.ofStudentId.length)
               {
                   let studentObj = {
@@ -93,7 +96,10 @@ const Admin = ({
   const remove = (studentID) => {
       axios.put("/api/class/student",{id: currentClass._id, studentID: studentID}).then(
           result => {
-              console.log(result.data);
+             // this.forceUpdate();
+
+              changeView("classes");
+              setFormData({class_name: ""});
           }
       )
   };
@@ -124,6 +130,9 @@ const Admin = ({
         axios.post("/api/class/student",{studentID: class_name ,id: currentClass._id});
         changeView("classes");
         setFormData({class_name: ""});
+
+
+        //this.forceUpdate();
     };
 
     const clusters = ["Agriculture, food, & Natural Resources","Architecture & Construction",
