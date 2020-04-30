@@ -98,8 +98,9 @@ const Abilities = (props) => {
       return (
         <Fragment key={ability.ElementName}>
           <Button
+            style={{ margin: "0px 4px 4px 0px" }}
             onClick={handleShow}
-            variant="light btn-sm"
+            variant="light btn-xs"
             className="optionsButton"
             title={ability.ElementDescription}
           >
@@ -118,13 +119,14 @@ const Abilities = (props) => {
     props.data.OccupationDetail[0].AbilityDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     )
-      .slice(0, 15)
+      .slice(0, 5)
       .map((ability) => {
         return (
           <Fragment key={ability.ElementName}>
             <Button
+              style={{ margin: "0px 4px 4px 0px" }}
               onClick={handleShow}
-              variant="light btn-sm"
+              variant="light btn-xs"
               className="optionsButton"
               title={ability.ElementDescription}
             >
@@ -159,7 +161,14 @@ const Abilities = (props) => {
 
       <Card style={{ border: "0px" }}>
         <Card.Body>
-          <h3 className="font-weight-light">Abilities</h3>
+          <h3 className="font-weight-light">
+            <i
+              className="fa fa-pencil"
+              aria-hidden="true"
+              style={{ color: "#b4e051" }}
+            ></i>
+            &nbsp;Abilities
+          </h3>
           <p>
             These are abilities that employees in the industry should have. Do
             you have any of these abilites? Click or hover over an ability to

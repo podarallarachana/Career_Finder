@@ -132,15 +132,6 @@ const Tabs = (props) => {
           {props.data !== null && props.data !== undefined ? (
             <CardColumns>
               {props.data.OccupationDetail[0].hasOwnProperty(
-                "SkillsDataList"
-              ) &&
-              props.data.OccupationDetail[0].SkillsDataList.length !== 0 &&
-              props.data.OccupationDetail[0].SkillsDataList !== undefined &&
-              props.data.OccupationDetail[0].SkillsDataList !== null ? (
-                <Skills data={props.data} />
-              ) : null}
-
-              {props.data.OccupationDetail[0].hasOwnProperty(
                 "KnowledgeDataList"
               ) &&
               props.data.OccupationDetail[0].KnowledgeDataList.length !== 0 &&
@@ -150,21 +141,30 @@ const Tabs = (props) => {
               ) : null}
 
               {props.data.OccupationDetail[0].hasOwnProperty(
-                "AbilityDataList"
-              ) &&
-              props.data.OccupationDetail[0].AbilityDataList.length !== 0 &&
-              props.data.OccupationDetail[0].AbilityDataList !== undefined &&
-              props.data.OccupationDetail[0].AbilityDataList !== null ? (
-                <Abilities data={props.data} />
-              ) : null}
-
-              {props.data.OccupationDetail[0].hasOwnProperty(
                 "InterestDataList"
               ) &&
               props.data.OccupationDetail[0].InterestDataList.length !== 0 &&
               props.data.OccupationDetail[0].InterestDataList !== undefined &&
               props.data.OccupationDetail[0].InterestDataList !== null ? (
                 <Interests data={props.data} />
+              ) : null}
+
+              {props.data.OccupationDetail[0].hasOwnProperty(
+                "SkillsDataList"
+              ) &&
+              props.data.OccupationDetail[0].SkillsDataList.length !== 0 &&
+              props.data.OccupationDetail[0].SkillsDataList !== undefined &&
+              props.data.OccupationDetail[0].SkillsDataList !== null ? (
+                <Skills data={props.data} />
+              ) : null}
+
+              {props.data.OccupationDetail[0].hasOwnProperty(
+                "AbilityDataList"
+              ) &&
+              props.data.OccupationDetail[0].AbilityDataList.length !== 0 &&
+              props.data.OccupationDetail[0].AbilityDataList !== undefined &&
+              props.data.OccupationDetail[0].AbilityDataList !== null ? (
+                <Abilities data={props.data} />
               ) : null}
             </CardColumns>
           ) : null}

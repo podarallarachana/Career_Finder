@@ -8,14 +8,13 @@ const Outlook = (props) => {
         <h3 className="font-weight-light">
           <i
             className="fa fa-globe"
-            style={{ color: "#7cc7ff" }}
+            style={{ color: "#c0e6ff" }}
             aria-hidden="true"
           ></i>{" "}
           Outlook
         </h3>
         <h6 className="font-weight-light">
-          <b>Outloook: </b>
-          {props.data.OccupationDetail[0].BrightOutlook}
+          {props.data.OccupationDetail[0].BrightOutlook}&nbsp;outlook
         </h6>
         <hr />
         <p>

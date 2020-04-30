@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { Doughnut } from "react-chartjs-2";
+import { Pie } from "react-chartjs-2";
 
 const Education = (props) => {
   const [graphData, setGraphData] = useState({});
@@ -65,7 +65,7 @@ const Education = (props) => {
           many years are you willing to stay in school?
         </p>
         <div>
-          <Doughnut
+          <Pie
             options={{
               title: {
                 display: false,

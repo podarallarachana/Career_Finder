@@ -9,16 +9,17 @@ const Interests = (props) => {
           <Card
             title={interest.ElementDescription}
             style={{
-              backgroundColor: "#f5f5f5",
+              backgroundColor: "#f8f9fa",
               border: "0px",
               marginBottom: "5px",
+              borderRadius: "10px",
             }}
           >
             <Card.Body>
               <h6>
-                {" "}
                 <i
-                  className="fa fa-arrow-circle-right"
+                  className="fa fa-star"
+                  style={{ color: "#5596e6" }}
                   aria-hidden="true"
                 ></i>{" "}
                 {interest.ElementName}
@@ -36,8 +37,20 @@ const Interests = (props) => {
     <Fragment>
       <Card style={{ border: "0px" }}>
         <Card.Body>
-          <h3 className="font-weight-light">Interests</h3>
-          <br />
+          <h3 className="font-weight-light">
+            <i
+              className="fa fa-star-o"
+              style={{ color: "#c0e6ff" }}
+              aria-hidden="true"
+            ></i>{" "}
+            <b>Industry </b>
+            Interests
+          </h3>
+          <h6 className="font-weight-light">
+            Here are some interests and associated responsibilites this career
+            has.
+          </h6>
+          <hr />
           {dispayInterests()}
         </Card.Body>
       </Card>

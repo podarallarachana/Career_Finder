@@ -48,11 +48,14 @@ const Related = (props) => {
         <h3 className="font-weight-light">
           <i
             className="fa fa-link"
-            style={{ color: "#5aa700" }}
+            style={{ color: "#b4e051" }}
             aria-hidden="true"
           ></i>{" "}
           <b>Related </b>Links
         </h3>
+        <h6 className="font-weight-light">
+          Check out similar careers. Click on a link below.
+        </h6>
         <hr />
         {displayRelated()}
       </Card.Body>

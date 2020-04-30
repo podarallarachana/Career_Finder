@@ -98,8 +98,9 @@ const Knowledge = (props) => {
       return (
         <Fragment key={knowledge.ElementName}>
           <Button
+            style={{ margin: "0px 4px 4px 0px" }}
             onClick={handleShow}
-            variant="light btn-sm"
+            variant="light btn-xs"
             className="optionsButton"
             title={knowledge.ElementDescription}
           >
@@ -109,7 +110,7 @@ const Knowledge = (props) => {
               aria-hidden="true"
               style={{ color: getColor(knowledge.Importance) }}
             ></i>
-          </Button>{" "}
+          </Button>
         </Fragment>
       );
     });
@@ -118,13 +119,14 @@ const Knowledge = (props) => {
     props.data.OccupationDetail[0].KnowledgeDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     )
-      .slice(0, 15)
+      .slice(0, 5)
       .map((knowledge) => {
         return (
           <Fragment key={knowledge.ElementName}>
             <Button
+              style={{ margin: "0px 4px 4px 0px" }}
               onClick={handleShow}
-              variant="light btn-sm"
+              variant="light btn-xs"
               className="optionsButton"
               title={knowledge.ElementDescription}
             >
@@ -134,7 +136,7 @@ const Knowledge = (props) => {
                 aria-hidden="true"
                 style={{ color: getColor(knowledge.Importance) }}
               ></i>
-            </Button>{" "}
+            </Button>
           </Fragment>
         );
       });
@@ -159,12 +161,20 @@ const Knowledge = (props) => {
 
       <Card style={{ border: "0px" }}>
         <Card.Body>
-          <h3 className="font-weight-light">Subjects</h3>
-          <p>
+          <h3 className="font-weight-light">
+            <i
+              className="fa fa-flask"
+              aria-hidden="true"
+              style={{ color: "#b4e051" }}
+            ></i>
+            &nbsp;Subjects
+          </h3>
+          <h6 className="font-weight-light">
+            {" "}
             Here are some subjects that people in this industry should excel in.
             Have you ever taken any of these subjects at school? Are you good at
             them? Click or hover over a subject to view more information.
-          </p>
+          </h6>
           <hr />
           <p>
             <b>Top Subjects</b>

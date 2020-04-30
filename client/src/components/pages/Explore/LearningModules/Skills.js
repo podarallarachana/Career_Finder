@@ -5,7 +5,7 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Doughnut } from "react-chartjs-2";
 
-const Skills = props => {
+const Skills = (props) => {
   const [showAll, setShowAll] = useState(false);
   const [show, setShow] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
@@ -17,13 +17,13 @@ const Skills = props => {
     var obj = props.data.OccupationDetail[0].SkillsDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     ).slice(0, 15);
-    var labels = Object.keys(obj).map(function(key) {
+    var labels = Object.keys(obj).map(function (key) {
       return obj[key].ElementName + " Importance Value";
     });
-    var values = Object.keys(obj).map(function(key) {
+    var values = Object.keys(obj).map(function (key) {
       return parseInt(obj[key].Importance);
     });
-    var colors = Object.keys(obj).map(function(key) {
+    var colors = Object.keys(obj).map(function (key) {
       return getColor(parseInt(obj[key].Importance));
     });
 
@@ -32,13 +32,13 @@ const Skills = props => {
       datasets: [
         {
           data: values,
-          backgroundColor: colors
-        }
-      ]
+          backgroundColor: colors,
+        },
+      ],
     });
   }, [props.data.OccupationDetail]);
 
-  const getImportance = val => {
+  const getImportance = (val) => {
     if (val <= 55) {
       return "low";
     } else if (val > 55 && val <= 65) {
@@ -48,7 +48,7 @@ const Skills = props => {
     }
   };
 
-  const getColor = val => {
+  const getColor = (val) => {
     if (val <= 55) {
       return "#1976d2";
     } else if (val > 55 && val <= 65) {
@@ -60,10 +60,10 @@ const Skills = props => {
 
   const handleClose = () => setShow(false);
 
-  const handleShow = e => {
+  const handleShow = (e) => {
     setShow(true);
     setSelectedOption(e.target.innerText.slice(0, -1));
-    props.data.OccupationDetail[0].SkillsDataList.filter(obj => {
+    props.data.OccupationDetail[0].SkillsDataList.filter((obj) => {
       if (obj.ElementName === e.target.innerText.slice(0, -1)) {
         setSelectedDescription(obj.ElementDescription);
         setSelectedImportance(getImportance(obj.Importance));
@@ -73,13 +73,13 @@ const Skills = props => {
     });
   };
 
-  const handleGraphShow = elems => {
+  const handleGraphShow = (elems) => {
     if (elems[0] !== undefined) {
       setShow(true);
       setSelectedOption(
         graphData.labels[elems[0]._index].replace(" Importance Value", "")
       );
-      props.data.OccupationDetail[0].SkillsDataList.filter(obj => {
+      props.data.OccupationDetail[0].SkillsDataList.filter((obj) => {
         if (
           obj.ElementName ===
           graphData.labels[elems[0]._index].replace(" Importance Value", "")
@@ -94,12 +94,13 @@ const Skills = props => {
   };
 
   const displaySkills = () =>
-    props.data.OccupationDetail[0].SkillsDataList.map(skill => {
+    props.data.OccupationDetail[0].SkillsDataList.map((skill) => {
       return (
         <Fragment key={skill.ElementName}>
           <Button
+            style={{ margin: "0px 4px 4px 0px" }}
             onClick={handleShow}
-            variant="light btn-sm"
+            variant="light btn-xs"
             className="optionsButton"
             title={skill.ElementDescription}
           >
@@ -109,7 +110,7 @@ const Skills = props => {
               aria-hidden="true"
               style={{ color: getColor(skill.Importance) }}
             ></i>
-          </Button>{" "}
+          </Button>
         </Fragment>
       );
     });
@@ -118,13 +119,14 @@ const Skills = props => {
     props.data.OccupationDetail[0].SkillsDataList.sort(
       (a, b) => parseFloat(b.Importance) - parseFloat(a.Importance)
     )
-      .slice(0, 15)
-      .map(skill => {
+      .slice(0, 5)
+      .map((skill) => {
         return (
           <Fragment key={skill.ElementName}>
             <Button
+              style={{ margin: "0px 4px 4px 0px" }}
               onClick={handleShow}
-              variant="light btn-sm"
+              variant="light btn-xs"
               className="optionsButton"
               title={skill.ElementDescription}
             >
@@ -134,7 +136,7 @@ const Skills = props => {
                 aria-hidden="true"
                 style={{ color: getColor(skill.Importance) }}
               ></i>
-            </Button>{" "}
+            </Button>
           </Fragment>
         );
       });
@@ -159,7 +161,14 @@ const Skills = props => {
 
       <Card style={{ border: "0px" }}>
         <Card.Body>
-          <h3 className="font-weight-light">Skills</h3>
+          <h3 className="font-weight-light">
+            <i
+              className="fa fa-child"
+              aria-hidden="true"
+              style={{ color: "#c0e6ff" }}
+            ></i>
+            &nbsp;Skills
+          </h3>
           <p>
             Here are some skills employees in this industry are expected to
             have. Do you have any of these skills? Click or hover over a skill
@@ -174,17 +183,17 @@ const Skills = props => {
           <br />
           <div>
             <Doughnut
-              onElementsClick={elems => {
+              onElementsClick={(elems) => {
                 handleGraphShow(elems);
               }}
               data={graphData}
               options={{
                 title: {
-                  display: false
+                  display: false,
                 },
                 legend: {
-                  display: false
-                }
+                  display: false,
+                },
               }}
             />
           </div>
