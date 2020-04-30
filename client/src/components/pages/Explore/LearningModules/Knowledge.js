@@ -50,11 +50,11 @@ const Knowledge = (props) => {
 
   const getColor = (val) => {
     if (val <= 55) {
-      return "#2d660a";
+      return "#ee3e38";
     } else if (val > 55 && val <= 65) {
-      return "#5aa700";
+      return "#f86e51";
     } else if (val > 65) {
-      return "#8cd211";
+      return "#fba465";
     }
   };
 
@@ -165,16 +165,15 @@ const Knowledge = (props) => {
             <i
               className="fa fa-flask"
               aria-hidden="true"
-              style={{ color: "#b4e051" }}
+              style={{ color: "#f86e51" }}
             ></i>
             &nbsp;Subjects
           </h3>
-          <h6 className="font-weight-light">
-            {" "}
+          <p>
             Here are some subjects that people in this industry should excel in.
             Have you ever taken any of these subjects at school? Are you good at
             them? Click or hover over a subject to view more information.
-          </h6>
+          </p>
           <hr />
           <p>
             <b>Top Subjects</b>

@@ -12,7 +12,7 @@ const Technology = (props) => {
           <Fragment key={technology.Title}>
             <b>
               <i
-                style={{ color: "#8cd211" }}
+                style={{ color: "#5aa700" }}
                 className="fa fa-chevron-circle-right"
                 aria-hidden="true"
               ></i>{" "}
@@ -43,7 +43,7 @@ const Technology = (props) => {
         <Fragment key={technology.Title}>
           <b>
             <i
-              style={{ color: "#8cd211" }}
+              style={{ color: "#5aa700" }}
               className="fa fa-chevron-circle-right"
               aria-hidden="true"
             ></i>{" "}
@@ -75,13 +75,13 @@ const Technology = (props) => {
           ></i>{" "}
           Technologies
         </h3>
-        <h6 className="font-weight-light">
+        <p>
           Here are some technologies you will need to be familiar with in this
           occupation. Have you ever used any of these before?
-        </h6>
+        </p>
         <hr />
         <p>
-          <b>technologys</b>
+          <b>Technologies</b>
         </p>
         {displayImportantTechnologies()}
         <br />

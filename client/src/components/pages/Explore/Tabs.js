@@ -72,6 +72,16 @@ const Tabs = (props) => {
                 <Wages data={props.data} />
               ) : null}
 
+              {props.data.OccupationDetail[0].hasOwnProperty("Projections") &&
+              props.data.OccupationDetail[0].Projections.Projections.length !==
+                0 &&
+              props.data.OccupationDetail[0].Projections.Projections !==
+                undefined &&
+              props.data.OccupationDetail[0].Projections.Projections !==
+                null ? (
+                <Outlook data={props.data} />
+              ) : null}
+
               {props.data.OccupationDetail[0].hasOwnProperty(
                 "EducationTraining"
               ) &&
@@ -84,14 +94,11 @@ const Tabs = (props) => {
                 <Education data={props.data} />
               ) : null}
 
-              {props.data.OccupationDetail[0].hasOwnProperty("Projections") &&
-              props.data.OccupationDetail[0].Projections.Projections.length !==
-                0 &&
-              props.data.OccupationDetail[0].Projections.Projections !==
-                undefined &&
-              props.data.OccupationDetail[0].Projections.Projections !==
-                null ? (
-                <Outlook data={props.data} />
+              {props.data.OccupationDetail[0].hasOwnProperty("Dwas") &&
+              props.data.OccupationDetail[0].Dwas.length !== 0 &&
+              props.data.OccupationDetail[0].Dwas !== undefined &&
+              props.data.OccupationDetail[0].Dwas !== null ? (
+                <Activities data={props.data} />
               ) : null}
 
               {props.data.OccupationDetail[0].hasOwnProperty(
@@ -101,13 +108,6 @@ const Tabs = (props) => {
               props.data.OccupationDetail[0].KnowledgeDataList !== undefined &&
               props.data.OccupationDetail[0].KnowledgeDataList !== null ? (
                 <Knowledge data={props.data} />
-              ) : null}
-
-              {props.data.OccupationDetail[0].hasOwnProperty("Dwas") &&
-              props.data.OccupationDetail[0].Dwas.length !== 0 &&
-              props.data.OccupationDetail[0].Dwas !== undefined &&
-              props.data.OccupationDetail[0].Dwas !== null ? (
-                <Activities data={props.data} />
               ) : null}
 
               {props.data.OccupationDetail[0].hasOwnProperty("Tasks") &&
@@ -136,17 +136,12 @@ const Tabs = (props) => {
           {props.data !== null && props.data !== undefined ? (
             <CardColumns>
               {props.data.OccupationDetail[0].hasOwnProperty(
-                "RelatedOnetTitles"
+                "AbilityDataList"
               ) &&
-              props.data.OccupationDetail[0].RelatedOnetTitles !== undefined &&
-              props.data.OccupationDetail[0].RelatedOnetTitles !== null &&
-              Object.keys(
-                props.data.OccupationDetail[0].RelatedOnetTitles
-              )[0] !== undefined ? (
-                <Related
-                  updateActives={props.updateActives}
-                  data={props.data}
-                />
+              props.data.OccupationDetail[0].AbilityDataList.length !== 0 &&
+              props.data.OccupationDetail[0].AbilityDataList !== undefined &&
+              props.data.OccupationDetail[0].AbilityDataList !== null ? (
+                <Abilities data={props.data} />
               ) : null}
 
               {props.data.OccupationDetail[0].hasOwnProperty(
@@ -167,16 +162,21 @@ const Tabs = (props) => {
                 <Skills data={props.data} />
               ) : null}
 
-              {props.data.OccupationDetail[0].hasOwnProperty(
-                "AbilityDataList"
-              ) &&
-              props.data.OccupationDetail[0].AbilityDataList.length !== 0 &&
-              props.data.OccupationDetail[0].AbilityDataList !== undefined &&
-              props.data.OccupationDetail[0].AbilityDataList !== null ? (
-                <Abilities data={props.data} />
-              ) : null}
-
               <ToolsTech toolsData={props.toolsData} />
+
+              {props.data.OccupationDetail[0].hasOwnProperty(
+                "RelatedOnetTitles"
+              ) &&
+              props.data.OccupationDetail[0].RelatedOnetTitles !== undefined &&
+              props.data.OccupationDetail[0].RelatedOnetTitles !== null &&
+              Object.keys(
+                props.data.OccupationDetail[0].RelatedOnetTitles
+              )[0] !== undefined ? (
+                <Related
+                  updateActives={props.updateActives}
+                  data={props.data}
+                />
+              ) : null}
             </CardColumns>
           ) : null}
         </div>

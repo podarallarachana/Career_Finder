@@ -8,40 +8,41 @@ const Outlook = (props) => {
         <h3 className="font-weight-light">
           <i
             className="fa fa-globe"
-            style={{ color: "#c0e6ff" }}
+            style={{ color: "#8cd211" }}
             aria-hidden="true"
           ></i>{" "}
           Outlook
         </h3>
-        <h6 className="font-weight-light">
-          {props.data.OccupationDetail[0].BrightOutlook}&nbsp;Outlook
-        </h6>
-        <hr />
         <p>
           Will this job still have good opportunities by the time you graduate?
           Certain jobs will not always be in demand.
         </p>
+        <hr />
 
         <h6 className="font-weight-light">
-          This field will have{" "}
-          <b style={{ color: "#4178be" }}>
+          This career has a{" "}
+          <b style={{ color: "#4c8400" }}>
+            {props.data.OccupationDetail[0].BrightOutlook}
+          </b>
+          &nbsp;Outlook. It will have{" "}
+          <b style={{ color: "#4c8400" }}>
             {
               props.data.OccupationDetail[0].Projections.Projections[0]
                 .ProjectedEmployment
             }
           </b>{" "}
           jobs nationally in{" "}
-          <b style={{ color: "#4178be" }}>
+          <b style={{ color: "#4c8400" }}>
             {props.data.OccupationDetail[0].Projections.ProjectedYear}
           </b>
           .&nbsp;
-          <b style={{ color: "#4178be" }}>
+          <b style={{ color: "#4c8400" }}>
             {props.data.OccupationDetail[0].Projections.Projections[0].ProjectedAnnualJobOpening.toString().replace(
               /\B(?=(\d{3})+(?!\d))/g,
               ","
             )}
           </b>{" "}
-          jobs are expected to be added every year untill then.
+          jobs are expected to be added every year until then.
         </h6>
       </Card.Body>
     </Card>

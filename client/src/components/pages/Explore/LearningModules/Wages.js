@@ -128,33 +128,34 @@ const Wages = (props) => {
     <Card style={{ border: "0px" }}>
       <Card.Body>
         <h3 className="font-weight-light">
-          {" "}
           <i
             className="fa fa-dollar"
-            style={{ color: "#c0e6ff" }}
+            style={{ color: "#42a5f5" }}
             aria-hidden="true"
           ></i>{" "}
           Salary
         </h3>
-        <h6 className="font-weight-light">
-          $
-          {props.data.OccupationDetail[0].Wages.NationalWagesList[
-            annual
-          ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-          per year
-        </h6>
-        <h6 className="font-weight-light">
-          $
-          {props.data.OccupationDetail[0].Wages.NationalWagesList[
-            hourly
-          ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
-          per hour
-        </h6>
+        <p>
+          Is money important to you? See how much money you are most likely to
+          make in this career. Most employees in this career make{" "}
+          <span style={{ color: "#7cc7ff" }}>
+            $
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              annual
+            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </span>{" "}
+          per year and{" "}
+          <span style={{ color: "#7cc7ff" }}>
+            $
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[
+              hourly
+            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          </span>{" "}
+          per hour.
+        </p>
         <hr />
         <p>
           <b>All Salaries{<br />}</b>
-          Is money important to you? See how much money you are most likely to
-          make in this career.
         </p>
         <Nav
           fill

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
 const Education = (props) => {
   const [graphData, setGraphData] = useState({});
@@ -50,22 +50,26 @@ const Education = (props) => {
           {" "}
           <i
             className="fa fa-graduation-cap"
-            style={{ color: "#b4e051" }}
+            style={{ color: "#8cd211" }}
             aria-hidden="true"
           ></i>{" "}
           Education
         </h3>
-        <h6 className="font-weight-light">
-          {props.data.OccupationDetail[0].EducationTraining.EducationTitle}
-        </h6>
+        <p>
+          See what education level different employees in the industry have. How
+          many years are you willing to stay in school? Most people in this
+          career have:{" "}
+          <span style={{ color: "#4c8400" }}>
+            {props.data.OccupationDetail[0].EducationTraining.EducationTitle}
+          </span>
+          .
+        </p>
         <hr />
         <p>
           <b>All Levels{<br />}</b>
-          See what education level different employees in the industry have. How
-          many years are you willing to stay in school?
         </p>
         <div>
-          <Pie
+          <Doughnut
             options={{
               title: {
                 display: false,

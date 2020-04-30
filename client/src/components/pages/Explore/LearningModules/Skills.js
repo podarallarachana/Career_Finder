@@ -169,11 +169,11 @@ const Skills = (props) => {
             ></i>
             &nbsp;Skills
           </h3>
-          <h6 className="font-weight-light">
+          <p>
             Here are some skills employees in this industry are expected to
             have. Do you have any of these skills? Click or hover over a skill
             to view more information.
-          </h6>
+          </p>
           <hr />
           <p>
             <b>Top Skills</b>

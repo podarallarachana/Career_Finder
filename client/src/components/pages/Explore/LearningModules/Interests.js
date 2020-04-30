@@ -19,7 +19,7 @@ const Interests = (props) => {
               <h6>
                 <i
                   className="fa fa-star"
-                  style={{ color: "#5596e6" }}
+                  style={{ color: "#1976d2" }}
                   aria-hidden="true"
                 ></i>{" "}
                 {interest.ElementName}
@@ -40,16 +40,16 @@ const Interests = (props) => {
           <h3 className="font-weight-light">
             <i
               className="fa fa-star-o"
-              style={{ color: "#c0e6ff" }}
+              style={{ color: "#42a5f5" }}
               aria-hidden="true"
             ></i>{" "}
             <b>Industry </b>
             Interests
           </h3>
-          <h6 className="font-weight-light">
+          <p>
             Here are some interests and associated responsibilites this career
             has.
-          </h6>
+          </p>
           <hr />
           {dispayInterests()}
         </Card.Body>

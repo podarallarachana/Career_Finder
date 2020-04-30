@@ -11,8 +11,8 @@ const Tasks = (props) => {
         <Fragment key={task.TaskId}>
           <h6 className="font-weight-light">
             <i
-              style={{ color: "#c8f08f" }}
-              className="fa fa-arrow-right"
+              style={{ color: "#4178be" }}
+              className="fa fa-check-square-o"
               aria-hidden="true"
             ></i>{" "}
             {task.TaskDescription}
@@ -22,13 +22,13 @@ const Tasks = (props) => {
     });
 
   const displayImportantTasks = () =>
-    props.data.OccupationDetail[0].Tasks.slice(0, 6).map((task) => {
+    props.data.OccupationDetail[0].Tasks.slice(0, 5).map((task) => {
       return (
         <Fragment key={task.TaskId}>
           <h6 className="font-weight-light">
             <i
-              style={{ color: "#c8f08f" }}
-              className="fa fa-arrow-right"
+              style={{ color: "#4178be" }}
+              className="fa fa-check-square-o"
               aria-hidden="true"
             ></i>{" "}
             {task.TaskDescription}
@@ -43,7 +43,7 @@ const Tasks = (props) => {
         <Card.Body>
           <h3 className="font-weight-light">
             <i
-              style={{ color: "#5aa700" }}
+              style={{ color: "#42a5f5" }}
               className="fa fa-tasks"
               aria-hidden="true"
             ></i>{" "}

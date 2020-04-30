@@ -53,9 +53,7 @@ const Related = (props) => {
           ></i>{" "}
           <b>Related </b>Links
         </h3>
-        <h6 className="font-weight-light">
-          Check out similar careers. Click on a link below.
-        </h6>
+        <p>Check out similar careers. Click on a link below.</p>
         <hr />
         {displayRelated()}
       </Card.Body>

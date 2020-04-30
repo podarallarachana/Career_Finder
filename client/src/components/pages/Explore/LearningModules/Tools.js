@@ -72,10 +72,10 @@ const Tools = (props) => {
           ></i>{" "}
           Tools
         </h3>
-        <h6 className="font-weight-light">
+        <p>
           Here are some tools you will be using in this occupation. Are you
           familiar with any of them?
-        </h6>
+        </p>
         <hr />
         <p>
           <b>Tools</b>

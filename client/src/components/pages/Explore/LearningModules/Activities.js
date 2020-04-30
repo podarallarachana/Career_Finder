@@ -28,7 +28,11 @@ const Activities = (props) => {
     dwaData.map((activity) => {
       return (
         <Fragment key={activity.Title}>
-          <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
+          <i
+            className="fa fa-check-square-o"
+            style={{ color: "#fba465" }}
+            aria-hidden="true"
+          ></i>{" "}
           {activity.Title}
           <br />
         </Fragment>
@@ -36,10 +40,14 @@ const Activities = (props) => {
     });
 
   const displayImportantActivities = () =>
-    dwaData.slice(0, 6).map((activity) => {
+    dwaData.slice(0, 5).map((activity) => {
       return (
         <Fragment key={activity.Title}>
-          <i className="fa fa-check-square-o" aria-hidden="true"></i>{" "}
+          <i
+            className="fa fa-check-square-o"
+            style={{ color: "#fba465" }}
+            aria-hidden="true"
+          ></i>{" "}
           {activity.Title}
           <br />
         </Fragment>
@@ -53,7 +61,7 @@ const Activities = (props) => {
           <i
             className="fa fa-sun-o"
             aria-hidden="true"
-            style={{ color: "#4178be" }}
+            style={{ color: "#f86e51" }}
           ></i>{" "}
           Daily Activities
         </h3>
@@ -84,7 +92,9 @@ const Activities = (props) => {
             }
           />
         </Form>
-        {showAll ? displayActivities() : null}
+        <h6 className="font-weight-light">
+          {showAll ? displayActivities() : null}
+        </h6>
       </Card.Body>
     </Card>
   );
