@@ -100,7 +100,8 @@ const Admin = ({
 
     const onSubmit = async e => {
         e.preventDefault();
-        await axios.post("/api/class",{name : class_name, teacherId : user.first_name}).then(
+        //await axios.post("/api/class",{name : class_name, teacherId : user.first_name}).then(
+        await axios.post("/api/class",{name : class_name, teacherId : user._id}).then(
             function() {
                 changeView("classes");
                 setFormData({class_name: ""});
@@ -140,10 +141,9 @@ const Admin = ({
     changeView("addclass");
   }
 
-
   //maps all class names to table
   function tableData() {
-    return datas.map((className) => (
+    return datas.filter(data => (data.ofTeacherId === user._id)).map((className) => (
       <tr key={className.name}>
         <td
           onClick={() => {
@@ -285,8 +285,8 @@ const Admin = ({
   return (
     <div>
       {isLoading && <p>Loading</p>}
-      <h1 className="font-weight-light">Admin</h1>
-      <h2 className="font-weight-lighte">Hello {user.first_name}</h2>
+      <h1 className="font-weight-light">Admin Console</h1>
+      <h3 className="font-weight-lighte">Hello, {user.first_name}</h3>
       {view !== "classes" ? (
         <Button
           onClick={() => {
