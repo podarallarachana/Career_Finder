@@ -20,7 +20,7 @@ const MyInfo = ({ authorization: { isAuthenticated, user } }) => {
         <p>
             {user._id}
         </p>
-        <h1>Id</h1>
+        <h1>Exploration Experience Points</h1>
         <p>{count}</p>
     </div>
 
