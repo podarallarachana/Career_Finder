@@ -1,4 +1,5 @@
 $primary: #5596e6;
+$warning: #f86e51;
 @import "bootstrap";
 
 .card-columns {
@@ -99,11 +100,18 @@ p {
 }
 
 .filterheader {
-  background-image: url("./assets/explore-header.png");
-  background-color: #e43f54;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: rgb(124, 199, 255);
+  background: linear-gradient(
+    0deg,
+    rgba(124, 199, 255, 1) 20%,
+    rgba(90, 170, 250, 1) 59%,
+    rgba(85, 150, 230, 1) 91%
+  );
+  // background-image: url("./assets/explore-header.png");
+  // background-color: #e43f54;
+  // background-position: center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
 }
 
 .explore-header {
