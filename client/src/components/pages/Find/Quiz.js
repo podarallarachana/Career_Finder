@@ -108,7 +108,10 @@ class Quiz extends React.Component {
     return (
       <div
         className="row justify-content-center"
-        style={{ marginLeft: "15px", marginRight: "15px" }}
+        style={{
+          marginLeft: "15px",
+          marginRight: "15px",
+        }}
       >
         <div
           className="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6"
@@ -177,42 +180,52 @@ class Quiz extends React.Component {
       return (
         <CardColumns>
           {this.state.recommendations.SKARankList.map((occupation) => {
-            var color = "#d1193e";
+            var color = colors[0];
             if (
-              "abc".indexOf(
-                occupation.OccupationTitle.charAt(0).toLowerCase()
-              ) > -1
+              "a".indexOf(occupation.OccupationTitle.charAt(0).toLowerCase()) >
+              -1
             ) {
-              color = "#d1193e";
+              color = colors[0];
             } else if (
-              "defghi".indexOf(
+              "bcd".indexOf(
                 occupation.OccupationTitle.charAt(0).toLowerCase()
               ) > -1
             ) {
-              color = "#ee3e38";
+              color = colors[1];
             } else if (
-              "jklmnopqrs".indexOf(
+              "efghijklmn".indexOf(
                 occupation.OccupationTitle.charAt(0).toLowerCase()
               ) > -1
             ) {
-              color = "#f86e51";
+              color = colors[2];
             } else {
-              color = "#fba465";
+              color = colors[3];
             }
             return (
               <LinkContainer
                 to={"/explore/" + occupation.OnetCode}
                 key={occupation.OnetCode}
+                style={{ border: "0px", outline: "0px" }}
               >
                 <Card>
                   <Card.Body style={{ backgroundColor: color, color: "white" }}>
-                    <h5 className="font-weight-light">
-                      <i
-                        className="fa fa-arrow-circle-right"
-                        aria-hidden="true"
-                      ></i>{" "}
-                      {occupation.OccupationTitle}
-                    </h5>
+                    <h4>{occupation.OccupationTitle}</h4>
+                    <Button
+                      variant="outline-light btn-xs"
+                      className="optionsButton"
+                    >
+                      Learn More
+                    </Button>
+                  </Card.Body>
+                  <Button
+                    variant="light"
+                    style={{
+                      borderRadius: "0px",
+                      width: "100%",
+                      height: "100px",
+                      backgroundColor: "white",
+                    }}
+                  >
                     <small>
                       <b>Education: </b>
                       {occupation.TypicalEducation}
@@ -225,21 +238,7 @@ class Quiz extends React.Component {
                         ","
                       )}
                     </small>
-                    <hr />
-                    <div className="row justify-content-center">
-                      <Button
-                        style={{
-                          color: "white",
-                          borderRadius: "20px",
-                          outline: "0px",
-                          border: "0px",
-                        }}
-                      >
-                        <i className="fa fa-link" aria-hidden="true"></i> Learn
-                        More
-                      </Button>
-                    </div>
-                  </Card.Body>
+                  </Button>
                 </Card>
               </LinkContainer>
             );
@@ -365,26 +364,6 @@ class Quiz extends React.Component {
             paddingBottom: "15px",
           }}
         >
-          <div className="row">
-            <div className="col-md-6">
-              <span className="pull-left font-weight-light">
-                {this.state.recommendations
-                  ? this.state.recommendations.SKARankList.length + " results"
-                  : null}
-              </span>
-            </div>
-            <div className="col-md-6">
-              <span className="pull-right">
-                <Form.Group style={{ width: "300px" }}>
-                  <Form.Control as="select">
-                    <option>order by rank</option>
-                    <option>order by salary</option>
-                    <option>order by education</option>
-                  </Form.Control>
-                </Form.Group>
-              </span>
-            </div>
-          </div>
           {this.displayRecommendations()}
         </div>
       </div>

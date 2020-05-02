@@ -1,6 +1,8 @@
 import React from "react";
 import { Nav } from "react-bootstrap";
 import Quiz from "./Quiz";
+import Filter from "./Filter";
+import Keyword from "./Keyword";
 
 class Find extends React.Component {
   constructor(props) {
@@ -49,6 +51,8 @@ class Find extends React.Component {
           </Nav.Item>
         </Nav>
         {this.state.activeTab === "personalityQuiz" ? <Quiz /> : null}
+        {this.state.activeTab === "keywordSearch" ? <Keyword /> : null}
+        {this.state.activeTab === "filter" ? <Filter /> : null}
       </div>
     );
   }

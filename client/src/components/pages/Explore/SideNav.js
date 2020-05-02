@@ -51,23 +51,7 @@ const SideNav = (props) => {
 
   return (
     <div className="sidenav">
-      <ListGroup>
-        <LinkContainer
-          to={"/explore/search"}
-          style={{
-            backgroundColor:
-              props.activeCluster !== "Search" ? "#ff683c" : "#ff8123",
-            color: props.activeCluster !== "Search" ? "#ffa185" : "white",
-            fontWeight: "bold",
-            border: "0px",
-          }}
-        >
-          <ListGroup.Item onClick={updateActives}>
-            <i className="fa fa-search" aria-hidden="true"></i> Search
-          </ListGroup.Item>
-        </LinkContainer>
-        {displayClusters}
-      </ListGroup>
+      <ListGroup>{displayClusters}</ListGroup>
     </div>
   );
 };

@@ -5,7 +5,6 @@ import SideNav from "./SideNav";
 import Tabs from "./Tabs";
 import axios from "axios";
 import OccupationOptions from "./OccupationOptions";
-import Search from "./Search";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
 
@@ -17,7 +16,7 @@ class Occupation extends React.Component {
     this.state = {
       sidebarDocked: mql.matches,
       sidebarOpen: false,
-      activeCluster: "Search",
+      activeCluster: "",
       activePathway: undefined,
       activeOccupation: undefined,
       data: undefined,
@@ -28,38 +27,34 @@ class Occupation extends React.Component {
   }
 
   componentDidMount() {
-    if (window.location.pathname !== "/explore/search") {
-      this.intializeStateByParams();
-    }
+    this.intializeStateByParams();
   }
 
   getData = async () => {
-    if (this.state.activeCluster !== "Search") {
-      try {
-        const { data } = await axios({
-          method: "get",
-          url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=false&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=false`,
-          headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
-          },
-        });
-        this.setState({ data: data });
-      } catch (e) {
-        this.setState({ data: null });
-      }
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `https://api.careeronestop.org/v1/occupation/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/US?training=true&interest=true&videos=true&tasks=true&dwas=true&wages=true&alternateOnetTitles=true&projectedEmployment=true&ooh=true&stateLMILinks=false&relatedOnetTitles=true&skills=true&knowledge=true&ability=true&trainingPrograms=false`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+        },
+      });
+      this.setState({ data: data });
+    } catch (e) {
+      this.setState({ data: null });
+    }
 
-      try {
-        const { data } = await axios({
-          method: "get",
-          url: `https://api.careeronestop.org/v1/techtool/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/`,
-          headers: {
-            Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
-          },
-        });
-        this.setState({ toolsData: data });
-      } catch (e) {
-        this.setState({ toolsData: null });
-      }
+    try {
+      const { data } = await axios({
+        method: "get",
+        url: `https://api.careeronestop.org/v1/techtool/${process.env.REACT_APP_USER_ID}/${this.state.activeOccupation}/`,
+        headers: {
+          Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
+        },
+      });
+      this.setState({ toolsData: data });
+    } catch (e) {
+      this.setState({ toolsData: null });
     }
   };
 
@@ -159,48 +154,44 @@ class Occupation extends React.Component {
           },
         }}
       >
-        {this.state.activeCluster !== "Search" ? (
-          <Fragment>
-            <Accordion defaultActiveKey="0">
-              <Card
-                style={{
-                  borderRadius: "0px",
-                  border: "0px",
-                }}
+        <Fragment>
+          <Accordion defaultActiveKey="0">
+            <Card
+              style={{
+                borderRadius: "0px",
+                border: "0px",
+              }}
+            >
+              <Accordion.Toggle
+                as={Card.Header}
+                eventKey="0"
+                className="font-weight-light"
+                style={{ backgroundColor: "white" }}
               >
-                <Accordion.Toggle
-                  as={Card.Header}
-                  eventKey="0"
-                  className="font-weight-light"
-                  style={{ backgroundColor: "white" }}
-                >
-                  <i
-                    className="fa fa-bars"
-                    style={{ color: "#5aaafa" }}
-                    aria-hidden="true"
-                  ></i>
-                  &nbsp;&nbsp; Explore Occupations
-                </Accordion.Toggle>
-                <Accordion.Collapse eventKey="0">
-                  <OccupationOptions
-                    activeCluster={this.state.activeCluster}
-                    activePathway={this.state.activePathway}
-                    activeOccupation={this.state.activeOccupation}
-                    updateActivePathway={this.updateActivePathway}
-                    updateActiveOccupation={this.updateActiveOccupation}
-                  />
-                </Accordion.Collapse>
-              </Card>
-            </Accordion>
-            <Tabs
-              data={this.state.data}
-              toolsData={this.state.toolsData}
-              updateActives={this.updateActives}
-            />
-          </Fragment>
-        ) : (
-          <Search updateActives={this.updateActives} />
-        )}
+                <i
+                  className="fa fa-bars"
+                  style={{ color: "#5aaafa" }}
+                  aria-hidden="true"
+                ></i>
+                &nbsp;&nbsp; Explore Occupations
+              </Accordion.Toggle>
+              <Accordion.Collapse eventKey="0">
+                <OccupationOptions
+                  activeCluster={this.state.activeCluster}
+                  activePathway={this.state.activePathway}
+                  activeOccupation={this.state.activeOccupation}
+                  updateActivePathway={this.updateActivePathway}
+                  updateActiveOccupation={this.updateActiveOccupation}
+                />
+              </Accordion.Collapse>
+            </Card>
+          </Accordion>
+          <Tabs
+            data={this.state.data}
+            toolsData={this.state.toolsData}
+            updateActives={this.updateActives}
+          />
+        </Fragment>
       </Sidebar>
     );
   }
