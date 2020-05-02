@@ -96,9 +96,9 @@ const NavigationBar = ({
 
   return (
     <Navbar
+      bg="light"
+      variant="light"
       style={{
-        backgroundColor: "#fff",
-        // boxShadow: " 0px 3px 3px 0px rgba(0,0,0,0.25)",
         zIndex: 3,
       }}
       expand="lg"

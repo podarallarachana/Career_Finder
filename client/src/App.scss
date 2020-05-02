@@ -2,6 +2,15 @@ $primary: #5596e6;
 $warning: #f86e51;
 @import "bootstrap";
 
+.find .nav-pills .nav-link.active {
+  background-color: #f86e51 !important;
+  color: white !important;
+}
+
+.find .nav-pills .nav-link {
+  color: #f86e51 !important;
+}
+
 .card-columns {
   column-gap: 15px;
 
@@ -83,9 +92,6 @@ p {
 }
 
 ///////////////
-.find {
-  padding-top: 30px;
-}
 
 .find-quiz {
   padding: 15px;
@@ -100,18 +106,18 @@ p {
 }
 
 .filterheader {
-  background: rgb(124, 199, 255);
-  background: linear-gradient(
-    0deg,
-    rgba(124, 199, 255, 1) 20%,
-    rgba(90, 170, 250, 1) 59%,
-    rgba(85, 150, 230, 1) 91%
-  );
-  // background-image: url("./assets/explore-header.png");
-  // background-color: #e43f54;
-  // background-position: center;
-  // background-size: cover;
-  // background-repeat: no-repeat;
+  // background: rgb(124, 199, 255);
+  // background: linear-gradient(
+  //   0deg,
+  //   rgba(124, 199, 255, 1) 20%,
+  //   rgba(90, 170, 250, 1) 59%,
+  //   rgba(85, 150, 230, 1) 91%
+  // );
+  background-image: url("./assets/find.png");
+  background-color: #3d505c;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .explore-header {
