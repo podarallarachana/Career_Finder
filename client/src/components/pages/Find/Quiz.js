@@ -172,43 +172,45 @@ class Quiz extends React.Component {
     } else if (this.state.recommendations === null) {
       return <div>sorry, unavailable right now</div>;
     } else {
-      var colors = [
-        "#8cd211",
-        "#5aa700",
-        "#de3364",
-        "#eb4f3c",
-        "#ff871e",
-        "#7cc7ff",
-        "#5aaafa",
-        "#5596e6",
-      ];
+      var colors = ["#d1193e", "#ee3e38", "#f86e51", "#fba465"];
 
       return (
         <CardColumns>
           {this.state.recommendations.SKARankList.map((occupation) => {
-            var color = colors[Math.floor(Math.random() * 8)];
+            var color = "#d1193e";
+            if (
+              "abc".indexOf(
+                occupation.OccupationTitle.charAt(0).toLowerCase()
+              ) > -1
+            ) {
+              color = "#d1193e";
+            } else if (
+              "defghi".indexOf(
+                occupation.OccupationTitle.charAt(0).toLowerCase()
+              ) > -1
+            ) {
+              color = "#ee3e38";
+            } else if (
+              "jklmnopqrs".indexOf(
+                occupation.OccupationTitle.charAt(0).toLowerCase()
+              ) > -1
+            ) {
+              color = "#f86e51";
+            } else {
+              color = "#fba465";
+            }
             return (
               <LinkContainer
                 to={"/explore/" + occupation.OnetCode}
                 key={occupation.OnetCode}
               >
                 <Card>
-                  <Card.Body>
+                  <Card.Body style={{ backgroundColor: color, color: "white" }}>
                     <h5 className="font-weight-light">
                       <i
                         className="fa fa-arrow-circle-right"
                         aria-hidden="true"
-                        style={{
-                          color: color,
-                        }}
                       ></i>{" "}
-                      <b
-                        style={{
-                          color: color,
-                        }}
-                      >
-                        #{occupation.Rank}{" "}
-                      </b>
                       {occupation.OccupationTitle}
                     </h5>
                     <small>
@@ -227,7 +229,6 @@ class Quiz extends React.Component {
                     <div className="row justify-content-center">
                       <Button
                         style={{
-                          backgroundColor: color,
                           color: "white",
                           borderRadius: "20px",
                           outline: "0px",
