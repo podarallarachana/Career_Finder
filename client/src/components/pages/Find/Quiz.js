@@ -120,8 +120,8 @@ class Quiz extends React.Component {
             // borderTopLeftRadius: position === 0 ? "10px" : "0px",
             // borderTopRightRadius: position === 0 ? "10px" : "0px",
             paddingBottom: position === 5 ? "40px" : "0px",
-            paddingLeft: "20px",
-            paddingRight: "20px",
+            paddingLeft: "40px",
+            paddingRight: "40px",
             backgroundColor: "white",
           }}
         >
@@ -268,14 +268,7 @@ class Quiz extends React.Component {
   render() {
     return (
       <div>
-        <Jumbotron
-          style={{
-            padding: "15px",
-            borderRadius: "0px",
-          }}
-          className="filterheader"
-        >
-          <br />
+        <Jumbotron className="filterheader">
           <div
             className="row justify-content-center"
             style={{ marginLeft: "15px", marginRight: "15px" }}
@@ -283,19 +276,21 @@ class Quiz extends React.Component {
             <div
               className="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6"
               style={{
-                padding: "40px 15px 0px 15px",
+                padding: "40px 40px 0px 40px",
                 margin: "0px",
                 backgroundColor: "white",
               }}
             >
-              <h1>
-                <b>QUIZ</b>
+              <h1 style={{ color: "#f2c246" }}>
+                <b>
+                  <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                  &nbsp;QUIZ
+                </b>
               </h1>
-              <p>
-                <b>Insutrctions</b>: Answer at least one question to get
+              <p style={{ color: "#f2c246" }}>
+                <b>Instructions</b>: Answer at least one question to get
                 results. You can pick multiple options per question.
               </p>
-              <hr />
             </div>
           </div>
           {this.displayOptions("subjects", 1, "I am interested in", false, 0)}
@@ -355,7 +350,6 @@ class Quiz extends React.Component {
               </Button>
             </div>
           </div>
-          <br />
         </Jumbotron>
         <div
           style={{

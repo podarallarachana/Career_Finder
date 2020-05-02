@@ -21,22 +21,22 @@ const Outlook = (props) => {
 
         <h6 className="font-weight-light">
           This career has a{" "}
-          <b style={{ color: "#4c8400" }}>
+          <b style={{ color: "#8cd211" }}>
             {props.data.OccupationDetail[0].BrightOutlook}
           </b>
           &nbsp;Outlook. It will have{" "}
-          <b style={{ color: "#4c8400" }}>
+          <b style={{ color: "#8cd211" }}>
             {
               props.data.OccupationDetail[0].Projections.Projections[0]
                 .ProjectedEmployment
             }
           </b>{" "}
           jobs nationally in{" "}
-          <b style={{ color: "#4c8400" }}>
+          <b style={{ color: "#8cd211" }}>
             {props.data.OccupationDetail[0].Projections.ProjectedYear}
           </b>
           .&nbsp;
-          <b style={{ color: "#4c8400" }}>
+          <b style={{ color: "#8cd211" }}>
             {props.data.OccupationDetail[0].Projections.Projections[0].ProjectedAnnualJobOpening.toString().replace(
               /\B(?=(\d{3})+(?!\d))/g,
               ","

@@ -59,7 +59,7 @@ const Education = (props) => {
           See what education level different employees in the industry have. How
           many years are you willing to stay in school? Most people in this
           career have:{" "}
-          <span style={{ color: "#4c8400" }}>
+          <span style={{ color: "#8cd211" }}>
             {props.data.OccupationDetail[0].EducationTraining.EducationTitle}
           </span>
           .

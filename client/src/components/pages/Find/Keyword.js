@@ -151,16 +151,11 @@ const Keyword = (props) => {
     <div>
       <Jumbotron className="filterheader">
         <div className="row justify-content-center">
-          <div
-            className="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6"
-            style={{
-              padding: "0px",
-            }}
-          >
+          <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
             <Form
               style={{
-                paddingLeft: "15px",
-                paddingRight: "15px",
+                paddingLeft: "40px",
+                paddingRight: "40px",
                 backgroundColor: "white",
                 paddingTop: "40px",
                 paddingBottom: "40px",
@@ -170,14 +165,24 @@ const Keyword = (props) => {
               }}
             >
               <label htmlFor="location">
-                <h1>
-                  <b>KEYWORD</b>
+                <h1 style={{ color: "#f2c246" }}>
+                  <b>
+                    <i class="fa fa-key" aria-hidden="true"></i>&nbsp;KEYWORD
+                  </b>
                 </h1>
-                <p>
+                <p style={{ color: "#f2c246" }}>
                   <b>Instructions: </b>Do you like cooking? Math? Maybe working
                   outdoors? Search for a career by keyword using the Keyword
                   Search Tool.
                 </p>
+                <h6 className="font-weight-light">
+                  <i
+                    class="fa fa-chevron-circle-right"
+                    aria-hidden="true"
+                    style={{ color: "#fba465" }}
+                  ></i>
+                  &nbsp;pottery, coal, gardening
+                </h6>
               </label>
               <InputGroup className="mb-3">
                 <FormControl
@@ -193,19 +198,20 @@ const Keyword = (props) => {
                   </Button>
                 </InputGroup.Append> */}
               </InputGroup>
-              {show ? (
-                <Alert
-                  variant="danger"
-                  onClose={() => setShow(false)}
-                  dismissible
-                >
-                  <Alert.Heading>Invalid keyword</Alert.Heading>
-                  <p>Make sure you only enter one keyword!</p>
-                </Alert>
-              ) : null}
             </Form>
-
+            {show ? (
+              <Alert
+                style={{ margin: "0px", borderRadius: "0px" }}
+                variant="danger"
+                onClose={() => setShow(false)}
+                dismissible
+              >
+                <Alert.Heading>Invalid keyword</Alert.Heading>
+                <p>Make sure you only enter one keyword!</p>
+              </Alert>
+            ) : null}
             <Button
+              onClick={() => fetchResults()}
               variant="warning"
               style={{
                 display: "table",

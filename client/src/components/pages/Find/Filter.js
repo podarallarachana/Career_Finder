@@ -10,7 +10,7 @@ import Pagination from "react-js-pagination";
 import Jumbotron from "react-bootstrap/Jumbotron";
 
 const Filter = (props) => {
-  const [filterText, setFilterText] = useState("");
+  const [filterText, setFilterText] = useState("architect");
   const [activePage, setActivePage] = useState(1);
   let textInput = React.createRef();
 
@@ -65,16 +65,7 @@ const Filter = (props) => {
       arr = tmp.slice((activePage - 1) * 100, (activePage - 1) * 100 + 100);
     }
 
-    var colors = [
-      "#8cd211",
-      "#5aa700",
-      "#de3364",
-      "#eb4f3c",
-      "#ff871e",
-      "#7cc7ff",
-      "#5aaafa",
-      "#5596e6",
-    ];
+    var colors = ["#f86e51", "#fba465", "#7cc7ff", "#5aaafa"];
 
     return (
       <Fragment>
@@ -98,7 +89,28 @@ const Filter = (props) => {
             </div>
             <CardColumns>
               {arr.map((occupation) => {
-                var color = colors[Math.floor(Math.random() * 8)];
+                var color = colors[0];
+                if (
+                  "etaoin".indexOf(
+                    occupation.occupation.Occupation.charAt(0).toLowerCase()
+                  ) > -1
+                ) {
+                  color = colors[0];
+                } else if (
+                  "srhdlu".indexOf(
+                    occupation.occupation.Occupation.charAt(0).toLowerCase()
+                  ) > -1
+                ) {
+                  color = colors[1];
+                } else if (
+                  "cmfywg".indexOf(
+                    occupation.occupation.Occupation.charAt(0).toLowerCase()
+                  ) > -1
+                ) {
+                  color = colors[2];
+                } else {
+                  color = colors[3];
+                }
                 return (
                   <LinkContainer
                     key={occupation.occupation.Code}
@@ -106,42 +118,50 @@ const Filter = (props) => {
                     style={{ border: "0px", outline: "0px" }}
                   >
                     <Card onClick={() => updateActives(occupation.Code)}>
-                      <Card.Body>
-                        <h5 className="font-weight-light">
-                          <i
-                            className="fa fa-arrow-circle-right"
-                            aria-hidden="true"
-                            style={{
-                              color: color,
-                            }}
-                          ></i>{" "}
-                          {occupation.occupation.Occupation}
-                        </h5>
+                      <Card.Body
+                        style={{
+                          backgroundColor: color,
+                          color: "white",
+                          padding: "30px",
+                        }}
+                      >
+                        <h4> {occupation.occupation.Occupation}</h4>
+                        <small>{occupation.occupation.Description}</small>
+                        <br />
+                        <br />
+                        <Button
+                          style={{
+                            display: "block",
+                            margin: "0 auto",
+                          }}
+                          variant="outline-light btn-xs"
+                          className="optionsButton"
+                        >
+                          Learn More
+                        </Button>
+                      </Card.Body>
+                      <Button
+                        variant="light"
+                        style={{
+                          borderRadius: "0px",
+                          width: "100%",
+                          backgroundColor: "white",
+                          padding: "30px",
+                        }}
+                      >
                         <small>
-                          <b>Pathway: </b>
-                          {occupation.pathway}
+                          <b>Education: </b>
+                          {occupation.occupation.Education}
                         </small>
                         <br />
                         <small>
-                          <b>Cluster: </b>
-                          {occupation.cluster}
+                          <b>Salary: </b>$
+                          {occupation.occupation.Salary.toString().replace(
+                            /\B(?=(\d{3})+(?!\d))/g,
+                            ","
+                          )}
                         </small>
-                        <hr />
-                        <div className="row justify-content-center">
-                          <Button
-                            style={{
-                              backgroundColor: color,
-                              color: "white",
-                              borderRadius: "20px",
-                              outline: "0px",
-                              border: "0px",
-                            }}
-                          >
-                            <i className="fa fa-link" aria-hidden="true"></i>{" "}
-                            Learn More
-                          </Button>
-                        </div>
-                      </Card.Body>
+                      </Button>
                     </Card>
                   </LinkContainer>
                 );
@@ -167,31 +187,64 @@ const Filter = (props) => {
   return (
     <div>
       <Jumbotron className="filterheader">
-        <Form>
-          <label htmlFor="location">
-            <h1 className="font-weight-light" style={{ color: "white" }}>
-              <i className="fa fa-paper-plane-o" aria-hidden="true"></i>
-              &nbsp;Explore
-            </h1>
-            <h6 className="font-weight-light" style={{ color: "white" }}>
-              Have an occupation in mind? Find it using the filter tool and
-              click the link to visit the profile and learn more about the
-              occupation!
-              <br />
-              <br />
-              <b>Examples: </b>Nurse, Programmer...
-            </h6>
-          </label>
-          <InputGroup className="mb-3">
-            <FormControl
-              type="text"
-              ref={textInput}
-              onChange={filterUpdate}
-              placeholder="Type to Filter..."
-              id="search_bar"
-            />
-          </InputGroup>
-        </Form>
+        <div className="row justify-content-center">
+          <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+            <Form
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <label
+                htmlFor="location"
+                style={{
+                  paddingLeft: "40px",
+                  paddingRight: "40px",
+                  backgroundColor: "white",
+                  paddingTop: "40px",
+                  paddingBottom: "40px",
+                  marginBottom: "0px",
+                }}
+              >
+                <h1 style={{ color: "#f2c246" }}>
+                  <b>
+                    <i class="fa fa-filter" aria-hidden="true"></i>&nbsp;FILTER{" "}
+                  </b>
+                </h1>
+                <p style={{ color: "#f2c246" }}>
+                  <b>Instructions: </b>
+                  Have an occupation in mind? Find it using the filter tool and
+                  click the link to visit the profile and learn more about the
+                  occupation.
+                </p>
+                <h6 className="font-weight-light">
+                  <i
+                    class="fa fa-chevron-circle-right"
+                    aria-hidden="true"
+                    style={{ color: "#fba465" }}
+                  ></i>
+                  &nbsp;nurse, surgeon, architect
+                </h6>
+              </label>
+              <InputGroup style={{ padding: "0px", margin: "0px" }}>
+                <FormControl
+                  style={{
+                    borderRadius: "0px",
+                    border: "0px",
+                    backgroundColor: "#ee5847",
+                    color: "white",
+                    width: "100%",
+                    height: "70px",
+                  }}
+                  type="text"
+                  ref={textInput}
+                  onChange={filterUpdate}
+                  value={filterText}
+                  id="search_bar"
+                />
+              </InputGroup>
+            </Form>
+          </div>
+        </div>
       </Jumbotron>
       <div style={{ paddingLeft: "15px", paddingRight: "15px" }}>
         {displayOccupations()}
