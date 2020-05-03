@@ -4,7 +4,6 @@ import FormControl from "react-bootstrap/FormControl";
 import { Form, Alert, Button } from "react-bootstrap";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
-import CardColumns from "react-bootstrap/CardColumns";
 import { LinkContainer } from "react-router-bootstrap";
 import data from "../Explore/Data.json";
 import Jumbotron from "react-bootstrap/Jumbotron";
@@ -52,6 +51,22 @@ const Keyword = (props) => {
     }
   };
 
+  const getOccupation = (code) => {
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < data[i].CareerPathway.length; j++) {
+        for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
+          if (data[i].CareerPathway[j].Jobs[z].Code === code) {
+            return {
+              occupation: data[i].CareerPathway[j].Jobs[z],
+              pathway: data[i].CareerPathway[j].Pathway,
+              cluster: data[i].CareerCluster,
+            };
+          }
+        }
+      }
+    }
+  };
+
   const fetchResults = () => {
     var user_inp = inp.trim();
     if (user_inp.indexOf(" ") >= 0 || user_inp === "") {
@@ -60,23 +75,6 @@ const Keyword = (props) => {
     } else {
       setShow(false);
       getOccupations();
-    }
-  };
-
-  const updateActives = (code) => {
-    for (var i = 0; i < data.length; i++) {
-      for (var j = 0; j < data[i].CareerPathway.length; j++) {
-        for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
-          if (data[i].CareerPathway[j].Jobs[z].Code === code) {
-            props.updateActives(
-              data[i].CareerCluster,
-              data[i].CareerPathway[j].Pathway,
-              code
-            );
-            return;
-          }
-        }
-      }
     }
   };
 
@@ -115,17 +113,6 @@ const Keyword = (props) => {
         </Alert>
       );
     } else {
-      var colors = [
-        "#8cd211",
-        "#5aa700",
-        "#de3364",
-        "#eb4f3c",
-        "#ff871e",
-        "#7cc7ff",
-        "#5aaafa",
-        "#5596e6",
-      ];
-
       return (
         <Fragment>
           <div className="row justify-content-center">
@@ -143,51 +130,100 @@ const Keyword = (props) => {
             {results.OccupationList.slice(
               (activePage - 1) * 50,
               (activePage - 1) * 50 + 50
-            ).map((occupation) => {
-              var color = colors[Math.floor(Math.random() * 8)];
+            ).map((occupation, index) => {
+              var color = getColors(index.toString());
               return (
                 <div
                   key={occupation.OnetCode}
                   className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
                 >
-                  <LinkContainer
-                    key={occupation.OnetCode}
-                    to={"/explore/" + occupation.OnetCode}
-                  >
-                    <Card>
-                      <Card.Body>
-                        <h5 className="font-weight-light">
+                  <Card style={{ marginBottom: "15px", border: "0px" }}>
+                    <Card.Body
+                      style={{
+                        padding: "30px",
+                      }}
+                    >
+                      <h4>
+                        <span className="font-weight-light">{index + 1}</span>.{" "}
+                        {
+                          getOccupation(occupation.OnetCode).occupation
+                            .Occupation
+                        }
+                      </h4>
+                      <small>
+                        {getOccupation(occupation.OnetCode).pathway},{" "}
+                        {getOccupation(occupation.OnetCode).cluster}{" "}
+                      </small>
+                      <hr />
+                      <small>
+                        <b>
                           <i
-                            className="fa fa-arrow-circle-right"
+                            className="fa fa-circle"
                             aria-hidden="true"
-                            style={{
-                              color: color,
-                            }}
+                            style={{ color: color.light }}
                           ></i>{" "}
-                          {occupation.OnetTitle}
-                        </h5>
-                        <small>
-                          <b>Description: </b>
-                          {occupation.OccupationDescription}
-                        </small>
-                        <hr />
-                        <div className="row justify-content-center">
+                          Description:{" "}
+                        </b>
+                        {displayDescription(
+                          getOccupation(occupation.OnetCode).occupation
+                            .Description
+                        )}
+                      </small>
+                      <br />
+                      <small>
+                        <b>
+                          <i
+                            className="fa fa-circle"
+                            aria-hidden="true"
+                            style={{ color: color.medium }}
+                          ></i>{" "}
+                          Education:{" "}
+                        </b>
+                        {
+                          getOccupation(occupation.OnetCode).occupation
+                            .Education
+                        }
+                      </small>
+                      <br />
+                      <small>
+                        <b>
+                          <i
+                            className="fa fa-circle"
+                            aria-hidden="true"
+                            style={{ color: color.dark }}
+                          ></i>{" "}
+                          Salary:{" "}
+                        </b>
+                        $
+                        {getOccupation(occupation.OnetCode)
+                          .occupation.Salary.toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      </small>
+                      <br />
+                      <br />
+                      <div className="row justify-content-center">
+                        <LinkContainer
+                          to={"/explore/" + occupation.OnetCode}
+                          style={{
+                            border: "0px",
+                            outline: "0px",
+                            backgroundColor: color.light,
+                            color: "white",
+                          }}
+                        >
                           <Button
+                            className="optionsButton"
+                            variant="primary btn-xs"
                             style={{
-                              backgroundColor: color,
-                              color: "white",
-                              borderRadius: "20px",
-                              outline: "0px",
                               border: "0px",
                             }}
                           >
-                            <i className="fa fa-link" aria-hidden="true"></i>{" "}
                             Learn More
                           </Button>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </LinkContainer>
+                        </LinkContainer>
+                      </div>
+                    </Card.Body>
+                  </Card>
                 </div>
               );
             })}
@@ -234,7 +270,7 @@ const Keyword = (props) => {
               <label htmlFor="location">
                 <h1 style={{ color: "#f2c246" }}>
                   <b>
-                    <i class="fa fa-key" aria-hidden="true"></i>&nbsp;KEYWORD
+                    <i class="fa fa-key" aria-hidden="true"></i>&nbsp;KEY
                   </b>
                 </h1>
                 <p style={{ color: "#f2c246" }}>
