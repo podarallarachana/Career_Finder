@@ -129,12 +129,12 @@ class Quiz extends React.Component {
             <Form.Check
               type="switch"
               id={"switch_" + num}
-              label={<p>{title}</p>}
+              label={<h6 className="font-weight-light">{title}</h6>}
               checked={this.state[type]}
               onChange={() => this.onSwitchChange(type)}
             />
           ) : (
-            <p>{title}</p>
+            <h6 className="font-weight-light">{title}</h6>
           )}
           {!hasSwitch || (hasSwitch && this.state[type] === true) ? (
             <Fragment>

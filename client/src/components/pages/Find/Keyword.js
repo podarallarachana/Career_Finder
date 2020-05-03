@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import { Form, Alert, Button } from "react-bootstrap";
@@ -9,16 +9,48 @@ import { LinkContainer } from "react-router-bootstrap";
 import data from "../Explore/Data.json";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Spinner from "react-bootstrap/Spinner";
+import Pagination from "react-js-pagination";
 
 const Keyword = (props) => {
   const [results, setResults] = useState(undefined);
   const [inp, setInp] = useState("pottery");
   const [show, setShow] = useState(false);
+  const [activePage, setActivePage] = useState(1);
 
   useEffect(() => {
     getOccupations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const handlePageChange = (pageNumber) => {
+    setActivePage(pageNumber);
+  };
+
+  const getColors = (number) => {
+    var colors = [
+      { light: "#fba465", medium: "#f86e51", dark: "#ee3e38" }, //orange
+      { light: "#c0e6ff", medium: "#7cc7ff", dark: "#5aaafa" }, //blue
+      { light: "#b4e051", medium: "#8cd211", dark: "#5aa700" }, //green
+    ];
+    var color = colors[0];
+
+    if ("1470".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[0];
+    } else if ("258".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[1];
+    } else if ("369".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[2];
+    }
+    return color;
+  };
+
+  const displayDescription = (description) => {
+    if (description.length < 150) {
+      return description;
+    } else {
+      return description.substring(0, 147) + "...";
+    }
+  };
 
   const fetchResults = () => {
     var user_inp = inp.trim();
@@ -49,6 +81,7 @@ const Keyword = (props) => {
   };
 
   const getOccupations = async () => {
+    setActivePage(1);
     setResults(undefined);
     try {
       const { data } = await axios({
@@ -94,51 +127,85 @@ const Keyword = (props) => {
       ];
 
       return (
-        <CardColumns>
-          {results.OccupationList.map((occupation) => {
-            var color = colors[Math.floor(Math.random() * 8)];
-            return (
-              <LinkContainer
-                key={occupation.OnetCode}
-                to={"/explore/" + occupation.OnetCode}
-              >
-                <Card onClick={() => updateActives(occupation.OnetCode)}>
-                  <Card.Body>
-                    <h5 className="font-weight-light">
-                      <i
-                        className="fa fa-arrow-circle-right"
-                        aria-hidden="true"
-                        style={{
-                          color: color,
-                        }}
-                      ></i>{" "}
-                      {occupation.OnetTitle}
-                    </h5>
-                    <small>
-                      <b>Description: </b>
-                      {occupation.OccupationDescription}
-                    </small>
-                    <hr />
-                    <div className="row justify-content-center">
-                      <Button
-                        style={{
-                          backgroundColor: color,
-                          color: "white",
-                          borderRadius: "20px",
-                          outline: "0px",
-                          border: "0px",
-                        }}
-                      >
-                        <i className="fa fa-link" aria-hidden="true"></i> Learn
-                        More
-                      </Button>
-                    </div>
-                  </Card.Body>
-                </Card>
-              </LinkContainer>
-            );
-          })}
-        </CardColumns>
+        <Fragment>
+          <div className="row justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={activePage}
+              itemsCountPerPage={50}
+              totalItemsCount={results.OccupationList.length}
+              pageRangeDisplayed={5}
+              onChange={handlePageChange}
+            />
+          </div>
+          <div className="row">
+            {results.OccupationList.slice(
+              (activePage - 1) * 50,
+              (activePage - 1) * 50 + 50
+            ).map((occupation) => {
+              var color = colors[Math.floor(Math.random() * 8)];
+              return (
+                <div
+                  key={occupation.OnetCode}
+                  className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
+                >
+                  <LinkContainer
+                    key={occupation.OnetCode}
+                    to={"/explore/" + occupation.OnetCode}
+                  >
+                    <Card>
+                      <Card.Body>
+                        <h5 className="font-weight-light">
+                          <i
+                            className="fa fa-arrow-circle-right"
+                            aria-hidden="true"
+                            style={{
+                              color: color,
+                            }}
+                          ></i>{" "}
+                          {occupation.OnetTitle}
+                        </h5>
+                        <small>
+                          <b>Description: </b>
+                          {occupation.OccupationDescription}
+                        </small>
+                        <hr />
+                        <div className="row justify-content-center">
+                          <Button
+                            style={{
+                              backgroundColor: color,
+                              color: "white",
+                              borderRadius: "20px",
+                              outline: "0px",
+                              border: "0px",
+                            }}
+                          >
+                            <i className="fa fa-link" aria-hidden="true"></i>{" "}
+                            Learn More
+                          </Button>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  </LinkContainer>
+                </div>
+              );
+            })}
+          </div>
+          <br />
+          <div className="row justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={activePage}
+              itemsCountPerPage={50}
+              totalItemsCount={results.OccupationList.length}
+              pageRangeDisplayed={5}
+              onChange={handlePageChange}
+            />
+          </div>
+          <br />
+        </Fragment>
       );
     }
   };

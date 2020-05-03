@@ -47,9 +47,9 @@ const Filter = (props) => {
     ];
     var color = colors[0];
 
-    if ("147".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+    if ("1470".indexOf(number[number.length - 1].toLowerCase()) > -1) {
       color = colors[0];
-    } else if ("2580".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+    } else if ("258".indexOf(number[number.length - 1].toLowerCase()) > -1) {
       color = colors[1];
     } else if ("369".indexOf(number[number.length - 1].toLowerCase()) > -1) {
       color = colors[2];
@@ -114,91 +114,94 @@ const Filter = (props) => {
               {arr.map((occupation, index) => {
                 var color = getColors(index.toString());
                 return (
-                  <LinkContainer
+                  <div
                     key={occupation.occupation.Code}
-                    to={"/explore/" + occupation.occupation.Code}
-                    style={{ border: "0px", outline: "0px" }}
+                    className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
                   >
-                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                      <Card
-                        onClick={() => updateActives(occupation.Code)}
-                        style={{ marginBottom: "15px" }}
+                    <Card
+                      onClick={() => updateActives(occupation.Code)}
+                      style={{ marginBottom: "15px", border: "0px" }}
+                    >
+                      <Card.Body
+                        style={{
+                          padding: "30px",
+                        }}
                       >
-                        <Card.Body
-                          style={{
-                            padding: "30px",
-                          }}
-                        >
-                          <h4>
-                            <span className="font-weight-light">
-                              {index + 1}
-                            </span>
-                            . {occupation.occupation.Occupation}
-                          </h4>
-                          <small>
-                            {occupation.pathway}, {occupation.cluster}{" "}
-                          </small>
-                          <hr />
-                          <small>
-                            <b>
-                              <i
-                                className="fa fa-circle"
-                                aria-hidden="true"
-                                style={{ color: color.light }}
-                              ></i>{" "}
-                              Description:{" "}
-                            </b>
-                            {displayDescription(
-                              occupation.occupation.Description
-                            )}
-                          </small>
-                          <br />
-                          <small>
-                            <b>
-                              <i
-                                className="fa fa-circle"
-                                aria-hidden="true"
-                                style={{ color: color.medium }}
-                              ></i>{" "}
-                              Education:{" "}
-                            </b>
-                            {occupation.occupation.Education}
-                          </small>
-                          <br />
-                          <small>
-                            <b>
-                              <i
-                                className="fa fa-circle"
-                                aria-hidden="true"
-                                style={{ color: color.dark }}
-                              ></i>{" "}
-                              Salary:{" "}
-                            </b>
-                            $
-                            {occupation.occupation.Salary.toString().replace(
-                              /\B(?=(\d{3})+(?!\d))/g,
-                              ","
-                            )}
-                          </small>
-                          <br />
-                          <br />
-                          <div className="row justify-content-center">
+                        <h4>
+                          <span className="font-weight-light">{index + 1}</span>
+                          . {occupation.occupation.Occupation}
+                        </h4>
+                        <small>
+                          {occupation.pathway}, {occupation.cluster}{" "}
+                        </small>
+                        <hr />
+                        <small>
+                          <b>
+                            <i
+                              className="fa fa-circle"
+                              aria-hidden="true"
+                              style={{ color: color.light }}
+                            ></i>{" "}
+                            Description:{" "}
+                          </b>
+                          {displayDescription(
+                            occupation.occupation.Description
+                          )}
+                        </small>
+                        <br />
+                        <small>
+                          <b>
+                            <i
+                              className="fa fa-circle"
+                              aria-hidden="true"
+                              style={{ color: color.medium }}
+                            ></i>{" "}
+                            Education:{" "}
+                          </b>
+                          {occupation.occupation.Education}
+                        </small>
+                        <br />
+                        <small>
+                          <b>
+                            <i
+                              className="fa fa-circle"
+                              aria-hidden="true"
+                              style={{ color: color.dark }}
+                            ></i>{" "}
+                            Salary:{" "}
+                          </b>
+                          $
+                          {occupation.occupation.Salary.toString().replace(
+                            /\B(?=(\d{3})+(?!\d))/g,
+                            ","
+                          )}
+                        </small>
+                        <br />
+                        <br />
+                        <div className="row justify-content-center">
+                          <LinkContainer
+                            to={"/explore/" + occupation.occupation.Code}
+                            style={{
+                              border: "0px",
+                              outline: "0px",
+                              backgroundColor: color.light,
+                              color: "white",
+                            }}
+                          >
                             <Button
                               className="optionsButton"
                               variant="primary btn-xs"
                               style={{
-                                backgroundColor: color.light,
-                                color: "white",
                                 border: "0px",
                               }}
                             >
                               Learn More
                             </Button>
-                          </div>
-                        </Card.Body>
-                      </Card>
-                    </div>
-                  </LinkContainer>
+                          </LinkContainer>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  </div>
                 );
               })}
             </div>
