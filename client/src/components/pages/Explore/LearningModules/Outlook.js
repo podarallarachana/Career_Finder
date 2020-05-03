@@ -18,31 +18,42 @@ const Outlook = (props) => {
           Certain jobs will not always be in demand.
         </p>
         <hr />
-
         <h6 className="font-weight-light">
-          This career has a{" "}
-          <b style={{ color: "#8cd211" }}>
-            {props.data.OccupationDetail[0].BrightOutlook}
-          </b>
-          &nbsp;Outlook. It will have{" "}
-          <b style={{ color: "#8cd211" }}>
-            {
-              props.data.OccupationDetail[0].Projections.Projections[0]
-                .ProjectedEmployment
-            }
+          <i
+            className="fa fa-circle"
+            style={{ color: "#c8f08f" }}
+            aria-hidden="true"
+          ></i>{" "}
+          <b>Outlook: </b>
+          {props.data.OccupationDetail[0].BrightOutlook}
+        </h6>
+        <h6 className="font-weight-light">
+          <i
+            className="fa fa-circle"
+            style={{ color: "#8cd211" }}
+            aria-hidden="true"
+          ></i>{" "}
+          <b>Yearly Growth: </b>
+          {props.data.OccupationDetail[0].Projections.Projections[0].ProjectedAnnualJobOpening.toString().replace(
+            /\B(?=(\d{3})+(?!\d))/g,
+            ","
+          )}{" "}
+          new jobs
+        </h6>
+        <h6 className="font-weight-light">
+          <i
+            className="fa fa-circle"
+            style={{ color: "#5aa700" }}
+            aria-hidden="true"
+          ></i>{" "}
+          <b>
+            2028 Projections{" "}
+            {props.data.OccupationDetail[0].Projections.ProjectedYear}:{" "}
           </b>{" "}
-          jobs nationally in{" "}
-          <b style={{ color: "#8cd211" }}>
-            {props.data.OccupationDetail[0].Projections.ProjectedYear}
-          </b>
-          .&nbsp;
-          <b style={{ color: "#8cd211" }}>
-            {props.data.OccupationDetail[0].Projections.Projections[0].ProjectedAnnualJobOpening.toString().replace(
-              /\B(?=(\d{3})+(?!\d))/g,
-              ","
-            )}
-          </b>{" "}
-          jobs are expected to be added every year until then.
+          {
+            props.data.OccupationDetail[0].Projections.Projections[0]
+              .ProjectedEmployment
+          }
         </h6>
       </Card.Body>
     </Card>

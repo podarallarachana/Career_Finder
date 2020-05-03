@@ -4,12 +4,13 @@ $grid-gutter-width: 15px !default;
 @import "bootstrap";
 
 .find .nav-pills .nav-link.active {
-  background-color: #f86e51 !important;
+  background-color: #fba465 !important;
   color: white !important;
 }
 
 .find .nav-pills .nav-link {
-  color: #f86e51 !important;
+  color: white !important;
+  background-color: #f86e51 !important;
 }
 
 .card-columns {

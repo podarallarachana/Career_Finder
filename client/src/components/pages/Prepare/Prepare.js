@@ -187,24 +187,26 @@ class Prepare extends React.Component {
     var college_ids = [];
     var id_str = "";
 
-    var arr = this.state.college_programs.collegeProgramsData.SchoolPrograms;
+    if (this.state.college_programs.collegeProgramsData !== undefined) {
+      var arr = this.state.college_programs.collegeProgramsData.SchoolPrograms;
 
-    for (
-      var i = (this.state.activePage - 1) * 100;
-      (this.state.activePage - 1) * 100 + 100 < arr.length
-        ? i < (this.state.activePage - 1) * 100 + 100
-        : i < arr.length;
-      i++
-    ) {
-      var id = arr[i].ID;
-      var college_id = id.substr(0, id.indexOf("-"));
+      for (
+        var i = (this.state.activePage - 1) * 100;
+        (this.state.activePage - 1) * 100 + 100 < arr.length
+          ? i < (this.state.activePage - 1) * 100 + 100
+          : i < arr.length;
+        i++
+      ) {
+        var id = arr[i].ID;
+        var college_id = id.substr(0, id.indexOf("-"));
 
-      if (!college_ids.includes(college_id)) {
-        college_ids.push(college_id);
-        id_str += college_id + ",";
+        if (!college_ids.includes(college_id)) {
+          college_ids.push(college_id);
+          id_str += college_id + ",";
+        }
       }
+      id_str = id_str.substring(0, id_str.length - 1);
     }
-    id_str = id_str.substring(0, id_str.length - 1);
 
     if (id_str !== "") {
       try {

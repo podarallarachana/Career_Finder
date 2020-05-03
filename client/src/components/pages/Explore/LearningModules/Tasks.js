@@ -11,7 +11,7 @@ const Tasks = (props) => {
         <Fragment key={task.TaskId}>
           <h6 className="font-weight-light">
             <i
-              style={{ color: "#4178be" }}
+              style={{ color: "#7cc7ff" }}
               className="fa fa-check-square-o"
               aria-hidden="true"
             ></i>{" "}
@@ -27,7 +27,7 @@ const Tasks = (props) => {
         <Fragment key={task.TaskId}>
           <h6 className="font-weight-light">
             <i
-              style={{ color: "#4178be" }}
+              style={{ color: "#7cc7ff" }}
               className="fa fa-check-square-o"
               aria-hidden="true"
             ></i>{" "}

@@ -28,9 +28,9 @@ const NavigationBar = ({
       <LinkContainer to="/about">
         <Nav.Link>about</Nav.Link>
       </LinkContainer>
-        <LinkContainer to="/myinfo">
-            <Nav.Link>my info</Nav.Link>
-        </LinkContainer>
+      <LinkContainer to="/myinfo">
+        <Nav.Link>my info</Nav.Link>
+      </LinkContainer>
       <LinkContainer to="/admin">
         <Nav.Link>admin</Nav.Link>
       </LinkContainer>
@@ -52,9 +52,9 @@ const NavigationBar = ({
       <LinkContainer to="/prepare">
         <Nav.Link>prepare</Nav.Link>
       </LinkContainer>
-        <LinkContainer to="/myinfo">
-            <Nav.Link>my info</Nav.Link>
-        </LinkContainer>
+      <LinkContainer to="/myinfo">
+        <Nav.Link>my info</Nav.Link>
+      </LinkContainer>
       <LinkContainer to="/about">
         <Nav.Link>about</Nav.Link>
       </LinkContainer>
@@ -63,23 +63,25 @@ const NavigationBar = ({
 
   const guestLinks = (
     <Nav className="mr-auto">
-      <LinkContainer to="/login">
-        <Nav.Link>login</Nav.Link>
+      <LinkContainer to="/find" style={{ color: "#000" }}>
+        <Nav.Link>
+          <small>find</small>
+        </Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/register">
-        <Nav.Link>register</Nav.Link>
+      <LinkContainer to="/explore/11-9013.03" style={{ color: "#000" }}>
+        <Nav.Link>
+          <small>explore</small>
+        </Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/find">
-        <Nav.Link>find</Nav.Link>
+      <LinkContainer to="/prepare" style={{ color: "#000" }}>
+        <Nav.Link>
+          <small>prepare</small>
+        </Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/explore/11-9013.03">
-        <Nav.Link>explore</Nav.Link>
-      </LinkContainer>
-      <LinkContainer to="/prepare">
-        <Nav.Link>prepare</Nav.Link>
-      </LinkContainer>
-      <LinkContainer to="/about">
-        <Nav.Link>about</Nav.Link>
+      <LinkContainer to="/about" style={{ color: "#000" }}>
+        <Nav.Link>
+          <small>about</small>
+        </Nav.Link>
       </LinkContainer>
     </Nav>
   );
@@ -99,16 +101,25 @@ const NavigationBar = ({
 
   return (
     <Navbar
-      bg="light"
-      variant="light"
       style={{
         zIndex: 3,
+        backgroundColor: "#fff",
+        // borderBottom: "1px solid #000",
       }}
       expand="lg"
     >
       <LinkContainer to="/">
         <Navbar.Brand>
-          <i className="fa fa-home" aria-hidden="true"></i>
+          <i
+            className="fa fa-home"
+            aria-hidden="true"
+            style={{
+              color: "#fba465",
+              backgroundColor: "#ee3e38",
+              padding: "5px",
+              borderRadius: "100%",
+            }}
+          ></i>
         </Navbar.Brand>
       </LinkContainer>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />

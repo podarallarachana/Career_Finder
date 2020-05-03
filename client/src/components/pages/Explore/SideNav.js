@@ -40,6 +40,7 @@ const SideNav = (props) => {
             data.CareerCluster !== props.activeCluster ? "#ffa185" : "white",
           fontWeight: "bold",
           border: "0px",
+          borderRadius: "0px",
         }}
       >
         <ListGroup.Item onClick={updateActives}>

@@ -223,7 +223,10 @@ class Quiz extends React.Component {
   displayRecommendations = () => {
     if (this.state.recommendations === undefined) {
       return (
-        <div className="row justify-content-center">
+        <div
+          className="row justify-content-center"
+          style={{ paddingTop: "50px" }}
+        >
           <Spinner animation="grow" />
         </div>
       );
@@ -251,108 +254,102 @@ class Quiz extends React.Component {
             ).map((occupation, index) => {
               var color = this.getColors(index.toString());
               return (
-                <LinkContainer
-                  to={"/explore/" + occupation.OnetCode}
+                <div
                   key={occupation.OnetCode}
-                  style={{ border: "0px", outline: "0px" }}
+                  className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
                 >
-                  <div
-                    key={occupation.OnetCode}
-                    className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
-                  >
-                    <Card style={{ marginBottom: "15px", border: "0px" }}>
-                      <Card.Body
-                        style={{
-                          padding: "30px",
-                        }}
-                      >
-                        <h4>
-                          <span className="font-weight-light">
-                            {" "}
-                            {index + 1 + (this.state.activePage - 1) * 50}
-                          </span>
-                          .{" "}
-                          {
-                            this.getOccupation(occupation.OnetCode).occupation
-                              .Occupation
-                          }
-                        </h4>
-                        <small>
-                          {this.getOccupation(occupation.OnetCode).pathway},{" "}
-                          {this.getOccupation(occupation.OnetCode).cluster}{" "}
-                        </small>
-                        <hr />
-                        <small>
-                          <b>
-                            <i
-                              className="fa fa-circle"
-                              aria-hidden="true"
-                              style={{ color: color.light }}
-                            ></i>{" "}
-                            Description:{" "}
-                          </b>
-                          {this.displayDescription(
-                            this.getOccupation(occupation.OnetCode).occupation
-                              .Description
-                          )}
-                        </small>
-                        <br />
-                        <small>
-                          <b>
-                            <i
-                              className="fa fa-circle"
-                              aria-hidden="true"
-                              style={{ color: color.medium }}
-                            ></i>{" "}
-                            Education:{" "}
-                          </b>
-                          {
-                            this.getOccupation(occupation.OnetCode).occupation
-                              .Education
-                          }
-                        </small>
-                        <br />
-                        <small>
-                          <b>
-                            <i
-                              className="fa fa-circle"
-                              aria-hidden="true"
-                              style={{ color: color.dark }}
-                            ></i>{" "}
-                            Salary:{" "}
-                          </b>
-                          $
-                          {this.getOccupation(occupation.OnetCode)
-                            .occupation.Salary.toString()
-                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
-                        </small>
-                        <br />
-                        <br />
-                        <div className="row justify-content-center">
-                          <LinkContainer
-                            to={"/explore/" + occupation.OnetCode}
+                  <Card style={{ marginBottom: "15px", border: "0px" }}>
+                    <Card.Body
+                      style={{
+                        padding: "30px",
+                      }}
+                    >
+                      <h4>
+                        <span className="font-weight-light">
+                          {" "}
+                          {index + 1 + (this.state.activePage - 1) * 50}
+                        </span>
+                        .{" "}
+                        {
+                          this.getOccupation(occupation.OnetCode).occupation
+                            .Occupation
+                        }
+                      </h4>
+                      <small>
+                        {this.getOccupation(occupation.OnetCode).pathway},{" "}
+                        {this.getOccupation(occupation.OnetCode).cluster}{" "}
+                      </small>
+                      <hr />
+                      <small>
+                        <b>
+                          <i
+                            className="fa fa-circle"
+                            aria-hidden="true"
+                            style={{ color: color.light }}
+                          ></i>{" "}
+                          Description:{" "}
+                        </b>
+                        {this.displayDescription(
+                          this.getOccupation(occupation.OnetCode).occupation
+                            .Description
+                        )}
+                      </small>
+                      <br />
+                      <small>
+                        <b>
+                          <i
+                            className="fa fa-circle"
+                            aria-hidden="true"
+                            style={{ color: color.medium }}
+                          ></i>{" "}
+                          Education:{" "}
+                        </b>
+                        {
+                          this.getOccupation(occupation.OnetCode).occupation
+                            .Education
+                        }
+                      </small>
+                      <br />
+                      <small>
+                        <b>
+                          <i
+                            className="fa fa-circle"
+                            aria-hidden="true"
+                            style={{ color: color.dark }}
+                          ></i>{" "}
+                          Salary:{" "}
+                        </b>
+                        $
+                        {this.getOccupation(occupation.OnetCode)
+                          .occupation.Salary.toString()
+                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                      </small>
+                      <br />
+                      <br />
+                      <div className="row justify-content-center">
+                        <LinkContainer
+                          to={"/explore/" + occupation.OnetCode}
+                          style={{
+                            border: "0px",
+                            outline: "0px",
+                            backgroundColor: color.light,
+                            color: "white",
+                          }}
+                        >
+                          <Button
+                            className="optionsButton"
+                            variant="primary btn-xs"
                             style={{
                               border: "0px",
-                              outline: "0px",
-                              backgroundColor: color.light,
-                              color: "white",
                             }}
                           >
-                            <Button
-                              className="optionsButton"
-                              variant="primary btn-xs"
-                              style={{
-                                border: "0px",
-                              }}
-                            >
-                              Learn More
-                            </Button>
-                          </LinkContainer>
-                        </div>
-                      </Card.Body>
-                    </Card>
-                  </div>
-                </LinkContainer>
+                            Learn More
+                          </Button>
+                        </LinkContainer>
+                      </div>
+                    </Card.Body>
+                  </Card>
+                </div>
               );
             })}
           </div>

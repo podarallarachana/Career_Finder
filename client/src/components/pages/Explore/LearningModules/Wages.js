@@ -138,14 +138,14 @@ const Wages = (props) => {
         <p>
           Is money important to you? See how much money you are most likely to
           make in this career. Most employees in this career make{" "}
-          <span style={{ color: "#7cc7ff" }}>
+          <span style={{ color: "#42a5f5" }}>
             $
             {props.data.OccupationDetail[0].Wages.NationalWagesList[
               annual
             ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </span>{" "}
           per year and{" "}
-          <span style={{ color: "#7cc7ff" }}>
+          <span style={{ color: "#42a5f5" }}>
             $
             {props.data.OccupationDetail[0].Wages.NationalWagesList[
               hourly

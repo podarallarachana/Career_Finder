@@ -166,7 +166,7 @@ class Occupation extends React.Component {
                 as={Card.Header}
                 eventKey="0"
                 className="font-weight-light"
-                style={{ backgroundColor: "white" }}
+                style={{ backgroundColor: "#f5f5f5" }}
               >
                 <i
                   className="fa fa-bars"
