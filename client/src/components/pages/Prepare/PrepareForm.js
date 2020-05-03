@@ -26,7 +26,15 @@ const PrepareForm = (props) => {
   const getJobs = () => {
     return (
       <Form.Group>
-        <Form.Label style={{ color: "white" }}>Occupation</Form.Label>
+        <Form.Label>
+          <i
+            class="fa fa-chevron-circle-right"
+            aria-hidden="true"
+            style={{ color: "#fba465" }}
+          ></i>
+          &nbsp;
+          <span style={{ color: "#000" }}>Occupation</span>
+        </Form.Label>
         <Form.Control
           as="select"
           defaultValue={props.user_inp.Occupation}
@@ -49,21 +57,36 @@ const PrepareForm = (props) => {
   };
 
   return (
-    <div className="prepare-sidenav">
-      <Form>
-        <h4 style={{ color: "white" }}>Parameters</h4>
+    <div>
+      <Form
+        style={{
+          paddingLeft: "40px",
+          paddingRight: "40px",
+          backgroundColor: "white",
+          paddingTop: "40px",
+          paddingBottom: "40px",
+          marginBottom: "0px",
+        }}
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
+        <h1 style={{ color: "#f2c246" }}>
+          <b>
+            <i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;PARAMS{" "}
+          </b>
+        </h1>
+        <br />
         {getJobs()}
-        {show ? (
-          <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-            <Alert.Heading>Invalid ZIP</Alert.Heading>
-            <p>
-              Make sure your Zip Code is 5 characters long and only contains
-              numbers!
-            </p>
-          </Alert>
-        ) : null}
-        <label htmlFor="location" style={{ color: "white" }}>
-          ZIP Code
+        <label htmlFor="location">
+          {" "}
+          <i
+            class="fa fa-chevron-circle-right"
+            aria-hidden="true"
+            style={{ color: "#fba465" }}
+          ></i>
+          &nbsp;
+          <span style={{ color: "#000" }}>Zip Code</span>
         </label>
         <InputGroup className="mb-3">
           <FormControl
@@ -74,27 +97,43 @@ const PrepareForm = (props) => {
             placeholder="Enter ZIP.."
           />
         </InputGroup>
-
         <Form.Check
-          style={{ color: "white" }}
           onChange={props.updateHome}
           type="checkbox"
           id="home"
-          label="willing to move out of state"
+          label={
+            <h6 className="font-weight-light">
+              {"willing to move out of state"}
+            </h6>
+          }
         />
-        <br />
-        <Button
-          variant="light"
-          onClick={validateAndFetch}
-          style={{
-            border: "0px",
-            display: "table",
-            margin: "0 auto",
-          }}
-        >
-          Go
-        </Button>
       </Form>
+      {show ? (
+        <Alert
+          style={{ margin: "0px", borderRadius: "0px" }}
+          variant="danger"
+          onClose={() => setShow(false)}
+          dismissible
+        >
+          <Alert.Heading>Invalid ZIP</Alert.Heading>
+          <p>
+            Make sure your Zip Code is 5 characters long and only contains
+            numbers!
+          </p>
+        </Alert>
+      ) : null}
+      <Button
+        onClick={validateAndFetch}
+        variant="warning"
+        style={{
+          display: "table",
+          width: "100%",
+          height: "70px",
+          borderRadius: "0px",
+        }}
+      >
+        Get Recommendations
+      </Button>
     </div>
   );
 };

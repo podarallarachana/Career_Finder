@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PrepareForm from "./PrepareForm";
 // import EducationLevel from "./EducationLevel";
 import { Nav } from "react-bootstrap";
@@ -7,16 +7,12 @@ import CollegePrograms from "./CollegePrograms";
 import Licenses from "./Licenses";
 import Certifications from "./Certifications";
 import { GetState } from "./ValidateLocation";
-import Sidebar from "react-sidebar";
-
-const mql = window.matchMedia(`(min-width: 800px)`); //FOR SIDENAV
+import Jumbotron from "react-bootstrap/Jumbotron";
 
 class Prepare extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      sidebarDocked: mql.matches,
-      sidebarOpen: false,
       user_inp: {
         Code: "11-9013.03",
         Occupation: "Aquacultural Managers",
@@ -40,25 +36,6 @@ class Prepare extends React.Component {
       activePage: 1,
       showCollegeDetails: false,
     };
-    this.mediaQueryChanged = this.mediaQueryChanged.bind(this);
-    this.onSetSidebarOpen = this.onSetSidebarOpen.bind(this);
-  }
-
-  //THESE FUNCTIONS ARE FOR SETTING UP SIDEBAR
-  UNSAFE_componentWillMount() {
-    mql.addListener(this.mediaQueryChanged);
-  }
-
-  componentWillUnmount() {
-    mql.removeListener(this.mediaQueryChanged);
-  }
-
-  onSetSidebarOpen(open) {
-    this.setState({ sidebarOpen: open });
-  }
-
-  mediaQueryChanged() {
-    this.setState({ sidebarDocked: mql.matches, sidebarOpen: false });
   }
 
   componentDidMount() {
@@ -309,33 +286,7 @@ class Prepare extends React.Component {
 
   render() {
     return (
-      <Sidebar
-        sidebar={
-          <PrepareForm
-            user_inp={this.state.user_inp}
-            updateLocation={this.updateLocation}
-            updateCareer={this.updateCareer}
-            updateHome={this.updateHome}
-            getEducationLevels={this.getEducationLevels}
-            getCollegePrograms={this.getCollegePrograms}
-            getCertifications={this.getCertifications}
-            getLicenses={this.getLicenses}
-          />
-          //              <EducationLevel education_level={this.state.education_level} />
-          // <br />
-        }
-        open={this.state.sidebarOpen}
-        docked={this.state.sidebarDocked}
-        onSetOpen={this.onSetSidebarOpen}
-        styles={{
-          root: {
-            top: 56,
-          },
-          sidebar: {
-            backgroundColor: "#ff683c",
-          },
-        }}
-      >
+      <Fragment>
         <div className="prepare">
           <div>
             <Nav
@@ -369,7 +320,23 @@ class Prepare extends React.Component {
                   Licenses
                 </Nav.Link>
               </Nav.Item>
-            </Nav>
+            </Nav>{" "}
+            <Jumbotron className="filterheader" style={{ marginBottom: "0px" }}>
+              <div className="row justify-content-center">
+                <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
+                  <PrepareForm
+                    user_inp={this.state.user_inp}
+                    updateLocation={this.updateLocation}
+                    updateCareer={this.updateCareer}
+                    updateHome={this.updateHome}
+                    getEducationLevels={this.getEducationLevels}
+                    getCollegePrograms={this.getCollegePrograms}
+                    getCertifications={this.getCertifications}
+                    getLicenses={this.getLicenses}
+                  />
+                </div>
+              </div>
+            </Jumbotron>
             {this.state.activeTab === "collegeprograms" ? (
               <CollegePrograms
                 college_programs={this.state.college_programs}
@@ -390,7 +357,7 @@ class Prepare extends React.Component {
           <br />
           <br />
         </div>
-      </Sidebar>
+      </Fragment>
     );
   }
 }
