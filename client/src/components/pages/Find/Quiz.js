@@ -232,6 +232,7 @@ class Quiz extends React.Component {
     } else {
       return (
         <Fragment>
+          <br />
           <div className="row justify-content-center">
             <Pagination
               itemClass="page-item"
@@ -355,7 +356,6 @@ class Quiz extends React.Component {
               );
             })}
           </div>
-          <br />
           <div className="row justify-content-center">
             <Pagination
               itemClass="page-item"
@@ -393,7 +393,7 @@ class Quiz extends React.Component {
   render() {
     return (
       <div>
-        <Jumbotron className="filterheader">
+        <Jumbotron className="filterheader" style={{ marginBottom: "0px" }}>
           <div
             className="row justify-content-center"
             style={{ marginLeft: "15px", marginRight: "15px" }}
@@ -478,9 +478,7 @@ class Quiz extends React.Component {
         </Jumbotron>
         <div
           style={{
-            paddingLeft: "15px",
-            paddingRight: "15px",
-            paddingBottom: "15px",
+            padding: "15px",
           }}
         >
           {this.displayRecommendations()}

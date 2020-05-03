@@ -99,6 +99,7 @@ const Filter = (props) => {
           </Alert>
         ) : (
           <Fragment>
+            <br />
             <div className="row justify-content-center">
               <Pagination
                 itemClass="page-item"
@@ -207,7 +208,6 @@ const Filter = (props) => {
                 );
               })}
             </div>
-            <br />
             <div className="row justify-content-center">
               <Pagination
                 itemClass="page-item"
@@ -228,7 +228,7 @@ const Filter = (props) => {
 
   return (
     <div>
-      <Jumbotron className="filterheader">
+      <Jumbotron className="filterheader" style={{ marginBottom: "0px" }}>
         <div className="row justify-content-center">
           <div className="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6">
             <Form
@@ -291,7 +291,11 @@ const Filter = (props) => {
           </div>
         </div>
       </Jumbotron>
-      <div style={{ paddingLeft: "15px", paddingRight: "15px" }}>
+      <div
+        style={{
+          padding: "15px",
+        }}
+      >
         {displayOccupations()}
       </div>
     </div>

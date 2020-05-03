@@ -60,7 +60,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 
   //REDIRECT IF SUCCESFUL REGISTER
   if (isAuthenticated) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/find" />;
   }
 
   return (
@@ -141,12 +141,12 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       type="text"
                       placeholder="Code"
                       name="code"
+                      disabled="true"
                       value={code}
                       onChange={e => onChange(e)}
                     />
                     <Form.Text className="text-muted">
-                      *Only required if you are a student and your teacher has
-                      given you a registration code.
+                      *Not currently used.
                     </Form.Text>
                   </Form.Group>
                   <Form.Group>

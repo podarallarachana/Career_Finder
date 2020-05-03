@@ -28,7 +28,7 @@ const Login = ({ login, isAuthenticated }) => {
 
   //REDIRECT IF SUCCESFUL LOGIN
   if (isAuthenticated) {
-    return <Redirect to="/profile" />;
+    return <Redirect to="/find" />;
   }
 
   return (

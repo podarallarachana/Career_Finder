@@ -9,8 +9,6 @@ import axios from "axios";
 
 const Admin = ({
   authorization: { isAuthenticated, user },
-  getClasses,
-  classes: { classes },
 }) => {
   const [datas, setDatas] = useState([]);
   const [isLoading, toggleLoading] = useState(true);
@@ -18,14 +16,66 @@ const Admin = ({
   const [currentClass, selectCurrentClass] = useState(null);
   const [view, changeView] = useState("classes");
   const [formData, setFormData] = useState({
-    class_name: "",
+    class_name: ""
   });
+  const [studentData, setSD] = useState([]);
+  const [classTotal, setCT] = useState(0);
 
   useEffect(() => {
-    axios.get("/api/class/classes").then(function (results) {
-      setDatas(results.data);
-      toggleLoading(false);
-    });
+      toggleLoading(true);
+      switch(view) {
+          case "classes":
+                  axios.get("/api/class/classes").then(function (results) {
+                      setDatas(results.data);
+                      toggleLoading(false);
+                  });
+                  break;
+
+          case "viewclass":
+              setSD([]);
+              setCT(0);
+              if(currentClass.ofStudentId.length)
+              {
+                  let studentObj = {
+                      name : "",
+                      points: "",
+                  };
+                  let students = [];
+                  let classPoints = 0;
+                  function setStudents() {
+                      let counter = 0;
+                      currentClass.ofStudentId.forEach(async (student,index,array) => {
+                          await axios.get("/api/class/student/points",{params:{id: student}}).then( result => {
+                              let total = 0;
+                              result.data.points.forEach(score => {total+= score;});
+                              studentObj = {
+                                  name : result.data.first_name + " " + result.data.last_name,
+                                  points: total,
+                                  id: student
+                              };
+                              students.push(studentObj);
+                              counter ++;
+                              classPoints += total;
+                              if(counter === array.length) {
+                                  toggleLoading(false);
+                                  setSD(students);
+                                  setCT(classPoints);
+                              }
+                          });
+                      });
+                  }
+                  setStudents();
+              }
+              else {
+                  toggleLoading(false);
+              }
+
+              break;
+
+          default:
+              toggleLoading(false);
+              break;
+      }
   }, [view]);
 
   if (!isAuthenticated || !user.is_teacher) {
@@ -41,9 +91,21 @@ const Admin = ({
     });
   };
 
+  const remove = (studentID) => {
+      axios.put("/api/class/student",{id: currentClass._id, studentID: studentID}).then(
+          result => {
+             // this.forceUpdate();
+
+              changeView("classes");
+              setFormData({class_name: ""});
+          }
+      )
+  };
+
     const onSubmit = async e => {
         e.preventDefault();
-        await axios.post("/api/class",{name : class_name, teacherId : user.first_name}).then(
+        //await axios.post("/api/class",{name : class_name, teacherId : user.first_name}).then(
+        await axios.post("/api/class",{name : class_name, teacherId : user._id}).then(
             function() {
                 changeView("classes");
                 setFormData({class_name: ""});
@@ -62,6 +124,15 @@ const Admin = ({
         }
     }
 
+    const studentAdd= () => {
+        axios.post("/api/class/student",{studentID: class_name ,id: currentClass._id});
+        changeView("classes");
+        setFormData({class_name: ""});
+
+
+        //this.forceUpdate();
+    };
+
     const clusters = ["Agriculture, food, & Natural Resources","Architecture & Construction",
     "Arts, Audio/Video","Technology & Communications", "Business Management & Administration",
     "Education & Training", "Finance", "Government & public Administration", "Health Science",
@@ -77,17 +148,9 @@ const Admin = ({
     changeView("addclass");
   }
 
-  function studentData() {
-    console.log(currentClass.ofStudentId);
-    return currentClass.ofStudentId.map((student) => (
-      <Card key={student}>
-        <Card.Header>{student.name}</Card.Header>
-      </Card>
-    ));
-  }
   //maps all class names to table
   function tableData() {
-    return datas.map((className) => (
+    return datas.filter(data => (data.ofTeacherId === user._id)).map((className) => (
       <tr key={className.name}>
         <td
           onClick={() => {
@@ -104,73 +167,6 @@ const Admin = ({
   }
 
   function currentView() {
-    switch (view) {
-      case "classes":
-        return (
-          <div>
-            <Table>
-              <thead>
-                <tr>
-                  <th>Class Name</th>
-                  <th>Registration Code</th>
-                </tr>
-              </thead>
-              <tbody>{tableData()}</tbody>
-            </Table>
-          </div>
-        );
-      case "viewclass":
-        return (
-          <Accordion>
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="0">
-                  {currentClass.name}
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="0">
-                <Card.Body>
-                  <h1>Total Points</h1>
-                  <h1>Points by Module</h1>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-            <Card>
-              <Card.Header>
-                <Accordion.Toggle as={Button} variant="link" eventKey="1">
-                  Students
-                </Accordion.Toggle>
-              </Card.Header>
-              <Accordion.Collapse eventKey="1">
-                <Card.Body>
-                  {studentData()}
-                  <Button>Add Student</Button>
-                </Card.Body>
-              </Accordion.Collapse>
-            </Card>
-          </Accordion>
-        );
-      case "addclass":
-        return (
-          <Form onSubmit={(e) => onSubmit(e)}>
-            <Form.Group>
-              <Form.Control
-                type="text"
-                placeholder="Class Name"
-                name="class_name"
-                value={class_name}
-                onChange={(e) => onChange(e)}
-                required
-              />
-            </Form.Group>
-            <Button type="submit">Add</Button>
-          </Form>
-        );
-      default:
-        return <div></div>;
-    }
-
-    function currentView() {
             switch(view) {
                 case "classes":
                     return (
@@ -189,6 +185,7 @@ const Admin = ({
                         </div>
                     );
                 case "viewclass":
+                    //add code to get student data
                     return (
                         <Accordion>
                             <Card>
@@ -199,8 +196,7 @@ const Admin = ({
                                 </Card.Header>
                                 <Accordion.Collapse eventKey="0">
                                     <Card.Body>
-                                        <h1>Total Points</h1>
-                                        <h1>Points by Module</h1>
+                                        <h1>Total Points: {classTotal}</h1>
                                     </Card.Body>
                                 </Accordion.Collapse>
                             </Card>
@@ -212,7 +208,16 @@ const Admin = ({
                                 </Card.Header>
                                 <Accordion.Collapse eventKey="1">
                                     <Card.Body>
-                                        {studentData().result}
+                                        {studentData.map((student) => (
+                                            <Card key={student.name}>
+                                                <Card.Header>{student.name}</Card.Header>
+                                                <Card.Body>
+                                                    Points: {student.points}
+                                                </Card.Body>
+                                                <Button onClick={() => {remove(student.id)}}>
+                                                    Remove Student
+                                                </Button>
+                                            </Card>))}
                                         <Button onClick={()=> {changeView("addstudent");}}>Add Student</Button>
                                     </Card.Body>
                                 </Accordion.Collapse>
@@ -241,11 +246,11 @@ const Admin = ({
                     );
                 case "addstudent":
                     return (
-                        <Form onSubmit={e => onSubmit(e)}>
+                        <Form onSubmit={e => studentAdd(e)}>
                             <Form.Group>
                                 <Form.Control
                                     type="text"
-                                    placeholder="Student Name"
+                                    placeholder="Student ID"
                                     name="class_name"
                                     value={class_name}
                                     onChange={e => onChange(e)}
@@ -283,25 +288,11 @@ const Admin = ({
             }
     }
 
-    return (
-        <div>
-            {isLoading && <p>Loading</p>}
-            <h1 className="font-weight-light">Admin</h1>
-            <h2 className="font-weight-lighte">Hello {user.first_name}</h2>
-            {view!== "classes" ? <Button onClick={() => {changeView("classes"); changeSelection("")}}>View Classes</Button> : <div></div>}
-            {selected !== "" ? <Button onClick={() => {onDelete()}}>Delete Current Class</Button> : <div></div>}
-            {view !== "addclass" ? <Button onClick={() => {onAdd(); changeSelection("")}}>Add Class</Button> : <div></div>}
-            <Button onClick={()=>{classNotes()}}>Edit Classroom Notes</Button>
-            {!isLoading && currentView()
-            }
-        </div>);
-  }
-
   return (
     <div>
       {isLoading && <p>Loading</p>}
-      <h1 className="font-weight-light">Admin</h1>
-      <h2 className="font-weight-lighte">Hello {user.first_name}</h2>
+      <h1 className="font-weight-light">Admin Console</h1>
+      <h3 className="font-weight-lighte">Hello, {user.first_name}</h3>
       {view !== "classes" ? (
         <Button
           onClick={() => {
@@ -343,14 +334,11 @@ const Admin = ({
 }
 
 Admin.propTypes = {
-  getClasses: PropTypes.func.isRequired,
   authorization: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   authorization: state.authorization,
-  classes: state.classRoom,
 });
 
-export default connect(mapStateToProps, { getClasses })(Admin);
+export default connect(mapStateToProps)(Admin);

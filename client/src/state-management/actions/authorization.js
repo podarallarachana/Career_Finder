@@ -42,16 +42,17 @@ export const register = ({
     },
   };
   //FOR NOW JUST TAKE CARE OF EMPTY CODES, CODE LOGIC NEEDS TO BE ADDED LATER
+  //if (code === "" && is_teacher === false) {
+  //  code = "NA";
+  //}
+
   if (code === "" && is_teacher === false) {
     code = "NA";
   }
-  // if (code === "" && is_teacher === false) {
-  //   //STUDENT DOESN'T HAVE A CODE
-  //   code = "NA";
-  // } else if (is_teacher === true) {
-  //   //IF IT IS A TEACHER, GENERATE A NEW CODE
-  //   code = uuidv4();
-  // }
+  else if (is_teacher === true) {
+    code = "Teacher";
+  }
+
   const body = JSON.stringify({
     first_name,
     last_name,
@@ -62,11 +63,7 @@ export const register = ({
   });
   try {
     const res = await axios.post("/api/user", body, config);
-
-    //await axios.post("/api/class/student", {id: code,studentId: first_name});
-
     //also create a student object using email
-
     //ON SUCCESFUL POST, SEND SUCCESS ALERT
     dispatch({
       type: REGISTER_SUCCESS,
