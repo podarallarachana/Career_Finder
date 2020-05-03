@@ -144,7 +144,11 @@ const Keyword = (props) => {
                       }}
                     >
                       <h4>
-                        <span className="font-weight-light">{index + 1}</span>.{" "}
+                        <span className="font-weight-light">
+                          {" "}
+                          {index + 1 + (activePage - 1) * 50}
+                        </span>
+                        .{" "}
                         {
                           getOccupation(occupation.OnetCode).occupation
                             .Occupation

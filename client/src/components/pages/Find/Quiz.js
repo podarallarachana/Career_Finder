@@ -7,6 +7,8 @@ import CardColumns from "react-bootstrap/CardColumns";
 import { LinkContainer } from "react-router-bootstrap";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Spinner from "react-bootstrap/Spinner";
+import Pagination from "react-js-pagination";
+import data from "../Explore/Data.json";
 
 class Quiz extends React.Component {
   constructor(props) {
@@ -19,6 +21,7 @@ class Quiz extends React.Component {
       leader: false,
       recommendations: undefined,
       show: false,
+      activePage: 1,
     };
     var arr = [
       "skills",
@@ -33,8 +36,7 @@ class Quiz extends React.Component {
         this.state.user_inp.push({
           ElementName: findData[0][arr[j]][i].ElementName,
           ElementId: findData[0][arr[j]][i].ElementId,
-          Selected:
-            findData[0][arr[j]][i].ElementName === "Science" ? true : false,
+          Selected: false,
           OnVal: findData[0][arr[j]][i].DataPoint80,
           OffVal: findData[0][arr[j]][i].DataPoint20,
           Type: arr[j],
@@ -47,7 +49,54 @@ class Quiz extends React.Component {
     this.getRecommendations();
   }
 
+  handlePageChange = (pageNumber) => {
+    this.setState({ activePage: pageNumber });
+  };
+
+  displayDescription = (description) => {
+    if (description.length < 150) {
+      return description;
+    } else {
+      return description.substring(0, 147) + "...";
+    }
+  };
+
+  getOccupation = (code) => {
+    for (var i = 0; i < data.length; i++) {
+      for (var j = 0; j < data[i].CareerPathway.length; j++) {
+        for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
+          if (data[i].CareerPathway[j].Jobs[z].Code === code) {
+            return {
+              occupation: data[i].CareerPathway[j].Jobs[z],
+              pathway: data[i].CareerPathway[j].Pathway,
+              cluster: data[i].CareerCluster,
+            };
+          }
+        }
+      }
+    }
+  };
+
+  getColors = (number) => {
+    var colors = [
+      { light: "#fba465", medium: "#f86e51", dark: "#ee3e38" }, //orange
+      { light: "#c0e6ff", medium: "#7cc7ff", dark: "#5aaafa" }, //blue
+      { light: "#b4e051", medium: "#8cd211", dark: "#5aa700" }, //green
+    ];
+    var color = colors[0];
+
+    if ("1470".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[0];
+    } else if ("258".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[1];
+    } else if ("369".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[2];
+    }
+    return color;
+  };
+
   getRecommendations = async () => {
+    this.setState({ activePage: 1 });
     var tmp = { SKAValueList: [] };
     for (var i = 0; i < this.state.user_inp.length; i++) {
       var val =
@@ -129,7 +178,13 @@ class Quiz extends React.Component {
             <Form.Check
               type="switch"
               id={"switch_" + num}
-              label={<h6 className="font-weight-light">{title}</h6>}
+              label={
+                <h6>
+                  <b>{num}</b>
+                  {". "}
+                  <span className="font-weight-light">{title}</span>
+                </h6>
+              }
               checked={this.state[type]}
               onChange={() => this.onSwitchChange(type)}
             />
@@ -175,75 +230,145 @@ class Quiz extends React.Component {
     } else if (this.state.recommendations === null) {
       return <div>sorry, unavailable right now</div>;
     } else {
-      var colors = ["#d1193e", "#ee3e38", "#f86e51", "#fba465"];
-
       return (
-        <CardColumns>
-          {this.state.recommendations.SKARankList.map((occupation) => {
-            var color = colors[0];
-            if (
-              "a".indexOf(occupation.OccupationTitle.charAt(0).toLowerCase()) >
-              -1
-            ) {
-              color = colors[0];
-            } else if (
-              "bcd".indexOf(
-                occupation.OccupationTitle.charAt(0).toLowerCase()
-              ) > -1
-            ) {
-              color = colors[1];
-            } else if (
-              "efghijklmn".indexOf(
-                occupation.OccupationTitle.charAt(0).toLowerCase()
-              ) > -1
-            ) {
-              color = colors[2];
-            } else {
-              color = colors[3];
-            }
-            return (
-              <LinkContainer
-                to={"/explore/" + occupation.OnetCode}
-                key={occupation.OnetCode}
-                style={{ border: "0px", outline: "0px" }}
-              >
-                <Card>
-                  <Card.Body style={{ backgroundColor: color, color: "white" }}>
-                    <h4>{occupation.OccupationTitle}</h4>
-                    <Button
-                      variant="outline-light btn-xs"
-                      className="optionsButton"
-                    >
-                      Learn More
-                    </Button>
-                  </Card.Body>
-                  <Button
-                    variant="light"
-                    style={{
-                      borderRadius: "0px",
-                      width: "100%",
-                      height: "100px",
-                      backgroundColor: "white",
-                    }}
+        <Fragment>
+          <div className="row justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.activePage}
+              itemsCountPerPage={50}
+              totalItemsCount={this.state.recommendations.SKARankList.length}
+              pageRangeDisplayed={5}
+              onChange={this.handlePageChange}
+            />
+          </div>
+          <div className="row">
+            {this.state.recommendations.SKARankList.slice(
+              (this.state.activePage - 1) * 50,
+              (this.state.activePage - 1) * 50 + 50
+            ).map((occupation, index) => {
+              var color = this.getColors(index.toString());
+              return (
+                <LinkContainer
+                  to={"/explore/" + occupation.OnetCode}
+                  key={occupation.OnetCode}
+                  style={{ border: "0px", outline: "0px" }}
+                >
+                  <div
+                    key={occupation.OnetCode}
+                    className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
                   >
-                    <small>
-                      <b>Education: </b>
-                      {occupation.TypicalEducation}
-                    </small>
-                    <br />
-                    <small>
-                      <b>Salary: </b>$
-                      {occupation.AnnualWages.toString().replace(
-                        /\B(?=(\d{3})+(?!\d))/g,
-                        ","
-                      )}
-                    </small>
-                  </Button>
-                </Card>
-              </LinkContainer>
-            );
-          })}
-        </CardColumns>
+                    <Card style={{ marginBottom: "15px", border: "0px" }}>
+                      <Card.Body
+                        style={{
+                          padding: "30px",
+                        }}
+                      >
+                        <h4>
+                          <span className="font-weight-light">
+                            {" "}
+                            {index + 1 + (this.state.activePage - 1) * 50}
+                          </span>
+                          .{" "}
+                          {
+                            this.getOccupation(occupation.OnetCode).occupation
+                              .Occupation
+                          }
+                        </h4>
+                        <small>
+                          {this.getOccupation(occupation.OnetCode).pathway},{" "}
+                          {this.getOccupation(occupation.OnetCode).cluster}{" "}
+                        </small>
+                        <hr />
+                        <small>
+                          <b>
+                            <i
+                              className="fa fa-circle"
+                              aria-hidden="true"
+                              style={{ color: color.light }}
+                            ></i>{" "}
+                            Description:{" "}
+                          </b>
+                          {this.displayDescription(
+                            this.getOccupation(occupation.OnetCode).occupation
+                              .Description
+                          )}
+                        </small>
+                        <br />
+                        <small>
+                          <b>
+                            <i
+                              className="fa fa-circle"
+                              aria-hidden="true"
+                              style={{ color: color.medium }}
+                            ></i>{" "}
+                            Education:{" "}
+                          </b>
+                          {
+                            this.getOccupation(occupation.OnetCode).occupation
+                              .Education
+                          }
+                        </small>
+                        <br />
+                        <small>
+                          <b>
+                            <i
+                              className="fa fa-circle"
+                              aria-hidden="true"
+                              style={{ color: color.dark }}
+                            ></i>{" "}
+                            Salary:{" "}
+                          </b>
+                          $
+                          {this.getOccupation(occupation.OnetCode)
+                            .occupation.Salary.toString()
+                            .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        </small>
+                        <br />
+                        <br />
+                        <div className="row justify-content-center">
+                          <LinkContainer
+                            to={"/explore/" + occupation.OnetCode}
+                            style={{
+                              border: "0px",
+                              outline: "0px",
+                              backgroundColor: color.light,
+                              color: "white",
+                            }}
+                          >
+                            <Button
+                              className="optionsButton"
+                              variant="primary btn-xs"
+                              style={{
+                                border: "0px",
+                              }}
+                            >
+                              Learn More
+                            </Button>
+                          </LinkContainer>
+                        </div>
+                      </Card.Body>
+                    </Card>
+                  </div>
+                </LinkContainer>
+              );
+            })}
+          </div>
+          <br />
+          <div className="row justify-content-center">
+            <Pagination
+              itemClass="page-item"
+              linkClass="page-link"
+              activePage={this.state.activePage}
+              itemsCountPerPage={50}
+              totalItemsCount={this.state.recommendations.SKARankList.length}
+              pageRangeDisplayed={5}
+              onChange={this.handlePageChange}
+            />
+          </div>
+          <br />
+        </Fragment>
       );
     }
   };
@@ -293,8 +418,8 @@ class Quiz extends React.Component {
               </p>
             </div>
           </div>
-          {this.displayOptions("subjects", 1, "I am interested in", false, 0)}
-          {this.displayOptions("skills", 2, "I am good at", false, 1)}
+          {this.displayOptions("subjects", 1, "I am interested in", true, 0)}
+          {this.displayOptions("skills", 2, "I am good at", true, 1)}
           {this.displayOptions(
             "physical",
             3,
