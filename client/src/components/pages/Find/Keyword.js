@@ -175,14 +175,14 @@ const Keyword = (props) => {
                   outdoors? Search for a career by keyword using the Keyword
                   Search Tool.
                 </p>
-                <h6 className="font-weight-light">
+                <p className="font-weight-light">
                   <i
                     class="fa fa-chevron-circle-right"
                     aria-hidden="true"
                     style={{ color: "#fba465" }}
                   ></i>
                   &nbsp;pottery, coal, gardening
-                </h6>
+                </p>
               </label>
               <InputGroup className="mb-3">
                 <FormControl

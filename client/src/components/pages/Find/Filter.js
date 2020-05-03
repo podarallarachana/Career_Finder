@@ -4,7 +4,6 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 import { Form, Alert, Button } from "react-bootstrap";
 import Card from "react-bootstrap/Card";
-import CardColumns from "react-bootstrap/CardColumns";
 import { LinkContainer } from "react-router-bootstrap";
 import Pagination from "react-js-pagination";
 import Jumbotron from "react-bootstrap/Jumbotron";
@@ -40,6 +39,32 @@ const Filter = (props) => {
     setActivePage(pageNumber);
   };
 
+  const getColors = (number) => {
+    var colors = [
+      { light: "#fba465", medium: "#f86e51", dark: "#ee3e38" }, //orange
+      { light: "#c0e6ff", medium: "#7cc7ff", dark: "#5aaafa" }, //blue
+      { light: "#b4e051", medium: "#8cd211", dark: "#5aa700" }, //green
+    ];
+    var color = colors[0];
+
+    if ("147".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[0];
+    } else if ("2580".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[1];
+    } else if ("369".indexOf(number[number.length - 1].toLowerCase()) > -1) {
+      color = colors[2];
+    }
+    return color;
+  };
+
+  const displayDescription = (description) => {
+    if (description.length < 150) {
+      return description;
+    } else {
+      return description.substring(0, 147) + "...";
+    }
+  };
+
   const displayOccupations = () => {
     var tmp = [];
     for (var i = 0; i < data.length; i++) {
@@ -61,11 +86,9 @@ const Filter = (props) => {
     );
 
     var arr = tmp;
-    if (tmp.length > 100) {
-      arr = tmp.slice((activePage - 1) * 100, (activePage - 1) * 100 + 100);
+    if (tmp.length > 50) {
+      arr = tmp.slice((activePage - 1) * 50, (activePage - 1) * 50 + 50);
     }
-
-    var colors = ["#f86e51", "#fba465", "#7cc7ff", "#5aaafa"];
 
     return (
       <Fragment>
@@ -81,103 +104,117 @@ const Filter = (props) => {
                 itemClass="page-item"
                 linkClass="page-link"
                 activePage={activePage}
-                itemsCountPerPage={100}
+                itemsCountPerPage={50}
                 totalItemsCount={tmp.length}
                 pageRangeDisplayed={5}
                 onChange={handlePageChange}
               />
             </div>
-            <CardColumns>
-              {arr.map((occupation) => {
-                var color = colors[0];
-                if (
-                  "etaoin".indexOf(
-                    occupation.occupation.Occupation.charAt(0).toLowerCase()
-                  ) > -1
-                ) {
-                  color = colors[0];
-                } else if (
-                  "srhdlu".indexOf(
-                    occupation.occupation.Occupation.charAt(0).toLowerCase()
-                  ) > -1
-                ) {
-                  color = colors[1];
-                } else if (
-                  "cmfywg".indexOf(
-                    occupation.occupation.Occupation.charAt(0).toLowerCase()
-                  ) > -1
-                ) {
-                  color = colors[2];
-                } else {
-                  color = colors[3];
-                }
+            <div className="row">
+              {arr.map((occupation, index) => {
+                var color = getColors(index.toString());
                 return (
                   <LinkContainer
                     key={occupation.occupation.Code}
                     to={"/explore/" + occupation.occupation.Code}
                     style={{ border: "0px", outline: "0px" }}
                   >
-                    <Card onClick={() => updateActives(occupation.Code)}>
-                      <Card.Body
-                        style={{
-                          backgroundColor: color,
-                          color: "white",
-                          padding: "30px",
-                        }}
+                    <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                      <Card
+                        onClick={() => updateActives(occupation.Code)}
+                        style={{ marginBottom: "15px" }}
                       >
-                        <h4> {occupation.occupation.Occupation}</h4>
-                        <small>{occupation.occupation.Description}</small>
-                        <br />
-                        <br />
-                        <Button
+                        <Card.Body
                           style={{
-                            display: "block",
-                            margin: "0 auto",
+                            padding: "30px",
                           }}
-                          variant="outline-light btn-xs"
-                          className="optionsButton"
                         >
-                          Learn More
-                        </Button>
-                      </Card.Body>
-                      <Button
-                        variant="light"
-                        style={{
-                          borderRadius: "0px",
-                          width: "100%",
-                          backgroundColor: "white",
-                          padding: "30px",
-                        }}
-                      >
-                        <small>
-                          <b>Education: </b>
-                          {occupation.occupation.Education}
-                        </small>
-                        <br />
-                        <small>
-                          <b>Salary: </b>$
-                          {occupation.occupation.Salary.toString().replace(
-                            /\B(?=(\d{3})+(?!\d))/g,
-                            ","
-                          )}
-                        </small>
-                      </Button>
-                    </Card>
+                          <h4>
+                            <span className="font-weight-light">
+                              {index + 1}
+                            </span>
+                            . {occupation.occupation.Occupation}
+                          </h4>
+                          <small>
+                            {occupation.pathway}, {occupation.cluster}{" "}
+                          </small>
+                          <hr />
+                          <small>
+                            <b>
+                              <i
+                                className="fa fa-circle"
+                                aria-hidden="true"
+                                style={{ color: color.light }}
+                              ></i>{" "}
+                              Description:{" "}
+                            </b>
+                            {displayDescription(
+                              occupation.occupation.Description
+                            )}
+                          </small>
+                          <br />
+                          <small>
+                            <b>
+                              <i
+                                className="fa fa-circle"
+                                aria-hidden="true"
+                                style={{ color: color.medium }}
+                              ></i>{" "}
+                              Education:{" "}
+                            </b>
+                            {occupation.occupation.Education}
+                          </small>
+                          <br />
+                          <small>
+                            <b>
+                              <i
+                                className="fa fa-circle"
+                                aria-hidden="true"
+                                style={{ color: color.dark }}
+                              ></i>{" "}
+                              Salary:{" "}
+                            </b>
+                            $
+                            {occupation.occupation.Salary.toString().replace(
+                              /\B(?=(\d{3})+(?!\d))/g,
+                              ","
+                            )}
+                          </small>
+                          <br />
+                          <br />
+                          <div className="row justify-content-center">
+                            <Button
+                              className="optionsButton"
+                              variant="primary btn-xs"
+                              style={{
+                                backgroundColor: color.light,
+                                color: "white",
+                                border: "0px",
+                              }}
+                            >
+                              Learn More
+                            </Button>
+                          </div>
+                        </Card.Body>
+                      </Card>
+                    </div>
                   </LinkContainer>
                 );
               })}
-            </CardColumns>
+            </div>
+            <br />
             <div className="row justify-content-center">
               <Pagination
                 itemClass="page-item"
                 linkClass="page-link"
                 activePage={activePage}
-                itemsCountPerPage={100}
+                itemsCountPerPage={50}
                 totalItemsCount={tmp.length}
                 pageRangeDisplayed={5}
                 onChange={handlePageChange}
               />
             </div>
+            <br />
           </Fragment>
         )}
       </Fragment>
@@ -215,15 +252,18 @@ const Filter = (props) => {
                   Have an occupation in mind? Find it using the filter tool and
                   click the link to visit the profile and learn more about the
                   occupation.
-                </p>
-                <h6 className="font-weight-light">
+                  <br />
+                  <br />
                   <i
                     class="fa fa-chevron-circle-right"
                     aria-hidden="true"
                     style={{ color: "#fba465" }}
                   ></i>
-                  &nbsp;nurse, surgeon, architect
-                </h6>
+                  &nbsp;
+                  <span style={{ color: "#000" }}>
+                    nurse, surgeon, architect
+                  </span>
+                </p>
               </label>
               <InputGroup style={{ padding: "0px", margin: "0px" }}>
                 <FormControl
@@ -232,7 +272,7 @@ const Filter = (props) => {
                     border: "0px",
                     backgroundColor: "#ee5847",
                     color: "white",
-                    width: "100%",
+                    width: "50%",
                     height: "70px",
                   }}
                   type="text"
