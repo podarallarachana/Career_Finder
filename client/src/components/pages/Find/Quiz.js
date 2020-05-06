@@ -227,7 +227,7 @@ class Quiz extends React.Component {
           className="row justify-content-center"
           style={{ paddingTop: "50px" }}
         >
-          <Spinner animation="grow" />
+          <Spinner variant="warning" animation="grow" />
         </div>
       );
     } else if (this.state.recommendations === null) {
@@ -405,7 +405,7 @@ class Quiz extends React.Component {
             >
               <h1 style={{ color: "#f2c246" }}>
                 <b>
-                  <i class="fa fa-question-circle-o" aria-hidden="true"></i>
+                  <i className="fa fa-question-circle-o" aria-hidden="true"></i>
                   &nbsp;QUIZ
                 </b>
               </h1>

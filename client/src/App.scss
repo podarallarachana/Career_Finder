@@ -1,16 +1,34 @@
-$primary: #5596e6;
+$primary: #1e3163;
 $warning: #f86e51;
 $grid-gutter-width: 15px !default;
 @import "bootstrap";
 
 .find .nav-pills .nav-link.active {
-  background-color: #fba465 !important;
   color: white !important;
+  background-color: #1e3163 !important;
+  border-top: #1e3163 solid 1px;
+  border-bottom: #1e3163 solid 1px;
 }
 
 .find .nav-pills .nav-link {
+  background-color: white !important;
+  color: #1e3163 !important;
+  border-top: #1e3163 solid 1px;
+  border-bottom: #1e3163 solid 1px;
+}
+
+.prepare .nav-pills .nav-link.active {
   color: white !important;
-  background-color: #f86e51 !important;
+  background-color: #1e3163 !important;
+  border-top: #1e3163 solid 1px;
+  border-bottom: #1e3163 solid 1px;
+}
+
+.prepare .nav-pills .nav-link {
+  background-color: white !important;
+  color: #1e3163 !important;
+  border-top: #1e3163 solid 1px;
+  border-bottom: #1e3163 solid 1px;
 }
 
 .card-columns {
@@ -52,7 +70,7 @@ p {
 .home {
   height: calc(100vh - 56px);
   min-height: 200px;
-  background-image: url("./assets/landing.png");
+  background-image: url("./assets/tmp1.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -115,11 +133,11 @@ p {
   //   rgba(90, 170, 250, 1) 59%,
   //   rgba(85, 150, 230, 1) 91%
   // );
-  background-image: url("./assets/tmp1.jpg");
-  background-color: #f86e51;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  // background-image: url("./assets/find_header.jpg");
+  background-color: #1e3163;
+  // background-position: center;
+  // background-size: cover;
+  // background-repeat: no-repeat;
   border-radius: 0px;
 }
 

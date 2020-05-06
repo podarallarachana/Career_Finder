@@ -18,23 +18,6 @@ const Filter = (props) => {
     setFilterText(textInput.current.value);
   };
 
-  const updateActives = (code) => {
-    for (var i = 0; i < data.length; i++) {
-      for (var j = 0; j < data[i].CareerPathway.length; j++) {
-        for (var z = 0; z < data[i].CareerPathway[j].Jobs.length; z++) {
-          if (data[i].CareerPathway[j].Jobs[z].Code === code) {
-            props.updateActives(
-              data[i].CareerCluster,
-              data[i].CareerPathway[j].Pathway,
-              code
-            );
-            return;
-          }
-        }
-      }
-    }
-  };
-
   const handlePageChange = (pageNumber) => {
     setActivePage(pageNumber);
   };
@@ -119,10 +102,7 @@ const Filter = (props) => {
                     key={occupation.occupation.Code}
                     className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
                   >
-                    <Card
-                      onClick={() => updateActives(occupation.Code)}
-                      style={{ marginBottom: "15px", border: "0px" }}
-                    >
+                    <Card style={{ marginBottom: "15px", border: "0px" }}>
                       <Card.Body
                         style={{
                           padding: "30px",

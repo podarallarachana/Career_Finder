@@ -11,21 +11,39 @@ const Home = () => {
             <div
               className="card"
               style={{
-                backgroundColor: "#f5631f",
+                backgroundColor: "#ed4569",
                 padding: "0px 20px",
-                border: "5px solid 	#ff7e26",
-                color: "#fff"
+                border: "5px solid 	#ee5b65",
+                color: "#fff",
               }}
             >
               <div className="card-body">
-                <h1 className="font-weight-light">
+                <h1>
                   <i className="fa fa-graduation-cap" aria-hidden="true"></i>
                   &nbsp;Career Finder
                 </h1>
-                <p className="lead">
-                  Find the perfect career for you. Sign up now to access more
-                  interactive features!
-                </p>
+                <small>
+                  <b
+                    style={{
+                      backgroundColor: "white",
+                      padding: "5px",
+                      borderRadius: "100%",
+                      color: "black",
+                    }}
+                  >
+                    &nbsp;1&nbsp;
+                  </b>{" "}
+                  Find a career.
+                </small>
+                <br />
+                <small>
+                  <b>Step 2: </b>Find a career.
+                </small>
+                <br />
+                <small>
+                  <b>Step 3: </b>Find a career.
+                </small>
+                <br />
                 <Link to="/login">
                   <Button
                     variant="primary"

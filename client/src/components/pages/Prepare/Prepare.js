@@ -34,7 +34,7 @@ class Prepare extends React.Component {
       },
       activeTab: "collegeprograms",
       activePage: 1,
-      showCollegeDetails: false,
+      showCollegeDetails: -1,
     };
   }
 
@@ -124,13 +124,14 @@ class Prepare extends React.Component {
       const { data } = await axios({
         //500 mile radius, 6000 records limit
         method: "get",
-        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/training/${
+        url: `https://api.careeronestop.org/v1/training/${
           process.env.REACT_APP_USER_ID
         }/${this.state.user_inp.Code}/${
           this.state.user_inp.Home === "on"
             ? 0
             : GetState(this.state.user_inp.Location)
         }/500/0/0/0/0/0/0/0/0/6000`,
+        timeout: 1000 * 30, // Wait for 5 seconds
         headers: {
           Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
         },
@@ -139,7 +140,7 @@ class Prepare extends React.Component {
         college_programs: {
           collegeProgramsData: data,
         },
-        showCollegeDetails: false,
+        showCollegeDetails: -1,
       });
       this.getCollegeScorecard();
     } catch (e) {
@@ -147,7 +148,7 @@ class Prepare extends React.Component {
         college_programs: {
           collegeProgramsData: null,
         },
-        showCollegeDetails: false,
+        showCollegeDetails: -1,
       });
     }
   };
@@ -168,9 +169,9 @@ class Prepare extends React.Component {
       var arr = this.state.college_programs.collegeProgramsData.SchoolPrograms;
 
       for (
-        var i = (this.state.activePage - 1) * 100;
-        (this.state.activePage - 1) * 100 + 100 < arr.length
-          ? i < (this.state.activePage - 1) * 100 + 100
+        var i = (this.state.activePage - 1) * 50;
+        (this.state.activePage - 1) * 50 + 50 < arr.length
+          ? i < (this.state.activePage - 1) * 50 + 50
           : i < arr.length;
         i++
       ) {
@@ -189,7 +190,7 @@ class Prepare extends React.Component {
       try {
         const { data } = await axios({
           method: "get",
-          url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${id_str}&per_page=100&fields=id,latest.admissions`,
+          url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${id_str}&per_page=50&fields=id,latest`,
         });
         this.setState({
           college_programs: {
@@ -197,6 +198,7 @@ class Prepare extends React.Component {
             collegeScorecardData: data,
           },
         });
+        console.log(data);
       } catch (e) {
         this.setState({
           college_programs: {
@@ -279,9 +281,8 @@ class Prepare extends React.Component {
     this.setState({ activePage: pageNumber }, () => this.getCollegeScorecard());
   };
 
-  setShowCollegeDetails = () => {
-    let tmp = this.state.showCollegeDetails;
-    this.setState({ showCollegeDetails: !tmp });
+  setShowCollegeDetails = (id) => {
+    this.setState({ showCollegeDetails: id });
   };
 
   render() {
@@ -340,7 +341,6 @@ class Prepare extends React.Component {
             {this.state.activeTab === "collegeprograms" ? (
               <CollegePrograms
                 college_programs={this.state.college_programs}
-                getCollegeScorecard={this.getCollegeScorecard}
                 activePage={this.state.activePage}
                 handlePageChange={this.handlePageChange}
                 showCollegeDetails={this.state.showCollegeDetails}

@@ -28,9 +28,9 @@ const PrepareForm = (props) => {
       <Form.Group>
         <Form.Label>
           <i
-            class="fa fa-chevron-circle-right"
+            className="fa fa-chevron-circle-right"
             aria-hidden="true"
-            style={{ color: "#fba465" }}
+            style={{ color: "#1e3163" }}
           ></i>
           &nbsp;
           <span style={{ color: "#000" }}>Occupation</span>
@@ -71,19 +71,23 @@ const PrepareForm = (props) => {
           e.preventDefault();
         }}
       >
-        <h1 style={{ color: "#f2c246" }}>
+        <h1 style={{ color: "#1e3163" }}>
           <b>
-            <i class="fa fa-cogs" aria-hidden="true"></i>&nbsp;PARAMS{" "}
+            <i className="fa fa-cogs" aria-hidden="true"></i>&nbsp;PREPARE{" "}
           </b>
         </h1>
-        <br />
+        <p style={{ color: "#1e3163" }}>
+          <b>Instructions: </b>
+          Find college programs, licenses, and certifications to help you
+          prepare for your career.
+        </p>
         {getJobs()}
         <label htmlFor="location">
           {" "}
           <i
-            class="fa fa-chevron-circle-right"
+            className="fa fa-chevron-circle-right"
             aria-hidden="true"
-            style={{ color: "#fba465" }}
+            style={{ color: "#1e3163" }}
           ></i>
           &nbsp;
           <span style={{ color: "#000" }}>Zip Code</span>
@@ -107,6 +111,19 @@ const PrepareForm = (props) => {
             </h6>
           }
         />
+        <br />
+        <div className="row justify-content-center">
+          <Button
+            onClick={validateAndFetch}
+            variant="outline-primary"
+            className="optionsButton"
+            style={{
+              display: "table",
+            }}
+          >
+            Search
+          </Button>
+        </div>
       </Form>
       {show ? (
         <Alert
@@ -122,18 +139,6 @@ const PrepareForm = (props) => {
           </p>
         </Alert>
       ) : null}
-      <Button
-        onClick={validateAndFetch}
-        variant="warning"
-        style={{
-          display: "table",
-          width: "100%",
-          height: "70px",
-          borderRadius: "0px",
-        }}
-      >
-        Get Recommendations
-      </Button>
     </div>
   );
 };

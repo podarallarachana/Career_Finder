@@ -63,22 +63,22 @@ const NavigationBar = ({
 
   const guestLinks = (
     <Nav className="mr-auto">
-      <LinkContainer to="/find" style={{ color: "#000" }}>
+      <LinkContainer to="/find" style={{ color: "#1e3163" }}>
         <Nav.Link>
           <small>find</small>
         </Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/explore/11-9013.03" style={{ color: "#000" }}>
+      <LinkContainer to="/explore/11-9013.03" style={{ color: "#1e3163" }}>
         <Nav.Link>
           <small>explore</small>
         </Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/prepare" style={{ color: "#000" }}>
+      <LinkContainer to="/prepare" style={{ color: "#1e3163" }}>
         <Nav.Link>
           <small>prepare</small>
         </Nav.Link>
       </LinkContainer>
-      <LinkContainer to="/about" style={{ color: "#000" }}>
+      <LinkContainer to="/about" style={{ color: "#1e3163" }}>
         <Nav.Link>
           <small>about</small>
         </Nav.Link>
@@ -114,8 +114,8 @@ const NavigationBar = ({
             className="fa fa-home"
             aria-hidden="true"
             style={{
-              color: "#fba465",
-              backgroundColor: "#ee3e38",
+              color: "#008f99",
+              backgroundColor: "#1e3163",
               padding: "5px",
               borderRadius: "100%",
             }}
