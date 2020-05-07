@@ -220,26 +220,6 @@ const CollegeDetails = (props) => {
               </div>
               <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                 <p>
-                  <b>Gender Demographics</b>
-                </p>
-                <p>
-                  Men:&nbsp;
-                  {displayProperty(
-                    school.ID,
-                    "latest.student.demographics.men"
-                  )}
-                </p>
-                <p>
-                  Women:&nbsp;
-                  {displayProperty(
-                    school.ID,
-                    "latest.student.demographics.women"
-                  )}
-                </p>
-                <br />
-              </div>
-              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
-                <p>
                   <b>Race Demographics</b>
                 </p>
                 <p>
@@ -324,6 +304,26 @@ const CollegeDetails = (props) => {
                   {displayProperty(
                     school.ID,
                     "latest.student.demographics.race_ethnicity.white_non_hispanic"
+                  )}
+                </p>
+                <br />
+              </div>
+              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <p>
+                  <b>Gender Demographics</b>
+                </p>
+                <p>
+                  Men:&nbsp;
+                  {displayProperty(
+                    school.ID,
+                    "latest.student.demographics.men"
+                  )}
+                </p>
+                <p>
+                  Women:&nbsp;
+                  {displayProperty(
+                    school.ID,
+                    "latest.student.demographics.women"
                   )}
                 </p>
                 <br />

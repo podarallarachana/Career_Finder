@@ -1,8 +1,32 @@
-import React from "react";
+import React, { Fragment } from "react";
 import Card from "react-bootstrap/Card";
 import { Alert, Button, Spinner } from "react-bootstrap";
 
 const CertificationDetails = (props) => {
+  const displayDetails = (details) => {
+    return (
+      <Fragment>
+        {details.map((detail) => {
+          return (
+            <p key={detail.Name}>
+              {detail.Name}&nbsp;<b>{detail.Value}</b>
+            </p>
+          );
+        })}
+      </Fragment>
+    );
+  };
+
+  const displayAgencies = (agencies) => {
+    return (
+      <Fragment>
+        {agencies.map((agency) => {
+          return <p key={agency.Name}>{agency.Name}</p>;
+        })}
+      </Fragment>
+    );
+  };
+
   const displayData = () => {
     if (props.certifications.certificationsData === undefined) {
       return (
@@ -40,36 +64,58 @@ const CertificationDetails = (props) => {
             }}
           >
             <h1>{cert.Name}</h1>
-            {/* <small>
-              {cert.Address}, <br />
-              {cert.City}, {cert.StateAbbr}&nbsp;{cert.Zip}
-              <br />
+            <small>
               <b>
                 <i className="fa fa-external-link" aria-hidden="true"></i>
                 &nbsp;&nbsp;
-                {cert.certUrl}
+                {cert.Url}
               </b>
               <br />
-              <b>
-                <i className="fa fa-phone" aria-hidden="true"></i>&nbsp;&nbsp;
-                {formatPhoneNumber(cert.Phone)}
-              </b>
+              Type:&nbsp;{cert.Type}
             </small>
             <hr />
             <div className="row">
               <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
                 <p>
-                  <b>General Info</b>
+                  <b>Details</b>
+                </p>
+                {cert.CertDetailList !== null ? (
+                  displayDetails(cert.CertDetailList)
+                ) : (
+                  <p>(no details)</p>
+                )}
+                <br />
+              </div>
+              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <p>
+                  <b>Organization Info</b>
                 </p>
                 <p>
-                  Acceptance Rate:&nbsp;
-                  {displayProperty(
-                    cert.ID,
-                    "latest.admissions.admission_rate.consumer_rate"
-                  )}
+                  Name:&nbsp;
+                  {cert.Organization}
                 </p>
+                <p>
+                  Address:&nbsp;
+                  {cert.OrganizationAddress}
+                </p>
+                <p>
+                  Website:&nbsp;
+                  {cert.OrganizationUrl}
+                </p>
+                <br />
               </div>
-            </div> */}
+              <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4">
+                <p>
+                  <b>Accredited Agencies List</b>
+                </p>
+                {cert.CertAccredAgencyList !== null ? (
+                  displayAgencies(cert.CertAccredAgencyList)
+                ) : (
+                  <p>(no agencies)</p>
+                )}
+                <br />
+              </div>
+            </div>
           </Card.Body>
         </Card>
       );
