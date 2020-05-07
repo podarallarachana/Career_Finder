@@ -97,18 +97,17 @@ const CollegeDetails = (props) => {
             <hr />
             <div className="row">
               <div className="col-12">
-                <h3>
-                  <b>{school.ProgramName}</b>
-                </h3>
-                <h3>
+                <h5>
                   <b>
+                    {school.ProgramName}&nbsp;(
                     {school.ProgramLength.map((program) => {
                       return school.ProgramLength.indexOf(program) !== 0
                         ? " or " + program.Name
                         : program.Name;
                     })}
+                    )
                   </b>
-                </h3>
+                </h5>
                 <br />
               </div>
             </div>

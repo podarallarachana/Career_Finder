@@ -73,7 +73,7 @@ const PrepareForm = (props) => {
       >
         <h1 style={{ color: "#1e3163" }}>
           <b>
-            <i className="fa fa-cogs" aria-hidden="true"></i>&nbsp;PREPARE{" "}
+            <i className="fa fa-rocket" aria-hidden="true"></i>&nbsp;PREPARE{" "}
           </b>
         </h1>
         <p style={{ color: "#1e3163" }}>

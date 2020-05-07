@@ -35,6 +35,7 @@ class Prepare extends React.Component {
       activeTab: "collegeprograms",
       activePage: 1,
       showCollegeDetails: -1,
+      showCertificationsDetails: -1,
     };
   }
 
@@ -61,6 +62,7 @@ class Prepare extends React.Component {
       const { data } = await axios({
         method: "get",
         url: `https://api.careeronestop.org/v1/certificationfinder/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/0/0/0/0/0/0/0/0/0/6000`,
+        timeout: 1000 * 30, // Wait for 30 seconds
         headers: {
           Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
         },
@@ -69,12 +71,14 @@ class Prepare extends React.Component {
         certifications: {
           certificationsData: data,
         },
+        showCertificationDetails: -1,
       });
     } catch (e) {
       this.setState({
         certifications: {
           certificationsData: null,
         },
+        showCertificationsDetails: -1,
       });
     }
   };
@@ -95,6 +99,7 @@ class Prepare extends React.Component {
             ? "US"
             : GetState(this.state.user_inp.Location)
         }/0/0/0/6000?searchMode=literal`,
+        timeout: 1000 * 30, // Wait for 30 seconds
         headers: {
           Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
         },
@@ -131,7 +136,7 @@ class Prepare extends React.Component {
             ? 0
             : GetState(this.state.user_inp.Location)
         }/500/0/0/0/0/0/0/0/0/6000`,
-        timeout: 1000 * 30, // Wait for 5 seconds
+        timeout: 1000 * 30, // Wait for 30 seconds
         headers: {
           Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
         },
@@ -198,7 +203,6 @@ class Prepare extends React.Component {
             collegeScorecardData: data,
           },
         });
-        console.log(data);
       } catch (e) {
         this.setState({
           college_programs: {
@@ -285,6 +289,10 @@ class Prepare extends React.Component {
     this.setState({ showCollegeDetails: id });
   };
 
+  setShowCertificationDetails = (id) => {
+    this.setState({ showCertificationDetails: id });
+  };
+
   render() {
     return (
       <Fragment>
@@ -348,7 +356,11 @@ class Prepare extends React.Component {
               />
             ) : null}
             {this.state.activeTab === "certifications" ? (
-              <Certifications certifications={this.state.certifications} />
+              <Certifications
+                certifications={this.state.certifications}
+                showCertificationDetails={this.state.showCertificationDetails}
+                setShowCertificationDetails={this.setShowCertificationDetails}
+              />
             ) : null}
             {this.state.activeTab === "licenses" ? (
               <Licenses licenses={this.state.licenses} />

@@ -87,7 +87,6 @@ class CollegePrograms extends React.Component {
         </div>
       );
     } else {
-      console.log(this.props.showCollegeDetails);
       return (
         <Fragment>
           {this.props.showCollegeDetails === -1 ? (
