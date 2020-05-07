@@ -60,7 +60,7 @@ class Prepare extends React.Component {
     try {
       const { data } = await axios({
         method: "get",
-        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/certificationfinder/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/0/0/0/0/0/0/0/0/0/6000`,
+        url: `https://api.careeronestop.org/v1/certificationfinder/${process.env.REACT_APP_USER_ID}/${this.state.user_inp.Code}/0/0/0/0/0/0/0/0/0/6000`,
         headers: {
           Authorization: "Bearer " + process.env.REACT_APP_TOKEN,
         },
@@ -88,7 +88,7 @@ class Prepare extends React.Component {
     try {
       const { data } = await axios({
         method: "get",
-        url: `https://cors-anywhere.herokuapp.com/https://api.careeronestop.org/v1/license/${
+        url: `https://api.careeronestop.org/v1/license/${
           process.env.REACT_APP_USER_ID
         }/${this.state.user_inp.Code}/${
           this.state.user_inp.Home === "on"
@@ -190,7 +190,7 @@ class Prepare extends React.Component {
       try {
         const { data } = await axios({
           method: "get",
-          url: `https://cors-anywhere.herokuapp.com/https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${id_str}&per_page=50&fields=id,latest`,
+          url: `https://api.data.gov/ed/collegescorecard/v1/schools/?api_key=${process.env.REACT_APP_TOKEN_SCORECARD}&id=${id_str}&per_page=50&fields=id,latest`,
         });
         this.setState({
           college_programs: {

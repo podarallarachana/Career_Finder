@@ -157,7 +157,7 @@ class CollegePrograms extends React.Component {
                             {this.displayProperty(
                               school.ID,
                               "latest.admissions.admission_rate.consumer_rate"
-                            ) !== "na" &&
+                            ) !== "n/a" &&
                             this.displayProperty(
                               school.ID,
                               "latest.admissions.admission_rate.consumer_rate"
