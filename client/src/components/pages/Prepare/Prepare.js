@@ -36,6 +36,7 @@ class Prepare extends React.Component {
       activePage: 1,
       showCollegeDetails: -1,
       showCertificationsDetails: -1,
+      showLicenseDetails: -1,
     };
   }
 
@@ -293,6 +294,10 @@ class Prepare extends React.Component {
     this.setState({ showCertificationDetails: id });
   };
 
+  setShowLicenseDetails = (id) => {
+    this.setState({ showLicenseDetails: id });
+  };
+
   render() {
     return (
       <Fragment>
@@ -363,7 +368,11 @@ class Prepare extends React.Component {
               />
             ) : null}
             {this.state.activeTab === "licenses" ? (
-              <Licenses licenses={this.state.licenses} />
+              <Licenses
+                licenses={this.state.licenses}
+                showLicenseDetails={this.state.showLicenseDetails}
+                setShowLicenseDetails={this.setShowLicenseDetails}
+              />
             ) : null}
           </div>
           <br />

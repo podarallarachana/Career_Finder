@@ -35,7 +35,7 @@ const Certifications = (props) => {
                   itemClass="page-item"
                   linkClass="page-link"
                   activePage={activePage}
-                  itemsCountPerPage={6}
+                  itemsCountPerPage={50}
                   totalItemsCount={
                     props.certifications.certificationsData.CertList.length
                   }
@@ -45,13 +45,13 @@ const Certifications = (props) => {
               </div>
               <div className="row">
                 {props.certifications.certificationsData.CertList.slice(
-                  (activePage - 1) * 6,
-                  (activePage - 1) * 6 + 6
+                  (activePage - 1) * 50,
+                  (activePage - 1) * 50 + 50
                 ).map((cert, index) => {
                   return (
                     <div
                       key={cert.Id}
-                      className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
+                      className="col-xs-12 col-sm-12 col-md-50 col-lg-4 col-xl-4"
                     >
                       <Card
                         style={{ marginBottom: "15px", borderRadius: "0px" }}
@@ -63,7 +63,7 @@ const Certifications = (props) => {
                         >
                           <h4>
                             <span className="font-weight-light">
-                              {index + 1 + (activePage - 1) * 6}
+                              {index + 1 + (activePage - 1) * 50}
                             </span>
                             . {cert.Name}
                           </h4>
@@ -109,7 +109,7 @@ const Certifications = (props) => {
                   itemClass="page-item"
                   linkClass="page-link"
                   activePage={activePage}
-                  itemsCountPerPage={6}
+                  itemsCountPerPage={50}
                   totalItemsCount={
                     props.certifications.certificationsData.CertList.length
                   }
