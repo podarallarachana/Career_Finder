@@ -8,7 +8,7 @@ const Outlook = (props) => {
         <h3 className="font-weight-light">
           <i
             className="fa fa-globe"
-            style={{ color: "#8cd211" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           Outlook
@@ -21,7 +21,7 @@ const Outlook = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#c8f08f" }}
+            style={{ color: "#3c62c3" }}
             aria-hidden="true"
           ></i>{" "}
           <b>Outlook: </b>
@@ -30,7 +30,7 @@ const Outlook = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#8cd211" }}
+            style={{ color: "#304f9c" }}
             aria-hidden="true"
           ></i>{" "}
           <b>Yearly Growth: </b>
@@ -43,7 +43,7 @@ const Outlook = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#5aa700" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           <b>

@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Pagination from "react-js-pagination";
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 import LicenseDetails from "./LicenseDetails";
+import Spinner from "react-bootstrap/Spinner";
 
 const Licenses = (props) => {
   const [activePage, setActivePage] = useState(1);
@@ -22,9 +23,32 @@ const Licenses = (props) => {
 
   const displayLicenses = () => {
     if (props.licenses.licensesData === undefined) {
-      return <div>loading</div>;
+      return (
+        <div className="licenses">
+          <div
+            className="row justify-content-center"
+            style={{ padding: "40px" }}
+          >
+            <Spinner animation="grow" variant="primary" />
+          </div>
+        </div>
+      );
     } else if (props.licenses.licensesData === null) {
-      return <div>sorry, unavailable right now</div>;
+      return (
+        <div className="licenses">
+          <div className="row justify-content-center">
+            <div className="col-12">
+              <Alert variant="danger">
+                <Alert.Heading>Not Available</Alert.Heading>
+                <p>
+                  Try again, the connection may be weak or your parameters may
+                  be too specific.
+                </p>
+              </Alert>
+            </div>
+          </div>
+        </div>
+      );
     } else {
       return (
         <div className="licenses">
@@ -35,7 +59,7 @@ const Licenses = (props) => {
                   itemClass="page-item"
                   linkClass="page-link"
                   activePage={activePage}
-                  itemsCountPerPage={6}
+                  itemsCountPerPage={50}
                   totalItemsCount={
                     props.licenses.licensesData.LicenseList.length
                   }
@@ -45,13 +69,13 @@ const Licenses = (props) => {
               </div>
               <div className="row">
                 {props.licenses.licensesData.LicenseList.slice(
-                  (activePage - 1) * 6,
-                  (activePage - 1) * 6 + 6
+                  (activePage - 1) * 50,
+                  (activePage - 1) * 50 + 50
                 ).map((license, index) => {
                   return (
                     <div
                       key={license.ID}
-                      className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
+                      className="col-xs-12 col-sm-12 col-md-50 col-lg-4 col-xl-4"
                     >
                       <Card
                         style={{ marginBottom: "15px", borderRadius: "0px" }}
@@ -63,7 +87,7 @@ const Licenses = (props) => {
                         >
                           <h4>
                             <span className="font-weight-light">
-                              {index + 1 + (activePage - 1) * 6}
+                              {index + 1 + (activePage - 1) * 50}
                             </span>
                             . {license.Title}
                           </h4>
@@ -105,7 +129,7 @@ const Licenses = (props) => {
                   itemClass="page-item"
                   linkClass="page-link"
                   activePage={activePage}
-                  itemsCountPerPage={6}
+                  itemsCountPerPage={50}
                   totalItemsCount={
                     props.licenses.licensesData.LicenseList.length
                   }

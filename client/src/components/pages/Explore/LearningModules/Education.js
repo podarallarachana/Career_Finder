@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
-import { Pie } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
 
 const Education = (props) => {
   const [graphData, setGraphData] = useState({});
@@ -30,13 +30,13 @@ const Education = (props) => {
         {
           data: values,
           backgroundColor: [
-            "#c8f08f",
-            "#b4e051",
-            "#8cd211",
-            "#5aa700",
-            "#4c8400",
-            "#2d660a",
-            "#144d14",
+            "#d8e0f3",
+            "#b1c0e7",
+            "#8aa1db",
+            "#6382cf",
+            "#3c62c3",
+            "#304f9c",
+            "#1e3163",
           ],
         },
       ],
@@ -50,7 +50,7 @@ const Education = (props) => {
           {" "}
           <i
             className="fa fa-graduation-cap"
-            style={{ color: "#8cd211" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           Education
@@ -61,7 +61,7 @@ const Education = (props) => {
           career have:{" "}
           <span
             style={{
-              color: "#8cd211",
+              color: "#8aa1db",
             }}
           >
             {props.data.OccupationDetail[0].EducationTraining.EducationTitle}
@@ -73,7 +73,7 @@ const Education = (props) => {
           <b>All Levels{<br />}</b>
         </p>
         <div>
-          <Pie
+          <Doughnut
             options={{
               title: {
                 display: false,
@@ -90,7 +90,7 @@ const Education = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#c8f08f" }}
+            style={{ color: "#d8e0f3" }}
             aria-hidden="true"
           ></i>{" "}
           Less than high school diploma{" "}
@@ -104,7 +104,7 @@ const Education = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#b4e051" }}
+            style={{ color: "#b1c0e7" }}
             aria-hidden="true"
           ></i>{" "}
           High school diploma or equivalent{" "}
@@ -118,7 +118,7 @@ const Education = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#8cd211" }}
+            style={{ color: "#8aa1db" }}
             aria-hidden="true"
           ></i>{" "}
           Some college, no degree{" "}
@@ -132,7 +132,7 @@ const Education = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#5aa700" }}
+            style={{ color: "#6382cf" }}
             aria-hidden="true"
           ></i>{" "}
           Associate's degree{" "}
@@ -148,7 +148,7 @@ const Education = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#4c8400" }}
+            style={{ color: "#3c62c3" }}
             aria-hidden="true"
           ></i>{" "}
           Bachelor's degree{" "}
@@ -162,7 +162,7 @@ const Education = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#2d660a" }}
+            style={{ color: "#304f9c" }}
             aria-hidden="true"
           ></i>{" "}
           Master's degree{" "}
@@ -176,7 +176,7 @@ const Education = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#144d14" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           Doctoral or professional degree{" "}

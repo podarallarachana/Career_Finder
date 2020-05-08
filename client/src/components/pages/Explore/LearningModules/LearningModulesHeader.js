@@ -12,12 +12,12 @@ const LearningModulesHeader = (props) => {
           <div
             style={{
               padding: "15px",
-              backgroundColor: "#5596e6",
-              color: "white",
+              backgroundColor: "white",
+              color: "#1e3163",
             }}
           >
             <h1 className="font-weight-light">
-              <i className="fa fa-certificate" aria-hidden="true"></i>{" "}
+              <i className="fa fa-chevron-circle-right" aria-hidden="true"></i>{" "}
               {props.data.OccupationDetail[0].OnetTitle}
             </h1>
             <h6 className="font-weight-light">

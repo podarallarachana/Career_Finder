@@ -81,11 +81,11 @@ const Wages = (props) => {
         {
           data: annual,
           backgroundColor: [
-            "#c0e6ff",
-            "#7cc7ff",
-            "#5aaafa",
-            "#5596e6",
-            "#4178be",
+            "#8aa1db",
+            "#6382cf",
+            "#3c62c3",
+            "#304f9c",
+            "#1e3163",
           ],
         },
       ],
@@ -97,11 +97,11 @@ const Wages = (props) => {
         {
           data: hourly,
           backgroundColor: [
-            "#c0e6ff",
-            "#7cc7ff",
-            "#5aaafa",
-            "#5596e6",
-            "#4178be",
+            "#8aa1db",
+            "#6382cf",
+            "#3c62c3",
+            "#304f9c",
+            "#1e3163",
           ],
         },
       ],
@@ -113,11 +113,11 @@ const Wages = (props) => {
         {
           data: annual,
           backgroundColor: [
-            "#c0e6ff",
-            "#7cc7ff",
-            "#5aaafa",
-            "#5596e6",
-            "#4178be",
+            "#8aa1db",
+            "#6382cf",
+            "#3c62c3",
+            "#304f9c",
+            "#1e3163",
           ],
         },
       ],
@@ -130,7 +130,7 @@ const Wages = (props) => {
         <h3 className="font-weight-light">
           <i
             className="fa fa-dollar"
-            style={{ color: "#42a5f5" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           Salary
@@ -138,14 +138,14 @@ const Wages = (props) => {
         <p>
           Is money important to you? See how much money you are most likely to
           make in this career. Most employees in this career make{" "}
-          <span style={{ color: "#42a5f5" }}>
+          <span style={{ color: "#8aa1db" }}>
             $
             {props.data.OccupationDetail[0].Wages.NationalWagesList[
               annual
             ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
           </span>{" "}
           per year and{" "}
-          <span style={{ color: "#42a5f5" }}>
+          <span style={{ color: "#8aa1db" }}>
             $
             {props.data.OccupationDetail[0].Wages.NationalWagesList[
               hourly
@@ -200,7 +200,7 @@ const Wages = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#c0e6ff" }}
+            style={{ color: "#8aa1db" }}
             aria-hidden="true"
           ></i>{" "}
           The bottom 10% of employees make{" "}
@@ -216,7 +216,7 @@ const Wages = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#7cc7ff" }}
+            style={{ color: "#6382cf" }}
             aria-hidden="true"
           ></i>{" "}
           The bottom 25% of employees make{" "}
@@ -232,7 +232,7 @@ const Wages = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#5aaafa" }}
+            style={{ color: "#3c62c3" }}
             aria-hidden="true"
           ></i>{" "}
           The average employee makes{" "}
@@ -248,7 +248,7 @@ const Wages = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#5596e6" }}
+            style={{ color: "#304f9c" }}
             aria-hidden="true"
           ></i>{" "}
           The top 25% of employees make{" "}
@@ -266,7 +266,7 @@ const Wages = (props) => {
         <h6 className="font-weight-light">
           <i
             className="fa fa-circle"
-            style={{ color: "#4178be" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           The top 10% of employees take{" "}

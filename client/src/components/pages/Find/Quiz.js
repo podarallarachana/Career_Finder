@@ -15,6 +15,8 @@ class Quiz extends React.Component {
     super(props);
     this.state = {
       user_inp: [],
+      skills: false,
+      subjects: false,
       physical: false,
       technology: false,
       people: false,
@@ -203,7 +205,7 @@ class Quiz extends React.Component {
                       this.state.user_inp.find((obj) => {
                         return obj.ElementName === data.ElementName;
                       }).Selected === true
-                        ? "warning btn-xs"
+                        ? "primary btn-xs"
                         : "light btn-xs"
                     }
                     className="optionsButton"
@@ -223,19 +225,25 @@ class Quiz extends React.Component {
   displayRecommendations = () => {
     if (this.state.recommendations === undefined) {
       return (
-        <div
-          className="row justify-content-center"
-          style={{ paddingTop: "50px" }}
-        >
-          <Spinner variant="warning" animation="grow" />
+        <div className="row justify-content-center" style={{ padding: "40px" }}>
+          <Spinner animation="grow" variant="primary" />
         </div>
       );
     } else if (this.state.recommendations === null) {
-      return <div>sorry, unavailable right now</div>;
+      return (
+        <div>
+          {" "}
+          <Alert variant="danger">
+            <Alert.Heading>Not Available</Alert.Heading>
+            <p>
+              Try again, the connection may be weak or the server may be down.
+            </p>
+          </Alert>
+        </div>
+      );
     } else {
       return (
         <Fragment>
-          <br />
           <div className="row justify-content-center">
             <Pagination
               itemClass="page-item"
@@ -275,54 +283,13 @@ class Quiz extends React.Component {
                             .Occupation
                         }
                       </h4>
-                      <small>
-                        {this.getOccupation(occupation.OnetCode).pathway},{" "}
-                        {this.getOccupation(occupation.OnetCode).cluster}{" "}
-                      </small>
                       <hr />
                       <small>
-                        <b>
-                          <i
-                            className="fa fa-circle"
-                            aria-hidden="true"
-                            style={{ color: color.light }}
-                          ></i>{" "}
-                          Description:{" "}
-                        </b>
-                        {this.displayDescription(
-                          this.getOccupation(occupation.OnetCode).occupation
-                            .Description
-                        )}
-                      </small>
-                      <br />
-                      <small>
-                        <b>
-                          <i
-                            className="fa fa-circle"
-                            aria-hidden="true"
-                            style={{ color: color.medium }}
-                          ></i>{" "}
-                          Education:{" "}
-                        </b>
-                        {
-                          this.getOccupation(occupation.OnetCode).occupation
-                            .Education
-                        }
-                      </small>
-                      <br />
-                      <small>
-                        <b>
-                          <i
-                            className="fa fa-circle"
-                            aria-hidden="true"
-                            style={{ color: color.dark }}
-                          ></i>{" "}
-                          Salary:{" "}
-                        </b>
-                        $
-                        {this.getOccupation(occupation.OnetCode)
-                          .occupation.Salary.toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        <b>Pathway:&nbsp;</b>
+                        {this.getOccupation(occupation.OnetCode).pathway}
+                        <br />
+                        <b>Industry:&nbsp;</b>
+                        {this.getOccupation(occupation.OnetCode).cluster}
                       </small>
                       <br />
                       <br />
@@ -332,8 +299,6 @@ class Quiz extends React.Component {
                           style={{
                             border: "0px",
                             outline: "0px",
-                            backgroundColor: color.light,
-                            color: "white",
                           }}
                         >
                           <Button
@@ -364,7 +329,6 @@ class Quiz extends React.Component {
               onChange={this.handlePageChange}
             />
           </div>
-          <br />
         </Fragment>
       );
     }
@@ -403,13 +367,13 @@ class Quiz extends React.Component {
                 backgroundColor: "white",
               }}
             >
-              <h1 style={{ color: "#f2c246" }}>
+              <h1 style={{ color: "#1e3163" }}>
                 <b>
                   <i className="fa fa-question-circle-o" aria-hidden="true"></i>
                   &nbsp;QUIZ
                 </b>
               </h1>
-              <p style={{ color: "#f2c246" }}>
+              <p style={{ color: "#1e3163" }}>
                 <b>Instructions</b>: Answer at least one question to get
                 results. You can pick multiple options per question.
               </p>
@@ -447,6 +411,22 @@ class Quiz extends React.Component {
               className="col-xs-12 col-sm-12 col-md-8 col-lg-6 col-xl-6"
               style={{ padding: "0px", margin: "0px" }}
             >
+              <div
+                style={{
+                  padding: "0px 40px 40px 40px",
+                  backgroundColor: "white",
+                }}
+              >
+                <div className="row justify-content-center">
+                  <Button
+                    onClick={this.validateAndFetch}
+                    className="optionsButton"
+                    variant="outline-primary"
+                  >
+                    Get Occupations
+                  </Button>
+                </div>
+              </div>
               {this.state.show ? (
                 <Alert
                   style={{ margin: "0px", borderRadius: "0px" }}
@@ -458,18 +438,6 @@ class Quiz extends React.Component {
                   <p>Make sure to select at least one option!</p>
                 </Alert>
               ) : null}
-              <Button
-                onClick={this.validateAndFetch}
-                variant="warning"
-                style={{
-                  display: "table",
-                  width: "100%",
-                  height: "70px",
-                  borderRadius: "0px",
-                }}
-              >
-                Get Recommendations
-              </Button>
             </div>
           </div>
         </Jumbotron>

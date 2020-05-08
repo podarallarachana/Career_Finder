@@ -1,8 +1,9 @@
 import React, { Fragment, useState } from "react";
 import Card from "react-bootstrap/Card";
-import { Button } from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 import Pagination from "react-js-pagination";
 import CertificationDetails from "./CertificationDetails";
+import Spinner from "react-bootstrap/Spinner";
 
 const Certifications = (props) => {
   const [activePage, setActivePage] = useState(1);
@@ -22,9 +23,32 @@ const Certifications = (props) => {
 
   const displayCertifications = () => {
     if (props.certifications.certificationsData === undefined) {
-      return <div>loading</div>;
+      return (
+        <div className="certifications">
+          <div
+            className="row justify-content-center"
+            style={{ padding: "40px" }}
+          >
+            <Spinner animation="grow" variant="primary" />
+          </div>
+        </div>
+      );
     } else if (props.certifications.certificationsData === null) {
-      return <div>sorry, unavailable right now</div>;
+      return (
+        <div className="certifications">
+          <div className="row justify-content-center">
+            <div className="col-12">
+              <Alert variant="danger">
+                <Alert.Heading>Not Available</Alert.Heading>
+                <p>
+                  Try again, the connection may be weak or your parameters may
+                  be too specific.
+                </p>
+              </Alert>
+            </div>
+          </div>
+        </div>
+      );
     } else {
       return (
         <div className="certifications">

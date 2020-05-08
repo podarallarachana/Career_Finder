@@ -65,8 +65,11 @@ class CollegePrograms extends React.Component {
     if (this.props.college_programs.collegeProgramsData === undefined) {
       return (
         <div className="colleges">
-          <div className="row justify-content-center">
-            <Spinner animation="grow" />
+          <div
+            className="row justify-content-center"
+            style={{ padding: "40px" }}
+          >
+            <Spinner animation="grow" variant="primary" />
           </div>
         </div>
       );

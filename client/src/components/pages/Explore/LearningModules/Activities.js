@@ -30,7 +30,7 @@ const Activities = (props) => {
         <Fragment key={activity.Title}>
           <i
             className="fa fa-check-square-o"
-            style={{ color: "#fba465" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           {activity.Title}
@@ -45,7 +45,7 @@ const Activities = (props) => {
         <Fragment key={activity.Title}>
           <i
             className="fa fa-check-square-o"
-            style={{ color: "#fba465" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           {activity.Title}
@@ -61,7 +61,7 @@ const Activities = (props) => {
           <i
             className="fa fa-sun-o"
             aria-hidden="true"
-            style={{ color: "#fba465" }}
+            style={{ color: "#1e3163" }}
           ></i>{" "}
           Daily Activities
         </h3>

@@ -7,6 +7,7 @@ import axios from "axios";
 import OccupationOptions from "./OccupationOptions";
 import Accordion from "react-bootstrap/Accordion";
 import Card from "react-bootstrap/Card";
+import { Button } from "react-bootstrap";
 
 const mql = window.matchMedia(`(min-width: 800px)`); //FOR SIDENAV
 
@@ -170,19 +171,30 @@ class Occupation extends React.Component {
               >
                 <i
                   className="fa fa-bars"
-                  style={{ color: "#5aaafa" }}
+                  style={{ color: "#1e3163" }}
                   aria-hidden="true"
                 ></i>
                 &nbsp;&nbsp; Explore Occupations
               </Accordion.Toggle>
               <Accordion.Collapse eventKey="0">
-                <OccupationOptions
-                  activeCluster={this.state.activeCluster}
-                  activePathway={this.state.activePathway}
-                  activeOccupation={this.state.activeOccupation}
-                  updateActivePathway={this.updateActivePathway}
-                  updateActiveOccupation={this.updateActiveOccupation}
-                />
+                <Fragment>
+                  {!this.state.sidebarDocked ? (
+                    <Button
+                      onClick={() => this.onSetSidebarOpen(true)}
+                      variant="outline-primary btn-md"
+                      style={{ borderRadius: "0px", margin: "15px" }}
+                    >
+                      Explore Other Industries
+                    </Button>
+                  ) : null}
+                  <OccupationOptions
+                    activeCluster={this.state.activeCluster}
+                    activePathway={this.state.activePathway}
+                    activeOccupation={this.state.activeOccupation}
+                    updateActivePathway={this.updateActivePathway}
+                    updateActiveOccupation={this.updateActiveOccupation}
+                  />
+                </Fragment>
               </Accordion.Collapse>
             </Card>
           </Accordion>

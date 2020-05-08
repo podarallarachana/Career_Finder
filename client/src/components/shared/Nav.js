@@ -114,7 +114,7 @@ const NavigationBar = ({
             className="fa fa-home"
             aria-hidden="true"
             style={{
-              color: "#008f99",
+              color: "white",
               backgroundColor: "#1e3163",
               padding: "5px",
               borderRadius: "100%",

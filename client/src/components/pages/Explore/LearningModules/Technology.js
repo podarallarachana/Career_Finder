@@ -12,7 +12,7 @@ const Technology = (props) => {
           <Fragment key={technology.Title}>
             <b>
               <i
-                style={{ color: "#b4e051" }}
+                style={{ color: "#1e3163" }}
                 className="fa fa-chevron-circle-right"
                 aria-hidden="true"
               ></i>{" "}
@@ -43,7 +43,7 @@ const Technology = (props) => {
         <Fragment key={technology.Title}>
           <b>
             <i
-              style={{ color: "#b4e051" }}
+              style={{ color: "#1e3163" }}
               className="fa fa-chevron-circle-right"
               aria-hidden="true"
             ></i>{" "}
@@ -71,7 +71,7 @@ const Technology = (props) => {
           <i
             className="fa fa-desktop"
             aria-hidden="true"
-            style={{ color: "#8cd211" }}
+            style={{ color: "#1e3163" }}
           ></i>{" "}
           Technologies
         </h3>

@@ -48,7 +48,7 @@ const Related = (props) => {
         <h3 className="font-weight-light">
           <i
             className="fa fa-link"
-            style={{ color: "#8cd211" }}
+            style={{ color: "#1e3163" }}
             aria-hidden="true"
           ></i>{" "}
           <b>Related </b>Links

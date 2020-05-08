@@ -76,13 +76,12 @@ const Filter = (props) => {
     return (
       <Fragment>
         {tmp.length === 0 ? (
-          <Alert variant="warning">
-            <Alert.Heading>No Occupations Found!</Alert.Heading>
+          <Alert variant="danger">
+            <Alert.Heading>No Occupations Found</Alert.Heading>
             <p>Broaden your filter or use the keyword search!</p>
           </Alert>
         ) : (
           <Fragment>
-            <br />
             <div className="row justify-content-center">
               <Pagination
                 itemClass="page-item"
@@ -114,50 +113,13 @@ const Filter = (props) => {
                           </span>
                           . {occupation.occupation.Occupation}
                         </h4>
-                        <small>
-                          {occupation.pathway}, {occupation.cluster}{" "}
-                        </small>
                         <hr />
                         <small>
-                          <b>
-                            <i
-                              className="fa fa-circle"
-                              aria-hidden="true"
-                              style={{ color: color.light }}
-                            ></i>{" "}
-                            Description:{" "}
-                          </b>
-                          {displayDescription(
-                            occupation.occupation.Description
-                          )}
-                        </small>
-                        <br />
-                        <small>
-                          <b>
-                            <i
-                              className="fa fa-circle"
-                              aria-hidden="true"
-                              style={{ color: color.medium }}
-                            ></i>{" "}
-                            Education:{" "}
-                          </b>
-                          {occupation.occupation.Education}
-                        </small>
-                        <br />
-                        <small>
-                          <b>
-                            <i
-                              className="fa fa-circle"
-                              aria-hidden="true"
-                              style={{ color: color.dark }}
-                            ></i>{" "}
-                            Salary:{" "}
-                          </b>
-                          $
-                          {occupation.occupation.Salary.toString().replace(
-                            /\B(?=(\d{3})+(?!\d))/g,
-                            ","
-                          )}
+                          <b>Pathway:&nbsp;</b>
+                          {occupation.pathway}
+                          <br />
+                          <b>Industry:&nbsp;</b>
+                          {occupation.cluster}
                         </small>
                         <br />
                         <br />
@@ -167,8 +129,6 @@ const Filter = (props) => {
                             style={{
                               border: "0px",
                               outline: "0px",
-                              backgroundColor: color.light,
-                              color: "white",
                             }}
                           >
                             <Button
@@ -199,7 +159,6 @@ const Filter = (props) => {
                 onChange={handlePageChange}
               />
             </div>
-            <br />
           </Fragment>
         )}
       </Fragment>
@@ -227,12 +186,12 @@ const Filter = (props) => {
                   marginBottom: "0px",
                 }}
               >
-                <h1 style={{ color: "#f2c246" }}>
+                <h1 style={{ color: "#1e3163" }}>
                   <b>
                     <i class="fa fa-filter" aria-hidden="true"></i>&nbsp;FILTER{" "}
                   </b>
                 </h1>
-                <p style={{ color: "#f2c246" }}>
+                <p style={{ color: "#1e3163" }}>
                   <b>Instructions: </b>
                   Have an occupation in mind? Find it using the filter tool and
                   click the link to visit the profile and learn more about the
@@ -242,7 +201,7 @@ const Filter = (props) => {
                   <i
                     class="fa fa-chevron-circle-right"
                     aria-hidden="true"
-                    style={{ color: "#fba465" }}
+                    style={{ color: "#1e3163" }}
                   ></i>
                   &nbsp;
                   <span style={{ color: "#000" }}>
@@ -255,10 +214,11 @@ const Filter = (props) => {
                   style={{
                     borderRadius: "0px",
                     border: "0px",
-                    backgroundColor: "#ee5847",
-                    color: "white",
+                    backgroundColor: "#white",
+                    color: "#1e3163",
                     width: "50%",
                     height: "70px",
+                    outline: "1px solid #1e3163",
                   }}
                   type="text"
                   ref={textInput}

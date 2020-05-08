@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { Nav } from "react-bootstrap";
+import { Nav, Alert } from "react-bootstrap";
 import LearningModulesHeader from "./LearningModules/LearningModulesHeader";
 import ToolsTech from "./LearningModules/ToolsTech";
 import CardColumns from "react-bootstrap/CardColumns";
@@ -52,13 +52,21 @@ const Tabs = (props) => {
         <div className="learningModules">
           {props.data === undefined ? (
             <div className="learningModules">
-              <div className="row justify-content-center">
-                <Spinner animation="grow" />
+              <div
+                className="row justify-content-center"
+                style={{ padding: "40px" }}
+              >
+                <Spinner animation="grow" variant="primary" />
               </div>
             </div>
           ) : null}
           {props.data === null ? (
-            <div className="learningModules">No</div>
+            <div className="learningModules">
+              <Alert variant="danger">
+                <Alert.Heading>Not Available</Alert.Heading>
+                <p>Try again later, the server may be down.</p>
+              </Alert>
+            </div>
           ) : null}
           {props.data !== null && props.data !== undefined ? (
             <CardColumns>
@@ -125,13 +133,22 @@ const Tabs = (props) => {
         <div className="learningModules">
           {props.data === undefined ? (
             <div className="learningModules">
-              <div className="row justify-content-center">
-                <Spinner animation="grow" />
+              <div
+                className="row justify-content-center"
+                style={{ padding: "40px" }}
+              >
+                <Spinner animation="grow" variant="primary" />
               </div>
             </div>
           ) : null}
           {props.data === null ? (
-            <div className="learningModules">No</div>
+            <div className="learningModules">
+              {" "}
+              <Alert variant="danger">
+                <Alert.Heading>Not Available</Alert.Heading>
+                <p>Try again later, the server may be down.</p>
+              </Alert>
+            </div>
           ) : null}
           {props.data !== null && props.data !== undefined ? (
             <CardColumns>

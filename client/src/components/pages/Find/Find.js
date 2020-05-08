@@ -53,6 +53,8 @@ class Find extends React.Component {
         {this.state.activeTab === "personalityQuiz" ? <Quiz /> : null}
         {this.state.activeTab === "keywordSearch" ? <Keyword /> : null}
         {this.state.activeTab === "filter" ? <Filter /> : null}
+        <br />
+        <br />
       </div>
     );
   }

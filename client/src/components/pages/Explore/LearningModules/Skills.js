@@ -50,11 +50,11 @@ const Skills = (props) => {
 
   const getColor = (val) => {
     if (val <= 55) {
-      return "#1976d2";
+      return "#1e3163";
     } else if (val > 55 && val <= 65) {
-      return "#42a5f5";
+      return "#304f9c";
     } else if (val > 65) {
-      return "#90caf9";
+      return "#3c62c3";
     }
   };
 
@@ -165,7 +165,7 @@ const Skills = (props) => {
             <i
               className="fa fa-child"
               aria-hidden="true"
-              style={{ color: "#42a5f5" }}
+              style={{ color: "#1e3163" }}
             ></i>
             &nbsp;Skills
           </h3>

@@ -35,16 +35,14 @@ const SideNav = (props) => {
         to={"/explore/" + getCode(data.CareerCluster).code}
         style={{
           backgroundColor:
-            data.CareerCluster !== props.activeCluster ? "#ff683c" : "#ff8123",
+            data.CareerCluster !== props.activeCluster ? "#1e3163" : "white",
           color:
-            data.CareerCluster !== props.activeCluster ? "#ffa185" : "white",
-          fontWeight: "bold",
-          border: "0px",
+            data.CareerCluster !== props.activeCluster ? "white" : "#1e3163",
           borderRadius: "0px",
         }}
       >
         <ListGroup.Item onClick={updateActives}>
-          {data.CareerCluster}
+          <small>{data.CareerCluster}</small>
         </ListGroup.Item>
       </LinkContainer>
     );
@@ -52,7 +50,9 @@ const SideNav = (props) => {
 
   return (
     <div className="sidenav">
-      <ListGroup>{displayClusters}</ListGroup>
+      <ListGroup style={{ borderTop: "1px solid #1e3163" }}>
+        {displayClusters}
+      </ListGroup>
     </div>
   );
 };

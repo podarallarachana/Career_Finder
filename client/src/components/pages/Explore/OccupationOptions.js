@@ -19,8 +19,8 @@ const OccupationOptions = (props) => {
                   }}
                   variant={
                     pathway.Pathway === props.activePathway
-                      ? "light btn-xs"
-                      : "outline-light btn-xs"
+                      ? "primary btn-xs"
+                      : "outline-primary btn-xs"
                   }
                   className="optionsButton"
                 >
@@ -58,8 +58,8 @@ const OccupationOptions = (props) => {
                     }}
                     variant={
                       job.Code === props.activeOccupation
-                        ? "light btn-xs"
-                        : "outline-light btn-xs"
+                        ? "primary btn-xs"
+                        : "outline-primary btn-xs"
                     }
                     className="optionsButton"
                   >
@@ -99,8 +99,8 @@ const OccupationOptions = (props) => {
         padding: "15px",
       }}
     >
-      <h1 style={{ color: "white" }}>{props.activeCluster}</h1>
-      <small style={{ color: "white" }}>
+      <h1 style={{ color: "#1e3163" }}>{props.activeCluster}</h1>
+      <small style={{ color: "#1e3163" }}>
         {displayClusterQuestions(props.activeCluster)}&nbsp;
         {displayClusterDescription(props.activeCluster)}
       </small>

@@ -71,7 +71,6 @@ const Keyword = (props) => {
     var user_inp = inp.trim();
     if (user_inp.indexOf(" ") >= 0 || user_inp === "") {
       setShow(true);
-      setResults(null);
     } else {
       setShow(false);
       getOccupations();
@@ -98,8 +97,8 @@ const Keyword = (props) => {
   const displayOccupations = () => {
     if (results === undefined) {
       return (
-        <div className="row justify-content-center">
-          <Spinner animation="grow" />
+        <div className="row justify-content-center" style={{ padding: "40px" }}>
+          <Spinner animation="grow" variant="primary" />
         </div>
       );
     } else if (results === null) {
@@ -115,7 +114,6 @@ const Keyword = (props) => {
     } else {
       return (
         <Fragment>
-          <br />
           <div className="row justify-content-center">
             <Pagination
               itemClass="page-item"
@@ -155,54 +153,13 @@ const Keyword = (props) => {
                             .Occupation
                         }
                       </h4>
-                      <small>
-                        {getOccupation(occupation.OnetCode).pathway},{" "}
-                        {getOccupation(occupation.OnetCode).cluster}{" "}
-                      </small>
                       <hr />
                       <small>
-                        <b>
-                          <i
-                            className="fa fa-circle"
-                            aria-hidden="true"
-                            style={{ color: color.light }}
-                          ></i>{" "}
-                          Description:{" "}
-                        </b>
-                        {displayDescription(
-                          getOccupation(occupation.OnetCode).occupation
-                            .Description
-                        )}
-                      </small>
-                      <br />
-                      <small>
-                        <b>
-                          <i
-                            className="fa fa-circle"
-                            aria-hidden="true"
-                            style={{ color: color.medium }}
-                          ></i>{" "}
-                          Education:{" "}
-                        </b>
-                        {
-                          getOccupation(occupation.OnetCode).occupation
-                            .Education
-                        }
-                      </small>
-                      <br />
-                      <small>
-                        <b>
-                          <i
-                            className="fa fa-circle"
-                            aria-hidden="true"
-                            style={{ color: color.dark }}
-                          ></i>{" "}
-                          Salary:{" "}
-                        </b>
-                        $
-                        {getOccupation(occupation.OnetCode)
-                          .occupation.Salary.toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+                        <b>Pathway:&nbsp;</b>
+                        {getOccupation(occupation.OnetCode).pathway}
+                        <br />
+                        <b>Industry:&nbsp;</b>
+                        {getOccupation(occupation.OnetCode).cluster}
                       </small>
                       <br />
                       <br />
@@ -212,8 +169,6 @@ const Keyword = (props) => {
                           style={{
                             border: "0px",
                             outline: "0px",
-                            backgroundColor: color.light,
-                            color: "white",
                           }}
                         >
                           <Button
@@ -244,7 +199,6 @@ const Keyword = (props) => {
               onChange={handlePageChange}
             />
           </div>
-          <br />
         </Fragment>
       );
     }
@@ -272,12 +226,12 @@ const Keyword = (props) => {
               }}
             >
               <label htmlFor="location">
-                <h1 style={{ color: "#f2c246" }}>
+                <h1 style={{ color: "#1e3163" }}>
                   <b>
-                    <i class="fa fa-key" aria-hidden="true"></i>&nbsp;KEY
+                    <i className="fa fa-key" aria-hidden="true"></i>&nbsp;KEY
                   </b>
                 </h1>
-                <p style={{ color: "#f2c246" }}>
+                <p style={{ color: "#1e3163" }}>
                   <b>Instructions: </b>Do you like cooking? Math? Maybe working
                   outdoors? Search for a career by keyword using the Keyword
                   Search Tool.
@@ -286,12 +240,12 @@ const Keyword = (props) => {
                   <i
                     class="fa fa-chevron-circle-right"
                     aria-hidden="true"
-                    style={{ color: "#fba465" }}
+                    style={{ color: "#1e3163" }}
                   ></i>
                   &nbsp;pottery, coal, gardening
                 </p>
               </label>
-              <InputGroup className="mb-3">
+              <InputGroup>
                 <FormControl
                   type="text"
                   placeholder="Enter a keyword..."
@@ -306,6 +260,22 @@ const Keyword = (props) => {
                 </InputGroup.Append> */}
               </InputGroup>
             </Form>
+            <div
+              style={{
+                padding: "0px 40px 40px 40px",
+                backgroundColor: "white",
+              }}
+            >
+              <div className="row justify-content-center">
+                <Button
+                  onClick={() => fetchResults()}
+                  variant="outline-primary"
+                  className="optionsButton"
+                >
+                  Get Occupations
+                </Button>
+              </div>
+            </div>
             {show ? (
               <Alert
                 style={{ margin: "0px", borderRadius: "0px" }}
@@ -317,18 +287,6 @@ const Keyword = (props) => {
                 <p>Make sure you only enter one keyword!</p>
               </Alert>
             ) : null}
-            <Button
-              onClick={() => fetchResults()}
-              variant="warning"
-              style={{
-                display: "table",
-                width: "100%",
-                height: "70px",
-                borderRadius: "0px",
-              }}
-            >
-              Get Recommendations
-            </Button>
           </div>
         </div>
       </Jumbotron>
