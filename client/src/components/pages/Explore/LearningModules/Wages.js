@@ -38,39 +38,54 @@ const Wages = (props) => {
       props.data.OccupationDetail[0].Wages.NationalWagesList[0].RateType ===
       "Annual"
     ) {
-      annual = [
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct10,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct25,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Median,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct75,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90,
-      ];
-
-      hourly = [
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct10,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct25,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Median,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct75,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90,
-      ];
+      if (props.data.OccupationDetail[0].Wages.NationalWagesList[0]) {
+        annual = [
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct10,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct25,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Median,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct75,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90,
+        ];
+      } else {
+        annual = [];
+      }
+      if (props.data.OccupationDetail[0].Wages.NationalWagesList[1]) {
+        hourly = [
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct10,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct25,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Median,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct75,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90,
+        ];
+      } else {
+        hourly = [];
+      }
       setAnnual(0);
       setHourly(1);
     } else {
-      annual = [
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct10,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct25,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Median,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct75,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90,
-      ];
+      if (props.data.OccupationDetail[0].Wages.NationalWagesList[1]) {
+        annual = [
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct10,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct25,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Median,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct75,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[1].Pct90,
+        ];
+      } else {
+        annual = [];
+      }
 
-      hourly = [
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct10,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct25,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Median,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct75,
-        props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90,
-      ];
+      if (props.data.OccupationDetail[0].Wages.NationalWagesList[0]) {
+        hourly = [
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct10,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct25,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Median,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct75,
+          props.data.OccupationDetail[0].Wages.NationalWagesList[0].Pct90,
+        ];
+      } else {
+        hourly = [];
+      }
       setAnnual(1);
       setHourly(0);
     }
@@ -140,16 +155,22 @@ const Wages = (props) => {
           make in this career. Most employees in this career make{" "}
           <span style={{ color: "#8aa1db" }}>
             $
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              annual
-            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[annual] !==
+            undefined
+              ? props.data.OccupationDetail[0].Wages.NationalWagesList[
+                  annual
+                ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              : null}
           </span>{" "}
           per year and{" "}
           <span style={{ color: "#8aa1db" }}>
             $
-            {props.data.OccupationDetail[0].Wages.NationalWagesList[
-              hourly
-            ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+            {props.data.OccupationDetail[0].Wages.NationalWagesList[hourly] !==
+            undefined
+              ? props.data.OccupationDetail[0].Wages.NationalWagesList[
+                  hourly
+                ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+              : null}
           </span>{" "}
           per hour.
         </p>
@@ -211,7 +232,11 @@ const Wages = (props) => {
           ></i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
             activeTab === "annual" ? annual : hourly
-          ].Pct10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          ]
+            ? props.data.OccupationDetail[0].Wages.NationalWagesList[
+                activeTab === "annual" ? annual : hourly
+              ].Pct10.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : null}
         </h6>
         <h6 className="font-weight-light">
           <i
@@ -227,7 +252,11 @@ const Wages = (props) => {
           ></i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
             activeTab === "annual" ? annual : hourly
-          ].Pct25.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          ]
+            ? props.data.OccupationDetail[0].Wages.NationalWagesList[
+                activeTab === "annual" ? annual : hourly
+              ].Pct25.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : null}
         </h6>
         <h6 className="font-weight-light">
           <i
@@ -243,7 +272,11 @@ const Wages = (props) => {
           ></i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
             activeTab === "annual" ? annual : hourly
-          ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          ]
+            ? props.data.OccupationDetail[0].Wages.NationalWagesList[
+                activeTab === "annual" ? annual : hourly
+              ].Median.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : null}
         </h6>
         <h6 className="font-weight-light">
           <i
@@ -261,7 +294,11 @@ const Wages = (props) => {
           </i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
             activeTab === "annual" ? annual : hourly
-          ].Pct75.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          ]
+            ? props.data.OccupationDetail[0].Wages.NationalWagesList[
+                activeTab === "annual" ? annual : hourly
+              ].Pct75.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : null}
         </h6>
         <h6 className="font-weight-light">
           <i
@@ -277,7 +314,11 @@ const Wages = (props) => {
           ></i>{" "}
           {props.data.OccupationDetail[0].Wages.NationalWagesList[
             activeTab === "annual" ? annual : hourly
-          ].Pct90.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}
+          ]
+            ? props.data.OccupationDetail[0].Wages.NationalWagesList[
+                activeTab === "annual" ? annual : hourly
+              ].Pct90.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+            : null}
         </h6>
       </Card.Body>
     </Card>
