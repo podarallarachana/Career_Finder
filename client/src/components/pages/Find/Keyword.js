@@ -39,6 +39,7 @@ const Keyword = (props) => {
         }
       }
     }
+    return null;
   };
 
   const fetchResults = () => {
@@ -104,7 +105,7 @@ const Keyword = (props) => {
               (activePage - 1) * 50,
               (activePage - 1) * 50 + 50
             ).map((occupation, index) => {
-              return (
+              return getOccupation(occupation.OnetCode) !== null ? (
                 <div
                   key={occupation.OnetCode}
                   className="col-xs-12 col-sm-12 col-md-6 col-lg-4 col-xl-4"
@@ -158,7 +159,7 @@ const Keyword = (props) => {
                     </Card.Body>
                   </Card>
                 </div>
-              );
+              ) : null;
             })}
           </div>
           <div className="row justify-content-center">
