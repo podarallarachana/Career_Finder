@@ -25,32 +25,6 @@ const Keyword = (props) => {
     setActivePage(pageNumber);
   };
 
-  const getColors = (number) => {
-    var colors = [
-      { light: "#fba465", medium: "#f86e51", dark: "#ee3e38" }, //orange
-      { light: "#c0e6ff", medium: "#7cc7ff", dark: "#5aaafa" }, //blue
-      { light: "#b4e051", medium: "#8cd211", dark: "#5aa700" }, //green
-    ];
-    var color = colors[0];
-
-    if ("1470".indexOf(number[number.length - 1].toLowerCase()) > -1) {
-      color = colors[0];
-    } else if ("258".indexOf(number[number.length - 1].toLowerCase()) > -1) {
-      color = colors[1];
-    } else if ("369".indexOf(number[number.length - 1].toLowerCase()) > -1) {
-      color = colors[2];
-    }
-    return color;
-  };
-
-  const displayDescription = (description) => {
-    if (description.length < 150) {
-      return description;
-    } else {
-      return description.substring(0, 147) + "...";
-    }
-  };
-
   const getOccupation = (code) => {
     for (var i = 0; i < data.length; i++) {
       for (var j = 0; j < data[i].CareerPathway.length; j++) {
@@ -130,7 +104,6 @@ const Keyword = (props) => {
               (activePage - 1) * 50,
               (activePage - 1) * 50 + 50
             ).map((occupation, index) => {
-              var color = getColors(index.toString());
               return (
                 <div
                   key={occupation.OnetCode}
@@ -238,7 +211,7 @@ const Keyword = (props) => {
                 </p>
                 <p className="font-weight-light">
                   <i
-                    class="fa fa-chevron-circle-right"
+                    className="fa fa-chevron-circle-right"
                     aria-hidden="true"
                     style={{ color: "#1e3163" }}
                   ></i>

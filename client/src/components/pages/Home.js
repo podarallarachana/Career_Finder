@@ -11,10 +11,11 @@ const Home = () => {
             <div
               className="card"
               style={{
-                backgroundColor: "#ed4569",
+                backgroundColor: "white",
                 padding: "0px 20px",
-                border: "5px solid 	#ee5b65",
-                color: "#fff",
+                // border: "5px solid 	#ee5b65",
+                color: "#1e3163",
+                borderRadius: "0px",
               }}
             >
               <div className="card-body">
@@ -22,43 +23,36 @@ const Home = () => {
                   <i className="fa fa-graduation-cap" aria-hidden="true"></i>
                   &nbsp;Career Finder
                 </h1>
-                <small>
-                  <b
-                    style={{
-                      backgroundColor: "white",
-                      padding: "5px",
-                      borderRadius: "100%",
-                      color: "black",
-                    }}
-                  >
-                    &nbsp;1&nbsp;
-                  </b>{" "}
-                  Find a career.
-                </small>
-                <br />
-                <small>
-                  <b>Step 2: </b>Find a career.
-                </small>
-                <br />
-                <small>
-                  <b>Step 3: </b>Find a career.
-                </small>
-                <br />
-                <Link to="/login">
+                <Link to="/find">
                   <Button
-                    variant="primary"
-                    style={{ backgroundColor: "#ff851f", border: "0px" }}
+                    variant="outline-primary"
+                    style={{ borderRadius: "0px", marginTop: "15px" }}
                   >
-                    Login
+                    <small>
+                      <b>1.&nbsp;</b>Find a Career
+                    </small>
                   </Button>
                 </Link>
-                {"  "}
-                <Link to="/register">
+                <br />
+                <Link to="/explore/11-9013.03">
                   <Button
                     variant="primary"
-                    style={{ backgroundColor: "#ff851f", border: "0px" }}
+                    style={{ borderRadius: "0px", marginTop: "15px" }}
                   >
-                    Register
+                    <small>
+                      <b>2.&nbsp;</b>Explore the Career
+                    </small>
+                  </Button>
+                </Link>
+                <br />
+                <Link to="/prepare">
+                  <Button
+                    variant="outline-primary"
+                    style={{ borderRadius: "0px", marginTop: "15px" }}
+                  >
+                    <small>
+                      <b>3.&nbsp;</b>Prepare for the Career
+                    </small>
                   </Button>
                 </Link>
               </div>

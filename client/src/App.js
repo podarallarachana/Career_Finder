@@ -1,20 +1,14 @@
 import React, { Fragment, useEffect } from "react";
 import Home from "./components/pages/Home";
-import Register from "./components/pages/Register";
-import Login from "./components/pages/Login";
 import Occupation from "./components/pages/Explore/Occupation";
-import Admin from "./components/pages/Admin";
 import About from "./components/pages/About";
-import MyInfo from "./components/pages/MyInfo";
 import setAuthToken from "./state-management/utilities/setAuthToken";
 import { Provider } from "react-redux";
-import { loadUser } from "./state-management/actions/authorization";
 import store from "./state-management/store";
 import NavigationBar from "./components/shared/Nav";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Find from "./components/pages/Find/Find";
 import Prepare from "./components/pages/Prepare/Prepare";
-import QuizApp from "./components/pages/InteractiveTools/QuizApp";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.scss";
 

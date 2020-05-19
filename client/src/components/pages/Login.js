@@ -9,19 +9,19 @@ import Alert from "../shared/Alert";
 const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
 
   const { email, password } = formData;
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     login(email, password);
   };
@@ -40,17 +40,17 @@ const Login = ({ login, isAuthenticated }) => {
             <div
               className="card"
               style={{
-                border: "0px"
+                border: "0px",
               }}
             >
               <img
                 className="card-img-top"
-                src={require("../../assets/login.jpg")}
+                src={require("../../assets/home.png")}
                 alt=""
               />
               <div className="card-body">
                 <h1 className="font-weight-light">Login</h1>
-                <Form onSubmit={e => onSubmit(e)}>
+                <Form onSubmit={(e) => onSubmit(e)}>
                   <Form.Group>
                     <Form.Label>Email address</Form.Label>
                     <Form.Control
@@ -58,7 +58,7 @@ const Login = ({ login, isAuthenticated }) => {
                       placeholder="Email"
                       name="email"
                       value={email}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </Form.Group>
@@ -70,7 +70,7 @@ const Login = ({ login, isAuthenticated }) => {
                       name="password"
                       minLength="8"
                       value={password}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </Form.Group>
@@ -80,7 +80,7 @@ const Login = ({ login, isAuthenticated }) => {
                       backgroundColor: "	#ee5847",
                       border: "0px",
                       display: "table",
-                      margin: "0 auto"
+                      margin: "0 auto",
                     }}
                   >
                     Submit
@@ -100,7 +100,7 @@ Login.propTypes = {
   isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isAuthenticated: state.authorization.isAuthenticated,
 });
 

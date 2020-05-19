@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
-import { Alert, Button, Spinner } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const CollegeDetails = (props) => {
   const displayProperty = (college_id, propertyName) => {

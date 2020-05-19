@@ -113,7 +113,6 @@ class CollegePrograms extends React.Component {
                   (this.props.activePage - 1) * 50,
                   (this.props.activePage - 1) * 50 + 50
                 ).map((school, index) => {
-                  var color = this.getColors(index.toString());
                   return (
                     <div
                       key={school.ID}

@@ -1,5 +1,4 @@
 $primary: #1e3163;
-$warning: #f86e51;
 $grid-gutter-width: 15px !default;
 @import "bootstrap";
 
@@ -70,17 +69,18 @@ p {
 .home {
   height: calc(100vh - 56px);
   min-height: 200px;
-  background-image: url("./assets/tmp1.jpg");
+  background-image: url("./assets/home.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: #ee5847;
+  background-color: #1e3163;
+  padding: 15px;
 }
 
 .login {
   height: calc(100vh - 56px);
   min-height: 800px;
-  background-image: url("./assets/tmp1.jpg");
+  background-image: url("./assets/home.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -91,7 +91,7 @@ p {
 .register {
   height: calc(100vh - 56px);
   min-height: 1000px;
-  background-image: url("./assets/register-bg.jpg");
+  background-image: url("./assets/home.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -187,4 +187,11 @@ p {
 
 .licenses {
   padding: 15px;
+}
+
+.about {
+  background-color: #1e3163;
+  min-height: 100vh;
+  color: white;
+  padding: 40px;
 }

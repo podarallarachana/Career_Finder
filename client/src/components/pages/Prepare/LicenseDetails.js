@@ -1,6 +1,6 @@
-import React, { Fragment } from "react";
+import React from "react";
 import Card from "react-bootstrap/Card";
-import { Alert, Button, Spinner } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 
 const LicenseDetails = (props) => {
   const displayData = () => {

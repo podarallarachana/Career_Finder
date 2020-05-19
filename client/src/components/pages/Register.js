@@ -15,7 +15,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     password: "",
     password2: "",
     is_teacher: false,
-    code: "" //only empty for students with no teacher
+    code: "", //only empty for students with no teacher
   });
 
   const {
@@ -25,24 +25,24 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     password,
     password2,
     is_teacher,
-    code
+    code,
   } = formData;
 
-  const onChange = e => {
+  const onChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
-  const onClick = cb => {
+  const onClick = (cb) => {
     setFormData({
       ...formData,
-      is_teacher: cb.target.checked
+      is_teacher: cb.target.checked,
     });
   };
 
-  const onSubmit = e => {
+  const onSubmit = (e) => {
     e.preventDefault();
     if (password !== password2) {
       setAlert("Make sure passwords match", "danger");
@@ -53,7 +53,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
         email,
         password,
         is_teacher,
-        code
+        code,
       });
     }
   };
@@ -72,25 +72,25 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
             <div
               className="card"
               style={{
-                border: "0px"
+                border: "0px",
               }}
             >
               <img
                 className="card-img-top"
-                src={require("../../assets/register.jpg")}
+                src={require("../../assets/home.png")}
                 alt=""
               />
               <div className="card-body">
                 <h3 className="font-weight-light">Register</h3>
                 <br />
-                <Form onSubmit={e => onSubmit(e)}>
+                <Form onSubmit={(e) => onSubmit(e)}>
                   <Form.Group>
                     <Form.Control
                       type="text"
                       placeholder="First Name"
                       name="first_name"
                       value={first_name}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </Form.Group>
@@ -100,7 +100,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       placeholder="Last Name"
                       name="last_name"
                       value={last_name}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </Form.Group>
@@ -110,7 +110,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       placeholder="Email"
                       name="email"
                       value={email}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </Form.Group>
@@ -121,7 +121,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       name="password"
                       minLength="8"
                       value={password}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </Form.Group>
@@ -132,7 +132,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       name="password2"
                       minLength="8"
                       value={password2}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                       required
                     />
                   </Form.Group>
@@ -143,7 +143,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       name="code"
                       disabled="true"
                       value={code}
-                      onChange={e => onChange(e)}
+                      onChange={(e) => onChange(e)}
                     />
                     <Form.Text className="text-muted">
                       *Not currently used.
@@ -155,7 +155,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       id="is_teacher"
                       name="is_teacher"
                       value={is_teacher}
-                      onClick={cb => onClick(cb)}
+                      onClick={(cb) => onClick(cb)}
                       label="I'm a teacher"
                     />
                   </Form.Group>
@@ -165,7 +165,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
                       backgroundColor: "#ee5847",
                       border: "0px",
                       display: "table",
-                      margin: "0 auto"
+                      margin: "0 auto",
                     }}
                   >
                     Submit
@@ -183,11 +183,11 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
   register: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool
+  isAuthenticated: PropTypes.bool,
 };
 
-const mapStateToProps = state => ({
-  isAuthenticated: state.authorization.isAuthenticated
+const mapStateToProps = (state) => ({
+  isAuthenticated: state.authorization.isAuthenticated,
 });
 
 export default connect(mapStateToProps, { setAlert, register })(Register);

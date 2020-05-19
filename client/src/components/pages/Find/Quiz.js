@@ -3,7 +3,6 @@ import findData from "./FindData.json";
 import Card from "react-bootstrap/Card";
 import { Button, Form, Alert } from "react-bootstrap";
 import axios from "axios";
-import CardColumns from "react-bootstrap/CardColumns";
 import { LinkContainer } from "react-router-bootstrap";
 import Jumbotron from "react-bootstrap/Jumbotron";
 import Spinner from "react-bootstrap/Spinner";
@@ -260,7 +259,6 @@ class Quiz extends React.Component {
               (this.state.activePage - 1) * 50,
               (this.state.activePage - 1) * 50 + 50
             ).map((occupation, index) => {
-              var color = this.getColors(index.toString());
               return (
                 <div
                   key={occupation.OnetCode}
